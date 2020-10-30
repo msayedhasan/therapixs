@@ -1,0 +1,31 @@
+const express = require("express");
+const passport = require("passport");
+const passportJWT = passport.authenticate("jwt", { session: false });
+
+const ownerController = require("../../controllers/stackholders/owner");
+
+const router = express.Router();
+
+const {
+  addBranchValidation,
+} = require("../../middleware/validation/branch/branch.validation");
+
+router.get("/", passportJWT, ownerController.getAll);
+
+router.get("/:ownerId", passportJWT, ownerController.getOne);
+
+router.post("/addOwner/:userId", passportJWT, ownerController.addOwner);
+
+router.post(
+  "/addOwnerToStore/:userId/:storeId",
+  passportJWT,
+  ownerController.addOwnerToStore
+);
+
+router.post("/lockOwner/:ownerId", passportJWT, ownerController.lockOwner);
+
+router.post("/unlockOwner/:ownerId", passportJWT, ownerController.unlockOwner);
+
+router.delete("/deleteOwner/:userId", passportJWT, ownerController.deleteOwner);
+
+module.exports = router;
