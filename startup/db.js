@@ -12,7 +12,7 @@ module.exports = () => {
       console.log("Connected to DB");
     })
     .catch((err) => {
-      console.log(`${process.env}`);
+      // console.log(`${process.env}`);
       winston.log(err);
     });
 };
