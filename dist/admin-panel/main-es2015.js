@@ -280,7 +280,8 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "baseUrl", function() { return baseUrl; });
-var baseUrl = 'http://localhost:3000';
+var baseUrl = 'https://motobar.herokuapp.com:3000';
+// export var baseUrl = 'http://localhost:3000'
 
 
 /***/ }),

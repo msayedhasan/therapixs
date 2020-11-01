@@ -510,7 +510,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       return baseUrl;
     });
 
-    var baseUrl = 'http://localhost:3000';
+    var baseUrl = 'https://motobar.herokuapp.com:3000'; // export var baseUrl = 'http://localhost:3000'
+
     /***/
   },
 
