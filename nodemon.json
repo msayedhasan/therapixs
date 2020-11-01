@@ -1,0 +1,7 @@
+{
+    "env" : {
+        "MONGO_USER": "mohamedsayed",
+        "MONGO_PASSWORD": "mohamedsayed",
+        "MONGO_DEFAULT_DATABASE": "project"
+    }
+}

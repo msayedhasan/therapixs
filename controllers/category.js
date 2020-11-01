@@ -198,14 +198,47 @@ exports.updateOne = async (req, res, next) => {
   }
 };
 
-deleteSubCategories(categories) {
+// deleteSubCategories = async (categories) => {
+//   for (let index = 0; index < category.categories.length; index++) {
+//     let subCategory = await Category.findById(category.categories[index]);
+//     if (subCategory.products) {
+//       for (let index = 0; index < subCategory.products.length; index++) {
+//         await Product.findByIdAndDelete(subCategory.products[index]);
+//       }
+//     }
+//     if (subCategory.categories) {
+//       for (let index = 0; index < subCategory.categories.length; index++) {
+//         await Category.findByIdAndDelete(subCategory.categories[index]);
+//       }
+//     }
 
-}
+//     await Category.findByIdAndDelete(subCategory.categories[index]);
+//   }
+// };
+
+// deleteSubSubCategories = async (subCategories) => {
+//   for (let index = 0; index < category.categories.length; index++) {
+//     let subCategory = await Category.findById(category.categories[index]);
+//     if (subCategory.products) {
+//       for (let index = 0; index < subCategory.products.length; index++) {
+//         await Product.findByIdAndDelete(subCategory.products[index]);
+//       }
+//     }
+//     if (subCategory.categories) {
+//       for (let index = 0; index < subCategory.categories.length; index++) {
+//         await Category.findByIdAndDelete(subCategory.categories[index]);
+//       }
+//     }
+
+//     await Category.findByIdAndDelete(subCategory.categories[index]);
+//   }
+// };
 
 exports.deleteOne = async (req, res, next) => {
   const categoryId = req.params.categoryId;
   try {
-    const category = await Category.findById(categoryId).populate({
+    const category = await Category.findById(categoryId)
+      .populate({
         path: "categories",
         model: "Category",
       })
@@ -237,28 +270,6 @@ exports.deleteOne = async (req, res, next) => {
     }
 
     // if it contains subcategories delete them
-    // if (category.categories) {
-    //   const allCategories = await Category.find();
-    //   let higherLevel = 0;
-    //   // loop on all categories to get higher category level
-    //   for (let index = 0; index < allCategories.length; index++) {
-    //     if (allCategories[index].level > higherLevel) {
-    //       higherLevel = allCategories[index].level;
-    //     }
-    //   }
-    //   // loop on categories levels
-    //   for (let index = 0; index < higherLevel; index++) {
-    //     // filter with level = index
-    //     let filteredCategories = allCategories.map((e) => e.level === index);
-    //     for (let i = 0; i < filteredCategories.length; i++) {
-    //       if (filteredCategories[i].parentCategory === categoryId) {
-    //         await Category.findByIdAndDelete()
-    //       }
-    //     }
-    //   }
-    //   // if categories in this level parent category = category id => delete it
-    // }
-
     if (category.categories) {
       for (let index = 0; index < category.categories.length; index++) {
         let subCategory = await Category.findById(category.categories[index]);
@@ -272,7 +283,6 @@ exports.deleteOne = async (req, res, next) => {
             await Category.findByIdAndDelete(subCategory.categories[index]);
           }
         }
-
         await Category.findByIdAndDelete(subCategory.categories[index]);
       }
     }
