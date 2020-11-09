@@ -2,8 +2,8 @@ const joi = require("@hapi/joi");
 
 const schema = {
   login: joi.object({
-    email: joi.string().required(),
-    // phone: joi.number().required(),
+    // email: joi.string().required(),
+    phone: joi.number().required(),
     password: joi.string().required(),
   }),
 

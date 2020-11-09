@@ -27,6 +27,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/models/group.ts":
+  /*!*********************************!*\
+    !*** ./src/app/models/group.ts ***!
+    \*********************************/
+
+  /*! no static exports found */
+
+  /***/
+  function srcAppModelsGroupTs(module, exports) {
+    var Group = function Group() {
+      _classCallCheck(this, Group);
+    };
+    /***/
+
+  },
+
+  /***/
   "./src/app/models/product-attribute.ts":
   /*!*********************************************!*\
     !*** ./src/app/models/product-attribute.ts ***!
@@ -38,6 +55,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   function srcAppModelsProductAttributeTs(module, exports) {
     var ProductAttribute = function ProductAttribute() {
       _classCallCheck(this, ProductAttribute);
+    };
+    /***/
+
+  },
+
+  /***/
+  "./src/app/models/store.ts":
+  /*!*********************************!*\
+    !*** ./src/app/models/store.ts ***!
+    \*********************************/
+
+  /*! no static exports found */
+
+  /***/
+  function srcAppModelsStoreTs(module, exports) {
+    var Store = function Store() {
+      _classCallCheck(this, Store);
     };
     /***/
 
@@ -190,6 +224,141 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/pages/groups/groups.service.ts":
+  /*!************************************************!*\
+    !*** ./src/app/pages/groups/groups.service.ts ***!
+    \************************************************/
+
+  /*! exports provided: GroupsService */
+
+  /***/
+  function srcAppPagesGroupsGroupsServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "GroupsService", function () {
+      return GroupsService;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _models_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../models/group */
+    "./src/app/models/group.ts");
+    /* harmony import */
+
+
+    var _models_group__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_models_group__WEBPACK_IMPORTED_MODULE_2__);
+    /* harmony import */
+
+
+    var _config_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../config/variables */
+    "./src/app/config/variables.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+    var GroupsService = /*#__PURE__*/function () {
+      function GroupsService(http) {
+        _classCallCheck(this, GroupsService);
+
+        this.http = http;
+        this.groups = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+      }
+
+      _createClass(GroupsService, [{
+        key: "getAll",
+        value: function getAll() {
+          var _this3 = this;
+
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/group').subscribe(function (res) {
+            if (res['data']) {
+              _this3.groups.next(res['data']);
+            }
+          });
+        }
+      }, {
+        key: "getOne",
+        value: function getOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/group/".concat(itemId));
+        }
+      }, {
+        key: "addOne",
+        value: function addOne(form) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/group', form);
+        }
+      }, {
+        key: "updateOne",
+        value: function updateOne(form, itemId) {
+          return this.http.put(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/group/".concat(itemId), form);
+        }
+      }, {
+        key: "deleteOne",
+        value: function deleteOne(itemId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/group/".concat(itemId));
+        }
+      }, {
+        key: "lockOne",
+        value: function lockOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/group/lock/".concat(itemId));
+        }
+      }, {
+        key: "unlockOne",
+        value: function unlockOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/group/unlock/".concat(itemId));
+        }
+      }]);
+
+      return GroupsService;
+    }();
+
+    GroupsService.ɵfac = function GroupsService_Factory(t) {
+      return new (t || GroupsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]));
+    };
+
+    GroupsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+      token: GroupsService,
+      factory: GroupsService.ɵfac,
+      providedIn: 'root'
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](GroupsService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+          providedIn: 'root'
+        }]
+      }], function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }];
+      }, null);
+    })();
+    /***/
+
+  },
+
+  /***/
   "./src/app/pages/product-attributes/product-attributes.service.ts":
   /*!************************************************************************!*\
     !*** ./src/app/pages/product-attributes/product-attributes.service.ts ***!
@@ -254,11 +423,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProductAttributesService, [{
         key: "getAll",
         value: function getAll() {
-          var _this3 = this;
+          var _this4 = this;
 
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product-attribute').subscribe(function (res) {
             if (res['data']) {
-              _this3.productAttributes.next(res['data']);
+              _this4.productAttributes.next(res['data']);
             }
           });
         }
@@ -301,6 +470,153 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     (function () {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ProductAttributesService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+          providedIn: 'root'
+        }]
+      }], function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }];
+      }, null);
+    })();
+    /***/
+
+  },
+
+  /***/
+  "./src/app/pages/stores/stores.service.ts":
+  /*!************************************************!*\
+    !*** ./src/app/pages/stores/stores.service.ts ***!
+    \************************************************/
+
+  /*! exports provided: StoresService */
+
+  /***/
+  function srcAppPagesStoresStoresServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "StoresService", function () {
+      return StoresService;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _models_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../models/store */
+    "./src/app/models/store.ts");
+    /* harmony import */
+
+
+    var _models_store__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_models_store__WEBPACK_IMPORTED_MODULE_2__);
+    /* harmony import */
+
+
+    var _config_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../config/variables */
+    "./src/app/config/variables.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+    var StoresService = /*#__PURE__*/function () {
+      function StoresService(http) {
+        _classCallCheck(this, StoresService);
+
+        this.http = http;
+        this.stores = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+      }
+
+      _createClass(StoresService, [{
+        key: "getAll",
+        value: function getAll() {
+          var _this5 = this;
+
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/store').subscribe(function (res) {
+            if (res['data']) {
+              _this5.stores.next(res['data']);
+            }
+          }, function (error) {
+            console.log(error); // this.error.next(error.error.message);
+          });
+        }
+      }, {
+        key: "getOne",
+        value: function getOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/".concat(itemId));
+        }
+      }, {
+        key: "addOne",
+        value: function addOne(form) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/store', form);
+        }
+      }, {
+        key: "updateOne",
+        value: function updateOne(form, itemId) {
+          return this.http.put(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/".concat(itemId), form);
+        }
+      }, {
+        key: "deleteOne",
+        value: function deleteOne(itemId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/".concat(itemId));
+        }
+      }, {
+        key: "activateOne",
+        value: function activateOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/activate/".concat(itemId));
+        }
+      }, {
+        key: "deactivateOne",
+        value: function deactivateOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/deactivate/".concat(itemId));
+        }
+      }, {
+        key: "lockOne",
+        value: function lockOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/lock/".concat(itemId));
+        }
+      }, {
+        key: "unlockOne",
+        value: function unlockOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/unlock/".concat(itemId));
+        }
+      }]);
+
+      return StoresService;
+    }();
+
+    StoresService.ɵfac = function StoresService_Factory(t) {
+      return new (t || StoresService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]));
+    };
+
+    StoresService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+      token: StoresService,
+      factory: StoresService.ɵfac,
+      providedIn: 'root'
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](StoresService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
           providedIn: 'root'

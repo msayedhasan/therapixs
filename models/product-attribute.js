@@ -6,7 +6,6 @@ const productAttributeSchema = new Schema({
   name: {
     ar: {
       type: String,
-      required: true,
     },
     en: {
       type: String,
@@ -17,7 +16,6 @@ const productAttributeSchema = new Schema({
     {
       ar: {
         type: String,
-        required: true,
       },
       en: {
         type: String,

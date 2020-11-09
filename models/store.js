@@ -7,9 +7,29 @@ const storeSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  lockedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: undefined,
+  },
+  unlockedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: undefined,
+  },
   active: {
     type: Boolean,
     default: false,
+  },
+  activatedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: undefined,
+  },
+  deactivatedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: undefined,
   },
   name: {
     type: String,
@@ -17,7 +37,11 @@ const storeSchema = new Schema({
   },
   image: {
     type: String,
-    required: true,
+    default: "images/placeholder.jpg",
+  },
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   owners: [
     {
@@ -25,15 +49,12 @@ const storeSchema = new Schema({
       ref: "Owner",
     },
   ],
-  products: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Product",
-      },
-    ],
-    default: undefined,
-  },
+  products: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
   numberOfBranches: {
     type: Number,
     default: undefined,

@@ -20,4 +20,20 @@ router.put("/:productId", passportJWT, productController.updateOne);
 
 router.delete("/:productId", passportJWT, productController.deleteOne);
 
+router.get("/activate/:productId", passportJWT, productController.activateOne);
+
+router.get(
+  "/deactivate/:productId",
+  passportJWT,
+  productController.deactivateOne
+);
+
+router.get("/sold/:productId", passportJWT, productController.soldOne);
+
+router.get(
+  "/available/:productId",
+  passportJWT,
+  productController.availableOne
+);
+
 module.exports = router;

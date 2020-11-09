@@ -3,6 +3,36 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
+  ordered: {
+    type: Boolean,
+    default: false,
+  },
+  orderedAt: String,
+  orderedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: undefined,
+  },
+
+  sold: {
+    type: Boolean,
+    default: false,
+  },
+  soldAt: String,
+  active: {
+    type: Boolean,
+    default: false,
+  },
+  activatedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: undefined,
+  },
+  deactivatedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    default: undefined,
+  },
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -25,7 +55,6 @@ const productSchema = new Schema({
   name: {
     ar: {
       type: String,
-      required: true,
     },
     en: {
       type: String,
@@ -39,7 +68,6 @@ const productSchema = new Schema({
     },
     ar: {
       type: String,
-      required: true,
     },
     en: {
       type: String,

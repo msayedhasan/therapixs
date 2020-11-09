@@ -7,14 +7,6 @@ const ownerSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  name: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    default: "images/placeholder.jpg",
-  },
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

@@ -1,5 +1,7 @@
+const Product = require("../models/product");
 const Store = require("../models/store");
 const Owner = require("../models/stackholders/owner");
+const User = require("../models/stackholders/user");
 
 exports.getAll = async (req, res, next) => {
   try {
@@ -19,26 +21,6 @@ exports.getAll = async (req, res, next) => {
     next(err);
   }
 };
-// exports.getAll = async (req, res, next) => {
-//   try {
-//     const stores = await Store.find({
-//       branches: { $not: { $size: 0 } },
-//     }).populate({
-//       path: "owners",
-//       model: "Owner",
-//     });
-
-//     return res.status(200).json({
-//       message: "Success",
-//       data: stores,
-//     });
-//   } catch (err) {
-//     if (!err.statusCode) {
-//       err.statusCode = 500;
-//     }
-//     next(err);
-//   }
-// };
 
 exports.getOne = async (req, res, next) => {
   const storeId = req.params.storeId;
@@ -79,7 +61,6 @@ exports.addOne = async (req, res, next) => {
       }
 
       const name = JSON.parse(req.body.name);
-      const numberOfBranches = JSON.parse(req.body.numberOfBranches);
       const imageFile = req.file;
       if (!imageFile) {
         return res
@@ -98,7 +79,7 @@ exports.addOne = async (req, res, next) => {
       const store = new Store({
         name: name,
         image: image,
-        numberOfBranches: numberOfBranches,
+        creator: loggedInUser._id,
         owners: [owner._id],
         createdAt: Date.now(),
       });
@@ -108,7 +89,7 @@ exports.addOne = async (req, res, next) => {
         from: Date.now(),
         store: store._id,
       });
-      owner.storeId = store._id;
+      owner.store = store;
       await owner.save();
 
       return res.status(201).json({
@@ -117,7 +98,6 @@ exports.addOne = async (req, res, next) => {
       });
     } else if (loggedInUser.admin) {
       const name = JSON.parse(req.body.name);
-      const numberOfBranches = parseInt(JSON.parse(req.body.numberOfBranches));
       const imageFile = req.file;
       if (!imageFile) {
         return res
@@ -136,7 +116,7 @@ exports.addOne = async (req, res, next) => {
       const store = new Store({
         name: name,
         image: image,
-        numberOfBranches: numberOfBranches,
+        creator: loggedInUser._id,
         owners: [],
         createdAt: Date.now(),
       });
@@ -162,6 +142,41 @@ exports.addOne = async (req, res, next) => {
 exports.updateOne = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
+    if (loggedInUser.admin) {
+      const storeId = req.params.storeId;
+      const store = await Store.findById(storeId);
+
+      if (!store) {
+        const error = new Error("Could not find store.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      const name = JSON.parse(req.body.name);
+      const imageFile = req.file;
+      let image;
+      if (imageFile) {
+        image = imageFile.path;
+      } else {
+        image = store.image;
+      }
+
+      const oldStore = await Store.findOne({ name: name });
+      if (oldStore) {
+        const error = new Error("Store with this name is already exist");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      store.name = name;
+      store.image = image;
+      await store.save();
+
+      return res.status(201).json({
+        message: "Store updated successfully!",
+        data: store,
+      });
+    }
     if (loggedInUser.owner) {
       const storeId = req.params.storeId;
       const store = await Store.findById(storeId);
@@ -173,16 +188,14 @@ exports.updateOne = async (req, res, next) => {
       }
 
       if (store.owners.includes(loggedInUser.ownerId)) {
-        const name = req.body.name;
+        const name = JSON.parse(req.body.name);
         const imageFile = req.file;
-
-        if (!imageFile) {
-          return res
-            .status(422)
-            .json({ message: "Attached file is not an image" });
+        let image;
+        if (imageFile) {
+          image = imageFile.path;
+        } else {
+          image = store.image;
         }
-
-        const image = imageFile.path;
 
         const oldStore = await Store.findOne({ name: name });
         if (oldStore) {
@@ -222,10 +235,41 @@ exports.updateOne = async (req, res, next) => {
 exports.deleteOne = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
-    if (loggedInUser.owner) {
+    const storeId = req.params.storeId;
+    if (loggedInUser.admin) {
+      const store = await Store.findById(storeId);
+      if (!store) {
+        const error = new Error("Could not find store.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      for (let index = 0; index < store.owners.length; index++) {
+        let owner = await Owner.findById(store.owners[index]);
+        if (owner) {
+          owner.ownerHistory[owner.ownerHistory.length - 1].to = Date.now();
+          owner.store = undefined;
+
+          let user = await User.findById(owner.user);
+          if (user) {
+            user.owner = undefined;
+            user.ownerId = undefined;
+          }
+
+          await user.save();
+
+          await owner.save();
+        }
+      }
+      for (let index = 0; index < store.products.length; index++) {
+        await Product.findByIdAndDelete(store.products[index]);
+      }
+
+      await Store.findByIdAndDelete(storeId);
+      return res.status(200).json({ message: "Store deleted!" });
+    } else if (loggedInUser.owner) {
       const storeId = req.params.storeId;
       const store = await Store.findById(storeId);
-
       if (!store) {
         const error = new Error("Could not find store.");
         error.statusCode = 404;
@@ -259,3 +303,168 @@ exports.deleteOne = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.activateOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    const storeId = req.params.storeId;
+    if (loggedInUser.admin) {
+      const store = await Store.findById(storeId);
+      if (!store) {
+        const error = new Error("Could not find store.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (store.active) {
+        const error = new Error("store is already activated.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      store.active = true;
+      store.activatedBy = loggedInUser._id;
+      await store.save();
+
+      return res.status(200).json({ message: "Store activated!" });
+    } else {
+      const error = new Error("Not authorized as you're not an admin!");
+      error.statusCode = 403;
+      throw error;
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.deactivateOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    const storeId = req.params.storeId;
+    if (loggedInUser.admin) {
+      const store = await Store.findById(storeId);
+      if (!store) {
+        const error = new Error("Could not find store.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (!store.active) {
+        const error = new Error("store is already deactivated.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      store.active = false;
+      store.deactivatedBy = loggedInUser._id;
+      await store.save();
+
+      return res.status(200).json({ message: "Store deactivated!" });
+    } else {
+      const error = new Error("Not authorized as you're not an admin!");
+      error.statusCode = 403;
+      throw error;
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.lockOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    const storeId = req.params.storeId;
+    if (loggedInUser.admin) {
+      const store = await Store.findById(storeId);
+      if (!store) {
+        const error = new Error("Could not find store.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (store.locked) {
+        const error = new Error("store is already locked.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      store.locked = true;
+      store.lockedBy = loggedInUser._id;
+      await store.save();
+
+      return res.status(200).json({ message: "Store locked!" });
+    } else {
+      const error = new Error("Not authorized as you're not an admin!");
+      error.statusCode = 403;
+      throw error;
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.unlockOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    const storeId = req.params.storeId;
+    if (loggedInUser.admin) {
+      const store = await Store.findById(storeId);
+      if (!store) {
+        const error = new Error("Could not find store.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (!store.locked) {
+        const error = new Error("store is already unlocked.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      store.locked = false;
+      store.unlockedBy = loggedInUser._id;
+      await store.save();
+
+      return res.status(200).json({ message: "Store unlocked!" });
+    } else {
+      const error = new Error("Not authorized as you're not an admin!");
+      error.statusCode = 403;
+      throw error;
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+// exports.getAll = async (req, res, next) => {
+//   try {
+//     const stores = await Store.find({
+//       branches: { $not: { $size: 0 } },
+//     }).populate({
+//       path: "owners",
+//       model: "Owner",
+//     });
+
+//     return res.status(200).json({
+//       message: "Success",
+//       data: stores,
+//     });
+//   } catch (err) {
+//     if (!err.statusCode) {
+//       err.statusCode = 500;
+//     }
+//     next(err);
+//   }
+// };

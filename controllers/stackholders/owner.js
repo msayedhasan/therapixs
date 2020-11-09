@@ -1,9 +1,19 @@
 const Owner = require("../../models/stackholders/owner");
+const User = require("../../models/stackholders/user");
+const Store = require("../../models/store");
 
 exports.getAll = async (req, res, next) => {
   try {
-    const owners = await Owner.find({ ownerHistory: { $not: { $size: 0 } } });
-
+    const owners = await User.find({
+      ownerId: { $exists: true },
+    }).populate({
+      path: "ownerId",
+      model: "Owner",
+      populate: {
+        path: "store",
+        model: "Store",
+      },
+    });
     return res.status(200).json({
       message: "Success",
       data: owners,
@@ -47,6 +57,11 @@ exports.addOwner = async (req, res, next) => {
         throw error;
       }
 
+      if (user.admin) {
+        const error = new Error("This user is an admin.");
+        error.statusCode = 400;
+        throw error;
+      }
       if (user.owner) {
         const error = new Error("This user is already an owner.");
         error.statusCode = 400;
@@ -66,15 +81,13 @@ exports.addOwner = async (req, res, next) => {
       }
 
       const owner = new Owner({
-        name: user.name,
-        image: user.image,
         user: user._id,
       });
 
       await owner.save();
 
       user.owner = true;
-      user.ownerId = owner.id;
+      user.ownerId = owner._id;
       await user.save();
 
       return res.status(201).json({
@@ -82,7 +95,7 @@ exports.addOwner = async (req, res, next) => {
         data: user,
       });
     } else {
-      const error = new Error("Not authorized!");
+      const error = new Error("Not authorized as you're not an Admin!");
       error.statusCode = 403;
       throw error;
     }
@@ -116,10 +129,14 @@ exports.addOwnerToStore = async (req, res, next) => {
         throw error;
       }
 
-      if (user.owner) {
-        const error = new Error(
-          "This user is already an owner for another store."
-        );
+      if (user.admin) {
+        const error = new Error("This user is an admin.");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      if (!user.owner) {
+        const error = new Error("This user isn't an owner.");
         error.statusCode = 400;
         throw error;
       }
@@ -128,23 +145,31 @@ exports.addOwnerToStore = async (req, res, next) => {
       if (oldOwner) {
         user.owner = true;
         user.ownerId = oldOwner._id;
-        await user.save();
 
         oldOwner.ownerHistory.push({
           from: Date.now(),
           store: storeId,
         });
+
+        oldOwner.store = store;
+
+        if (store.owners.includes(oldOwner._id)) {
+          const error = new Error("This user is already owner of this store.");
+          error.statusCode = 400;
+          throw error;
+        }
+        store.owners.push(oldOwner._id);
+        await store.save();
+        await user.save();
         await oldOwner.save();
 
         return res.status(201).json({
-          message: "Owner updated old owner successfully!",
+          message: "old owner updated successfully!",
           data: oldOwner,
         });
       }
 
       const owner = new Owner({
-        name: user.name,
-        image: user.image,
         user: userId,
         ownerHistory: [
           {
@@ -152,13 +177,16 @@ exports.addOwnerToStore = async (req, res, next) => {
             store: storeId,
           },
         ],
+        store: store,
       });
-
-      await owner.save();
 
       user.owner = true;
       user.ownerId = owner._id;
+
+      await owner.save();
       await user.save();
+      store.owners.push(owner._id);
+      await store.save();
 
       return res.status(201).json({
         message: "Owner added successfully!",
@@ -259,21 +287,28 @@ exports.deleteOwner = async (req, res, next) => {
       }
 
       const owner = await Owner.findById(user.ownerId);
+      if (!owner) {
+        const error = new Error("couldn't find this owner.");
+        error.statusCode = 400;
+        throw error;
+      }
 
       if (owner.ownerHistory.length > 0) {
-        const store = await Store.findById(
-          owner.ownerHistory[owner.ownerHistory.length - 1].store
-        );
+        if (!owner.ownerHistory[owner.ownerHistory.length - 1].to) {
+          const store = await Store.findById(
+            owner.ownerHistory[owner.ownerHistory.length - 1].store
+          );
 
-        if (store.owners.includes(owner._id)) {
-          store.owners.pull(owner._id);
+          if (store.owners.includes(owner._id)) {
+            store.owners.pull(owner._id);
+          }
+
+          await store.save();
+
+          owner.ownerHistory[owner.ownerHistory.length - 1].to = Date.now();
+          owner.store = undefined;
+          await owner.save();
         }
-
-        await store.save();
-
-        owner.ownerHistory[owner.ownerHistory.length - 1].to = Date.now();
-        owner.store = undefined;
-        await owner.save();
       }
 
       user.owner = undefined;

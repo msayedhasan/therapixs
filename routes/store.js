@@ -3,27 +3,27 @@ const express = require("express");
 const passport = require("passport");
 
 const passportJWT = passport.authenticate("jwt", { session: false });
-const storeController = require("../controllers/store");
 
-const {
-  addStoreValidation,
-} = require("../middleware/validation/store/store.validation");
+const storeController = require("../controllers/store");
 
 const router = express.Router();
 
 router.get("/", passportJWT, storeController.getAll);
 
-router.post("/", addStoreValidation, passportJWT, storeController.addOne);
+router.post("/", passportJWT, storeController.addOne);
 
 router.get("/:storeId", passportJWT, storeController.getOne);
 
-router.put(
-  "/update/:storeId",
-  addStoreValidation,
-  passportJWT,
-  storeController.updateOne
-);
+router.put("/:storeId", passportJWT, storeController.updateOne);
 
-router.delete("/delete/:storeId", passportJWT, storeController.deleteOne);
+router.delete("/:storeId", passportJWT, storeController.deleteOne);
+
+router.get("/activate/:storeId", passportJWT, storeController.activateOne);
+
+router.get("/deactivate/:storeId", passportJWT, storeController.deactivateOne);
+
+router.get("/lock/:storeId", passportJWT, storeController.lockOne);
+
+router.get("/unlock/:storeId", passportJWT, storeController.unlockOne);
 
 module.exports = router;

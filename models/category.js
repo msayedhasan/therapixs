@@ -6,7 +6,6 @@ const categorySchema = new Schema({
   name: {
     ar: {
       type: String,
-      required: true,
     },
     en: {
       type: String,
@@ -44,14 +43,12 @@ const categorySchema = new Schema({
       },
     ],
   },
-  productAttributes: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "ProductAttribute",
-      },
-    ],
-  },
+  productAttributes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "ProductAttribute",
+    },
+  ],
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User",

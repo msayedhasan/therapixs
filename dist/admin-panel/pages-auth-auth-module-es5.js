@@ -285,7 +285,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.authService = authService;
         this.router = router;
         this.form = this.fb.group({
-          email: ['test@test.com', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email]],
+          phone: ['11111111111', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+          // email: ['test@test.com', [Validators.required, Validators.email]],
           password: ['test', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
       }
@@ -316,7 +317,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var authObs; // this.isLoading = true;
 
           this.authService.postForm('auth/login', form).subscribe(function (res) {
-            console.log('logged in successfully');
+            console.log(res['message']);
 
             _this2.router.navigate(['/']);
           }, function (errorRes) {
@@ -339,7 +340,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-login"]],
       decls: 15,
       vars: 12,
-      consts: [[1, "grid-center-noGutter", "page_container"], [1, "col-8_xlg-12_md-16_sm-22_xs-24"], [1, "grid-center-noGutter", "form-container"], [1, "col-24", "grid-center-noGutter"], [1, "grid-center-noGutter"], ["type", "email", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], ["type", "text", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], [1, "grid"], [1, "col-24", "btn", "color1", 3, "click"]],
+      consts: [[1, "grid-center-noGutter", "page_container"], [1, "col-8_xlg-12_md-16_sm-22_xs-24"], [1, "grid-center-noGutter", "form-container"], [1, "col-24", "grid-center-noGutter"], [1, "grid-center-noGutter"], ["type", "number", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], ["type", "text", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], [1, "grid"], [1, "col-24", "btn", "color1", 3, "click"]],
       template: function LoginComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "ngx-spinner");
@@ -400,7 +401,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](10);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Email")("fieldId", "email")("required", true)("placeholder", "Enter your Email")("control", ctx.form.get("email"))("fieldClass", "col-16_xlg-24");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Phone")("fieldId", "phone")("required", true)("placeholder", "Enter your Email")("control", ctx.form.get("phone"))("fieldClass", "col-16_xlg-24");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 

@@ -6,10 +6,6 @@ const ownerController = require("../../controllers/stackholders/owner");
 
 const router = express.Router();
 
-const {
-  addBranchValidation,
-} = require("../../middleware/validation/branch/branch.validation");
-
 router.get("/", passportJWT, ownerController.getAll);
 
 router.get("/:ownerId", passportJWT, ownerController.getOne);

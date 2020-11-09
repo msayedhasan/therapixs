@@ -96,7 +96,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           image: [],
           name: this.fb.group({
             en: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            ar: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            ar: ['']
           }),
           productAttributes: this.fb.array([])
         });
@@ -193,8 +193,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       type: AddCategoryComponent,
       selectors: [["app-add-category"]],
       decls: 17,
-      vars: 26,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-11_sm-24", 3, "label", "fieldId", "ItemsList", "fieldClass", "required", "itemselected"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"]],
+      vars: 25,
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-11_sm-24", 3, "label", "fieldId", "ItemsList", "fieldClass", "required", "itemselected"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"]],
       template: function AddCategoryComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -273,7 +273,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("required", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -281,11 +281,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid && ctx.form.touched);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](25, _c0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](24, _c0));
         }
       },
       directives: [_reusable_components_form_fields_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_6__["UploadPhotoComponent"], _reusable_components_form_fields_input_text_input_text_component__WEBPACK_IMPORTED_MODULE_7__["InputTextComponent"], _reusable_components_form_fields_multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_8__["MultiSelectComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"]],
@@ -448,7 +448,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           image: [],
           name: this.fb.group({
             en: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            ar: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            ar: ['']
           })
         });
         this.subCategories = [];
@@ -605,8 +605,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       type: AddSubCategoryComponent,
       selectors: [["app-add-sub-category"]],
       decls: 19,
-      vars: 28,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], [1, "col-24", "grid-noGutter"], [1, "col-11_sm-24", 3, "label", "fieldId", "ItemsList", "placeholder", "fieldClass", "required", "itemselected"], [4, "ngFor", "ngForOf"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"]],
+      vars: 27,
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], [1, "col-24", "grid-noGutter"], [1, "col-11_sm-24", 3, "label", "fieldId", "ItemsList", "placeholder", "fieldClass", "required", "itemselected"], [4, "ngFor", "ngForOf"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"]],
       template: function AddSubCategoryComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -699,7 +699,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("required", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
@@ -707,7 +707,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](27, _c0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](26, _c0));
         }
       },
       directives: [_reusable_components_form_fields_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_5__["UploadPhotoComponent"], _reusable_components_form_fields_select_select_component__WEBPACK_IMPORTED_MODULE_6__["SelectComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgForOf"], _reusable_components_form_fields_input_text_input_text_component__WEBPACK_IMPORTED_MODULE_8__["InputTextComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLink"]],
@@ -1189,7 +1189,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("items", ctx_r3.items)("pagination", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("items", ctx_r3.items)("itemCount", ctx_r3.items.length)("pagination", true)("limit", ctx_r3.limit)("pageLimits", ctx_r3.limits);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -1351,6 +1351,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.modalService = modalService;
         this.toastr = toastr;
         this.items = [];
+        this.limit = 5;
+        this.limits = [5, 10, 25, 50];
+        this.tableElements = [];
       }
 
       _createClass(CategoriesComponent, [{
@@ -1407,7 +1410,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selectors: [["app-categories"]],
       decls: 49,
       vars: 6,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-center-noGutter"], [1, "card", "col-5_md-8_sm-10_xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "col-18_md-16_sm-14_xs-24", "grid-right-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, "grid-right", "col-3_xlg-4_lg-6_sm-10"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [2, "height", "8px"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search"], [1, "md-hidden"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateDelete", ""], ["templateLock", ""], ["id", "my-table", "title", "List of Categories", 3, "items", "pagination", "reload"], [3, "width", "property", "resizable", "header"], ["dataTableCell", ""], [3, "property", "header"], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["width", "30px", "height", "30px", "alt", "", 3, "src"], [4, "ngFor", "ngForOf"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round"]],
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-center-noGutter"], [1, "card", "col-5_md-8_sm-10_xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "col-18_md-16_sm-14_xs-24", "grid-right-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, "grid-right", "col-3_xlg-4_lg-6_sm-10"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [2, "height", "8px"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search"], [1, "md-hidden"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateDelete", ""], ["templateLock", ""], ["id", "my-table", "title", "List of Categories", 3, "items", "itemCount", "pagination", "limit", "pageLimits", "reload"], [3, "width", "property", "resizable", "header"], ["dataTableCell", ""], [3, "property", "header"], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["width", "30px", "height", "30px", "alt", "", 3, "src"], [4, "ngFor", "ngForOf"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round"]],
       template: function CategoriesComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -1554,7 +1557,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](43, CategoriesComponent_ng_template_43_Template, 26, 19, "ng-template", null, 29, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](43, CategoriesComponent_ng_template_43_Template, 26, 22, "ng-template", null, 29, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](45, CategoriesComponent_ng_template_45_Template, 13, 0, "ng-template", 30, 31, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
@@ -1648,45 +1651,45 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _categories_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./categories-routing.module */
-    "./src/app/pages/categories/categories-routing.module.ts");
+    var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ngx-bootstrap/modal */
+    "./node_modules/ngx-bootstrap/__ivy_ngcc__/modal/fesm2015/ngx-bootstrap-modal.js");
     /* harmony import */
 
 
-    var _categories_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./categories.component */
-    "./src/app/pages/categories/categories.component.ts");
-    /* harmony import */
-
-
-    var src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! src/app/reusable-components/form-fields/form-fields.module */
-    "./src/app/reusable-components/form-fields/form-fields.module.ts");
-    /* harmony import */
-
-
-    var angular7_data_table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var angular7_data_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! angular7-data-table */
     "./node_modules/angular7-data-table/__ivy_ngcc__/esm2015/angular7-data-table.js");
     /* harmony import */
 
 
-    var _add_category_add_category_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _categories_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./categories-routing.module */
+    "./src/app/pages/categories/categories-routing.module.ts");
+    /* harmony import */
+
+
+    var src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! src/app/reusable-components/form-fields/form-fields.module */
+    "./src/app/reusable-components/form-fields/form-fields.module.ts");
+    /* harmony import */
+
+
+    var _categories_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./categories.component */
+    "./src/app/pages/categories/categories.component.ts");
+    /* harmony import */
+
+
+    var _add_category_add_category_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./add-category/add-category.component */
     "./src/app/pages/categories/add-category/add-category.component.ts");
     /* harmony import */
 
 
-    var _edit_category_edit_category_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _edit_category_edit_category_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./edit-category/edit-category.component */
     "./src/app/pages/categories/edit-category/edit-category.component.ts");
-    /* harmony import */
-
-
-    var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
-    /*! ngx-bootstrap/modal */
-    "./node_modules/ngx-bootstrap/__ivy_ngcc__/modal/fesm2015/ngx-bootstrap-modal.js");
     /* harmony import */
 
 
@@ -1705,13 +1708,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       factory: function CategoriesModule_Factory(t) {
         return new (t || CategoriesModule)();
       },
-      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _categories_routing_module__WEBPACK_IMPORTED_MODULE_3__["CategoriesRoutingModule"], src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_5__["FormFieldsModule"], angular7_data_table__WEBPACK_IMPORTED_MODULE_6__["DataTableModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_2__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_9__["ModalModule"].forRoot()]]
+      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _categories_routing_module__WEBPACK_IMPORTED_MODULE_5__["CategoriesRoutingModule"], src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_6__["FormFieldsModule"], angular7_data_table__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_2__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["ModalModule"].forRoot()]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](CategoriesModule, {
-        declarations: [_categories_component__WEBPACK_IMPORTED_MODULE_4__["CategoriesComponent"], _add_category_add_category_component__WEBPACK_IMPORTED_MODULE_7__["AddCategoryComponent"], _edit_category_edit_category_component__WEBPACK_IMPORTED_MODULE_8__["EditCategoryComponent"], _add_sub_category_add_sub_category_component__WEBPACK_IMPORTED_MODULE_10__["AddSubCategoryComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _categories_routing_module__WEBPACK_IMPORTED_MODULE_3__["CategoriesRoutingModule"], src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_5__["FormFieldsModule"], angular7_data_table__WEBPACK_IMPORTED_MODULE_6__["DataTableModule"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_2__["TooltipModule"], ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_9__["ModalModule"]]
+        declarations: [_categories_component__WEBPACK_IMPORTED_MODULE_7__["CategoriesComponent"], _add_category_add_category_component__WEBPACK_IMPORTED_MODULE_8__["AddCategoryComponent"], _edit_category_edit_category_component__WEBPACK_IMPORTED_MODULE_9__["EditCategoryComponent"], _add_sub_category_add_sub_category_component__WEBPACK_IMPORTED_MODULE_10__["AddSubCategoryComponent"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _categories_routing_module__WEBPACK_IMPORTED_MODULE_5__["CategoriesRoutingModule"], src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_6__["FormFieldsModule"], angular7_data_table__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_2__["TooltipModule"], ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["ModalModule"]]
       });
     })();
     /*@__PURE__*/
@@ -1721,8 +1724,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CategoriesModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          declarations: [_categories_component__WEBPACK_IMPORTED_MODULE_4__["CategoriesComponent"], _add_category_add_category_component__WEBPACK_IMPORTED_MODULE_7__["AddCategoryComponent"], _edit_category_edit_category_component__WEBPACK_IMPORTED_MODULE_8__["EditCategoryComponent"], _add_sub_category_add_sub_category_component__WEBPACK_IMPORTED_MODULE_10__["AddSubCategoryComponent"]],
-          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _categories_routing_module__WEBPACK_IMPORTED_MODULE_3__["CategoriesRoutingModule"], src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_5__["FormFieldsModule"], angular7_data_table__WEBPACK_IMPORTED_MODULE_6__["DataTableModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_2__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_9__["ModalModule"].forRoot()]
+          declarations: [_categories_component__WEBPACK_IMPORTED_MODULE_7__["CategoriesComponent"], _add_category_add_category_component__WEBPACK_IMPORTED_MODULE_8__["AddCategoryComponent"], _edit_category_edit_category_component__WEBPACK_IMPORTED_MODULE_9__["EditCategoryComponent"], _add_sub_category_add_sub_category_component__WEBPACK_IMPORTED_MODULE_10__["AddSubCategoryComponent"]],
+          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _categories_routing_module__WEBPACK_IMPORTED_MODULE_5__["CategoriesRoutingModule"], src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_6__["FormFieldsModule"], angular7_data_table__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_2__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["ModalModule"].forRoot()]
         }]
       }], null, null);
     })();
@@ -1822,7 +1825,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           image: [],
           name: this.fb.group({
             en: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            ar: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            ar: ['']
           }),
           productAttributes: this.fb.array([])
         });
@@ -1981,8 +1984,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       type: EditCategoryComponent,
       selectors: [["app-edit-category"]],
       decls: 17,
-      vars: 27,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-11_sm-24", 3, "label", "fieldId", "initialSelectedList", "ItemsList", "fieldClass", "required", "itemselected"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"]],
+      vars: 26,
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-11_sm-24", 3, "label", "fieldId", "initialSelectedList", "ItemsList", "fieldClass", "required", "itemselected"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"]],
       template: function EditCategoryComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -2061,7 +2064,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("required", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -2069,11 +2072,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid && ctx.form.touched);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](26, _c0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](25, _c0));
         }
       },
       directives: [_reusable_components_form_fields_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_6__["UploadPhotoComponent"], _reusable_components_form_fields_input_text_input_text_component__WEBPACK_IMPORTED_MODULE_7__["InputTextComponent"], _reusable_components_form_fields_multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_8__["MultiSelectComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLink"]],

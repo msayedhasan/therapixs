@@ -61,20 +61,41 @@ const userSchema = new Schema({
   },
   ///////// not for all users /////////
   admin: Boolean,
+
   owner: Boolean,
-  manager: Boolean,
-  sales: Boolean,
   ownerId: {
     type: Schema.Types.ObjectId,
     ref: "Owner",
   },
+
+  leader: Boolean,
+  leaderId: {
+    type: Schema.Types.ObjectId,
+    ref: "Leader",
+  },
+
+  shipper: Boolean,
+  shipperId: {
+    type: Schema.Types.ObjectId,
+    ref: "Shipper",
+  },
+
+  manager: Boolean,
   managerId: {
     type: Schema.Types.ObjectId,
     ref: "Manager",
   },
+
+  sales: Boolean,
   salesId: {
     type: Schema.Types.ObjectId,
     ref: "Sales",
+  },
+
+  group: {
+    type: Schema.Types.ObjectId,
+    ref: "Group",
+    default: undefined,
   },
 });
 

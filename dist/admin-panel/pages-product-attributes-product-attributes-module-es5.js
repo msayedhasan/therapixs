@@ -159,7 +159,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.form = this.fb.group({
           name: this.fb.group({
             en: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            ar: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            ar: ['']
           }),
           values: this.fb.array([])
         });
@@ -234,8 +234,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       type: AddProductAttributeComponent,
       selectors: [["app-add-product-attribute"]],
       decls: 28,
-      vars: 19,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "values-table"], [4, "ngFor", "ngForOf"], [1, "grid-center", "add"], ["tooltip", "Add value", 1, "btn", "color1", 2, "cursor", "pointer", 3, "click"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"], [1, "col-24", 3, "control", "placeholder", "label", "fieldId", "fieldClass"], [1, "col-24", 3, "control", "placeholder", "rtldirection", "label", "fieldId", "fieldClass"], [1, "actions"], ["class", "material-icons", "tooltip", "Remove Time", "style", "cursor: pointer", 3, "click", 4, "ngIf"], ["tooltip", "Remove Time", 1, "material-icons", 2, "cursor", "pointer", 3, "click"]],
+      vars: 18,
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "values-table"], [4, "ngFor", "ngForOf"], [1, "grid-center", "add"], ["tooltip", "Add value", 1, "btn", "color1", 2, "cursor", "pointer", 3, "click"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"], [1, "col-24", 3, "control", "placeholder", "label", "fieldId", "fieldClass"], [1, "col-24", 3, "control", "placeholder", "rtldirection", "label", "fieldId", "fieldClass"], [1, "actions"], ["class", "material-icons", "tooltip", "Remove Time", "style", "cursor: pointer", 3, "click", 4, "ngIf"], ["tooltip", "Remove Time", 1, "material-icons", 2, "cursor", "pointer", 3, "click"]],
       template: function AddProductAttributeComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -346,7 +346,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("required", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](12);
 
@@ -354,11 +354,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid && ctx.form.touched);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](18, _c0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](17, _c0));
         }
       },
       directives: [_reusable_components_form_fields_input_text_input_text_component__WEBPACK_IMPORTED_MODULE_5__["InputTextComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_7__["TooltipDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLink"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"]],
@@ -545,7 +545,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.form = this.fb.group({
           name: this.fb.group({
             en: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            ar: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            ar: ['']
           }),
           values: this.fb.array([])
         });
@@ -661,8 +661,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       type: EditProductAttributeComponent,
       selectors: [["app-edit-product-attribute"]],
       decls: 28,
-      vars: 19,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "values-table"], [4, "ngFor", "ngForOf"], [1, "grid-center", "add"], ["tooltip", "Add value", 1, "btn", "color1", 2, "cursor", "pointer", 3, "click"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"], [1, "col-24", 3, "control", "placeholder", "label", "fieldId", "fieldClass"], [1, "col-24", 3, "control", "rtldirection", "placeholder", "label", "fieldId", "fieldClass"], [1, "actions"], ["class", "material-icons", "tooltip", "Remove Time", "style", "cursor: pointer", 3, "click", 4, "ngIf"], ["tooltip", "Remove Time", 1, "material-icons", 2, "cursor", "pointer", 3, "click"]],
+      vars: 18,
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "rtldirection", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "values-table"], [4, "ngFor", "ngForOf"], [1, "grid-center", "add"], ["tooltip", "Add value", 1, "btn", "color1", 2, "cursor", "pointer", 3, "click"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"], [1, "col-24", 3, "control", "placeholder", "label", "fieldId", "fieldClass"], [1, "col-24", 3, "control", "rtldirection", "placeholder", "label", "fieldId", "fieldClass"], [1, "actions"], ["class", "material-icons", "tooltip", "Remove Time", "style", "cursor: pointer", 3, "click", 4, "ngIf"], ["tooltip", "Remove Time", 1, "material-icons", 2, "cursor", "pointer", 3, "click"]],
       template: function EditProductAttributeComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -773,7 +773,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("required", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name ar")("fieldId", "nameAr")("rtldirection", true)("placeholder", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641")("tooltipMsg", "Arabic")("control", ctx.form.get("name.ar"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](12);
 
@@ -781,11 +781,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid && ctx.form.touched);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](18, _c0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](17, _c0));
         }
       },
       directives: [_reusable_components_form_fields_input_text_input_text_component__WEBPACK_IMPORTED_MODULE_5__["InputTextComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_7__["TooltipDirective"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLink"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"]],
@@ -1118,7 +1118,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("items", ctx_r3.items)("pagination", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("items", ctx_r3.items)("itemCount", ctx_r3.items.length)("pagination", true);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -1312,7 +1312,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selectors: [["app-product-attributes"]],
       decls: 46,
       vars: 4,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-center-noGutter"], [1, "card", "col-5_md-8_sm-10_xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "col-18_md-16_sm-14_xs-24", "grid-right-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, "grid-right", "col-3_xlg-4_lg-6_sm-10"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search"], [1, "md-hidden"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateDelete", ""], ["templateLock", ""], ["id", "my-table", "title", "List of Product attributes", 3, "items", "pagination", "reload"], [3, "property", "header"], ["dataTableCell", ""], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round"]],
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-center-noGutter"], [1, "card", "col-5_md-8_sm-10_xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "col-18_md-16_sm-14_xs-24", "grid-right-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, "grid-right", "col-3_xlg-4_lg-6_sm-10"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search"], [1, "md-hidden"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateDelete", ""], ["templateLock", ""], ["id", "my-table", "title", "List of Product attributes", 3, "items", "itemCount", "pagination", "reload"], [3, "property", "header"], ["dataTableCell", ""], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round"]],
       template: function ProductAttributesComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -1451,7 +1451,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](40, ProductAttributesComponent_ng_template_40_Template, 11, 7, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](40, ProductAttributesComponent_ng_template_40_Template, 11, 8, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](42, ProductAttributesComponent_ng_template_42_Template, 13, 0, "ng-template", 29, 30, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 

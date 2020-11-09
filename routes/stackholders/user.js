@@ -15,4 +15,8 @@ router.post("/getOneByPhone", passportJWT, userController.getOneByPhone);
 
 router.put("/", passportJWT, userController.updateOne);
 
+router.get("/lock/:userId", passportJWT, userController.lockOne);
+
+router.get("/unlock/:userId", passportJWT, userController.unlockOne);
+
 module.exports = router;

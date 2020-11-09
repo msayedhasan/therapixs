@@ -4,8 +4,8 @@ const Store = require("../../models/store");
 
 exports.getAll = async (req, res, next) => {
   try {
-    const users = await User.find({}).select(
-      "name phone locked admin owner manager sales dob"
+    const users = await User.find({ admin: undefined }).select(
+      "name phone locked admin owner manager leader sales dob"
     );
 
     return res.status(200).json({
@@ -91,6 +91,76 @@ exports.updateOne = async (req, res, next) => {
     return res.status(200).json({ message: "Success", data: user });
   } catch (err) {
     console.log(err);
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.lockOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    const userId = req.params.userId;
+    if (loggedInUser.admin) {
+      const user = await User.findById(userId);
+      if (!user) {
+        const error = new Error("Could not find user.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (user.locked) {
+        const error = new Error("user is already locked.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      user.locked = true;
+      await user.save();
+
+      return res.status(200).json({ message: "User locked!" });
+    } else {
+      const error = new Error("Not authorized as you're not an admin!");
+      error.statusCode = 403;
+      throw error;
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.unlockOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    const userId = req.params.userId;
+    if (loggedInUser.admin) {
+      const user = await User.findById(userId);
+      if (!user) {
+        const error = new Error("Could not find user.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (!user.locked) {
+        const error = new Error("user is already unlocked.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      user.locked = false;
+      await user.save();
+
+      return res.status(200).json({ message: "User unlocked!" });
+    } else {
+      const error = new Error("Not authorized as you're not an admin!");
+      error.statusCode = 403;
+      throw error;
+    }
+  } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
     }

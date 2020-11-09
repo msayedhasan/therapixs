@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/stackholders/user");
-const Admin = require("../models/stackholders/admin");
 
 setToken = (user) => {
   return jwt.sign(
@@ -83,22 +82,22 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-  const email = req.body.email;
-  // const phone = req.body.phone;
+  // const email = req.body.email;
+  const phone = req.body.phone;
   const password = req.body.password;
   try {
-    // const user = await User.findOne({ phone: phone });
-    // if (!user) {
-    //   const error = new Error("user not found");
-    //   error.statusCode = 401;
-    //   throw error;
-    // }
-    const user = await User.findOne({ "local.email": email });
+    const user = await User.findOne({ phone: phone });
     if (!user) {
       const error = new Error("user not found");
       error.statusCode = 401;
       throw error;
     }
+    // const user = await User.findOne({ "local.email": email });
+    // if (!user) {
+    //   const error = new Error("user not found");
+    //   error.statusCode = 401;
+    //   throw error;
+    // }
     isEqual = await bcrypt.compare(password, user.local.password);
     if (!isEqual) {
       const error = new Error("Wrong password");
@@ -107,9 +106,10 @@ exports.login = async (req, res, next) => {
     }
 
     const token = setToken(user);
-
     return res.status(200).json({
-      message: "Success",
+      message: "Logged in successfully",
+      admin: user.admin,
+      owner: user.owner,
       token: token,
     });
   } catch (err) {
@@ -175,72 +175,6 @@ exports.getProfile = async (req, res, next) => {
       return res.status(200).json({ message: "Profile fetched.", data: user });
     }
     return res.status(200).json({ message: "Profile fetched.", data: user });
-  } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500;
-    }
-    next(err);
-  }
-};
-
-exports.addAdmin = async (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  hashedPassword = await bcrypt.hash(password, 12);
-
-  try {
-    let admin = await Admin.findOne({ email: email });
-    if (admin) {
-      const error = new Error("admin existed");
-      error.statusCode = 401;
-      throw error;
-    }
-
-    const newAdmin = new Admin({
-      email: email,
-      password: hashedPassword,
-    });
-
-    await newAdmin.save();
-
-    const token = setToken(newAdmin);
-    return res.status(201).json({
-      message: "Success",
-      token: token,
-    });
-  } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500;
-    }
-    next(err);
-  }
-};
-
-exports.loginAdmin = async (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  try {
-    const admin = await Admin.findOne({ email: email });
-    if (!admin) {
-      const error = new Error("admin not found");
-      error.statusCode = 401;
-      throw error;
-    }
-
-    isEqual = await bcrypt.compare(password, admin.password);
-    if (!isEqual) {
-      const error = new Error("Wrong password");
-      error.statusCode = 401;
-      throw error;
-    }
-
-    const token = setToken(admin);
-
-    return res.status(200).json({
-      message: "Success",
-      token: token,
-    });
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
