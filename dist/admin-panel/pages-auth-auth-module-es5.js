@@ -285,7 +285,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.authService = authService;
         this.router = router;
         this.form = this.fb.group({
-          phone: ['11111111111', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+          phone: ['0123456789', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
           // email: ['test@test.com', [Validators.required, Validators.email]],
           password: ['test', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
@@ -401,7 +401,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](10);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Phone")("fieldId", "phone")("required", true)("placeholder", "Enter your Email")("control", ctx.form.get("phone"))("fieldClass", "col-16_xlg-24");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Phone")("fieldId", "phone")("required", true)("placeholder", "Enter your phone")("control", ctx.form.get("phone"))("fieldClass", "col-16_xlg-24");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
