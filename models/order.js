@@ -3,10 +3,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
+  orderedAt: String,
   orderedBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    default: undefined,
+    required: true,
   },
 
   cancelled: {
@@ -20,11 +21,17 @@ const orderSchema = new Schema({
   },
   cancelledAt: String,
 
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: "Product",
-    required: true,
-  },
+  products: [
+    {
+      qty: Number,
+      price: Number,
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+    },
+  ],
 
   confirmed: {
     type: Boolean,
@@ -37,19 +44,13 @@ const orderSchema = new Schema({
   },
   confirmedAt: String,
 
-  shipper: {
-    type: Schema.Types.ObjectId,
-    ref: "Shipper",
-    default: undefined,
-  },
-
   shipped: {
     type: Boolean,
     default: false,
   },
   shippedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Shipper",
     default: undefined,
   },
   shippedAt: String,

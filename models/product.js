@@ -3,17 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-  ordered: {
-    type: Boolean,
-    default: false,
-  },
-  orderedAt: String,
   orderedBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    default: undefined,
+    required: true,
   },
-
+  orderedAt: String,
   sold: {
     type: Boolean,
     default: false,
@@ -78,6 +73,11 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+  qty: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
   description: {
     ar: {
       type: String,
@@ -89,12 +89,12 @@ const productSchema = new Schema({
   productAttributes: [],
   reviews: [
     {
+      content: { type: String, default: "" },
+      rate: { type: Number, default: 0 },
       user: {
         type: Schema.Types.ObjectId,
         ref: "User",
       },
-      content: { type: String, default: "" },
-      rate: { type: Number, default: 0 },
     },
   ],
   createdAt: String,

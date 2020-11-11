@@ -56,6 +56,7 @@ exports.addOne = async (req, res, next) => {
     const name = JSON.parse(req.body.name);
     const description = JSON.parse(req.body.description);
     const price = JSON.parse(req.body.price);
+    const qty = JSON.parse(req.body.qty);
     const categoryId = JSON.parse(req.body.category)._id;
     const categoryEn = JSON.parse(req.body.category).name.en;
     const categoryAr = JSON.parse(req.body.category).name.ar;
@@ -79,6 +80,7 @@ exports.addOne = async (req, res, next) => {
       },
       image: image,
       price: price,
+      qty: qty,
       productAttributes: productAttributes,
     });
 
@@ -309,6 +311,7 @@ exports.updateOne = async (req, res, next) => {
     const name = JSON.parse(req.body.name);
     const description = JSON.parse(req.body.description);
     const price = JSON.parse(req.body.price);
+    const qty = JSON.parse(req.body.qty);
     const categoryId = JSON.parse(req.body.category)._id;
     const categoryEn = JSON.parse(req.body.category).name.en;
     const categoryAr = JSON.parse(req.body.category).name.ar;
@@ -324,6 +327,7 @@ exports.updateOne = async (req, res, next) => {
     product.category.en = categoryEn;
     product.category.ar = categoryAr;
     product.price = price;
+    product.qty = qty;
     product.updatedAt = Date.now();
     productAttributes = productAttributes;
 

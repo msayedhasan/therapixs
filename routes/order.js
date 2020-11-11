@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get("/", passportJWT, orderController.getAll);
 
+router.post("/makeOrder", passportJWT, orderController.makeOrder);
+
 router.get("/confirmOne/:orderId", passportJWT, orderController.confirmOne);
 
 router.get("/shipOne/:orderId", passportJWT, orderController.shipOne);

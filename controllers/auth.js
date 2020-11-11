@@ -141,39 +141,29 @@ exports.getProfile = async (req, res, next) => {
     throw error;
   }
   try {
-    let user = await User.findById(decodedToken.userId);
-    if (!user) {
-      const error = new Error("Could not find user.");
-      error.statusCode = 404;
-      throw error;
-    }
-    if (user.owner) {
-      user = await User.findById(user._id).populate({
+    let user = await User.findById(decodedToken.userId)
+      .populate({
         path: "ownerId",
         model: "Owner",
         populate: {
           path: "store",
           model: "Store",
         },
-      });
-      return res.status(200).json({ message: "Profile fetched.", data: user });
-    } else if (user.manager) {
-      user = await User.findById(user._id).populate({
-        path: "managerId",
-        model: "Manager",
+      })
+      .populate({
+        path: "leaderId",
+        model: "Leader",
         populate: {
-          path: "branch",
-          model: "Branch",
+          path: "group",
+          model: "Group",
         },
       });
-      return res.status(200).json({ message: "Profile fetched.", data: user });
-    } else if (user.sales) {
-      user = await User.findById(user._id).populate({
-        path: "salesId",
-        model: "Sales",
-      });
-      return res.status(200).json({ message: "Profile fetched.", data: user });
+    if (!user) {
+      const error = new Error("Could not find user.");
+      error.statusCode = 404;
+      throw error;
     }
+
     return res.status(200).json({ message: "Profile fetched.", data: user });
   } catch (err) {
     if (!err.statusCode) {

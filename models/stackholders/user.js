@@ -59,6 +59,15 @@ const userSchema = new Schema({
     ],
     default: undefined,
   },
+  orders: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Order",
+      },
+    ],
+    default: undefined,
+  },
   ///////// not for all users /////////
   admin: Boolean,
 

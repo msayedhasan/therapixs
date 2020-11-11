@@ -15,6 +15,8 @@ const productRoutes = require("../routes/product");
 
 const orderRoutes = require("../routes/order");
 
+const adsRoutes = require("../routes/ad");
+
 module.exports = function (app) {
   app.use("/auth", authRoutes);
   app.use("/user", userRoutes);
@@ -31,6 +33,8 @@ module.exports = function (app) {
   app.use("/product", productRoutes);
 
   app.use("/order", orderRoutes);
+
+  app.use("/ads", adsRoutes);
 
   // app.get("/", (req, res, next) => {
   //   return res.send("Hello world");

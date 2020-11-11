@@ -5,7 +5,7 @@ const Store = require("../../models/store");
 exports.getAll = async (req, res, next) => {
   try {
     const users = await User.find({ admin: undefined }).select(
-      "name phone locked admin owner manager leader sales dob"
+      "name phone locked admin owner shipper leader dob"
     );
 
     return res.status(200).json({

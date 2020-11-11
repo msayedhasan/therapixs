@@ -1,4 +1,5 @@
 const Order = require("../models/order");
+const Product = require("../models/product");
 
 exports.getAll = async (req, res, next) => {
   try {
@@ -15,6 +16,83 @@ exports.getAll = async (req, res, next) => {
       message: "Fetched successfully",
       data: orders,
     });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.makeOrder = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+
+    const products = req.body.products;
+
+    let userProducts = [];
+    let storeProducts = [];
+
+    for (let index = 0; index < products.length; index++) {
+      let product = await Product.findById(products[index]);
+      if (!product) {
+        const error = new Error(
+          "Could not find a product please check your cart again."
+        );
+        error.statusCode = 404;
+        throw error;
+      }
+      if (!product.active) {
+        const error = new Error("a product is not active.");
+        error.statusCode = 404;
+        throw error;
+      }
+      if (product.sold) {
+        const error = new Error("a product is already sold.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (product.store) {
+        storeProducts.push(products[index]);
+      } else {
+        userProducts.push(products[index]);
+      }
+    }
+
+    if (userProducts.length > 0) {
+      const order = new Order({
+        orderedAt: Date.now(),
+        orderedBy: loggedInUser._id,
+        products: userProducts,
+      });
+      await order.save();
+    }
+
+    if (storeProducts.length > 0) {
+      const order = new Order({
+        orderedAt: Date.now(),
+        orderedBy: loggedInUser._id,
+        products: storeProducts,
+        store: storeProducts[0].store,
+      });
+      await order.save();
+    }
+
+    for (let index = 0; index < products.length; index++) {
+      let product = products[index];
+      product.orderedBy = loggedInUser._id;
+      product.orderedAt = Date.now();
+      await product.save();
+    }
+    if (loggedInUser.orders) {
+      loggedInUser.orders.push(order._id);
+    } else {
+      loggedInUser.orders = [order._id];
+    }
+    await loggedInUser.save();
+
+    return res.status(200).json({ message: "order created!" });
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;

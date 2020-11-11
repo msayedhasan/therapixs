@@ -94,7 +94,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-dashboard-dashboard-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/dashboard/dashboard.module */
           "./src/app/pages/dashboard/dashboard.module.ts")).then(function (m) {
             return m.DashboardModule;
@@ -105,7 +105,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-dashboard-dashboard-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/dashboard/dashboard.module */
           "./src/app/pages/dashboard/dashboard.module.ts")).then(function (m) {
             return m.DashboardModule;
@@ -116,7 +116,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-product-attributes-product-attributes-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("common"), __webpack_require__.e("pages-product-attributes-product-attributes-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-product-attributes-product-attributes-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/product-attributes/product-attributes.module */
           "./src/app/pages/product-attributes/product-attributes.module.ts")).then(function (m) {
             return m.ProductAttributesModule;
@@ -127,7 +127,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-categories-categories-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("common"), __webpack_require__.e("pages-categories-categories-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-categories-categories-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/categories/categories.module */
           "./src/app/pages/categories/categories.module.ts")).then(function (m) {
             return m.CategoriesModule;
@@ -138,7 +138,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-products-products-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("common"), __webpack_require__.e("pages-products-products-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-products-products-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/products/products.module */
           "./src/app/pages/products/products.module.ts")).then(function (m) {
             return m.ProductsModule;
@@ -149,7 +149,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-owners-owners-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("common"), __webpack_require__.e("pages-owners-owners-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-owners-owners-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/owners/owners.module */
           "./src/app/pages/owners/owners.module.ts")).then(function (m) {
             return m.OwnersModule;
@@ -160,7 +160,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-stores-stores-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("common"), __webpack_require__.e("pages-stores-stores-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-stores-stores-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/stores/stores.module */
           "./src/app/pages/stores/stores.module.ts")).then(function (m) {
             return m.StoresModule;
@@ -171,7 +171,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-leaders-leaders-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("common"), __webpack_require__.e("pages-leaders-leaders-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-leaders-leaders-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/leaders/leaders.module */
           "./src/app/pages/leaders/leaders.module.ts")).then(function (m) {
             return m.LeadersModule;
@@ -182,7 +182,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-groups-groups-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("common"), __webpack_require__.e("pages-groups-groups-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-groups-groups-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/groups/groups.module */
           "./src/app/pages/groups/groups.module.ts")).then(function (m) {
             return m.GroupsModule;
@@ -193,7 +193,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-users-users-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("pages-users-users-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("pages-users-users-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/users/users.module */
           "./src/app/pages/users/users.module.ts")).then(function (m) {
             return m.UsersModule;
@@ -204,7 +204,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-events-events-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("pages-events-events-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("pages-events-events-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/events/events.module */
           "./src/app/pages/events/events.module.ts")).then(function (m) {
             return m.EventsModule;
@@ -215,10 +215,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-orders-orders-module */
-          [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-categories-categories-module~pages-events-events-module~pages-groups-groups-module~pag~05b43fb6"), __webpack_require__.e("pages-orders-orders-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("pages-orders-orders-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/orders/orders.module */
           "./src/app/pages/orders/orders.module.ts")).then(function (m) {
             return m.OrdersModule;
+          });
+        }
+      }, {
+        path: 'ads',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-ads-ads-module */
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("pages-ads-ads-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/ads/ads.module */
+          "./src/app/pages/ads/ads.module.ts")).then(function (m) {
+            return m.AdsModule;
           });
         }
       }]
@@ -227,7 +238,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-auth-auth-module */
-        [__webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~ebabdba8"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f51956cb"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-dashboard-dashboard-module~p~6dcbdc1a"), __webpack_require__.e("default~pages-auth-auth-module~pages-categories-categories-module~pages-events-events-module~pages-g~f70c0eee"), __webpack_require__.e("pages-auth-auth-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("pages-auth-auth-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/auth/auth.module */
         "./src/app/pages/auth/auth.module.ts")).then(function (m) {
           return m.AuthModule;
@@ -1345,6 +1356,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           name: 'Orders',
           icon: 'trending_up',
           route: '/orders'
+        }, {
+          isParent: 'n',
+          name: 'Ads',
+          icon: 'trending_up',
+          route: '/ads'
         }];
       }
 

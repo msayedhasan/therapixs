@@ -285,7 +285,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.authService = authService;
         this.router = router;
         this.form = this.fb.group({
-          phone: ['0123456789', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+          phone: ['111', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
           // email: ['test@test.com', [Validators.required, Validators.email]],
           password: ['test', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
