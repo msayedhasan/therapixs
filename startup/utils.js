@@ -2,9 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const compression = require("compression");
-const multer = require("multer");
 const cors = require("cors");
 
+const multer = require("multer");
+
+// for local upload images
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "images");
@@ -17,17 +19,17 @@ const fileStorage = multer.diskStorage({
   },
 });
 
-// const fileFilter = (req, file, cb) => {
-//   if (
-//     file.mimetype === "image/png" ||
-//     file.mimetype === "image/jpg" ||
-//     file.mimetype === "image/jpeg"
-//   ) {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// };
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
 module.exports = function (app) {
   app.use(cors());
@@ -36,10 +38,10 @@ module.exports = function (app) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(
-    multer({ storage: fileStorage }).single("image")
+    // multer({ storage: fileStorage }).single("image")
     // multer({ dest: "images" }).single("image")
 
-    // multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
+    multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
   );
   app.use(express.json());
 };

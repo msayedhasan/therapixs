@@ -33,6 +33,7 @@ exports.makeOrder = async (req, res, next) => {
     let userProducts = [];
     let storeProducts = [];
 
+    // Start Loop on products to check availability of them
     for (let index = 0; index < products.length; index++) {
       let product = await Product.findById(products[index]);
       if (!product) {
@@ -47,7 +48,7 @@ exports.makeOrder = async (req, res, next) => {
         error.statusCode = 404;
         throw error;
       }
-      if (product.sold) {
+      if (product.sold || product.qty == 0) {
         const error = new Error("a product is already sold.");
         error.statusCode = 404;
         throw error;
@@ -59,7 +60,9 @@ exports.makeOrder = async (req, res, next) => {
         userProducts.push(products[index]);
       }
     }
+    // End Loop on products to check availability of them
 
+    // Start make user order
     if (userProducts.length > 0) {
       const order = new Order({
         orderedAt: Date.now(),
@@ -68,7 +71,9 @@ exports.makeOrder = async (req, res, next) => {
       });
       await order.save();
     }
+    // End make user order
 
+    // Start make store order
     if (storeProducts.length > 0) {
       const order = new Order({
         orderedAt: Date.now(),
@@ -78,6 +83,7 @@ exports.makeOrder = async (req, res, next) => {
       });
       await order.save();
     }
+    // End make store order
 
     for (let index = 0; index < products.length; index++) {
       let product = products[index];

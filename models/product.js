@@ -6,8 +6,8 @@ const productSchema = new Schema({
   orderedBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
   },
+  orderedQty: Number,
   orderedAt: String,
   sold: {
     type: Boolean,
@@ -48,13 +48,8 @@ const productSchema = new Schema({
     required: true,
   },
   name: {
-    ar: {
-      type: String,
-    },
-    en: {
-      type: String,
-      required: true,
-    },
+    type: String,
+    required: true,
   },
   category: {
     _id: {
@@ -76,15 +71,9 @@ const productSchema = new Schema({
   qty: {
     type: Number,
     required: true,
-    default: 1,
   },
   description: {
-    ar: {
-      type: String,
-    },
-    en: {
-      type: String,
-    },
+    type: String,
   },
   productAttributes: [],
   reviews: [
