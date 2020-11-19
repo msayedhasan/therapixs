@@ -6,15 +6,27 @@ const passportJWT = passport.authenticate("jwt", { session: false });
 
 const storeController = require("../controllers/store");
 
+const awsUpload = require("../startup/aws-s3-upload");
+
 const router = express.Router();
 
 router.get("/", passportJWT, storeController.getAll);
 
-router.post("/", passportJWT, storeController.addOne);
+router.post(
+  "/",
+  passportJWT,
+  awsUpload.single("image"),
+  storeController.addOne
+);
 
 router.get("/:storeId", passportJWT, storeController.getOne);
 
-router.put("/:storeId", passportJWT, storeController.updateOne);
+router.put(
+  "/:storeId",
+  passportJWT,
+  awsUpload.single("image"),
+  storeController.updateOne
+);
 
 router.delete("/:storeId", passportJWT, storeController.deleteOne);
 

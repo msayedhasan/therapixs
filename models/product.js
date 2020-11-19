@@ -43,10 +43,7 @@ const productSchema = new Schema({
     ref: "Store",
     default: undefined,
   },
-  image: {
-    type: String,
-    required: true,
-  },
+  photos: [String],
   name: {
     type: String,
     required: true,

@@ -6,15 +6,22 @@ const passportJWT = passport.authenticate("jwt", { session: false });
 
 const adController = require("../controllers/ad");
 
+const awsUpload = require("../startup/aws-s3-upload");
+
 const router = express.Router();
 
 router.get("/", passportJWT, adController.getAll);
 
-router.post("/", passportJWT, adController.addOne);
+router.post("/", passportJWT, awsUpload.single("image"), adController.addOne);
 
 router.get("/:adId", passportJWT, adController.getOne);
 
-router.put("/:adId", passportJWT, adController.updateOne);
+router.put(
+  "/:adId",
+  passportJWT,
+  awsUpload.single("image"),
+  adController.updateOne
+);
 
 router.delete("/:adId", passportJWT, adController.deleteOne);
 

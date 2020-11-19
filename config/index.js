@@ -2,12 +2,12 @@ module.exports = {
   JWT_SECRET: "secret",
   oauth: {
     facebook: {
-      clientID: "646192059286635",
-      clientSecret: "ab10bdd4e60a2b2c6b08f511dd5c5f2c",
+      clientID: "1000436580434030",
+      clientSecret: "2321bcd2278becc877536f4cae6ec5cc",
     },
     google: {
-      clientID: "906145207917-q2bb0pn2rubibrovio7ud5rt3jj1mkmn.apps.googleusercontent.com",
-      clientSecret: "PS4SsK-PBDYXpR9U0lO7Eujn",
+      clientID: "47138576302-48baksured7r2volk86l8ej3tsha2ldo.apps.googleusercontent.com",
+      clientSecret: "YYbbpJu2Cdpq7nfA_eJss1kP",
     },
   },
 };

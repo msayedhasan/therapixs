@@ -54,6 +54,12 @@ exports.makeOrder = async (req, res, next) => {
         throw error;
       }
 
+      if (product.qty < storeProducts[i].qty) {
+        const error = new Error("a product quantity is not available.");
+        error.statusCode = 404;
+        throw error;
+      }
+
       if (product.store) {
         storeProducts.push(products[index]);
       } else {
@@ -69,7 +75,26 @@ exports.makeOrder = async (req, res, next) => {
         orderedBy: loggedInUser._id,
         products: userProducts,
       });
+      for (let i = 0; i < userProducts.length; i++) {
+        let product = await Product.findById(userProducts[i].product);
+        if (product.qty > userProducts[i].qty) {
+          product.qty = product.qty - userProducts[i].qty;
+        } else {
+          const error = new Error("a product quantity is not available.");
+          error.statusCode = 404;
+          throw error;
+        }
+        product.orderedBy = loggedInUser._id;
+        product.orderedAt = Date.now();
+        await product.save();
+      }
       await order.save();
+      if (loggedInUser.orders) {
+        loggedInUser.orders.push(order._id);
+      } else {
+        loggedInUser.orders = [order._id];
+      }
+      await loggedInUser.save();
     }
     // End make user order
 
@@ -81,22 +106,28 @@ exports.makeOrder = async (req, res, next) => {
         products: storeProducts,
         store: storeProducts[0].store,
       });
+      for (let i = 0; i < storeProducts.length; i++) {
+        let product = await Product.findById(storeProducts[i].product);
+        if (product.qty >= storeProducts[i].qty) {
+          product.qty = product.qty - storeProducts[i].qty;
+        } else {
+          const error = new Error("a product quantity is not available.");
+          error.statusCode = 404;
+          throw error;
+        }
+        product.orderedBy = loggedInUser._id;
+        product.orderedAt = Date.now();
+        await product.save();
+      }
       await order.save();
+      if (loggedInUser.orders) {
+        loggedInUser.orders.push(order._id);
+      } else {
+        loggedInUser.orders = [order._id];
+      }
+      await loggedInUser.save();
     }
     // End make store order
-
-    for (let index = 0; index < products.length; index++) {
-      let product = products[index];
-      product.orderedBy = loggedInUser._id;
-      product.orderedAt = Date.now();
-      await product.save();
-    }
-    if (loggedInUser.orders) {
-      loggedInUser.orders.push(order._id);
-    } else {
-      loggedInUser.orders = [order._id];
-    }
-    await loggedInUser.save();
 
     return res.status(200).json({ message: "order created!" });
   } catch (err) {

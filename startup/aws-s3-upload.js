@@ -30,7 +30,7 @@ const upload = multer({
     bucket: "motobar-images",
     acl: "public-read",
     key: (req, file, cb) => {
-      cb(null, Date.now().toString());
+      cb(null, Date.now().toString() + "-" + file.originalname);
     },
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });

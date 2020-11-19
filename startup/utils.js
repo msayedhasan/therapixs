@@ -4,32 +4,10 @@ const helmet = require("helmet");
 const compression = require("compression");
 const cors = require("cors");
 
-const multer = require("multer");
-
-// for local upload images
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "images");
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
-    );
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  if (
-    file.mimetype === "image/png" ||
-    file.mimetype === "image/jpg" ||
-    file.mimetype === "image/jpeg"
-  ) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
+// // local image upload
+// const localUpload = require("./local-image-upload");
+// aws s3 image upload
+const awsUpload = require("./aws-s3-upload");
 
 module.exports = function (app) {
   app.use(cors());
@@ -37,11 +15,10 @@ module.exports = function (app) {
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-  app.use(
-    // multer({ storage: fileStorage }).single("image")
-    // multer({ dest: "images" }).single("image")
 
-    multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
-  );
+  // app.use(localUpload.single("image"));
+  // app.use(awsUpload.array("photos", 5));
+  // app.use(awsUpload.single("image"));
+
   app.use(express.json());
 };

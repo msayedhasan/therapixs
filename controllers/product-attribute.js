@@ -49,9 +49,9 @@ exports.addOne = async (req, res, next) => {
       throw error;
     }
 
-    const nameEn = JSON.parse(req.body.name).en;
-    const nameAr = JSON.parse(req.body.name).ar;
-    const values = JSON.parse(req.body.values);
+    const nameEn = req.body.name.en;
+    const nameAr = req.body.name.ar;
+    const values = req.body.values;
 
     const productAttribute = new ProductAttribute({
       name: {
@@ -77,6 +77,7 @@ exports.addOne = async (req, res, next) => {
 
 exports.updateOne = async (req, res, next) => {
   try {
+    console.log(req.body);
     const loggedInUser = req.user;
     if (!loggedInUser.admin) {
       const error = new Error("Not authorized as you're not an admin!");
@@ -84,9 +85,9 @@ exports.updateOne = async (req, res, next) => {
       throw error;
     }
 
-    const nameEn = JSON.parse(req.body.name).en;
-    const nameAr = JSON.parse(req.body.name).ar;
-    const values = JSON.parse(req.body.values);
+    const nameEn = req.body.name.en;
+    const nameAr = req.body.name.ar;
+    const values = req.body.values;
 
     const productAttributeId = req.params.productAttributeId;
 

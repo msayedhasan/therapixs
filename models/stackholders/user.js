@@ -3,109 +3,106 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  image: String,
-  dob: String,
-  phone: {
-    type: Number,
-    required: true,
-  },
-  methods: {
-    type: [String],
-    required: true,
-  },
-  local: {
-    email: { type: String, lowercase: true },
-    password: String,
-  },
-  facebook: {
-    id: {
-      type: String,
+    name: {
+        type: String,
+        required: true,
     },
-    email: {
-      type: String,
-      lowercase: true,
+    image: String,
+    dob: String,
+    phone: Number,
+    methods: {
+        type: [String],
+        required: true,
     },
-  },
-  google: {
-    id: {
-      type: String,
+    local: {
+        email: { type: String, lowercase: true },
+        password: String,
     },
-    email: {
-      type: String,
-      lowercase: true,
+    facebook: {
+        id: {
+            type: String,
+        },
+        email: {
+            type: String,
+            lowercase: true,
+        },
     },
-  },
-  locked: {
-    type: Boolean,
-    default: false,
-  },
-  fcmToken: String,
-  address: String,
-  location: {
-    long: Number,
-    lat: Number,
-  },
-  loyalityPoints: { type: Array, default: undefined },
-  products: {
-    type: [
-      {
+    google: {
+        id: {
+            type: String,
+        },
+        email: {
+            type: String,
+            lowercase: true,
+        },
+    },
+    locked: {
+        type: Boolean,
+        default: false,
+    },
+    fcmToken: String,
+    address: String,
+    location: {
+        long: Number,
+        lat: Number,
+    },
+    loyalityPoints: { type: Array, default: undefined },
+    products: {
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Product",
+        }, ],
+        default: undefined,
+    },
+    orders: {
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Order",
+        }, ],
+        default: undefined,
+    },
+    ///////// not for all users /////////
+    admin: Boolean,
+
+    owner: Boolean,
+    ownerId: {
         type: Schema.Types.ObjectId,
-        ref: "Product",
-      },
-    ],
-    default: undefined,
-  },
-  orders: {
-    type: [
-      {
+        ref: "Owner",
+    },
+
+    leader: Boolean,
+    leaderId: {
         type: Schema.Types.ObjectId,
-        ref: "Order",
-      },
-    ],
-    default: undefined,
-  },
-  ///////// not for all users /////////
-  admin: Boolean,
+        ref: "Leader",
+    },
 
-  owner: Boolean,
-  ownerId: {
-    type: Schema.Types.ObjectId,
-    ref: "Owner",
-  },
+    shipper: Boolean,
+    shipperId: {
+        type: Schema.Types.ObjectId,
+        ref: "Shipper",
+    },
 
-  leader: Boolean,
-  leaderId: {
-    type: Schema.Types.ObjectId,
-    ref: "Leader",
-  },
+    manager: Boolean,
+    managerId: {
+        type: Schema.Types.ObjectId,
+        ref: "Manager",
+    },
 
-  shipper: Boolean,
-  shipperId: {
-    type: Schema.Types.ObjectId,
-    ref: "Shipper",
-  },
-
-  manager: Boolean,
-  managerId: {
-    type: Schema.Types.ObjectId,
-    ref: "Manager",
-  },
-
-  sales: Boolean,
-  salesId: {
-    type: Schema.Types.ObjectId,
-    ref: "Sales",
-  },
-
-  group: {
-    type: Schema.Types.ObjectId,
-    ref: "Group",
-    default: undefined,
-  },
+    sales: Boolean,
+    salesId: {
+        type: Schema.Types.ObjectId,
+        ref: "Sales",
+    },
+    groupRequest: {
+        type: Schema.Types.ObjectId,
+        ref: "Group",
+        default: undefined,
+    },
+    group: {
+        type: Schema.Types.ObjectId,
+        ref: "Group",
+        default: undefined,
+    },
 });
 
 module.exports = mongoose.model("User", userSchema);

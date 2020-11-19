@@ -6,20 +6,56 @@ const passportJWT = passport.authenticate("jwt", { session: false });
 
 const groupController = require("../controllers/group");
 
+const awsUpload = require("../startup/aws-s3-upload");
+
 const router = express.Router();
 
 router.get("/", passportJWT, groupController.getAll);
 
-router.post("/", passportJWT, groupController.addOne);
+router.post(
+    "/",
+    passportJWT,
+    awsUpload.single("image"),
+    groupController.addOne
+);
 
 router.get("/:groupId", passportJWT, groupController.getOne);
 
-router.put("/:groupId", passportJWT, groupController.updateOne);
+router.put(
+    "/:groupId",
+    passportJWT,
+    awsUpload.single("image"),
+    groupController.updateOne
+);
 
 router.delete("/:groupId", passportJWT, groupController.deleteOne);
 
 router.get("/lock/:groupId", passportJWT, groupController.lockOne);
 
 router.get("/unlock/:groupId", passportJWT, groupController.unlockOne);
+
+router.get(
+    "/requestToJoin/:groupId",
+    passportJWT,
+    groupController.requestToJoin
+);
+
+router.get(
+    "/acceptRequestToJoin/:userId/:groupId",
+    passportJWT,
+    groupController.acceptRequestToJoin
+);
+
+router.get(
+    "/deleteRequestToJoin/:userId/:groupId",
+    passportJWT,
+    groupController.deleteRequestToJoin
+);
+
+router.get(
+    "/request/cancel",
+    passportJWT,
+    groupController.cancelRequestToJoin
+);
 
 module.exports = router;

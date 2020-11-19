@@ -6,17 +6,33 @@ const isAuth = require("../middleware/is-auth");
 
 const productController = require("../controllers/product");
 
+const awsUpload = require("../startup/aws-s3-upload");
+
 const router = express.Router();
 
 router.get("/", passportJWT, productController.getAll);
 
-router.post("/", passportJWT, productController.addOne);
+router.post(
+  "/",
+  // awsUpload.fields([
+  //   { name: "image", maxCount: 1 },
+  //   { name: "photos", maxCount: 5 },
+  // ]),
+  passportJWT,
+  awsUpload.array("photos", 5),
+  productController.addOne
+);
 
 router.get("/:productId", passportJWT, productController.getOne);
 
 router.post("/addReview/:productId", passportJWT, productController.addReview);
 
-router.put("/:productId", passportJWT, productController.updateOne);
+router.put(
+  "/:productId",
+  passportJWT,
+  awsUpload.array("photos", 5),
+  productController.updateOne
+);
 
 router.delete("/:productId", passportJWT, productController.deleteOne);
 

@@ -106,7 +106,7 @@ exports.getOne = async (req, res, next) => {
 exports.addOne = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
-    if (!loggedInUser.admin && !loggedInUser.owner && !loggedInUser.manager) {
+    if (!loggedInUser.admin) {
       const error = new Error(
         "Not authorized as you're not an admin, owner or manager!"
       );
@@ -117,13 +117,11 @@ exports.addOne = async (req, res, next) => {
     const nameEn = JSON.parse(req.body.name).en;
     const nameAr = JSON.parse(req.body.name).ar;
     const productAttributes = JSON.parse(req.body.productAttributes);
-    const imageFile = req.file;
-
-    if (!imageFile) {
-      return res.status(422).json({ message: "Attached file is not an image" });
+    // upload image if exist
+    let image = "";
+    if (req.file) {
+      image = req.file.location;
     }
-
-    const image = imageFile.path;
 
     const category = new Category({
       creator: loggedInUser._id,
