@@ -191,21 +191,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function onSubmit(formValue) {
           var _this = this;
 
-          var formData = new FormData();
-          console.log(formValue);
-
-          for (var key in formValue) {
-            if (formValue[key] instanceof File) {
-              formData.append(key, formValue[key]);
-            }
-
-            if (key === 'name' || key === 'values') {
-              // contains object
-              formData.append(key, JSON.stringify(formValue[key]));
-            }
-          }
-
-          this.productAttributesService.addOne(formData).subscribe(function (res) {
+          this.productAttributesService.addOne(formValue).subscribe(function (res) {
             console.log(res);
             _this.image = null;
 
@@ -213,7 +199,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             _this.toastr.info(res['message'], 'Info');
 
-            _this.router.navigate(['../']);
+            _this.router.navigate(['/product-attributes']);
           }, function (error) {
             console.log(error);
 
@@ -619,20 +605,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function onSubmit(formValue) {
           var _this3 = this;
 
-          var formData = new FormData();
-
-          for (var key in formValue) {
-            if (formValue[key] instanceof File) {
-              formData.append(key, formValue[key]);
-            }
-
-            if (key === 'name' || key === 'values') {
-              // contains object
-              formData.append(key, JSON.stringify(formValue[key]));
-            }
-          }
-
-          this.productAttributesService.updateOne(formData, this.productAttributeId).subscribe(function (res) {
+          this.productAttributesService.updateOne(formValue, this.productAttributeId).subscribe(function (res) {
             console.log(res);
             _this3.image = null;
 
@@ -640,7 +613,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             _this3.toastr.info(res['message'], 'Info');
 
-            _this3.router.navigate(['../']);
+            _this3.router.navigate(['/product-attributes']);
           }, function (error) {
             console.log(error);
 

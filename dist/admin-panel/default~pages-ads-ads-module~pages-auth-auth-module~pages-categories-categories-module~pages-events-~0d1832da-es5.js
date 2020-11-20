@@ -7742,43 +7742,49 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _upload_multi_photos_upload_multi_photos_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ./upload-multi-photos/upload-multi-photos.component */
+    "./src/app/reusable-components/form-fields/upload-multi-photos/upload-multi-photos.component.ts");
+    /* harmony import */
+
+
+    var _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ./input-text/input-text.component */
     "./src/app/reusable-components/form-fields/input-text/input-text.component.ts");
     /* harmony import */
 
 
-    var _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ./password-text/password-text.component */
     "./src/app/reusable-components/form-fields/password-text/password-text.component.ts");
     /* harmony import */
 
 
-    var _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ./textarea/textarea.component */
     "./src/app/reusable-components/form-fields/textarea/textarea.component.ts");
     /* harmony import */
 
 
-    var _select_select_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _select_select_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! ./select/select.component */
     "./src/app/reusable-components/form-fields/select/select.component.ts");
     /* harmony import */
 
 
-    var _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    var _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
     /*! ./multi-select/multi-select.component */
     "./src/app/reusable-components/form-fields/multi-select/multi-select.component.ts");
     /* harmony import */
 
 
-    var _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    var _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
     /*! ./input-checkbox/input-checkbox.component */
     "./src/app/reusable-components/form-fields/input-checkbox/input-checkbox.component.ts");
     /* harmony import */
 
 
-    var _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+    var _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
     /*! ./validation-errors/validation-errors.component */
     "./src/app/reusable-components/form-fields/validation-errors/validation-errors.component.ts");
 
@@ -7798,9 +7804,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](FormFieldsModule, {
-        declarations: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_10__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_12__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_11__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_13__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_14__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_15__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_16__["ValidationErrorsComponent"]],
+        declarations: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _upload_multi_photos_upload_multi_photos_component__WEBPACK_IMPORTED_MODULE_10__["UploadMultiPhotosComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_11__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_13__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_12__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_14__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_15__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_16__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_17__["ValidationErrorsComponent"]],
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_5__["BsDropdownModule"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_4__["TooltipModule"], ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_6__["ModalModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_8__["BsDatepickerModule"], _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_7__["NgSelectModule"]],
-        exports: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_10__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_12__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_11__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_13__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_14__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_15__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_16__["ValidationErrorsComponent"]]
+        exports: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _upload_multi_photos_upload_multi_photos_component__WEBPACK_IMPORTED_MODULE_10__["UploadMultiPhotosComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_11__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_13__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_12__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_14__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_15__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_16__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_17__["ValidationErrorsComponent"]]
       });
     })();
     /*@__PURE__*/
@@ -7810,9 +7816,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](FormFieldsModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          declarations: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_10__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_12__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_11__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_13__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_14__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_15__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_16__["ValidationErrorsComponent"]],
+          declarations: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _upload_multi_photos_upload_multi_photos_component__WEBPACK_IMPORTED_MODULE_10__["UploadMultiPhotosComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_11__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_13__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_12__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_14__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_15__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_16__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_17__["ValidationErrorsComponent"]],
           imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_5__["BsDropdownModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_4__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_6__["ModalModule"].forRoot(), ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_8__["BsDatepickerModule"].forRoot(), _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_7__["NgSelectModule"]],
-          exports: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_10__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_12__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_11__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_13__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_14__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_15__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_16__["ValidationErrorsComponent"]]
+          exports: [_upload_photo_upload_photo_component__WEBPACK_IMPORTED_MODULE_9__["UploadPhotoComponent"], _upload_multi_photos_upload_multi_photos_component__WEBPACK_IMPORTED_MODULE_10__["UploadMultiPhotosComponent"], _input_text_input_text_component__WEBPACK_IMPORTED_MODULE_11__["InputTextComponent"], _textarea_textarea_component__WEBPACK_IMPORTED_MODULE_13__["TextareaComponent"], _password_text_password_text_component__WEBPACK_IMPORTED_MODULE_12__["PasswordTextComponent"], _select_select_component__WEBPACK_IMPORTED_MODULE_14__["SelectComponent"], _multi_select_multi_select_component__WEBPACK_IMPORTED_MODULE_15__["MultiSelectComponent"], _input_checkbox_input_checkbox_component__WEBPACK_IMPORTED_MODULE_16__["InputCheckboxComponent"], _validation_errors_validation_errors_component__WEBPACK_IMPORTED_MODULE_17__["ValidationErrorsComponent"]]
         }]
       }], null, null);
     })();
@@ -9061,6 +9067,361 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/reusable-components/form-fields/upload-multi-photos/upload-multi-photos.component.ts":
+  /*!******************************************************************************************************!*\
+    !*** ./src/app/reusable-components/form-fields/upload-multi-photos/upload-multi-photos.component.ts ***!
+    \******************************************************************************************************/
+
+  /*! exports provided: UploadMultiPhotosComponent */
+
+  /***/
+  function srcAppReusableComponentsFormFieldsUploadMultiPhotosUploadMultiPhotosComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UploadMultiPhotosComponent", function () {
+      return UploadMultiPhotosComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _abstract_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../abstract-component */
+    "./src/app/reusable-components/form-fields/abstract-component.ts");
+    /* harmony import */
+
+
+    var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ngx-bootstrap/modal */
+    "./node_modules/ngx-bootstrap/__ivy_ngcc__/modal/fesm2015/ngx-bootstrap-modal.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+    /* harmony import */
+
+
+    var ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ngx-bootstrap/tooltip */
+    "./node_modules/ngx-bootstrap/__ivy_ngcc__/tooltip/fesm2015/ngx-bootstrap-tooltip.js");
+
+    function UploadMultiPhotosComponent_div_1_div_9_Template(rf, ctx) {
+      if (rf & 1) {
+        var _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 14);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 15);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function UploadMultiPhotosComponent_div_1_div_9_Template_button_click_1_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8);
+
+          var i_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
+
+          var ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+          var _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](6);
+
+          return ctx_r7.openModal(_r1, i_r4);
+        });
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "i", 9);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "remove_red_eye");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+      }
+    }
+
+    function UploadMultiPhotosComponent_div_1_div_10_Template(rf, ctx) {
+      if (rf & 1) {
+        var _r12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 16);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 17);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function UploadMultiPhotosComponent_div_1_div_10_Template_button_click_1_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r12);
+
+          var i_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
+
+          var ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+          return ctx_r10.deletePhoto(i_r4);
+        });
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "i", 9);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "close");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+      }
+    }
+
+    function UploadMultiPhotosComponent_div_1_Template(rf, ctx) {
+      if (rf & 1) {
+        var _r14 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 5);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 6);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 7);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function UploadMultiPhotosComponent_div_1_Template_input_change_3_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r14);
+
+          var i_r4 = ctx.index;
+
+          var ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+          return ctx_r13.detectFile($event, i_r4);
+        });
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "label", 8);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "i", 9);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "edit");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 10);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "div", 11);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, UploadMultiPhotosComponent_div_1_div_9_Template, 4, 0, "div", 12);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](10, UploadMultiPhotosComponent_div_1_div_10_Template, 4, 0, "div", 13);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+      }
+
+      if (rf & 2) {
+        var i_r4 = ctx.index;
+
+        var ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("id", ctx_r0.fieldId + i_r4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("for", ctx_r0.fieldId + i_r4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("background-image", ctx_r0.images[i_r4] ? "url(" + ctx_r0.images[i_r4] + ")" : "url(../../../../assets/images/placeholder.png)", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefaultStyleSanitizer"]);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r0.images[i_r4]);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r0.images[i_r4]);
+      }
+    }
+
+    function UploadMultiPhotosComponent_ng_template_5_Template(rf, ctx) {
+      if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "div", 18);
+      }
+    }
+
+    var UploadMultiPhotosComponent = /*#__PURE__*/function (_abstract_component__7) {
+      _inherits(UploadMultiPhotosComponent, _abstract_component__7);
+
+      var _super7 = _createSuper(UploadMultiPhotosComponent);
+
+      function UploadMultiPhotosComponent(modalService, fb) {
+        var _this24;
+
+        _classCallCheck(this, UploadMultiPhotosComponent);
+
+        _this24 = _super7.call(this);
+        _this24.modalService = modalService;
+        _this24.fb = fb;
+        _this24.images = [];
+        _this24.choosed_image = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        return _this24;
+      } // form = this.fb.group({
+      //   photos: this.fb.array([]),
+      // });
+      //Help to get all photos controls as form array.
+
+
+      _createClass(UploadMultiPhotosComponent, [{
+        key: "openModal",
+        value: function openModal(template, i) {
+          if (!this.images[i]) {
+            this.images[i] = '../../../../../assets/placeholder.png';
+          }
+
+          this.modalRef = this.modalService.show(template);
+          document.getElementById('imageModal').style.backgroundImage = "url(".concat(this.images[i], ")");
+        }
+      }, {
+        key: "addPhoto",
+        value: function addPhoto() {
+          this.photos.push(this.fb.control({
+            image: []
+          }));
+        }
+      }, {
+        key: "detectFile",
+        value: function detectFile(event, i) {
+          var _this25 = this;
+
+          var files = event.target.files;
+
+          if (files && files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+
+            reader.onload = function (e) {
+              _this25.images[i] = e.target.result;
+
+              _this25.choosed_image.emit(_this25.images[i]);
+            };
+
+            this.photos.controls[i].patchValue(files[0]);
+          }
+        }
+      }, {
+        key: "deletePhoto",
+        value: function deletePhoto(i) {
+          this.images.splice(i, 1);
+          this.photos.removeAt(i);
+        }
+      }, {
+        key: "photos",
+        get: function get() {
+          return this.control;
+        }
+      }]);
+
+      return UploadMultiPhotosComponent;
+    }(_abstract_component__WEBPACK_IMPORTED_MODULE_1__["AbstractReactiveComponent"]);
+
+    UploadMultiPhotosComponent.ɵfac = function UploadMultiPhotosComponent_Factory(t) {
+      return new (t || UploadMultiPhotosComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]));
+    };
+
+    UploadMultiPhotosComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+      type: UploadMultiPhotosComponent,
+      selectors: [["app-upload-multi-photos"]],
+      outputs: {
+        choosed_image: "choosed_image"
+      },
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]],
+      decls: 7,
+      vars: 2,
+      consts: [[1, "grid-noGutter"], [4, "ngFor", "ngForOf"], [1, "grid-center-noGutter"], [1, "btn", "color1", 3, "disabled", "click"], ["template", ""], [1, "avatar-upload"], [1, "avatar-edit"], ["type", "file", "name", "file", "id", "logoUpload", "accept", "images/*", 3, "id", "change"], [3, "for"], [1, "material-icons"], [1, "avatar-preview"], ["id", "logoPreview"], ["class", "previewEye", 4, "ngIf"], ["class", "deletebutton", 4, "ngIf"], [1, "previewEye"], ["type", "button", "data-toggle", "modal", "tooltip", "Preview", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "preview-button", 3, "click"], [1, "deletebutton"], ["type", "button", "data-toggle", "modal", "tooltip", "delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "delete-button", 3, "click"], ["id", "imageModal", 1, "modal-body"]],
+      template: function UploadMultiPhotosComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, UploadMultiPhotosComponent_div_1_Template, 11, 6, "div", 1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "button", 3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function UploadMultiPhotosComponent_Template_button_click_3_listener() {
+            return ctx.addPhoto();
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Add more photos ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, UploadMultiPhotosComponent_ng_template_5_Template, 1, 0, "ng-template", null, 4, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+        }
+
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.photos.controls);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.photos.length > ctx.images.length);
+        }
+      },
+      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_5__["TooltipDirective"]],
+      styles: ["#imageModal[_ngcontent-%COMP%] {\n  height: 400px;\n  background-size: cover;\n  background-repeat: round;\n}\n\n.avatar-upload[_ngcontent-%COMP%] {\n  position: relative;\n  max-width: 205px;\n  margin: 10px auto;\n}\n\n.avatar-upload[_ngcontent-%COMP%]   .avatar-edit[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 0;\n  z-index: 1;\n  top: 0px;\n}\n\n.avatar-upload[_ngcontent-%COMP%]   .avatar-edit[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  display: none;\n}\n\n.avatar-upload[_ngcontent-%COMP%]   .avatar-edit[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]    + label[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 34px;\n  height: 34px;\n  margin-bottom: 0;\n  border-radius: 100%;\n  background: #ffffff;\n  border: 1px solid transparent;\n  box-shadow: 0px 2px 4px 8px rgba(0, 0, 0, 0.12);\n  cursor: pointer;\n  font-weight: normal;\n  transition: all 0.2s ease-in-out;\n}\n\n.avatar-upload[_ngcontent-%COMP%]   .avatar-edit[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]    + label[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  color: #0c425d;\n}\n\n.avatar-upload[_ngcontent-%COMP%]   .avatar-edit[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]    + label[_ngcontent-%COMP%]:hover {\n  background: #f1f1f1;\n  border-color: #d6d6d6;\n}\n\n.avatar-upload[_ngcontent-%COMP%]   .avatar-preview[_ngcontent-%COMP%] {\n  width: 130px;\n  height: 130px;\n  overflow: hidden;\n  position: relative;\n  border-radius: 10px;\n  border: 3px solid #0c425d;\n  box-shadow: 0px 2px 4px 8px rgba(0, 0, 0, 0.1);\n}\n\n.avatar-upload[_ngcontent-%COMP%]   .avatar-preview[_ngcontent-%COMP%]   #logoPreview[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  border-radius: 7px;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n}\n\nbutton[_ngcontent-%COMP%] {\n  margin: 0 10px;\n  font-size: 16px;\n}\n\n.avatar-preview[_ngcontent-%COMP%] {\n  display: inline-block;\n  position: relative;\n  overflow: hidden;\n  width: 200px;\n  height: 200px;\n  margin: 10px;\n  border-radius: 8px;\n  border: 3px solid #f5f5f5;\n  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);\n  box-shadow: 0 0px 5px 3px rgba(0, 0, 0, 0.3);\n  transition: all 0.5s ease;\n}\n\n.avatar-preview[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n\n.avatar-preview[_ngcontent-%COMP%]   .previewEye[_ngcontent-%COMP%] {\n  transition: all 0.2s ease-in-out;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-100%, -50%) scale(0);\n}\n\n.avatar-preview[_ngcontent-%COMP%]   .previewEye[_ngcontent-%COMP%]   .preview-button[_ngcontent-%COMP%] {\n  display: flex;\n  border: 0;\n  border-radius: 10px;\n  background-color: #0c425d;\n  color: white;\n}\n\n.avatar-preview[_ngcontent-%COMP%]   .previewEye[_ngcontent-%COMP%]   .preview-button[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 24px;\n}\n\n.avatar-preview[_ngcontent-%COMP%]   .deletebutton[_ngcontent-%COMP%] {\n  transition: all 0.2s ease-in-out;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(0%, -50%) scale(0);\n}\n\n.avatar-preview[_ngcontent-%COMP%]   .deletebutton[_ngcontent-%COMP%]   .delete-button[_ngcontent-%COMP%] {\n  display: flex;\n  border: 0;\n  border-radius: 10px;\n  background-color: #0c425d;\n  color: white;\n}\n\n.avatar-preview[_ngcontent-%COMP%]   .deletebutton[_ngcontent-%COMP%]   .delete-button[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 24px;\n}\n\n.avatar-preview[_ngcontent-%COMP%]:hover {\n  border-color: #66afe9;\n}\n\n.avatar-preview[_ngcontent-%COMP%]:hover   #imagePreview[_ngcontent-%COMP%] {\n  -webkit-filter: opacity(0.5);\n          filter: opacity(0.5);\n}\n\n.avatar-preview[_ngcontent-%COMP%]:hover   .previewEye[_ngcontent-%COMP%] {\n  transform: translate(-100%, -50%) scale(1);\n}\n\n.avatar-preview[_ngcontent-%COMP%]:hover   .previewEye[_ngcontent-%COMP%]:hover {\n  transform: translate(-100%, -50%) scale(1.1);\n}\n\n.avatar-preview[_ngcontent-%COMP%]:hover   .deletebutton[_ngcontent-%COMP%] {\n  transform: translate(0%, -50%) scale(1);\n}\n\n.avatar-preview[_ngcontent-%COMP%]:hover   .deletebutton[_ngcontent-%COMP%]:hover {\n  transform: translate(0%, -50%) scale(1.1);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmV1c2FibGUtY29tcG9uZW50cy9mb3JtLWZpZWxkcy91cGxvYWQtbXVsdGktcGhvdG9zL0U6XFxVbnRpdGxlZCBGb2xkZXJcXHByaXZhdGVcXHByb2plY3RzXFxmdWxsX3N0YWNrXFxtb3RvYmFyXFxtb3RvYmFyX2FkbWluL3NyY1xcYXBwXFxyZXVzYWJsZS1jb21wb25lbnRzXFxmb3JtLWZpZWxkc1xcdXBsb2FkLW11bHRpLXBob3Rvc1xcdXBsb2FkLW11bHRpLXBob3Rvcy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcmV1c2FibGUtY29tcG9uZW50cy9mb3JtLWZpZWxkcy91cGxvYWQtbXVsdGktcGhvdG9zL3VwbG9hZC1tdWx0aS1waG90b3MuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3JldXNhYmxlLWNvbXBvbmVudHMvZm9ybS1maWVsZHMvdXBsb2FkLW11bHRpLXBob3Rvcy9FOlxcVW50aXRsZWQgRm9sZGVyXFxwcml2YXRlXFxwcm9qZWN0c1xcZnVsbF9zdGFja1xcbW90b2JhclxcbW90b2Jhcl9hZG1pbi9zcmNcXHNjc3NcXGFic3RyYWN0c1xcX3ZhcmlhYmxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0UsYUFBQTtFQUNBLHNCQUFBO0VBQ0Esd0JBQUE7QUNERjs7QURHQTtFQUNFLGtCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpQkFBQTtBQ0FGOztBREVFO0VBQ0Usa0JBQUE7RUFDQSxRQUFBO0VBQ0EsVUFBQTtFQUNBLFFBQUE7QUNBSjs7QURFSTtFQUNFLGFBQUE7QUNBTjs7QURFTTtFQUNFLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSw2QkFBQTtFQUNBLCtDQUFBO0VBQ0EsZUFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0NBQUE7QUNBUjs7QURFUTtFQUNFLGNBQUE7QUNBVjs7QURHUTtFQUNFLG1CQUFBO0VBQ0EscUJBQUE7QUNEVjs7QURPRTtFQUNFLFlBQUE7RUFDQSxhQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLG1CQUFBO0VBQ0EseUJBQUE7RUFDQSw4Q0FBQTtBQ0xKOztBRE9JO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLHNCQUFBO0VBQ0EsNEJBQUE7RUFDQSwyQkFBQTtBQ0xOOztBRFVBO0VBQ0UsY0FBQTtFQUNBLGVBQUE7QUNQRjs7QURXQTtFQUNFLHFCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQkFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EseUJBQUE7RUFDQSw4Q0FBQTtFQUNBLDRDQUFBO0VBQ0EseUJBQUE7QUNSRjs7QURVRTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FDUko7O0FEV0U7RUFDRSxnQ0FBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSwwQ0FBQTtBQ1RKOztBRFdJO0VBQ0UsYUFBQTtFQUNBLFNBQUE7RUFDQSxtQkFBQTtFQUNBLHlCRXJHRztFRnNHSCxZQUFBO0FDVE47O0FEV007RUFDRSxlQUFBO0FDVFI7O0FEY0U7RUFDRSxnQ0FBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSx1Q0FBQTtBQ1pKOztBRGNJO0VBQ0UsYUFBQTtFQUNBLFNBQUE7RUFDQSxtQkFBQTtFQUNBLHlCRXpIRztFRjBISCxZQUFBO0FDWk47O0FEY007RUFDRSxlQUFBO0FDWlI7O0FEaUJFO0VBQ0UscUJBQUE7QUNmSjs7QURpQkk7RUFDRSw0QkFBQTtVQUFBLG9CQUFBO0FDZk47O0FEa0JJO0VBQ0UsMENBQUE7QUNoQk47O0FEa0JNO0VBQ0UsNENBQUE7QUNoQlI7O0FEbUJJO0VBQ0UsdUNBQUE7QUNqQk47O0FEbUJNO0VBQ0UseUNBQUE7QUNqQlIiLCJmaWxlIjoic3JjL2FwcC9yZXVzYWJsZS1jb21wb25lbnRzL2Zvcm0tZmllbGRzL3VwbG9hZC1tdWx0aS1waG90b3MvdXBsb2FkLW11bHRpLXBob3Rvcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgXCIuLi8uLi8uLi8uLi9zY3NzL2Fic3RyYWN0cy92YXJpYWJsZXNcIjtcblxuI2ltYWdlTW9kYWwge1xuICBoZWlnaHQ6IDQwMHB4O1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogcm91bmQ7XG59XG4uYXZhdGFyLXVwbG9hZCB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWF4LXdpZHRoOiAyMDVweDtcbiAgbWFyZ2luOiAxMHB4IGF1dG87XG5cbiAgLmF2YXRhci1lZGl0IHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgcmlnaHQ6IDA7XG4gICAgei1pbmRleDogMTtcbiAgICB0b3A6IDBweDtcblxuICAgIGlucHV0IHtcbiAgICAgIGRpc3BsYXk6IG5vbmU7XG5cbiAgICAgICsgbGFiZWwge1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAgd2lkdGg6IDM0cHg7XG4gICAgICAgIGhlaWdodDogMzRweDtcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMDtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMTAwJTtcbiAgICAgICAgYmFja2dyb3VuZDogI2ZmZmZmZjtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgICAgIGJveC1zaGFkb3c6IDBweCAycHggNHB4IDhweCByZ2JhKDAsIDAsIDAsIDAuMTIpO1xuICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiBub3JtYWw7XG4gICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2UtaW4tb3V0O1xuXG4gICAgICAgIGkge1xuICAgICAgICAgIGNvbG9yOiAjMGM0MjVkO1xuICAgICAgICB9XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZDogI2YxZjFmMTtcbiAgICAgICAgICBib3JkZXItY29sb3I6ICNkNmQ2ZDY7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cblxuICAuYXZhdGFyLXByZXZpZXcge1xuICAgIHdpZHRoOiAxMzBweDtcbiAgICBoZWlnaHQ6IDEzMHB4O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgYm9yZGVyOiAzcHggc29saWQgIzBjNDI1ZDtcbiAgICBib3gtc2hhZG93OiAwcHggMnB4IDRweCA4cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuXG4gICAgI2xvZ29QcmV2aWV3IHtcbiAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgaGVpZ2h0OiAxMDAlO1xuICAgICAgYm9yZGVyLXJhZGl1czogN3B4O1xuICAgICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG4gICAgfVxuICB9XG59XG5cbmJ1dHRvbiB7XG4gIG1hcmdpbjogMCAxMHB4O1xuICBmb250LXNpemU6IDE2cHg7XG59XG5cbi8vIFBob3RvIHNlY3Rpb25cbi5hdmF0YXItcHJldmlldyB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICB3aWR0aDogMjAwcHg7XG4gIGhlaWdodDogMjAwcHg7XG4gIG1hcmdpbjogMTBweDtcbiAgYm9yZGVyLXJhZGl1czogOHB4O1xuICBib3JkZXI6IDNweCBzb2xpZCAjZjVmNWY1O1xuICBib3gtc2hhZG93OiAwcHggMnB4IDRweCAwcHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICBib3gtc2hhZG93OiAwIDBweCA1cHggM3B4IHJnYmEoMCwgMCwgMCwgMC4zKTtcbiAgdHJhbnNpdGlvbjogYWxsIDAuNXMgZWFzZTtcblxuICBpbWcge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogMTAwJTtcbiAgfVxuXG4gIC5wcmV2aWV3RXllIHtcbiAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlLWluLW91dDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiA1MCU7XG4gICAgbGVmdDogNTAlO1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xMDAlLCAtNTAlKSBzY2FsZSgwKTtcblxuICAgIC5wcmV2aWV3LWJ1dHRvbiB7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgYm9yZGVyOiAwO1xuICAgICAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICRjb2xvcjE7XG4gICAgICBjb2xvcjogd2hpdGU7XG5cbiAgICAgIGkge1xuICAgICAgICBmb250LXNpemU6IDI0cHg7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgLmRlbGV0ZWJ1dHRvbiB7XG4gICAgdHJhbnNpdGlvbjogYWxsIDAuMnMgZWFzZS1pbi1vdXQ7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMCUsIC01MCUpIHNjYWxlKDApO1xuXG4gICAgLmRlbGV0ZS1idXR0b24ge1xuICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgIGJvcmRlcjogMDtcbiAgICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkY29sb3IxO1xuICAgICAgY29sb3I6IHdoaXRlO1xuXG4gICAgICBpIHtcbiAgICAgICAgZm9udC1zaXplOiAyNHB4O1xuICAgICAgfVxuICAgIH1cbiAgfVxuXG4gICY6aG92ZXIge1xuICAgIGJvcmRlci1jb2xvcjogIzY2YWZlOTtcblxuICAgICNpbWFnZVByZXZpZXcge1xuICAgICAgZmlsdGVyOiBvcGFjaXR5KDAuNSk7XG4gICAgfVxuXG4gICAgLnByZXZpZXdFeWUge1xuICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTEwMCUsIC01MCUpIHNjYWxlKDEpO1xuXG4gICAgICAmOmhvdmVyIHtcbiAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTEwMCUsIC01MCUpIHNjYWxlKDEuMSk7XG4gICAgICB9XG4gICAgfVxuICAgIC5kZWxldGVidXR0b24ge1xuICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTAlLCAtNTAlKSBzY2FsZSgxKTtcblxuICAgICAgJjpob3ZlciB7XG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC0wJSwgLTUwJSkgc2NhbGUoMS4xKTtcbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiIsIiNpbWFnZU1vZGFsIHtcbiAgaGVpZ2h0OiA0MDBweDtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IHJvdW5kO1xufVxuXG4uYXZhdGFyLXVwbG9hZCB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWF4LXdpZHRoOiAyMDVweDtcbiAgbWFyZ2luOiAxMHB4IGF1dG87XG59XG4uYXZhdGFyLXVwbG9hZCAuYXZhdGFyLWVkaXQge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiAwO1xuICB6LWluZGV4OiAxO1xuICB0b3A6IDBweDtcbn1cbi5hdmF0YXItdXBsb2FkIC5hdmF0YXItZWRpdCBpbnB1dCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4uYXZhdGFyLXVwbG9hZCAuYXZhdGFyLWVkaXQgaW5wdXQgKyBsYWJlbCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB3aWR0aDogMzRweDtcbiAgaGVpZ2h0OiAzNHB4O1xuICBtYXJnaW4tYm90dG9tOiAwO1xuICBib3JkZXItcmFkaXVzOiAxMDAlO1xuICBiYWNrZ3JvdW5kOiAjZmZmZmZmO1xuICBib3JkZXI6IDFweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgYm94LXNoYWRvdzogMHB4IDJweCA0cHggOHB4IHJnYmEoMCwgMCwgMCwgMC4xMik7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcbiAgdHJhbnNpdGlvbjogYWxsIDAuMnMgZWFzZS1pbi1vdXQ7XG59XG4uYXZhdGFyLXVwbG9hZCAuYXZhdGFyLWVkaXQgaW5wdXQgKyBsYWJlbCBpIHtcbiAgY29sb3I6ICMwYzQyNWQ7XG59XG4uYXZhdGFyLXVwbG9hZCAuYXZhdGFyLWVkaXQgaW5wdXQgKyBsYWJlbDpob3ZlciB7XG4gIGJhY2tncm91bmQ6ICNmMWYxZjE7XG4gIGJvcmRlci1jb2xvcjogI2Q2ZDZkNjtcbn1cbi5hdmF0YXItdXBsb2FkIC5hdmF0YXItcHJldmlldyB7XG4gIHdpZHRoOiAxMzBweDtcbiAgaGVpZ2h0OiAxMzBweDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICBib3JkZXI6IDNweCBzb2xpZCAjMGM0MjVkO1xuICBib3gtc2hhZG93OiAwcHggMnB4IDRweCA4cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xufVxuLmF2YXRhci11cGxvYWQgLmF2YXRhci1wcmV2aWV3ICNsb2dvUHJldmlldyB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGJvcmRlci1yYWRpdXM6IDdweDtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xufVxuXG5idXR0b24ge1xuICBtYXJnaW46IDAgMTBweDtcbiAgZm9udC1zaXplOiAxNnB4O1xufVxuXG4uYXZhdGFyLXByZXZpZXcge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgd2lkdGg6IDIwMHB4O1xuICBoZWlnaHQ6IDIwMHB4O1xuICBtYXJnaW46IDEwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgYm9yZGVyOiAzcHggc29saWQgI2Y1ZjVmNTtcbiAgYm94LXNoYWRvdzogMHB4IDJweCA0cHggMHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgYm94LXNoYWRvdzogMCAwcHggNXB4IDNweCByZ2JhKDAsIDAsIDAsIDAuMyk7XG4gIHRyYW5zaXRpb246IGFsbCAwLjVzIGVhc2U7XG59XG4uYXZhdGFyLXByZXZpZXcgaW1nIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMTAwJTtcbn1cbi5hdmF0YXItcHJldmlldyAucHJldmlld0V5ZSB7XG4gIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2UtaW4tb3V0O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogNTAlO1xuICBsZWZ0OiA1MCU7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xMDAlLCAtNTAlKSBzY2FsZSgwKTtcbn1cbi5hdmF0YXItcHJldmlldyAucHJldmlld0V5ZSAucHJldmlldy1idXR0b24ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBib3JkZXI6IDA7XG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICMwYzQyNWQ7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cbi5hdmF0YXItcHJldmlldyAucHJldmlld0V5ZSAucHJldmlldy1idXR0b24gaSB7XG4gIGZvbnQtc2l6ZTogMjRweDtcbn1cbi5hdmF0YXItcHJldmlldyAuZGVsZXRlYnV0dG9uIHtcbiAgdHJhbnNpdGlvbjogYWxsIDAuMnMgZWFzZS1pbi1vdXQ7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiA1MCU7XG4gIGxlZnQ6IDUwJTtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMCUsIC01MCUpIHNjYWxlKDApO1xufVxuLmF2YXRhci1wcmV2aWV3IC5kZWxldGVidXR0b24gLmRlbGV0ZS1idXR0b24ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBib3JkZXI6IDA7XG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICMwYzQyNWQ7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cbi5hdmF0YXItcHJldmlldyAuZGVsZXRlYnV0dG9uIC5kZWxldGUtYnV0dG9uIGkge1xuICBmb250LXNpemU6IDI0cHg7XG59XG4uYXZhdGFyLXByZXZpZXc6aG92ZXIge1xuICBib3JkZXItY29sb3I6ICM2NmFmZTk7XG59XG4uYXZhdGFyLXByZXZpZXc6aG92ZXIgI2ltYWdlUHJldmlldyB7XG4gIGZpbHRlcjogb3BhY2l0eSgwLjUpO1xufVxuLmF2YXRhci1wcmV2aWV3OmhvdmVyIC5wcmV2aWV3RXllIHtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTEwMCUsIC01MCUpIHNjYWxlKDEpO1xufVxuLmF2YXRhci1wcmV2aWV3OmhvdmVyIC5wcmV2aWV3RXllOmhvdmVyIHtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTEwMCUsIC01MCUpIHNjYWxlKDEuMSk7XG59XG4uYXZhdGFyLXByZXZpZXc6aG92ZXIgLmRlbGV0ZWJ1dHRvbiB7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlKDAlLCAtNTAlKSBzY2FsZSgxKTtcbn1cbi5hdmF0YXItcHJldmlldzpob3ZlciAuZGVsZXRlYnV0dG9uOmhvdmVyIHtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMCUsIC01MCUpIHNjYWxlKDEuMSk7XG59IiwiLy9jb2xvcnNcbiR3aGl0ZSA6IHdoaXRlO1xuJGNvbG9yMTogIzBjNDI1ZDtcbiRjb2xvcjI6ICNhOGQyYmU7XG4kY29sb3IzOiAjNDg5OWMyO1xuJGNvbG9yNDogIzFmNzdhMztcblxuJGNvbG9yNSA6ICNmOWFlNGU7XG4kY29sb3I1NTogI2Q2ODUyMjtcblxuJGJvcmRlciAgICAgICAgICAgICAgICAgOiAjZjFmMWYxO1xuJGRhdGEtdGFibGUtYm9yZGVyICAgICAgOiAjZTllOWU5O1xuJGdyYXkyICAgICAgICAgICAgICAgICAgOiAjZTJlMmUyO1xuJGdyYXkzICAgICAgICAgICAgICAgICAgOiAjNzU3NTc1O1xuJHRyYXNoLWNvbG9yICAgICAgICAgICAgOiAjQzkzMDJDO1xuJGZvbnQtY29sb3IgICAgICAgICAgICAgOiAjNTU1O1xuJGFjdGl2ZS1icmVhZGNydW1iLWNvbG9yOiAjMzQzNDM0O1xuJGNhcmQtaGVhZGVyLWJnICAgICAgICAgOiAjZjlmOWY5OyAvLyNlZmVmZWY7IC8vI2Y5ZjlmOTtcbiRwbGFjZWhvbGRlci1jb2xvciAgICAgIDogI2IzYjNiMztcblxuLy8gYmFja2dyb3VuZCBjb2xvclxuJG1haW4tYmFja2dyb3VuZC1jb2xvciAgOiAjZWZlZGYyO1xuJGhlYWRlci1iYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiRkYXRhLXRhYmxlLWJveCAgICAgICAgIDogI2ZmZmRmZTsgLy8jZjdmN2Y3O1xuJGNhcmQtYm9keSAgICAgICAgICAgICAgOiAjZmZmZGZlO1xuXG4vLyBEYXNoYm9hcmRcbiRtYXJnaW5CZXR3ZWVuQ2FyZHM6IDIycHg7XG4kYXhpc0ZvbnRTaXplICAgICAgOiAxMnB4O1xuJHNtYWxsQXhpc0ZvbnRTaXplIDogMTBweDtcblxuLy9oZWFkZXJcbiRwcm9maWxlLW1lbnUtY29sb3I6ICNmOWY5Zjk7XG4kYmlsbC1jb2xvciAgICAgICAgOiAjOWJhMmFhO1xuJGJpbGwtaG92ZXItY29sb3IgIDogIzczODE4ZjtcblxuLy9MYXlvdXQgVmFyaWFibGVzXG5cbiRoZWFkZXItaGVpZ2h0IDogNTVweDtcbiRzaWRlTWVudS13aWR0aDogMjAwcHg7XG5cblxuLy9sb2dpblxuJGxveWFsaXR5LWNvbG9yICA6ICM4ODdmN2Y7XG4kbG9naW4tYm94LWNvbG9yIDogI2Y1ZjJmMDtcblxuLy9tYWlsXG4kbWFpbC1jaGVja2JveC1jb2xvcjogIzAwNzNhYTtcbiR1c2VyLW1haWwtY29sb3IgICAgOiAjMjkyYjJjO1xuXG4vL3Byb2ZpbGVcbiRhY3RpdmUtY29sb3IgICAgIDogI2Y0ZjZmOTtcbiRpY29uLWNvbG9yICAgICAgIDogIzk1OWNiNjtcbiRsYWJlbC10aXRsZS1jb2xvcjogIzUwNTY2YTtcblxuLy9lbWFpbCB0ZW1wbGF0ZXNcbiRlbWFpbC1ibHVlLWNvbG9yOiAjMGY0MTVkO1xuJGVtYWlsLWdyYXktY29sb3I6ICM1ZjYwNjA7XG4kZW1haWwtc3lhbi1jb2xvcjogI2EyZDljMjtcbiRlbWFpbC1vcmFnbmUtY29sb3I6ICNmZmFjNTI7XG5cbi8vZm9udHNcbiRmb250MjggICAgICAgICAgIDogMjhweDtcbiRmb250MjQgICAgICAgICAgIDogMjRweDtcbiRmb250MTggICAgICAgICAgIDogMThweDtcbiRmb250MTYgICAgICAgICAgIDogMTZweDtcbiRmb250MTQgICAgICAgICAgIDogMTRweDtcbiRmb250MTIgICAgICAgICAgIDogMTJweDtcbiRmb250MTAgICAgICAgICAgIDogMTBweDtcbiRmb250LXdlaWdodC02MDAgIDogNjAwO1xuJGZvbnQtd2VpZ2h0LTUwMCAgOiA1MDA7XG4kcGxhY2Vob2xkZXItZm9udCA6IDEycHg7XG4kbGFiZWwtZm9udCAgICAgICA6IDE0cHg7XG4kY2FyZC1oZWFkZXItZm9udCA6IDE2cHg7XG5cbiRkYXRhLXRhYmxlLWhlYWRlci0xMzY2IDogMTRweDtcbiRkYXRhLXRhYmxlLWhlYWRlci0xOTIwIDogMTZweDtcbiRkYXRhLXRhYmxlLWJvZHktMTM2NiA6IDEycHg7XG4kZGF0YS10YWJsZS1ib2R5LTE5MjA6IDE2cHg7XG4iXX0= */"]
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UploadMultiPhotosComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+          selector: 'app-upload-multi-photos',
+          templateUrl: './upload-multi-photos.component.html',
+          styleUrls: ['./upload-multi-photos.component.scss']
+        }]
+      }], function () {
+        return [{
+          type: ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalService"]
+        }, {
+          type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+        }];
+      }, {
+        choosed_image: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
+        }]
+      });
+    })();
+    /***/
+
+  },
+
+  /***/
   "./src/app/reusable-components/form-fields/upload-photo/upload-photo.component.ts":
   /*!****************************************************************************************!*\
     !*** ./src/app/reusable-components/form-fields/upload-photo/upload-photo.component.ts ***!
@@ -9146,20 +9507,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
     }
 
-    var UploadPhotoComponent = /*#__PURE__*/function (_abstract_component__7) {
-      _inherits(UploadPhotoComponent, _abstract_component__7);
+    var UploadPhotoComponent = /*#__PURE__*/function (_abstract_component__8) {
+      _inherits(UploadPhotoComponent, _abstract_component__8);
 
-      var _super7 = _createSuper(UploadPhotoComponent);
+      var _super8 = _createSuper(UploadPhotoComponent);
 
       function UploadPhotoComponent(modalService) {
-        var _this24;
+        var _this26;
 
         _classCallCheck(this, UploadPhotoComponent);
 
-        _this24 = _super7.call(this);
-        _this24.modalService = modalService;
-        _this24.choosed_image = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        return _this24;
+        _this26 = _super8.call(this);
+        _this26.modalService = modalService;
+        _this26.choosed_image = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        return _this26;
       }
 
       _createClass(UploadPhotoComponent, [{
@@ -9175,7 +9536,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "detectFile",
         value: function detectFile(event) {
-          var _this25 = this;
+          var _this27 = this;
 
           var files = event.target.files;
 
@@ -9184,9 +9545,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             reader.readAsDataURL(files[0]);
 
             reader.onload = function (e) {
-              _this25.image = e.target.result;
+              _this27.image = e.target.result;
 
-              _this25.choosed_image.emit(_this25.image);
+              _this27.choosed_image.emit(_this27.image);
             };
 
             this.control.patchValue(files[0]);

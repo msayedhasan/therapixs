@@ -317,6 +317,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var authObs; // this.isLoading = true;
 
           this.authService.postForm('auth/login', form).subscribe(function (res) {
+            if (!res['admin'] && !res['owner']) {
+              _this2.toastr.error('Not authorized', 'Error');
+            }
+
             console.log(res['message']);
 
             _this2.router.navigate(['/']);

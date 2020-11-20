@@ -172,6 +172,9 @@ class LoginComponent {
         let authObs;
         // this.isLoading = true;
         this.authService.postForm('auth/login', form).subscribe((res) => {
+            if (!res['admin'] && !res['owner']) {
+                this.toastr.error('Not authorized', 'Error');
+            }
             console.log(res['message']);
             this.router.navigate(['/']);
         }, (errorRes) => {

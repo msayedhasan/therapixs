@@ -90,23 +90,12 @@ class AddProductAttributeComponent {
     }
     ngOnInit() { }
     onSubmit(formValue) {
-        const formData = new FormData();
-        console.log(formValue);
-        for (const key in formValue) {
-            if (formValue[key] instanceof File) {
-                formData.append(key, formValue[key]);
-            }
-            if (key === 'name' || key === 'values') {
-                // contains object
-                formData.append(key, JSON.stringify(formValue[key]));
-            }
-        }
-        this.productAttributesService.addOne(formData).subscribe((res) => {
+        this.productAttributesService.addOne(formValue).subscribe((res) => {
             console.log(res);
             this.image = null;
             this.form.reset();
             this.toastr.info(res['message'], 'Info');
-            this.router.navigate(['../']);
+            this.router.navigate(['/product-attributes']);
         }, (error) => {
             console.log(error);
             this.toastr.error(error.error.message, 'Error');
@@ -284,8 +273,12 @@ class EditProductAttributeComponent {
                     en: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                     ar: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                 }));
-                values.controls[i].get('en').patchValue(res['data']['values'][i]['en']);
-                values.controls[i].get('ar').patchValue(res['data']['values'][i]['ar']);
+                values.controls[i]
+                    .get('en')
+                    .patchValue(res['data']['values'][i]['en']);
+                values.controls[i]
+                    .get('ar')
+                    .patchValue(res['data']['values'][i]['ar']);
             }
         }, (error) => {
             console.log(error);
@@ -307,24 +300,14 @@ class EditProductAttributeComponent {
         }
     }
     onSubmit(formValue) {
-        const formData = new FormData();
-        for (const key in formValue) {
-            if (formValue[key] instanceof File) {
-                formData.append(key, formValue[key]);
-            }
-            if (key === 'name' || key === 'values') {
-                // contains object
-                formData.append(key, JSON.stringify(formValue[key]));
-            }
-        }
         this.productAttributesService
-            .updateOne(formData, this.productAttributeId)
+            .updateOne(formValue, this.productAttributeId)
             .subscribe((res) => {
             console.log(res);
             this.image = null;
             this.form.reset();
             this.toastr.info(res['message'], 'Info');
-            this.router.navigate(['../']);
+            this.router.navigate(['/product-attributes']);
         }, (error) => {
             console.log(error);
             this.toastr.error(error.error.message, 'Error');
