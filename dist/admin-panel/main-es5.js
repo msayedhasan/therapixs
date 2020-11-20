@@ -559,10 +559,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     __webpack_require__.d(__webpack_exports__, "baseUrl", function () {
       return baseUrl;
-    }); // export var baseUrl = 'https://motobar.herokuapp.com';
+    });
 
+    var baseUrl = 'https://motobar.herokuapp.com'; // export var baseUrl = 'http://localhost:3000';
 
-    var baseUrl = 'http://localhost:3000';
     /***/
   },
 
