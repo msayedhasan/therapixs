@@ -53,10 +53,15 @@ exports.getOne = async(req, res, next) => {
 exports.addOne = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
+        if (!loggedInUser.admin && !loggedInUser.owner) {
+            const error = new Error("You're not admin or owner.");
+            error.statusCode = 401;
+            throw error;
+        }
 
         if (req.files.length === 0) {
             const error = new Error("Add at least one image.");
-            error.statusCode = 404;
+            error.statusCode = 401;
             throw error;
         }
 
@@ -330,6 +335,11 @@ exports.availableOne = async(req, res, next) => {
 exports.updateOne = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
+        if (!loggedInUser.admin && !loggedInUser.owner) {
+            const error = new Error("You're not admin or owner.");
+            error.statusCode = 401;
+            throw error;
+        }
 
         const productId = req.params.productId;
 
