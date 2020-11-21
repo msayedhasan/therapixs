@@ -36,7 +36,7 @@ module.exports = function(app) {
 
     app.use("/ads", adsRoutes);
 
-    app.get("/", (req, res, next) => {
-        return res.send("Hello world");
-    });
+    // app.get("/", (req, res, next) => {
+    //     return res.send("Hello world");
+    // });
 };
