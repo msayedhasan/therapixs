@@ -17,26 +17,26 @@ const orderRoutes = require("../routes/order");
 
 const adsRoutes = require("../routes/ad");
 
-module.exports = function (app) {
-  app.use("/auth", authRoutes);
-  app.use("/user", userRoutes);
+module.exports = function(app) {
+    app.use("/auth", authRoutes);
+    app.use("/user", userRoutes);
 
-  app.use("/category", categoryRoutes);
-  app.use("/product-attribute", productAttributeRoutes);
+    app.use("/category", categoryRoutes);
+    app.use("/product-attribute", productAttributeRoutes);
 
-  app.use("/leader", leaderRoutes);
-  app.use("/group", groupRoutes);
-  app.use("/event", eventRoutes);
+    app.use("/leader", leaderRoutes);
+    app.use("/group", groupRoutes);
+    app.use("/event", eventRoutes);
 
-  app.use("/owner", ownerRoutes);
-  app.use("/store", storeRoutes);
-  app.use("/product", productRoutes);
+    app.use("/owner", ownerRoutes);
+    app.use("/store", storeRoutes);
+    app.use("/product", productRoutes);
 
-  app.use("/order", orderRoutes);
+    app.use("/order", orderRoutes);
 
-  app.use("/ads", adsRoutes);
+    app.use("/ads", adsRoutes);
 
-  // app.get("/", (req, res, next) => {
-  //   return res.send("Hello world");
-  // });
+    app.get("/", (req, res, next) => {
+        return res.send("Hello world");
+    });
 };
