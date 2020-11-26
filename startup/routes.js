@@ -13,6 +13,7 @@ const ownerRoutes = require("../routes/stackholders/owner");
 const storeRoutes = require("../routes/store");
 const productRoutes = require("../routes/product");
 
+const shipperRoutes = require("../routes/stackholders/shipper");
 const orderRoutes = require("../routes/order");
 
 const adsRoutes = require("../routes/ad");
@@ -32,6 +33,7 @@ module.exports = function(app) {
     app.use("/store", storeRoutes);
     app.use("/product", productRoutes);
 
+    app.use("/shipper", shipperRoutes);
     app.use("/order", orderRoutes);
 
     app.use("/ads", adsRoutes);

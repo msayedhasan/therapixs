@@ -317,13 +317,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var authObs; // this.isLoading = true;
 
           this.authService.postForm('auth/login', form).subscribe(function (res) {
-            if (!res['admin'] && !res['owner']) {
-              _this2.toastr.error('Not authorized', 'Error');
+            if (res) {
+              if (!res['admin'] && !res['owner']) {
+                _this2.toastr.error('Not authorized', 'Error');
+              }
+
+              console.log(res['message']);
+
+              _this2.router.navigate(['/']);
             }
-
-            console.log(res['message']);
-
-            _this2.router.navigate(['/']);
           }, function (errorRes) {
             console.log('error'); // this.toastr.error(errorRes.error.message, 'Error');
             // this.error.next(error.error.message);

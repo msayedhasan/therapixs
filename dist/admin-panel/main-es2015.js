@@ -53,61 +53,65 @@ const routes = [
         children: [
             {
                 path: '',
-                loadChildren: () => Promise.all(/*! import() | pages-dashboard-dashboard-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./pages/dashboard/dashboard.module */ "./src/app/pages/dashboard/dashboard.module.ts")).then((m) => m.DashboardModule),
+                loadChildren: () => Promise.all(/*! import() | pages-dashboard-dashboard-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./pages/dashboard/dashboard.module */ "./src/app/pages/dashboard/dashboard.module.ts")).then((m) => m.DashboardModule),
             },
             {
                 path: 'dashboard',
-                loadChildren: () => Promise.all(/*! import() | pages-dashboard-dashboard-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./pages/dashboard/dashboard.module */ "./src/app/pages/dashboard/dashboard.module.ts")).then((m) => m.DashboardModule),
+                loadChildren: () => Promise.all(/*! import() | pages-dashboard-dashboard-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("pages-dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ./pages/dashboard/dashboard.module */ "./src/app/pages/dashboard/dashboard.module.ts")).then((m) => m.DashboardModule),
             },
             {
                 path: 'product-attributes',
-                loadChildren: () => Promise.all(/*! import() | pages-product-attributes-product-attributes-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-product-attributes-product-attributes-module")]).then(__webpack_require__.bind(null, /*! ./pages/product-attributes/product-attributes.module */ "./src/app/pages/product-attributes/product-attributes.module.ts")).then((m) => m.ProductAttributesModule),
+                loadChildren: () => Promise.all(/*! import() | pages-product-attributes-product-attributes-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-product-attributes-product-attributes-module")]).then(__webpack_require__.bind(null, /*! ./pages/product-attributes/product-attributes.module */ "./src/app/pages/product-attributes/product-attributes.module.ts")).then((m) => m.ProductAttributesModule),
             },
             {
                 path: 'categories',
-                loadChildren: () => Promise.all(/*! import() | pages-categories-categories-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-categories-categories-module")]).then(__webpack_require__.bind(null, /*! ./pages/categories/categories.module */ "./src/app/pages/categories/categories.module.ts")).then((m) => m.CategoriesModule),
+                loadChildren: () => Promise.all(/*! import() | pages-categories-categories-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-categories-categories-module")]).then(__webpack_require__.bind(null, /*! ./pages/categories/categories.module */ "./src/app/pages/categories/categories.module.ts")).then((m) => m.CategoriesModule),
             },
             {
                 path: 'products',
-                loadChildren: () => Promise.all(/*! import() | pages-products-products-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-products-products-module")]).then(__webpack_require__.bind(null, /*! ./pages/products/products.module */ "./src/app/pages/products/products.module.ts")).then((m) => m.ProductsModule),
+                loadChildren: () => Promise.all(/*! import() | pages-products-products-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-products-products-module")]).then(__webpack_require__.bind(null, /*! ./pages/products/products.module */ "./src/app/pages/products/products.module.ts")).then((m) => m.ProductsModule),
             },
             {
                 path: 'owners',
-                loadChildren: () => Promise.all(/*! import() | pages-owners-owners-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-owners-owners-module")]).then(__webpack_require__.bind(null, /*! ./pages/owners/owners.module */ "./src/app/pages/owners/owners.module.ts")).then((m) => m.OwnersModule),
+                loadChildren: () => Promise.all(/*! import() | pages-owners-owners-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-owners-owners-module")]).then(__webpack_require__.bind(null, /*! ./pages/owners/owners.module */ "./src/app/pages/owners/owners.module.ts")).then((m) => m.OwnersModule),
             },
             {
                 path: 'stores',
-                loadChildren: () => Promise.all(/*! import() | pages-stores-stores-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-stores-stores-module")]).then(__webpack_require__.bind(null, /*! ./pages/stores/stores.module */ "./src/app/pages/stores/stores.module.ts")).then((m) => m.StoresModule),
+                loadChildren: () => Promise.all(/*! import() | pages-stores-stores-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-stores-stores-module")]).then(__webpack_require__.bind(null, /*! ./pages/stores/stores.module */ "./src/app/pages/stores/stores.module.ts")).then((m) => m.StoresModule),
             },
             {
                 path: 'leaders',
-                loadChildren: () => Promise.all(/*! import() | pages-leaders-leaders-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-leaders-leaders-module")]).then(__webpack_require__.bind(null, /*! ./pages/leaders/leaders.module */ "./src/app/pages/leaders/leaders.module.ts")).then((m) => m.LeadersModule),
+                loadChildren: () => Promise.all(/*! import() | pages-leaders-leaders-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-leaders-leaders-module")]).then(__webpack_require__.bind(null, /*! ./pages/leaders/leaders.module */ "./src/app/pages/leaders/leaders.module.ts")).then((m) => m.LeadersModule),
             },
             {
                 path: 'groups',
-                loadChildren: () => Promise.all(/*! import() | pages-groups-groups-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("common"), __webpack_require__.e("pages-groups-groups-module")]).then(__webpack_require__.bind(null, /*! ./pages/groups/groups.module */ "./src/app/pages/groups/groups.module.ts")).then((m) => m.GroupsModule),
-            },
-            {
-                path: 'users',
-                loadChildren: () => Promise.all(/*! import() | pages-users-users-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("pages-users-users-module")]).then(__webpack_require__.bind(null, /*! ./pages/users/users.module */ "./src/app/pages/users/users.module.ts")).then((m) => m.UsersModule),
+                loadChildren: () => Promise.all(/*! import() | pages-groups-groups-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-groups-groups-module")]).then(__webpack_require__.bind(null, /*! ./pages/groups/groups.module */ "./src/app/pages/groups/groups.module.ts")).then((m) => m.GroupsModule),
             },
             {
                 path: 'events',
-                loadChildren: () => Promise.all(/*! import() | pages-events-events-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("pages-events-events-module")]).then(__webpack_require__.bind(null, /*! ./pages/events/events.module */ "./src/app/pages/events/events.module.ts")).then((m) => m.EventsModule),
+                loadChildren: () => Promise.all(/*! import() | pages-events-events-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("pages-events-events-module")]).then(__webpack_require__.bind(null, /*! ./pages/events/events.module */ "./src/app/pages/events/events.module.ts")).then((m) => m.EventsModule),
+            },
+            {
+                path: 'users',
+                loadChildren: () => Promise.all(/*! import() | pages-users-users-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("pages-users-users-module")]).then(__webpack_require__.bind(null, /*! ./pages/users/users.module */ "./src/app/pages/users/users.module.ts")).then((m) => m.UsersModule),
+            },
+            {
+                path: 'shippers',
+                loadChildren: () => Promise.all(/*! import() | pages-shippers-shippers-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("common"), __webpack_require__.e("pages-shippers-shippers-module")]).then(__webpack_require__.bind(null, /*! ./pages/shippers/shippers.module */ "./src/app/pages/shippers/shippers.module.ts")).then((m) => m.ShippersModule),
             },
             {
                 path: 'orders',
-                loadChildren: () => Promise.all(/*! import() | pages-orders-orders-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("pages-orders-orders-module")]).then(__webpack_require__.bind(null, /*! ./pages/orders/orders.module */ "./src/app/pages/orders/orders.module.ts")).then((m) => m.OrdersModule),
+                loadChildren: () => Promise.all(/*! import() | pages-orders-orders-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("pages-orders-orders-module")]).then(__webpack_require__.bind(null, /*! ./pages/orders/orders.module */ "./src/app/pages/orders/orders.module.ts")).then((m) => m.OrdersModule),
             },
             {
                 path: 'ads',
-                loadChildren: () => Promise.all(/*! import() | pages-ads-ads-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~90304999"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("pages-ads-ads-module")]).then(__webpack_require__.bind(null, /*! ./pages/ads/ads.module */ "./src/app/pages/ads/ads.module.ts")).then((m) => m.AdsModule),
+                loadChildren: () => Promise.all(/*! import() | pages-ads-ads-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-events-events-module~pages-gro~47a84e24"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("pages-ads-ads-module")]).then(__webpack_require__.bind(null, /*! ./pages/ads/ads.module */ "./src/app/pages/ads/ads.module.ts")).then((m) => m.AdsModule),
             },
         ],
     },
     {
         path: 'auth',
-        loadChildren: () => Promise.all(/*! import() | pages-auth-auth-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~fb039978"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~7f437d1d"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~e283a2cc"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~0d1832da"), __webpack_require__.e("pages-auth-auth-module")]).then(__webpack_require__.bind(null, /*! ./pages/auth/auth.module */ "./src/app/pages/auth/auth.module.ts")).then((m) => m.AuthModule),
+        loadChildren: () => Promise.all(/*! import() | pages-auth-auth-module */[__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~daddde23"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~c26d7e12"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~f4e70c44"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-events-~f8b39233"), __webpack_require__.e("pages-auth-auth-module")]).then(__webpack_require__.bind(null, /*! ./pages/auth/auth.module */ "./src/app/pages/auth/auth.module.ts")).then((m) => m.AuthModule),
     },
     { path: '**', component: _pages_error404_error404_component__WEBPACK_IMPORTED_MODULE_3__["Error404Component"] },
 ];
@@ -545,9 +549,11 @@ LayoutComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SideMenuComponent", function() { return SideMenuComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/expansion.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_app_pages_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/pages/auth/auth.service */ "./src/app/pages/auth/auth.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/expansion.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
 
 
 
@@ -632,100 +638,138 @@ function SideMenuComponent_li_4_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", item_r1.isParent == "n");
 } }
 class SideMenuComponent {
-    constructor() {
+    constructor(authService) {
+        this.authService = authService;
         this.closeSide = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.items = [
-            {
-                isParent: 'n',
-                name: 'Dashboard',
-                icon: 'trending_up',
-                route: '/',
-            },
-            {
-                isParent: 'y',
-                name: 'Products',
-                children: [
+        this.items = [];
+    }
+    ngOnInit() {
+        this.userSub = this.authService.user.subscribe((user) => {
+            if (user.admin) {
+                this.items = [
                     {
-                        name: 'Product attributes',
+                        isParent: 'n',
+                        name: 'Dashboard',
                         icon: 'trending_up',
-                        route: '/product-attributes',
+                        route: '/',
                     },
                     {
-                        name: 'Categories',
-                        icon: 'trending_up',
-                        route: '/categories',
+                        isParent: 'y',
+                        name: 'Products',
+                        children: [
+                            {
+                                name: 'Product attributes',
+                                icon: 'trending_up',
+                                route: '/product-attributes',
+                            },
+                            {
+                                name: 'Categories',
+                                icon: 'trending_up',
+                                route: '/categories',
+                            },
+                            {
+                                name: 'Products',
+                                icon: 'trending_up',
+                                route: '/products',
+                            },
+                        ],
                     },
                     {
+                        isParent: 'y',
+                        name: 'Stores',
+                        children: [
+                            {
+                                name: 'Stores',
+                                icon: 'trending_up',
+                                route: '/stores',
+                            },
+                            {
+                                name: 'Owners',
+                                icon: 'person',
+                                route: '/owners',
+                            },
+                        ],
+                    },
+                    {
+                        isParent: 'y',
+                        name: 'Groups',
+                        children: [
+                            {
+                                name: 'Groups',
+                                icon: 'trending_up',
+                                route: '/groups',
+                            },
+                            {
+                                name: 'Presidents',
+                                icon: 'person',
+                                route: '/leaders',
+                            },
+                        ],
+                    },
+                    {
+                        isParent: 'n',
+                        name: 'Users',
+                        icon: 'person',
+                        route: '/users',
+                    },
+                    {
+                        isParent: 'n',
+                        name: 'Events',
+                        icon: 'trending_up',
+                        route: '/events',
+                    },
+                    {
+                        isParent: 'n',
+                        name: 'Shipping',
+                        icon: 'trending_up',
+                        route: '/shippers',
+                    },
+                    {
+                        isParent: 'n',
+                        name: 'Orders',
+                        icon: 'trending_up',
+                        route: '/orders',
+                    },
+                    {
+                        isParent: 'n',
+                        name: 'Ads',
+                        icon: 'trending_up',
+                        route: '/ads',
+                    },
+                ];
+            }
+            else if (user.owner) {
+                this.items = [
+                    {
+                        isParent: 'n',
+                        name: 'Dashboard',
+                        icon: 'trending_up',
+                        route: '/',
+                    },
+                    {
+                        isParent: 'n',
                         name: 'Products',
                         icon: 'trending_up',
                         route: '/products',
                     },
-                ],
-            },
-            {
-                isParent: 'y',
-                name: 'Stores',
-                children: [
                     {
-                        name: 'Stores',
+                        isParent: 'n',
+                        name: 'Orders',
                         icon: 'trending_up',
-                        route: '/stores',
+                        route: '/orders',
                     },
-                    {
-                        name: 'Owners',
-                        icon: 'person',
-                        route: '/owners',
-                    },
-                ],
-            },
-            {
-                isParent: 'y',
-                name: 'Groups',
-                children: [
-                    {
-                        name: 'Groups',
-                        icon: 'trending_up',
-                        route: '/groups',
-                    },
-                    {
-                        name: 'Presidents',
-                        icon: 'person',
-                        route: '/leaders',
-                    },
-                ],
-            },
-            {
-                isParent: 'n',
-                name: 'Users',
-                icon: 'person',
-                route: '/users',
-            },
-            {
-                isParent: 'n',
-                name: 'Events',
-                icon: 'trending_up',
-                route: '/events',
-            },
-            {
-                isParent: 'n',
-                name: 'Orders',
-                icon: 'trending_up',
-                route: '/orders',
-            },
-            {
-                isParent: 'n',
-                name: 'Ads',
-                icon: 'trending_up',
-                route: '/ads',
-            },
-        ];
+                ];
+            }
+        });
     }
-    ngOnInit() { }
+    ngOnDestroy() {
+        this.userSub.unsubscribe();
+    }
     closeMenu() {
         this.closeSide.emit();
     }
 }
-SideMenuComponent.ɵfac = function SideMenuComponent_Factory(t) { return new (t || SideMenuComponent)(); };
+SideMenuComponent.ɵfac = function SideMenuComponent_Factory(t) { return new (t || SideMenuComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_pages_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"])); };
 SideMenuComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SideMenuComponent, selectors: [["app-side-menu"]], outputs: { closeSide: "closeSide" }, decls: 5, vars: 1, consts: [[2, "padding", "15px 12px", "color", "#a8d2be"], [4, "ngFor", "ngForOf"], [4, "ngIf"], [3, "expanded"], [2, "color", "#a8d2be"], ["class", "child", 3, "click", 4, "ngFor", "ngForOf"], [1, "child", 3, "click"], [1, "grid-middle-noGutter", 3, "routerLink"], [1, "material-icons"]], template: function SideMenuComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ul");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "li", 0);
@@ -738,7 +782,7 @@ SideMenuComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.items);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_2__["MatAccordion"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_2__["MatExpansionPanel"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_2__["MatExpansionPanelHeader"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"]], styles: ["[_nghost-%COMP%]     mat-expansion-panel {\n  background: transparent;\n  color: #e2e2e2;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;\n}\n[_nghost-%COMP%]     mat-expansion-panel .mat-expansion-panel-content {\n  background: #0d394f;\n}\n[_nghost-%COMP%]     mat-expansion-panel .mat-expansion-panel-content .mat-expansion-panel-body {\n  padding: 0;\n}\n[_nghost-%COMP%]     mat-expansion-panel .mat-expansion-indicator::after {\n  color: #a8d2be;\n}\nul[_ngcontent-%COMP%] {\n  list-style: none;\n}\nul[_ngcontent-%COMP%]   li.child[_ngcontent-%COMP%]:hover {\n  background-color: #4899c2;\n}\nul[_ngcontent-%COMP%]   li.child[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  padding: 15px 5px;\n  width: 100%;\n  color: white;\n}\nul[_ngcontent-%COMP%]   li.child[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  margin: 0 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGF5b3V0L3NpZGUtbWVudS9FOlxcVW50aXRsZWQgRm9sZGVyXFxwcml2YXRlXFxwcm9qZWN0c1xcZnVsbF9zdGFja1xcbW90b2JhclxcbW90b2Jhcl9hZG1pbi9zcmNcXGFwcFxcbGF5b3V0XFxzaWRlLW1lbnVcXHNpZGUtbWVudS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbGF5b3V0L3NpZGUtbWVudS9FOlxcVW50aXRsZWQgRm9sZGVyXFxwcml2YXRlXFxwcm9qZWN0c1xcZnVsbF9zdGFja1xcbW90b2JhclxcbW90b2Jhcl9hZG1pbi9zcmNcXHNjc3NcXGFic3RyYWN0c1xcX3ZhcmlhYmxlcy5zY3NzIiwic3JjL2FwcC9sYXlvdXQvc2lkZS1tZW51L3NpZGUtbWVudS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNFLHVCQUFBO0VBQ0EsY0NRd0I7RURQeEIsaURBQUE7QUVERjtBRkdFO0VBQ0UsbUJBQUE7QUVESjtBRkVJO0VBQ0UsVUFBQTtBRUFOO0FGSUU7RUFDRSxjQ1pLO0FDVVQ7QUZNQTtFQUNFLGdCQUFBO0FFSEY7QUZNSTtFQUNFLHlCQ3BCRztBQ2dCVDtBRk9JO0VBQ0UsaUJBQUE7RUFDQSxXQUFBO0VBQ0EsWUM3Qkc7QUN3QlQ7QUZPTTtFQUNFLGFBQUE7QUVMUiIsImZpbGUiOiJzcmMvYXBwL2xheW91dC9zaWRlLW1lbnUvc2lkZS1tZW51LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4uLy4uLy4uL3Njc3MvYWJzdHJhY3RzL3ZhcmlhYmxlc1wiO1xuXG46aG9zdCA6Om5nLWRlZXAgbWF0LWV4cGFuc2lvbi1wYW5lbCB7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBjb2xvcjogJGdyYXkyO1xuICBib3gtc2hhZG93OiAwIDAgNXB4IHJnYmEoMCwgMCwgMCwgMC4yKSAhaW1wb3J0YW50O1xuXG4gIC5tYXQtZXhwYW5zaW9uLXBhbmVsLWNvbnRlbnQge1xuICAgIGJhY2tncm91bmQ6ICMwZDM5NGY7XG4gICAgLm1hdC1leHBhbnNpb24tcGFuZWwtYm9keSB7XG4gICAgICBwYWRkaW5nOiAwO1xuICAgIH1cbiAgfVxuXG4gIC5tYXQtZXhwYW5zaW9uLWluZGljYXRvcjo6YWZ0ZXIge1xuICAgIGNvbG9yOiAkY29sb3IyO1xuICB9XG59XG5cbnVsIHtcbiAgbGlzdC1zdHlsZTogbm9uZTtcblxuICBsaS5jaGlsZCB7XG4gICAgJjpob3ZlciB7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkY29sb3IzO1xuICAgIH1cblxuICAgIGEge1xuICAgICAgcGFkZGluZzogMTVweCA1cHg7XG4gICAgICB3aWR0aDogMTAwJTtcbiAgICAgIGNvbG9yOiAkd2hpdGU7XG5cbiAgICAgIGkge1xuICAgICAgICBtYXJnaW46IDAgNXB4O1xuICAgICAgfVxuICAgIH1cbiAgfVxufVxuIiwiLy9jb2xvcnNcbiR3aGl0ZSA6IHdoaXRlO1xuJGNvbG9yMTogIzBjNDI1ZDtcbiRjb2xvcjI6ICNhOGQyYmU7XG4kY29sb3IzOiAjNDg5OWMyO1xuJGNvbG9yNDogIzFmNzdhMztcblxuJGNvbG9yNSA6ICNmOWFlNGU7XG4kY29sb3I1NTogI2Q2ODUyMjtcblxuJGJvcmRlciAgICAgICAgICAgICAgICAgOiAjZjFmMWYxO1xuJGRhdGEtdGFibGUtYm9yZGVyICAgICAgOiAjZTllOWU5O1xuJGdyYXkyICAgICAgICAgICAgICAgICAgOiAjZTJlMmUyO1xuJGdyYXkzICAgICAgICAgICAgICAgICAgOiAjNzU3NTc1O1xuJHRyYXNoLWNvbG9yICAgICAgICAgICAgOiAjQzkzMDJDO1xuJGZvbnQtY29sb3IgICAgICAgICAgICAgOiAjNTU1O1xuJGFjdGl2ZS1icmVhZGNydW1iLWNvbG9yOiAjMzQzNDM0O1xuJGNhcmQtaGVhZGVyLWJnICAgICAgICAgOiAjZjlmOWY5OyAvLyNlZmVmZWY7IC8vI2Y5ZjlmOTtcbiRwbGFjZWhvbGRlci1jb2xvciAgICAgIDogI2IzYjNiMztcblxuLy8gYmFja2dyb3VuZCBjb2xvclxuJG1haW4tYmFja2dyb3VuZC1jb2xvciAgOiAjZWZlZGYyO1xuJGhlYWRlci1iYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiRkYXRhLXRhYmxlLWJveCAgICAgICAgIDogI2ZmZmRmZTsgLy8jZjdmN2Y3O1xuJGNhcmQtYm9keSAgICAgICAgICAgICAgOiAjZmZmZGZlO1xuXG4vLyBEYXNoYm9hcmRcbiRtYXJnaW5CZXR3ZWVuQ2FyZHM6IDIycHg7XG4kYXhpc0ZvbnRTaXplICAgICAgOiAxMnB4O1xuJHNtYWxsQXhpc0ZvbnRTaXplIDogMTBweDtcblxuLy9oZWFkZXJcbiRwcm9maWxlLW1lbnUtY29sb3I6ICNmOWY5Zjk7XG4kYmlsbC1jb2xvciAgICAgICAgOiAjOWJhMmFhO1xuJGJpbGwtaG92ZXItY29sb3IgIDogIzczODE4ZjtcblxuLy9MYXlvdXQgVmFyaWFibGVzXG5cbiRoZWFkZXItaGVpZ2h0IDogNTVweDtcbiRzaWRlTWVudS13aWR0aDogMjAwcHg7XG5cblxuLy9sb2dpblxuJGxveWFsaXR5LWNvbG9yICA6ICM4ODdmN2Y7XG4kbG9naW4tYm94LWNvbG9yIDogI2Y1ZjJmMDtcblxuLy9tYWlsXG4kbWFpbC1jaGVja2JveC1jb2xvcjogIzAwNzNhYTtcbiR1c2VyLW1haWwtY29sb3IgICAgOiAjMjkyYjJjO1xuXG4vL3Byb2ZpbGVcbiRhY3RpdmUtY29sb3IgICAgIDogI2Y0ZjZmOTtcbiRpY29uLWNvbG9yICAgICAgIDogIzk1OWNiNjtcbiRsYWJlbC10aXRsZS1jb2xvcjogIzUwNTY2YTtcblxuLy9lbWFpbCB0ZW1wbGF0ZXNcbiRlbWFpbC1ibHVlLWNvbG9yOiAjMGY0MTVkO1xuJGVtYWlsLWdyYXktY29sb3I6ICM1ZjYwNjA7XG4kZW1haWwtc3lhbi1jb2xvcjogI2EyZDljMjtcbiRlbWFpbC1vcmFnbmUtY29sb3I6ICNmZmFjNTI7XG5cbi8vZm9udHNcbiRmb250MjggICAgICAgICAgIDogMjhweDtcbiRmb250MjQgICAgICAgICAgIDogMjRweDtcbiRmb250MTggICAgICAgICAgIDogMThweDtcbiRmb250MTYgICAgICAgICAgIDogMTZweDtcbiRmb250MTQgICAgICAgICAgIDogMTRweDtcbiRmb250MTIgICAgICAgICAgIDogMTJweDtcbiRmb250MTAgICAgICAgICAgIDogMTBweDtcbiRmb250LXdlaWdodC02MDAgIDogNjAwO1xuJGZvbnQtd2VpZ2h0LTUwMCAgOiA1MDA7XG4kcGxhY2Vob2xkZXItZm9udCA6IDEycHg7XG4kbGFiZWwtZm9udCAgICAgICA6IDE0cHg7XG4kY2FyZC1oZWFkZXItZm9udCA6IDE2cHg7XG5cbiRkYXRhLXRhYmxlLWhlYWRlci0xMzY2IDogMTRweDtcbiRkYXRhLXRhYmxlLWhlYWRlci0xOTIwIDogMTZweDtcbiRkYXRhLXRhYmxlLWJvZHktMTM2NiA6IDEycHg7XG4kZGF0YS10YWJsZS1ib2R5LTE5MjA6IDE2cHg7XG4iLCI6aG9zdCA6Om5nLWRlZXAgbWF0LWV4cGFuc2lvbi1wYW5lbCB7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBjb2xvcjogI2UyZTJlMjtcbiAgYm94LXNoYWRvdzogMCAwIDVweCByZ2JhKDAsIDAsIDAsIDAuMikgIWltcG9ydGFudDtcbn1cbjpob3N0IDo6bmctZGVlcCBtYXQtZXhwYW5zaW9uLXBhbmVsIC5tYXQtZXhwYW5zaW9uLXBhbmVsLWNvbnRlbnQge1xuICBiYWNrZ3JvdW5kOiAjMGQzOTRmO1xufVxuOmhvc3QgOjpuZy1kZWVwIG1hdC1leHBhbnNpb24tcGFuZWwgLm1hdC1leHBhbnNpb24tcGFuZWwtY29udGVudCAubWF0LWV4cGFuc2lvbi1wYW5lbC1ib2R5IHtcbiAgcGFkZGluZzogMDtcbn1cbjpob3N0IDo6bmctZGVlcCBtYXQtZXhwYW5zaW9uLXBhbmVsIC5tYXQtZXhwYW5zaW9uLWluZGljYXRvcjo6YWZ0ZXIge1xuICBjb2xvcjogI2E4ZDJiZTtcbn1cblxudWwge1xuICBsaXN0LXN0eWxlOiBub25lO1xufVxudWwgbGkuY2hpbGQ6aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDg5OWMyO1xufVxudWwgbGkuY2hpbGQgYSB7XG4gIHBhZGRpbmc6IDE1cHggNXB4O1xuICB3aWR0aDogMTAwJTtcbiAgY29sb3I6IHdoaXRlO1xufVxudWwgbGkuY2hpbGQgYSBpIHtcbiAgbWFyZ2luOiAwIDVweDtcbn0iXX0= */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_3__["MatAccordion"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_3__["MatExpansionPanel"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_3__["MatExpansionPanelHeader"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLinkWithHref"]], styles: ["[_nghost-%COMP%]     mat-expansion-panel {\n  background: transparent;\n  color: #e2e2e2;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;\n}\n[_nghost-%COMP%]     mat-expansion-panel .mat-expansion-panel-content {\n  background: #0d394f;\n}\n[_nghost-%COMP%]     mat-expansion-panel .mat-expansion-panel-content .mat-expansion-panel-body {\n  padding: 0;\n}\n[_nghost-%COMP%]     mat-expansion-panel .mat-expansion-indicator::after {\n  color: #a8d2be;\n}\nul[_ngcontent-%COMP%] {\n  list-style: none;\n}\nul[_ngcontent-%COMP%]   li.child[_ngcontent-%COMP%]:hover {\n  background-color: #4899c2;\n}\nul[_ngcontent-%COMP%]   li.child[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  padding: 15px 5px;\n  width: 100%;\n  color: white;\n}\nul[_ngcontent-%COMP%]   li.child[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  margin: 0 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGF5b3V0L3NpZGUtbWVudS9FOlxcVW50aXRsZWQgRm9sZGVyXFxwcml2YXRlXFxwcm9qZWN0c1xcZnVsbF9zdGFja1xcbW90b2JhclxcbW90b2Jhcl9hZG1pbi9zcmNcXGFwcFxcbGF5b3V0XFxzaWRlLW1lbnVcXHNpZGUtbWVudS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbGF5b3V0L3NpZGUtbWVudS9FOlxcVW50aXRsZWQgRm9sZGVyXFxwcml2YXRlXFxwcm9qZWN0c1xcZnVsbF9zdGFja1xcbW90b2JhclxcbW90b2Jhcl9hZG1pbi9zcmNcXHNjc3NcXGFic3RyYWN0c1xcX3ZhcmlhYmxlcy5zY3NzIiwic3JjL2FwcC9sYXlvdXQvc2lkZS1tZW51L3NpZGUtbWVudS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNFLHVCQUFBO0VBQ0EsY0NRd0I7RURQeEIsaURBQUE7QUVERjtBRkdFO0VBQ0UsbUJBQUE7QUVESjtBRkVJO0VBQ0UsVUFBQTtBRUFOO0FGSUU7RUFDRSxjQ1pLO0FDVVQ7QUZNQTtFQUNFLGdCQUFBO0FFSEY7QUZNSTtFQUNFLHlCQ3BCRztBQ2dCVDtBRk9JO0VBQ0UsaUJBQUE7RUFDQSxXQUFBO0VBQ0EsWUM3Qkc7QUN3QlQ7QUZPTTtFQUNFLGFBQUE7QUVMUiIsImZpbGUiOiJzcmMvYXBwL2xheW91dC9zaWRlLW1lbnUvc2lkZS1tZW51LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4uLy4uLy4uL3Njc3MvYWJzdHJhY3RzL3ZhcmlhYmxlc1wiO1xuXG46aG9zdCA6Om5nLWRlZXAgbWF0LWV4cGFuc2lvbi1wYW5lbCB7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBjb2xvcjogJGdyYXkyO1xuICBib3gtc2hhZG93OiAwIDAgNXB4IHJnYmEoMCwgMCwgMCwgMC4yKSAhaW1wb3J0YW50O1xuXG4gIC5tYXQtZXhwYW5zaW9uLXBhbmVsLWNvbnRlbnQge1xuICAgIGJhY2tncm91bmQ6ICMwZDM5NGY7XG4gICAgLm1hdC1leHBhbnNpb24tcGFuZWwtYm9keSB7XG4gICAgICBwYWRkaW5nOiAwO1xuICAgIH1cbiAgfVxuXG4gIC5tYXQtZXhwYW5zaW9uLWluZGljYXRvcjo6YWZ0ZXIge1xuICAgIGNvbG9yOiAkY29sb3IyO1xuICB9XG59XG5cbnVsIHtcbiAgbGlzdC1zdHlsZTogbm9uZTtcblxuICBsaS5jaGlsZCB7XG4gICAgJjpob3ZlciB7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkY29sb3IzO1xuICAgIH1cblxuICAgIGEge1xuICAgICAgcGFkZGluZzogMTVweCA1cHg7XG4gICAgICB3aWR0aDogMTAwJTtcbiAgICAgIGNvbG9yOiAkd2hpdGU7XG5cbiAgICAgIGkge1xuICAgICAgICBtYXJnaW46IDAgNXB4O1xuICAgICAgfVxuICAgIH1cbiAgfVxufVxuIiwiLy9jb2xvcnNcbiR3aGl0ZSA6IHdoaXRlO1xuJGNvbG9yMTogIzBjNDI1ZDtcbiRjb2xvcjI6ICNhOGQyYmU7XG4kY29sb3IzOiAjNDg5OWMyO1xuJGNvbG9yNDogIzFmNzdhMztcblxuJGNvbG9yNSA6ICNmOWFlNGU7XG4kY29sb3I1NTogI2Q2ODUyMjtcblxuJGJvcmRlciAgICAgICAgICAgICAgICAgOiAjZjFmMWYxO1xuJGRhdGEtdGFibGUtYm9yZGVyICAgICAgOiAjZTllOWU5O1xuJGdyYXkyICAgICAgICAgICAgICAgICAgOiAjZTJlMmUyO1xuJGdyYXkzICAgICAgICAgICAgICAgICAgOiAjNzU3NTc1O1xuJHRyYXNoLWNvbG9yICAgICAgICAgICAgOiAjQzkzMDJDO1xuJGZvbnQtY29sb3IgICAgICAgICAgICAgOiAjNTU1O1xuJGFjdGl2ZS1icmVhZGNydW1iLWNvbG9yOiAjMzQzNDM0O1xuJGNhcmQtaGVhZGVyLWJnICAgICAgICAgOiAjZjlmOWY5OyAvLyNlZmVmZWY7IC8vI2Y5ZjlmOTtcbiRwbGFjZWhvbGRlci1jb2xvciAgICAgIDogI2IzYjNiMztcblxuLy8gYmFja2dyb3VuZCBjb2xvclxuJG1haW4tYmFja2dyb3VuZC1jb2xvciAgOiAjZWZlZGYyO1xuJGhlYWRlci1iYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiRkYXRhLXRhYmxlLWJveCAgICAgICAgIDogI2ZmZmRmZTsgLy8jZjdmN2Y3O1xuJGNhcmQtYm9keSAgICAgICAgICAgICAgOiAjZmZmZGZlO1xuXG4vLyBEYXNoYm9hcmRcbiRtYXJnaW5CZXR3ZWVuQ2FyZHM6IDIycHg7XG4kYXhpc0ZvbnRTaXplICAgICAgOiAxMnB4O1xuJHNtYWxsQXhpc0ZvbnRTaXplIDogMTBweDtcblxuLy9oZWFkZXJcbiRwcm9maWxlLW1lbnUtY29sb3I6ICNmOWY5Zjk7XG4kYmlsbC1jb2xvciAgICAgICAgOiAjOWJhMmFhO1xuJGJpbGwtaG92ZXItY29sb3IgIDogIzczODE4ZjtcblxuLy9MYXlvdXQgVmFyaWFibGVzXG5cbiRoZWFkZXItaGVpZ2h0IDogNTVweDtcbiRzaWRlTWVudS13aWR0aDogMjAwcHg7XG5cblxuLy9sb2dpblxuJGxveWFsaXR5LWNvbG9yICA6ICM4ODdmN2Y7XG4kbG9naW4tYm94LWNvbG9yIDogI2Y1ZjJmMDtcblxuLy9tYWlsXG4kbWFpbC1jaGVja2JveC1jb2xvcjogIzAwNzNhYTtcbiR1c2VyLW1haWwtY29sb3IgICAgOiAjMjkyYjJjO1xuXG4vL3Byb2ZpbGVcbiRhY3RpdmUtY29sb3IgICAgIDogI2Y0ZjZmOTtcbiRpY29uLWNvbG9yICAgICAgIDogIzk1OWNiNjtcbiRsYWJlbC10aXRsZS1jb2xvcjogIzUwNTY2YTtcblxuLy9lbWFpbCB0ZW1wbGF0ZXNcbiRlbWFpbC1ibHVlLWNvbG9yOiAjMGY0MTVkO1xuJGVtYWlsLWdyYXktY29sb3I6ICM1ZjYwNjA7XG4kZW1haWwtc3lhbi1jb2xvcjogI2EyZDljMjtcbiRlbWFpbC1vcmFnbmUtY29sb3I6ICNmZmFjNTI7XG5cbi8vZm9udHNcbiRmb250MjggICAgICAgICAgIDogMjhweDtcbiRmb250MjQgICAgICAgICAgIDogMjRweDtcbiRmb250MTggICAgICAgICAgIDogMThweDtcbiRmb250MTYgICAgICAgICAgIDogMTZweDtcbiRmb250MTQgICAgICAgICAgIDogMTRweDtcbiRmb250MTIgICAgICAgICAgIDogMTJweDtcbiRmb250MTAgICAgICAgICAgIDogMTBweDtcbiRmb250LXdlaWdodC02MDAgIDogNjAwO1xuJGZvbnQtd2VpZ2h0LTUwMCAgOiA1MDA7XG4kcGxhY2Vob2xkZXItZm9udCA6IDEycHg7XG4kbGFiZWwtZm9udCAgICAgICA6IDE0cHg7XG4kY2FyZC1oZWFkZXItZm9udCA6IDE2cHg7XG5cbiRkYXRhLXRhYmxlLWhlYWRlci0xMzY2IDogMTRweDtcbiRkYXRhLXRhYmxlLWhlYWRlci0xOTIwIDogMTZweDtcbiRkYXRhLXRhYmxlLWJvZHktMTM2NiA6IDEycHg7XG4kZGF0YS10YWJsZS1ib2R5LTE5MjA6IDE2cHg7XG4iLCI6aG9zdCA6Om5nLWRlZXAgbWF0LWV4cGFuc2lvbi1wYW5lbCB7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBjb2xvcjogI2UyZTJlMjtcbiAgYm94LXNoYWRvdzogMCAwIDVweCByZ2JhKDAsIDAsIDAsIDAuMikgIWltcG9ydGFudDtcbn1cbjpob3N0IDo6bmctZGVlcCBtYXQtZXhwYW5zaW9uLXBhbmVsIC5tYXQtZXhwYW5zaW9uLXBhbmVsLWNvbnRlbnQge1xuICBiYWNrZ3JvdW5kOiAjMGQzOTRmO1xufVxuOmhvc3QgOjpuZy1kZWVwIG1hdC1leHBhbnNpb24tcGFuZWwgLm1hdC1leHBhbnNpb24tcGFuZWwtY29udGVudCAubWF0LWV4cGFuc2lvbi1wYW5lbC1ib2R5IHtcbiAgcGFkZGluZzogMDtcbn1cbjpob3N0IDo6bmctZGVlcCBtYXQtZXhwYW5zaW9uLXBhbmVsIC5tYXQtZXhwYW5zaW9uLWluZGljYXRvcjo6YWZ0ZXIge1xuICBjb2xvcjogI2E4ZDJiZTtcbn1cblxudWwge1xuICBsaXN0LXN0eWxlOiBub25lO1xufVxudWwgbGkuY2hpbGQ6aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDg5OWMyO1xufVxudWwgbGkuY2hpbGQgYSB7XG4gIHBhZGRpbmc6IDE1cHggNXB4O1xuICB3aWR0aDogMTAwJTtcbiAgY29sb3I6IHdoaXRlO1xufVxudWwgbGkuY2hpbGQgYSBpIHtcbiAgbWFyZ2luOiAwIDVweDtcbn0iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SideMenuComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -746,7 +790,7 @@ SideMenuComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
                 templateUrl: './side-menu.component.html',
                 styleUrls: ['./side-menu.component.scss'],
             }]
-    }], function () { return []; }, { closeSide: [{
+    }], function () { return [{ type: src_app_pages_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }]; }, { closeSide: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
         }] }); })();
 

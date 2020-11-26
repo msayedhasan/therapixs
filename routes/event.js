@@ -13,13 +13,13 @@ router.get("/", passportJWT, eventController.getAll);
 router.get("/:groupId", passportJWT, eventController.getGroupEvents);
 
 router.post(
-  "/",
-  passportJWT,
-  awsUpload.single("image"),
-  eventController.addOne
+    "/",
+    passportJWT,
+    awsUpload.single("image"),
+    eventController.addOne
 );
 
-router.get("/:eventId", passportJWT, eventController.getOne);
+router.get("/event/:eventId", passportJWT, eventController.getOne);
 
 router.delete("/:eventId", passportJWT, eventController.deleteOne);
 

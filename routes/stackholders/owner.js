@@ -13,14 +13,14 @@ router.get("/:ownerId", passportJWT, ownerController.getOne);
 router.post("/addOwner/:userId", passportJWT, ownerController.addOwner);
 
 router.post(
-  "/addOwnerToStore/:userId/:storeId",
-  passportJWT,
-  ownerController.addOwnerToStore
+    "/addOwnerToStore/:userId/:storeId",
+    passportJWT,
+    ownerController.addOwnerToStore
 );
 
-router.post("/lockOwner/:ownerId", passportJWT, ownerController.lockOwner);
+router.get("/lock/:ownerId", passportJWT, ownerController.lockOwner);
 
-router.post("/unlockOwner/:ownerId", passportJWT, ownerController.unlockOwner);
+router.get("/unlock/:ownerId", passportJWT, ownerController.unlockOwner);
 
 router.delete("/deleteOwner/:userId", passportJWT, ownerController.deleteOwner);
 

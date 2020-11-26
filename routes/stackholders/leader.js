@@ -13,23 +13,23 @@ router.get("/:leaderId", passportJWT, leaderController.getOne);
 router.post("/addLeader/:userId", passportJWT, leaderController.addLeader);
 
 router.post(
-  "/addLeaderToGroup/:userId/:groupId",
-  passportJWT,
-  leaderController.addLeaderToGroup
+    "/addLeaderToGroup/:userId/:groupId",
+    passportJWT,
+    leaderController.addLeaderToGroup
 );
 
-router.post("/lockLeader/:leaderId", passportJWT, leaderController.lockLeader);
+router.get("/lock/:leaderId", passportJWT, leaderController.lockLeader);
 
-router.post(
-  "/unlockLeader/:leaderId",
-  passportJWT,
-  leaderController.unlockLeader
+router.get(
+    "/unlock/:leaderId",
+    passportJWT,
+    leaderController.unlockLeader
 );
 
 router.delete(
-  "/deleteLeader/:userId",
-  passportJWT,
-  leaderController.deleteLeader
+    "/deleteLeader/:userId",
+    passportJWT,
+    leaderController.deleteLeader
 );
 
 module.exports = router;

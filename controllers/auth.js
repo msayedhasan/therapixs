@@ -29,7 +29,7 @@ exports.signup = async(req, res, next) => {
             $or: [{ phone: phone }, { "local.email": email }],
         });
         if (user) {
-            const error = new Error("user existed");
+            const error = new Error("user email or phone existed");
             error.statusCode = 401;
             throw error;
         }

@@ -52,10 +52,8 @@ router.get(
     groupController.deleteRequestToJoin
 );
 
-router.get(
-    "/request/cancel",
-    passportJWT,
-    groupController.cancelRequestToJoin
-);
+router.get("/request/cancel", passportJWT, groupController.cancelRequestToJoin);
+
+router.get("/requests/:groupId", passportJWT, groupController.groupRequests);
 
 module.exports = router;

@@ -7,7 +7,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    image: String,
+    image: {
+        type: String,
+        default: "images/placeholder.jpg",
+    },
     dob: String,
     phone: Number,
     methods: {

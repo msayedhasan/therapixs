@@ -11,32 +11,34 @@ const router = express.Router();
 router.get("/", passportJWT, categoryController.getAll);
 
 router.get(
-  "/getBaseCategories",
-  passportJWT,
-  categoryController.getBaseCategories
-);
-
-router.post(
-  "/",
-  passportJWT,
-  awsUpload.single("image"),
-  categoryController.addOne
-);
-
-router.post(
-  "/:categoryId",
-  passportJWT,
-  awsUpload.single("image"),
-  categoryController.addSubCategory
+    "/getBaseCategories",
+    passportJWT,
+    categoryController.getBaseCategories
 );
 
 router.get("/:categoryId", passportJWT, categoryController.getOne);
 
+router.get("/:categoryId/getCategoryActivatedProducts", passportJWT, categoryController.getCategoryActivatedProducts);
+
+router.post(
+    "/",
+    passportJWT,
+    awsUpload.single("image"),
+    categoryController.addOne
+);
+
+router.post(
+    "/:categoryId",
+    passportJWT,
+    awsUpload.single("image"),
+    categoryController.addSubCategory
+);
+
 router.put(
-  "/:categoryId",
-  passportJWT,
-  awsUpload.single("image"),
-  categoryController.updateOne
+    "/:categoryId",
+    passportJWT,
+    awsUpload.single("image"),
+    categoryController.updateOne
 );
 
 router.delete("/:categoryId", passportJWT, categoryController.deleteOne);

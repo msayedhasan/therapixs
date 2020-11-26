@@ -2,9 +2,18 @@ const Group = require("../models/group");
 const Leader = require("../models/stackholders/leader");
 const User = require("../models/stackholders/user");
 
+const awsDelete = require("../startup/aws-s3-delete");
+
 exports.getAll = async(req, res, next) => {
     try {
-        const groups = await Group.find();
+        const groups = await Group.find().populate({
+            path: "leader",
+            model: "Leader",
+            populate: {
+                path: "user",
+                model: "User",
+            },
+        });
 
         return res.status(200).json({
             message: "Success",
@@ -48,15 +57,18 @@ exports.addOne = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
 
+        let image;
+        if (req.file) {
+            image = req.file.location;
+        }
+
         if (loggedInUser.admin) {
             const name = JSON.parse(req.body.name);
-            let image;
-            if (req.file) {
-                image = req.file.location;
-            }
 
             const existedGroup = await Group.findOne({ name: name });
             if (existedGroup) {
+                await awsDelete.delete(image);
+
                 const error = new Error("Group with this name is already exists");
                 error.statusCode = 400;
                 throw error;
@@ -83,6 +95,8 @@ exports.addOne = async(req, res, next) => {
                     leader.leaderHistory[leader.leaderHistory.length - 1].to == null ||
                     leader.leaderHistory[leader.leaderHistory.length - 1].to == undefined
                 ) {
+                    await awsDelete.delete(image);
+
                     const error = new Error("You're already an leader of a group.");
                     error.statusCode = 400;
                     throw error;
@@ -90,16 +104,11 @@ exports.addOne = async(req, res, next) => {
             }
 
             const name = JSON.parse(req.body.name);
-            const imageFile = req.file;
-            if (!imageFile) {
-                return res
-                    .status(422)
-                    .json({ message: "Attached file is not an image" });
-            }
-            const image = imageFile.path;
 
             const existedGroup = await Group.findOne({ name: name });
             if (existedGroup) {
+                await awsDelete.delete(image);
+
                 const error = new Error("Group with this name is already exists");
                 error.statusCode = 400;
                 throw error;
@@ -126,6 +135,8 @@ exports.addOne = async(req, res, next) => {
                 data: group,
             });
         } else {
+            await awsDelete.delete(image);
+
             const error = new Error("Not authorized as you're not a leader!");
             error.statusCode = 403;
             throw error;
@@ -141,26 +152,32 @@ exports.addOne = async(req, res, next) => {
 exports.updateOne = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
+
+        let image;
+        if (req.file) {
+            image = req.file.location;
+        } else {
+            image = group.image;
+        }
+
         if (loggedInUser.admin) {
             const groupId = req.params.groupId;
             const group = await Group.findById(groupId);
 
             if (!group) {
+                await awsDelete.delete(image);
+
                 const error = new Error("Could not find group.");
                 error.statusCode = 404;
                 throw error;
             }
 
             const name = JSON.parse(req.body.name);
-            let image;
-            if (req.file) {
-                image = req.file.location;
-            } else {
-                image = group.image;
-            }
 
             const oldGroup = await Group.findOne({ name: name });
             if (oldGroup) {
+                await awsDelete.delete(image);
+
                 const error = new Error("Group with this name is already exist");
                 error.statusCode = 400;
                 throw error;
@@ -179,6 +196,8 @@ exports.updateOne = async(req, res, next) => {
             const group = await Group.findById(groupId);
 
             if (!group) {
+                await awsDelete.delete(image);
+
                 const error = new Error("Could not find group.");
                 error.statusCode = 404;
                 throw error;
@@ -186,16 +205,11 @@ exports.updateOne = async(req, res, next) => {
 
             if (group.leader === loggedInUser.leaderId) {
                 const name = JSON.parse(req.body.name);
-                const imageFile = req.file;
-                let image;
-                if (req.file) {
-                    image = req.file.location;
-                } else {
-                    image = group.image;
-                }
 
                 const oldGroup = await Group.findOne({ name: name });
                 if (oldGroup) {
+                    await awsDelete.delete(image);
+
                     const error = new Error("Group with this name is already exist");
                     error.statusCode = 400;
                     throw error;
@@ -210,6 +224,8 @@ exports.updateOne = async(req, res, next) => {
                     data: group,
                 });
             } else {
+                await awsDelete.delete(image);
+
                 const error = new Error(
                     "Not authorized as you're not a leader of this group!"
                 );
@@ -217,6 +233,8 @@ exports.updateOne = async(req, res, next) => {
                 throw error;
             }
         } else {
+            await awsDelete.delete(image);
+
             const error = new Error(
                 "Not authorized as you're not a leader or admin!"
             );
@@ -271,6 +289,7 @@ exports.deleteOne = async(req, res, next) => {
             // End deleting leadership
 
             // Start deleting group
+            await awsDelete.delete(group.image);
             await Group.findByIdAndDelete(groupId);
             // End deleting group
             return res.status(200).json({ message: "Group deleted!" });
@@ -390,6 +409,12 @@ exports.requestToJoin = async(req, res, next) => {
         const loggedInUser = req.user;
         const groupId = req.params.groupId;
         const group = await Group.findById(groupId);
+        if (loggedInUser.admin || loggedInUser.leader) {
+            const error = new Error("Can't be member of group.");
+            error.statusCode = 404;
+            throw error;
+        }
+
         if (!group) {
             const error = new Error("Could not find group.");
             error.statusCode = 404;
@@ -429,6 +454,7 @@ exports.requestToJoin = async(req, res, next) => {
         next(err);
     }
 };
+
 exports.acceptRequestToJoin = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
@@ -503,7 +529,80 @@ exports.acceptRequestToJoin = async(req, res, next) => {
         next(err);
     }
 };
-exports.deleteRequestToJoin = async(req, res, next) => {};
+
+exports.deleteRequestToJoin = async(req, res, next) => {
+    try {
+        const loggedInUser = req.user;
+
+        if (!loggedInUser.admin && !loggedInUser.leader) {
+            const error = new Error("Not authorized to accept.");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        const userId = req.params.userId;
+        const groupId = req.params.groupId;
+        const group = await Group.findById(groupId);
+        if (!group) {
+            const error = new Error("Could not find group.");
+            error.statusCode = 404;
+            throw error;
+        }
+        const user = await User.findById(userId);
+        if (!user) {
+            const error = new Error("Could not find user.");
+            error.statusCode = 404;
+            throw error;
+        }
+        // make sure leader of this group
+        if (loggedInUser.leader) {
+            const leaderId = loggedInUser.leaderId;
+            const leader = await Leader.findById(leaderId);
+            if (!leader) {
+                const error = new Error("Could not find leader.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            if (!group.leader.equals(leaderId)) {
+                const error = new Error("you're not leader of this group.");
+                error.statusCode = 401;
+                throw error;
+            }
+        }
+
+        // check user has group or not
+        if (user.group) {
+            const error = new Error("this user already member of group.");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        if (group.members.includes(userId)) {
+            const error = new Error("this user is already member.");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        if (!group.requests.includes(userId)) {
+            const error = new Error("the user hasn't sent request.");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        group.requests.pull(userId);
+        await group.save();
+        uesr.groupRequest = undefined;
+        await uesr.save();
+        return res.status(200).json({ message: "Request deleted!" });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
 exports.cancelRequestToJoin = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
@@ -531,6 +630,28 @@ exports.cancelRequestToJoin = async(req, res, next) => {
         loggedInUser.groupRequest = undefined;
         await loggedInUser.save();
         return res.status(200).json({ message: "Request cancelled!" });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
+exports.groupRequests = async(req, res, next) => {
+    const groupId = req.params.groupId;
+    try {
+        const group = await Group.findById(groupId).populate({
+            path: "groupRequests",
+            model: "User",
+        });
+
+        if (!group) {
+            const error = new Error("Could not find group.");
+            error.statusCode = 404;
+            throw error;
+        }
+        return res.status(200).json({ message: "Success", data: group });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;

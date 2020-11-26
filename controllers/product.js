@@ -54,6 +54,10 @@ exports.addOne = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
         if (!loggedInUser.admin && !loggedInUser.owner) {
+            // delete photos from aws
+            for (let index = 0; index < product.photos.length; index++) {
+                await awsDelete.delete(product.photos[index]);
+            }
             const error = new Error("You're not admin or owner.");
             error.statusCode = 401;
             throw error;
@@ -67,12 +71,10 @@ exports.addOne = async(req, res, next) => {
 
         const name = JSON.parse(req.body.name);
         const description = JSON.parse(req.body.description);
-        const price = JSON.parse(req.body.price);
-        const qty = JSON.parse(req.body.qty);
         const categoryId = JSON.parse(req.body.category)._id;
         const categoryEn = JSON.parse(req.body.category).name.en;
         const categoryAr = JSON.parse(req.body.category).name.ar;
-        const productAttributes = JSON.parse(req.body.productAttributes);
+        const properties = JSON.parse(req.body.properties);
 
         let photos = [];
         for (let index = 0; index < req.files.length; index++) {
@@ -80,6 +82,7 @@ exports.addOne = async(req, res, next) => {
         }
 
         const product = new Product({
+            photos: photos,
             creator: loggedInUser._id,
             createdAt: Date.now(),
             name: name,
@@ -89,10 +92,7 @@ exports.addOne = async(req, res, next) => {
                 en: categoryEn,
                 ar: categoryAr,
             },
-            photos: photos,
-            price: price,
-            qty: qty,
-            productAttributes: productAttributes,
+            properties: properties,
         });
 
         const category = await Category.findById(categoryId);
@@ -527,6 +527,148 @@ exports.deleteOne = async(req, res, next) => {
     }
 };
 
+exports.addDiscount = async(req, res, next) => {
+    try {
+        const loggedInUser = req.user;
+        if (!loggedInUser.owner) {
+            const error = new Error("You're not an owner.");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        const productId = req.params.productId;
+
+        const product = await Product.findById(productId);
+
+        if (!product) {
+            const error = new Error("Could not find product.");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        const percentDiscount = req.body.percentDiscount;
+        const valueDiscount = req.body.valueDiscount;
+
+        if (loggedInUser.owner) {
+            const owner = await Owner.findById(loggedInUser.ownerId);
+
+            if (!owner) {
+                const error = new Error("Could not find your ownership.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            const store = await Store.findById(owner.store);
+            if (!store) {
+                const error = new Error("couldn`t find store.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            if (!store.active || store.locked) {
+                const error = new Error("store isn't active or locked.");
+                error.statusCode = 401;
+                throw error;
+            }
+
+            if (!store.equals(product.store)) {
+                const error = new Error(
+                    "You're not an owner of store of this product."
+                );
+                error.statusCode = 401;
+                throw error;
+            }
+
+            product.percentDiscount = percentDiscount;
+            product.valueDiscount = valueDiscount;
+            await product.save();
+
+            return res.status(201).json({
+                message: "discount added successfully!",
+                data: product,
+            });
+        } else {
+            const error = new Error("Not an owner.");
+            error.statusCode = 401;
+            throw error;
+        }
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
+exports.deleteDiscount = async(req, res, next) => {
+    try {
+        const loggedInUser = req.user;
+        if (!loggedInUser.owner) {
+            const error = new Error("You're not an owner.");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        const productId = req.params.productId;
+
+        const product = await Product.findById(productId);
+
+        if (!product) {
+            const error = new Error("Could not find product.");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        if (loggedInUser.owner) {
+            const owner = await Owner.findById(loggedInUser.ownerId);
+
+            if (!owner) {
+                const error = new Error("Could not find your ownership.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            const store = await Store.findById(owner.store);
+            if (!store) {
+                const error = new Error("couldn`t find store.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            if (!store.active || store.locked) {
+                const error = new Error("store isn't active or locked.");
+                error.statusCode = 401;
+                throw error;
+            }
+
+            if (!store.equals(product.store)) {
+                const error = new Error(
+                    "You're not an owner of store of this product."
+                );
+                error.statusCode = 401;
+                throw error;
+            }
+
+            product.percentDiscount = undefined;
+            product.valueDiscount = undefined;
+            await product.save();
+
+            return res.status(201).json({
+                message: "discount deleted successfully!",
+                data: product,
+            });
+        } else {
+            const error = new Error("Not an owner.");
+            error.statusCode = 401;
+            throw error;
+        }
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
 ///////////////////////////////////////////////////
 ////////// mobile app only ////////////
 

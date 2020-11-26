@@ -12,15 +12,15 @@ const router = express.Router();
 
 router.get("/", passportJWT, adController.getAll);
 
-router.post("/", passportJWT, awsUpload.single("image"), adController.addOne);
-
 router.get("/:adId", passportJWT, adController.getOne);
 
+router.post("/", passportJWT, awsUpload.single("image"), adController.addOne);
+
 router.put(
-  "/:adId",
-  passportJWT,
-  awsUpload.single("image"),
-  adController.updateOne
+    "/:adId",
+    passportJWT,
+    awsUpload.single("image"),
+    adController.updateOne
 );
 
 router.delete("/:adId", passportJWT, adController.deleteOne);
