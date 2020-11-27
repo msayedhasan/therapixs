@@ -631,11 +631,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this4.toastr.info(res['message'], 'Info');
 
             _this4.router.navigate(['/products']);
+
+            _this4.spinner.hide();
           }, function (error) {
             console.log(error);
 
             _this4.toastr.error(error.error.message, 'Error'); // this.error.next(error.error.message);
 
+
+            _this4.spinner.hide();
           });
           this.spinner.hide();
         }

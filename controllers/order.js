@@ -1,5 +1,7 @@
 const Order = require("../models/order");
+const Store = require("../models/store");
 const Product = require("../models/product");
+const Owner = require("../models/stackholders/owner");
 
 exports.getAll = async(req, res, next) => {
     try {
@@ -60,7 +62,7 @@ exports.makeOrder = async(req, res, next) => {
 
             if (product.qty < products[index].qty) {
                 const error = new Error("a product quantity is not available.");
-                error.statusCode = 404;
+                error.statusCode = 401;
                 throw error;
             }
 
@@ -243,6 +245,102 @@ exports.deliverOne = async(req, res, next) => {
             return res.status(200).json({ message: "order delivered!" });
         } else {
             const error = new Error("Not authorized as you're not an admin!");
+            error.statusCode = 403;
+            throw error;
+        }
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
+exports.getStore = async(req, res, next) => {
+    const storeId = req.params.storeId;
+    try {
+        const loggedInUser = req.user;
+        if (loggedInUser.admin) {
+            const store = await Store.findById(storeId)
+                .populate({
+                    path: "products.product",
+                    model: "Product",
+                    populate: {
+                        path: "store",
+                        model: "Store",
+                    },
+                })
+                .populate({
+                    path: "orderedBy",
+                    model: "User",
+                })
+                .populate({
+                    path: "cancelledBy",
+                    model: "User",
+                })
+                .populate({
+                    path: "confirmedBy",
+                    model: "User",
+                })
+                .populate({
+                    path: "shippedBy",
+                    model: "User",
+                });
+            if (!store) {
+                const error = new Error("Could not find store.");
+                error.statusCode = 404;
+                throw error;
+            }
+            return res.status(200).json({ message: "Success", data: store });
+        } else if (loggedInUser.owner) {
+            const owner = await Owner.findById(loggedInUser.ownerId);
+
+            if (!owner) {
+                const error = new Error("Could not find your ownership.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            const store = await Store.findById(storeId)
+                .populate({
+                    path: "products.product",
+                    model: "Product",
+                    populate: {
+                        path: "store",
+                        model: "Store",
+                    },
+                })
+                .populate({
+                    path: "orderedBy",
+                    model: "User",
+                })
+                .populate({
+                    path: "cancelledBy",
+                    model: "User",
+                })
+                .populate({
+                    path: "confirmedBy",
+                    model: "User",
+                })
+                .populate({
+                    path: "shippedBy",
+                    model: "User",
+                });
+            if (!store) {
+                const error = new Error("Could not find store.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            if (!store.owners.includes(loggedInUser.ownerId)) {
+                const error = new Error("You're not an owner of this store.");
+                error.statusCode = 401;
+                throw error;
+            }
+
+            return res.status(200).json({ message: "Success", data: store });
+        } else {
+            const error = new Error("Not authorized!");
             error.statusCode = 403;
             throw error;
         }

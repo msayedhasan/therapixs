@@ -410,8 +410,10 @@ exports.requestToJoin = async(req, res, next) => {
         const groupId = req.params.groupId;
         const group = await Group.findById(groupId);
         if (loggedInUser.admin || loggedInUser.leader) {
-            const error = new Error("Can't be member of group.");
-            error.statusCode = 404;
+            const error = new Error(
+                "Can't be member of group as you`re admin or leader."
+            );
+            error.statusCode = 401;
             throw error;
         }
 
@@ -424,21 +426,21 @@ exports.requestToJoin = async(req, res, next) => {
         // not member of any other groups
         if (loggedInUser.group) {
             const error = new Error("You're already member of group.");
-            error.statusCode = 404;
+            error.statusCode = 401;
             throw error;
         }
 
         // if he's member of the group
         if (group.members.includes(loggedInUser._id)) {
             const error = new Error("You're already member.");
-            error.statusCode = 404;
+            error.statusCode = 401;
             throw error;
         }
 
         // if he sent request to the group
         if (group.requests.includes(loggedInUser._id)) {
             const error = new Error("Request sent.");
-            error.statusCode = 404;
+            error.statusCode = 401;
             throw error;
         }
 
@@ -518,9 +520,9 @@ exports.acceptRequestToJoin = async(req, res, next) => {
         group.requests.pull(userId);
         group.members.push(userId);
         await group.save();
-        uesr.groupRequest = undefined;
-        uesr.group = groupId;
-        await uesr.save();
+        user.groupRequest = undefined;
+        user.group = groupId;
+        await user.save();
         return res.status(200).json({ message: "Request accepted!" });
     } catch (err) {
         if (!err.statusCode) {
@@ -592,8 +594,8 @@ exports.deleteRequestToJoin = async(req, res, next) => {
 
         group.requests.pull(userId);
         await group.save();
-        uesr.groupRequest = undefined;
-        await uesr.save();
+        user.groupRequest = undefined;
+        await user.save();
         return res.status(200).json({ message: "Request deleted!" });
     } catch (err) {
         if (!err.statusCode) {
@@ -642,7 +644,7 @@ exports.groupRequests = async(req, res, next) => {
     const groupId = req.params.groupId;
     try {
         const group = await Group.findById(groupId).populate({
-            path: "groupRequests",
+            path: "requests",
             model: "User",
         });
 
@@ -651,7 +653,7 @@ exports.groupRequests = async(req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        return res.status(200).json({ message: "Success", data: group });
+        return res.status(200).json({ message: "Success", data: group.requests });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;

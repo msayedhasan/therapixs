@@ -72,6 +72,11 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Owner",
     },
+    store: {
+        type: Schema.Types.ObjectId,
+        ref: "Store",
+        default: undefined,
+    },
 
     leader: Boolean,
     leaderId: {

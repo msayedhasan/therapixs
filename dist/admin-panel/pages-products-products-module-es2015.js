@@ -408,10 +408,12 @@ class AddProductComponent {
             this.form.reset();
             this.toastr.info(res['message'], 'Info');
             this.router.navigate(['/products']);
+            this.spinner.hide();
         }, (error) => {
             console.log(error);
             this.toastr.error(error.error.message, 'Error');
             // this.error.next(error.error.message);
+            this.spinner.hide();
         });
         this.spinner.hide();
     }

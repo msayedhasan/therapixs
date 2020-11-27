@@ -154,6 +154,8 @@ exports.addLeaderToGroup = async(req, res, next) => {
                     oldLeader.group = group._id;
 
                     group.leader = oldLeader._id;
+                    user.group = groupId;
+
                     await group.save();
                     await user.save();
                     await oldLeader.save();
@@ -177,6 +179,8 @@ exports.addLeaderToGroup = async(req, res, next) => {
 
                 user.leader = true;
                 user.leaderId = leader._id;
+                user.group = groupId;
+
                 await user.save();
 
                 group.leader = leader;

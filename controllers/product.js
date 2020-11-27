@@ -530,11 +530,6 @@ exports.deleteOne = async(req, res, next) => {
 exports.addDiscount = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
-        if (!loggedInUser.owner) {
-            const error = new Error("You're not an owner.");
-            error.statusCode = 401;
-            throw error;
-        }
 
         const productId = req.params.productId;
 
@@ -571,7 +566,7 @@ exports.addDiscount = async(req, res, next) => {
                 throw error;
             }
 
-            if (!store.equals(product.store)) {
+            if (!owner.store.equals(product.store)) {
                 const error = new Error(
                     "You're not an owner of store of this product."
                 );
@@ -579,8 +574,13 @@ exports.addDiscount = async(req, res, next) => {
                 throw error;
             }
 
-            product.percentDiscount = percentDiscount;
-            product.valueDiscount = valueDiscount;
+            if (product.percentDiscount) {
+                product.percentDiscount = percentDiscount;
+                product.valueDiscount = undefined;
+            } else {
+                product.valueDiscount = valueDiscount;
+                product.percentDiscount = undefined;
+            }
             await product.save();
 
             return res.status(201).json({
@@ -603,11 +603,6 @@ exports.addDiscount = async(req, res, next) => {
 exports.deleteDiscount = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
-        if (!loggedInUser.owner) {
-            const error = new Error("You're not an owner.");
-            error.statusCode = 401;
-            throw error;
-        }
 
         const productId = req.params.productId;
 
@@ -641,11 +636,11 @@ exports.deleteDiscount = async(req, res, next) => {
                 throw error;
             }
 
-            if (!store.equals(product.store)) {
+            if (!owner.store.equals(product.store)) {
                 const error = new Error(
                     "You're not an owner of store of this product."
                 );
-                error.statusCode = 401;
+                error.statusCode = 403;
                 throw error;
             }
 
@@ -653,13 +648,13 @@ exports.deleteDiscount = async(req, res, next) => {
             product.valueDiscount = undefined;
             await product.save();
 
-            return res.status(201).json({
+            return res.status(200).json({
                 message: "discount deleted successfully!",
                 data: product,
             });
         } else {
             const error = new Error("Not an owner.");
-            error.statusCode = 401;
+            error.statusCode = 403;
             throw error;
         }
     } catch (err) {

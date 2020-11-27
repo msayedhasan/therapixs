@@ -66,7 +66,6 @@ exports.updateOne = async(req, res, next) => {
         const dob = req.body.dob;
         const address = req.body.address;
         const location = req.body.location;
-
         user.name = name;
         user.phone = phone;
         if (image == null) {
