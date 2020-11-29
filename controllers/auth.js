@@ -22,11 +22,10 @@ exports.signup = async(req, res, next) => {
     const password = req.body.password;
     const fcmToken = req.body.fcmToken;
     hashedPassword = await bcrypt.hash(password, 12);
-
     try {
         // check if user logged in with phone or local email
         let user = await User.findOne({
-            $or: [{ phone: phone }, { "local.email": email }],
+            phone: phone,
         });
         if (user) {
             const error = new Error("user email or phone existed");
@@ -213,12 +212,28 @@ exports.getProfile = async(req, res, next) => {
                 },
             })
             .populate({
+                path: "shipperId",
+                model: "Shipper",
+            })
+            .populate({
                 path: "leaderId",
                 model: "Leader",
                 populate: {
                     path: "group",
                     model: "Group",
                 },
+            })
+            .populate({
+                path: "products",
+                model: "Product",
+            })
+            .populate({
+                path: "orders",
+                model: "Order",
+            })
+            .populate({
+                path: "soldOrders",
+                model: "Order",
             });
         if (!user) {
             const error = new Error("Could not find user.");

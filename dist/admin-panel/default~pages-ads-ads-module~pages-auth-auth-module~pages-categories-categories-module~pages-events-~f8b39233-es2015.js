@@ -5385,7 +5385,6 @@ class SelectComponent extends _abstract_component__WEBPACK_IMPORTED_MODULE_1__["
     ngOnInit() { }
     ngOnChanges() {
         if (this.initialSelectedItem) {
-            console.log(this.initialSelectedItem);
             this.selectedItemsId = this.initialSelectedItem._id;
         }
     }
@@ -5619,6 +5618,18 @@ class UploadMultiPhotosComponent extends _abstract_component__WEBPACK_IMPORTED_M
         this.images = [];
         this.choosed_image = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
+    ngOnChanges() {
+        if (this.initialPhotos) {
+            this.images = this.initialPhotos;
+            this.addPhoto();
+            for (let index = 0; index < this.images.length; index++) {
+                this.addPhoto();
+            }
+        }
+        else {
+            this.addPhoto();
+        }
+    }
     // form = this.fb.group({
     //   photos: this.fb.array([]),
     // });
@@ -5654,7 +5665,7 @@ class UploadMultiPhotosComponent extends _abstract_component__WEBPACK_IMPORTED_M
     }
 }
 UploadMultiPhotosComponent.ɵfac = function UploadMultiPhotosComponent_Factory(t) { return new (t || UploadMultiPhotosComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"])); };
-UploadMultiPhotosComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: UploadMultiPhotosComponent, selectors: [["app-upload-multi-photos"]], outputs: { choosed_image: "choosed_image" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]], decls: 7, vars: 2, consts: [[1, "grid-noGutter"], [4, "ngFor", "ngForOf"], [1, "grid-center-noGutter"], [1, "btn", "color1", 3, "disabled", "click"], ["template", ""], [1, "avatar-upload"], [1, "avatar-edit"], ["type", "file", "name", "file", "id", "logoUpload", "accept", "images/*", 3, "id", "change"], [3, "for"], [1, "material-icons"], [1, "avatar-preview"], ["id", "logoPreview"], ["class", "previewEye", 4, "ngIf"], ["class", "deletebutton", 4, "ngIf"], [1, "previewEye"], ["type", "button", "data-toggle", "modal", "tooltip", "Preview", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "preview-button", 3, "click"], [1, "deletebutton"], ["type", "button", "data-toggle", "modal", "tooltip", "delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "delete-button", 3, "click"], ["id", "imageModal", 1, "modal-body"]], template: function UploadMultiPhotosComponent_Template(rf, ctx) { if (rf & 1) {
+UploadMultiPhotosComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: UploadMultiPhotosComponent, selectors: [["app-upload-multi-photos"]], inputs: { initialPhotos: "initialPhotos" }, outputs: { choosed_image: "choosed_image" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]], decls: 7, vars: 2, consts: [[1, "grid-noGutter"], [4, "ngFor", "ngForOf"], [1, "grid-center-noGutter"], [1, "btn", "color1", 3, "disabled", "click"], ["template", ""], [1, "avatar-upload"], [1, "avatar-edit"], ["type", "file", "name", "file", "id", "logoUpload", "accept", "images/*", 3, "id", "change"], [3, "for"], [1, "material-icons"], [1, "avatar-preview"], ["id", "logoPreview"], ["class", "previewEye", 4, "ngIf"], ["class", "deletebutton", 4, "ngIf"], [1, "previewEye"], ["type", "button", "data-toggle", "modal", "tooltip", "Preview", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "preview-button", 3, "click"], [1, "deletebutton"], ["type", "button", "data-toggle", "modal", "tooltip", "delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "delete-button", 3, "click"], ["id", "imageModal", 1, "modal-body"]], template: function UploadMultiPhotosComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, UploadMultiPhotosComponent_div_1_Template, 11, 6, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -5678,7 +5689,9 @@ UploadMultiPhotosComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
                 templateUrl: './upload-multi-photos.component.html',
                 styleUrls: ['./upload-multi-photos.component.scss'],
             }]
-    }], function () { return [{ type: ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalService"] }, { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] }]; }, { choosed_image: [{
+    }], function () { return [{ type: ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalService"] }, { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] }]; }, { initialPhotos: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }], choosed_image: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
         }] }); })();
 

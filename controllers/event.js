@@ -70,8 +70,12 @@ exports.getOne = async(req, res, next) => {
 };
 
 exports.addOne = async(req, res, next) => {
-    console.log(req.file);
     try {
+        // const name = JSON.parse(req.body.name);
+        // const description = JSON.parse(req.body.description);
+        // console.log(name);
+        console.log(req.file);
+        console.log(req.body);
         // upload image if exist
         let image = "";
         if (req.file) {

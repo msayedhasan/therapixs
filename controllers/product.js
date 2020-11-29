@@ -113,7 +113,7 @@ exports.addOne = async(req, res, next) => {
             }
 
             const error = new Error("choose sub-category to add product in.");
-            error.statusCode = 404;
+            error.statusCode = 401;
             throw error;
         }
 
@@ -139,7 +139,7 @@ exports.addOne = async(req, res, next) => {
                 }
 
                 const error = new Error("You're not an owner of a store.");
-                error.statusCode = 404;
+                error.statusCode = 403;
                 throw error;
             }
 
@@ -150,7 +150,7 @@ exports.addOne = async(req, res, next) => {
                 }
 
                 const error = new Error("store isn't active or locked.");
-                error.statusCode = 404;
+                error.statusCode = 401;
                 throw error;
             }
 
@@ -203,7 +203,7 @@ exports.activateOne = async(req, res, next) => {
 
             if (product.active) {
                 const error = new Error("product is already activated.");
-                error.statusCode = 404;
+                error.statusCode = 401;
                 throw error;
             }
 
@@ -239,7 +239,7 @@ exports.deactivateOne = async(req, res, next) => {
 
             if (!product.active) {
                 const error = new Error("product is already deactivated.");
-                error.statusCode = 404;
+                error.statusCode = 401;
                 throw error;
             }
 
@@ -334,8 +334,21 @@ exports.availableOne = async(req, res, next) => {
 
 exports.updateOne = async(req, res, next) => {
     try {
+        let photos = [];
+        if (req.files && req.files > 0) {
+            for (let index = 0; index < req.files.length; index++) {
+                photos.push(req.files[index].location);
+                console.log(req.files[index].location);
+            }
+        }
         const loggedInUser = req.user;
         if (!loggedInUser.admin && !loggedInUser.owner) {
+            if (req.files && req.files > 0) {
+                // delete photos from aws
+                for (let index = 0; index < photos.length; index++) {
+                    await awsDelete.delete(photos[index]);
+                }
+            }
             const error = new Error("You're not admin or owner.");
             error.statusCode = 401;
             throw error;
@@ -346,60 +359,29 @@ exports.updateOne = async(req, res, next) => {
         const product = await Product.findById(productId);
 
         if (!product) {
+            if (req.files && req.files > 0) {
+                // delete photos from aws
+                for (let index = 0; index < photos.length; index++) {
+                    await awsDelete.delete(photos[index]);
+                }
+            }
+
             const error = new Error("Could not find product.");
             error.statusCode = 404;
             throw error;
         }
 
-        const oldCategory = await Category.findById(product.category._id);
-        if (!oldCategory) {
-            const error = new Error("Could not find old category.");
-            error.statusCode = 404;
-            throw error;
-        }
-
-        // delete photos from aws
-        for (let index = 0; index < product.photos.length; index++) {
-            await awsDelete.delete(product.photos[index]);
-        }
-
         const name = JSON.parse(req.body.name);
         const description = JSON.parse(req.body.description);
-        const price = JSON.parse(req.body.price);
-        const qty = JSON.parse(req.body.qty);
-        const categoryId = JSON.parse(req.body.category)._id;
-        const categoryEn = JSON.parse(req.body.category).name.en;
-        const categoryAr = JSON.parse(req.body.category).name.ar;
-        const productAttributes = JSON.parse(req.body.productAttributes);
+        const properties = JSON.parse(req.body.properties);
 
-        let photos = [];
-        for (let index = 0; index < req.files.length; index++) {
-            photos.push(req.files[index].location);
-        }
-
-        product.photos = photos;
+        const originalPhotos = JSON.parse(req.body.originalPhotos);
+        product.photos = photos.concat(originalPhotos);
 
         product.name = name;
         product.description = description;
-        product.category._id = categoryId;
-        product.category.en = categoryEn;
-        product.category.ar = categoryAr;
-        product.price = price;
-        product.qty = qty;
         product.updatedAt = Date.now();
-        productAttributes = productAttributes;
-
-        const category = await Category.findById(categoryId);
-        if (category.categories && category.categories.length > 0) {
-            // delete photos from aws
-            for (let index = 0; index < product.photos.length; index++) {
-                await awsDelete.delete(product.photos[index]);
-            }
-
-            const error = new Error("choose sub-category to add product in.");
-            error.statusCode = 404;
-            throw error;
-        }
+        product.properties = properties;
 
         //////////////////////////
         if (product.store) {
@@ -444,16 +426,6 @@ exports.updateOne = async(req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-
-        //////////////////////////
-        //// add to new category
-        category.products.push(product._id);
-        await category.save();
-
-        //////////////////////////
-        //// delete product from old category
-        oldCategory.products.pull(productId);
-        await oldCategory.save();
 
         await product.save();
 

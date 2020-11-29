@@ -1532,17 +1532,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! ./auth.service */
     "./src/app/pages/auth/auth.service.ts");
+    /* harmony import */
+
+
+    var ngx_spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ngx-spinner */
+    "./node_modules/ngx-spinner/__ivy_ngcc__/fesm2015/ngx-spinner.js");
 
     var AuthInterceptorService = /*#__PURE__*/function () {
-      function AuthInterceptorService(authService) {
+      function AuthInterceptorService(authService, spinner) {
         _classCallCheck(this, AuthInterceptorService);
 
         this.authService = authService;
+        this.spinner = spinner;
       }
 
       _createClass(AuthInterceptorService, [{
         key: "intercept",
         value: function intercept(req, next) {
+          var _this3 = this;
+
           return this.authService.user.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["take"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (user) {
             // console.log(`user token map interceptor ${user.token}`);
             return user;
@@ -1559,7 +1568,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               // withCredentials: true,
               headers: req.headers.set('Authorization', "".concat(user.token))
             });
-            return next.handle(modifiedReq);
+
+            if (_this3.timer) {
+              clearTimeout(_this3.timer);
+            }
+
+            _this3.timer = setTimeout(function () {
+              return _this3.spinner.show();
+            }, 500);
+            return next.handle(modifiedReq).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["finalize"])(function () {
+              _this3.spinner.hide();
+
+              if (_this3.timer) {
+                clearTimeout(_this3.timer);
+              }
+            }));
           }));
         }
       }]);
@@ -1568,7 +1591,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     AuthInterceptorService.ɵfac = function AuthInterceptorService_Factory(t) {
-      return new (t || AuthInterceptorService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]));
+      return new (t || AuthInterceptorService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_3__["NgxSpinnerService"]));
     };
 
     AuthInterceptorService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
@@ -1583,6 +1606,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }], function () {
         return [{
           type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]
+        }, {
+          type: ngx_spinner__WEBPACK_IMPORTED_MODULE_3__["NgxSpinnerService"]
         }];
       }, null);
     })();
@@ -1645,7 +1670,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthGuard, [{
         key: "canActivate",
         value: function canActivate(next, state) {
-          var _this3 = this;
+          var _this4 = this;
 
           return this.authService.user.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["take"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (user) {
             // const isAuth = !!user;
@@ -1658,7 +1683,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               return true;
             }
 
-            return _this3.router.createUrlTree(['/auth/login']);
+            return _this4.router.createUrlTree(['/auth/login']);
           }));
         }
       }]);
@@ -1764,7 +1789,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthService, [{
         key: "postForm",
         value: function postForm(endPoint, form) {
-          var _this4 = this;
+          var _this5 = this;
 
           return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/' + endPoint, form).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (resData) {
             var _a, _b;
@@ -1775,14 +1800,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               owner: (_b = resData['owner']) !== null && _b !== void 0 ? _b : false
             }; // const userData = new User(resData.token);
 
-            _this4.user.next(userData); // localStorage.setItem('userData', JSON.stringify(userData));
+            _this5.user.next(userData); // localStorage.setItem('userData', JSON.stringify(userData));
 
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (err) {
             console.log(err);
 
-            _this4.error.next(err.error.message);
+            _this5.error.next(err.error.message);
 
-            return _this4.error;
+            return _this5.error;
           }));
         }
       }, {

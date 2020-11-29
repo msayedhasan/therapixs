@@ -8739,7 +8739,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "ngOnChanges",
         value: function ngOnChanges() {
           if (this.initialSelectedItem) {
-            console.log(this.initialSelectedItem);
             this.selectedItemsId = this.initialSelectedItem._id;
           }
         }
@@ -9283,13 +9282,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _this24.images = [];
         _this24.choosed_image = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         return _this24;
-      } // form = this.fb.group({
-      //   photos: this.fb.array([]),
-      // });
-      //Help to get all photos controls as form array.
-
+      }
 
       _createClass(UploadMultiPhotosComponent, [{
+        key: "ngOnChanges",
+        value: function ngOnChanges() {
+          if (this.initialPhotos) {
+            this.images = this.initialPhotos;
+            this.addPhoto();
+
+            for (var index = 0; index < this.images.length; index++) {
+              this.addPhoto();
+            }
+          } else {
+            this.addPhoto();
+          }
+        } // form = this.fb.group({
+        //   photos: this.fb.array([]),
+        // });
+        //Help to get all photos controls as form array.
+
+      }, {
         key: "openModal",
         value: function openModal(template, i) {
           if (!this.images[i]) {
@@ -9349,10 +9362,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     UploadMultiPhotosComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: UploadMultiPhotosComponent,
       selectors: [["app-upload-multi-photos"]],
+      inputs: {
+        initialPhotos: "initialPhotos"
+      },
       outputs: {
         choosed_image: "choosed_image"
       },
-      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]],
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]],
       decls: 7,
       vars: 2,
       consts: [[1, "grid-noGutter"], [4, "ngFor", "ngForOf"], [1, "grid-center-noGutter"], [1, "btn", "color1", 3, "disabled", "click"], ["template", ""], [1, "avatar-upload"], [1, "avatar-edit"], ["type", "file", "name", "file", "id", "logoUpload", "accept", "images/*", 3, "id", "change"], [3, "for"], [1, "material-icons"], [1, "avatar-preview"], ["id", "logoPreview"], ["class", "previewEye", 4, "ngIf"], ["class", "deletebutton", 4, "ngIf"], [1, "previewEye"], ["type", "button", "data-toggle", "modal", "tooltip", "Preview", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "preview-button", 3, "click"], [1, "deletebutton"], ["type", "button", "data-toggle", "modal", "tooltip", "delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "delete-button", 3, "click"], ["id", "imageModal", 1, "modal-body"]],
@@ -9411,6 +9427,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
         }];
       }, {
+        initialPhotos: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+        }],
         choosed_image: [{
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
         }]

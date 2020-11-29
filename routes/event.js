@@ -15,7 +15,7 @@ router.get("/:groupId", passportJWT, eventController.getGroupEvents);
 router.post(
     "/",
     passportJWT,
-    awsUpload.single("image"),
+    // awsUpload.single("image"),
     eventController.addOne
 );
 

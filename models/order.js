@@ -3,69 +3,82 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-  orderedAt: String,
-  orderedBy: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-
-  cancelled: {
-    type: Boolean,
-    default: false,
-  },
-  cancelledBy: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    default: undefined,
-  },
-  cancelledAt: String,
-
-  products: [
-    {
-      qty: Number,
-      price: Number,
-      product: {
+    orderedAt: String,
+    orderedBy: {
         type: Schema.Types.ObjectId,
-        ref: "Product",
+        ref: "User",
         required: true,
-      },
     },
-  ],
 
-  confirmed: {
-    type: Boolean,
-    default: false,
-  },
-  confirmedBy: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    default: undefined,
-  },
-  confirmedAt: String,
+    cancelled: {
+        type: Boolean,
+        default: false,
+    },
+    cancelledBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: undefined,
+    },
+    cancelledAt: String,
 
-  shipped: {
-    type: Boolean,
-    default: false,
-  },
-  shippedBy: {
-    type: Schema.Types.ObjectId,
-    ref: "Shipper",
-    default: undefined,
-  },
-  shippedAt: String,
+    seller: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: undefined,
+    },
 
-  deliveredAt: String,
-  delivered: {
-    type: Boolean,
-    default: false,
-  },
+    store: {
+        type: Schema.Types.ObjectId,
+        ref: "Store",
+        default: undefined,
+    },
 
-  refund: {
-    type: Boolean,
-    default: false,
-  },
-  refundAt: String,
+    products: [{
+        qty: Number,
+        price: Number,
+        productName: String,
+        productImage: String,
+        productSelectedProperty: Number,
+        product: {
+            type: Schema.Types.ObjectId,
+            ref: "Product",
+            required: true,
+        },
+    }, ],
+
+    confirmed: {
+        type: Boolean,
+        default: false,
+    },
+    confirmedBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: undefined,
+    },
+    confirmedAt: String,
+
+    shipped: {
+        type: Boolean,
+        default: false,
+    },
+    shippedBy: {
+        type: Schema.Types.ObjectId,
+        ref: "Shipper",
+        default: undefined,
+    },
+    shippedAt: String,
+
+    deliveredAt: String,
+    delivered: {
+        type: Boolean,
+        default: false,
+    },
+
+    refund: {
+        type: Boolean,
+        default: false,
+    },
+    refundAt: String,
 });
 
 module.exports = mongoose.model("Order", orderSchema);
