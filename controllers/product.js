@@ -376,7 +376,7 @@ exports.updateOne = async(req, res, next) => {
         const properties = JSON.parse(req.body.properties);
 
         const originalPhotos = JSON.parse(req.body.originalPhotos);
-        product.photos = photos.concat(originalPhotos);
+        // product.photos = photos.concat(originalPhotos);
 
         product.name = name;
         product.description = description;
