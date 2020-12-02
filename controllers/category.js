@@ -663,6 +663,11 @@ exports.getCategoryActivatedProducts = async(req, res, next) => {
             .populate({
                 path: "productAttributes",
                 model: "ProductAttribute",
+            })
+            .populate({
+                path: "creator",
+                model: "User",
+                // populate: { path: "address", model: "Place" },
             });
         if (!category) {
             const error = new Error("Could not find category.");
