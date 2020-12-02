@@ -18,6 +18,7 @@ const schema = {
         // email: joi.string().required(),
         phone: joi.number().required(),
         password: joi.string().required(),
+        address: joi.string().required(),
     }),
 };
 
