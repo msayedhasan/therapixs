@@ -82,7 +82,7 @@ exports.updateOne = async(req, res, next) => {
         if (!phone && !user.phone) {
             user.phone = undefined;
         } else if (phone) {
-            user.local.phone = phone;
+            user.phone = phone;
         }
         if (!image && !user.image) {
             user.image = undefined;
