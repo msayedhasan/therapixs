@@ -6,27 +6,66 @@ const User = require("../models/stackholders/user");
 
 exports.getAll = async(req, res, next) => {
     try {
-        let orders = await Order.find()
-            .populate({
-                path: "products.product",
-                model: "Product",
-                populate: {
+        const loggedInUser = req.user;
+
+        if (loggedInUser.admin || loggedInUser.shipper) {
+            let orders = await Order.find()
+                .populate({
+                    path: "products.product",
+                    model: "Product",
+                })
+                .populate({
                     path: "store",
                     model: "Store",
-                },
-            })
-            .populate({
-                path: "orderedBy",
-                model: "User",
-            })
-            .populate({
-                path: "seller",
-                model: "User",
+                })
+                .populate({
+                    path: "orderedBy",
+                    model: "User",
+                })
+                .populate({
+                    path: "seller",
+                    model: "User",
+                });
+            return res.status(200).json({
+                message: "Fetched successfully",
+                data: orders,
             });
-        return res.status(200).json({
-            message: "Fetched successfully",
-            data: orders,
-        });
+        } else if (loggedInUser.owner) {
+            if (loggedInUser.store) {
+                console.log(loggedInUser.store);
+                let orders = await Order.find({ store: loggedInUser.store })
+                    .populate({
+                        path: "products.product",
+                        model: "Product",
+                    })
+                    .populate({
+                        path: "store",
+                        model: "Store",
+                    })
+                    .populate({
+                        path: "orderedBy",
+                        model: "User",
+                    })
+                    .populate({
+                        path: "seller",
+                        model: "User",
+                    });
+                return res.status(200).json({
+                    message: "Fetched successfully",
+                    data: orders,
+                });
+            } else {
+                return res.status(200).json({
+                    message: "Fetched successfully",
+                    data: [],
+                });
+            }
+        } else {
+            return res.status(200).json({
+                message: "Fetched successfully",
+                data: [],
+            });
+        }
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -38,11 +77,16 @@ exports.getAll = async(req, res, next) => {
 exports.makeOrder = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
-
+        const to = req.body.to;
         const products = req.body.products;
-
-        let userProducts = [];
-        let storeProducts = [];
+        const detailedAddress = req.body.detailedAddress;
+        if (!detailedAddress) {
+            const error = new Error("Enter your address in detail.");
+            error.statusCode = 400;
+            throw error;
+        }
+        let sellers = [];
+        let sellingStores = [];
 
         // Start Loop on products to check availability of them
         for (let index = 0; index < products.length; index++) {
@@ -78,60 +122,110 @@ exports.makeOrder = async(req, res, next) => {
             }
 
             if (product.store) {
-                storeProducts.push(products[index]);
+                if (sellingStores.length > 0) {
+                    let obj = sellingStores.find((obj) =>
+                        obj.store.equals(product.store)
+                    );
+                    if (obj) {
+                        sellingStores[sellingStores.indexOf(obj)].products.push(
+                            products[index]
+                        );
+                    } else {
+                        sellingStores.push({
+                            store: product.store,
+                            products: [products[index]],
+                        });
+                    }
+                } else {
+                    sellingStores.push({
+                        store: product.store,
+                        products: [products[index]],
+                    });
+                }
             } else {
-                userProducts.push(products[index]);
+                if (sellers.length > 0) {
+                    let obj = sellers.find((obj) => obj.seller.equals(product.creator));
+                    if (obj) {
+                        sellers[sellers.indexOf(obj)].products.push(products[index]);
+                    } else {
+                        sellers.push({
+                            seller: product.creator,
+                            products: [products[index]],
+                        });
+                    }
+                } else {
+                    sellers.push({
+                        seller: product.creator,
+                        products: [products[index]],
+                    });
+                }
             }
         }
+
+        // All items are available and ok
         // End Loop on products to check availability of them
         // Start make user order
-        if (userProducts.length > 0) {
-            for (let i = 0; i < userProducts.length; i++) {
-                let product = await Product.findById(userProducts[i].product);
+        if (sellers.length > 0) {
+            for (let i = 0; i < sellers.length; i++) {
+                var sellerProfit = 0;
+                for (let index = 0; index < sellers[i].products.length; index++) {
+                    let item = sellers[i].products[index];
 
-                if (
-                    product.properties[userProducts[i].productSelectedProperty].qty >=
-                    userProducts[i].qty
-                ) {
-                    product.properties[userProducts[i].productSelectedProperty].qty =
-                        product.properties[userProducts[i].productSelectedProperty].qty -
-                        userProducts[i].qty;
-                } else {
-                    const error = new Error(
-                        "a product quantity is not available with the creator."
-                    );
-                    error.statusCode = 401;
-                    throw error;
+                    let product = await Product.findById(item.product);
+
+                    if (
+                        product.properties[item.productSelectedProperty].qty >= item.qty
+                    ) {
+                        product.properties[item.productSelectedProperty].qty =
+                            product.properties[item.productSelectedProperty].qty - item.qty;
+                    } else {
+                        const error = new Error(
+                            "a product quantity is not available with the seller."
+                        );
+                        error.statusCode = 401;
+                        throw error;
+                    }
+
+                    product.orderedBy = loggedInUser._id;
+                    product.orderedAt = Date.now();
+
+                    if (product.profitValue != 0) {
+                        sellerProfit += product.profitValue * item.qty;
+                    } else if (product.profitPercentage != 0) {
+                        sellerProfit +=
+                            (product.profitPercentage / 100) * item.price * item.qty;
+                    }
+
+                    await product.save();
                 }
-
-                product.orderedBy = loggedInUser._id;
-                product.orderedAt = Date.now();
 
                 const order = new Order({
                     orderedAt: Date.now(),
                     orderedBy: loggedInUser._id,
-                    products: userProducts[i],
-                    seller: product.creator,
+                    products: sellers[i].products,
+                    seller: sellers[i].seller,
+                    profit: sellerProfit,
+                    from: sellers[i].products[0].itemAddress,
+                    to: to,
+                    detailedAddress: detailedAddress,
                 });
 
-                let seller = await User.findById(product.creator);
-                if (!seller) {
-                    const error = new Error("couldn't find seller.");
-                    error.statusCode = 404;
-                    throw error;
-                }
+                let userSeller = await User.findById(sellers[i].seller);
 
-                if (seller.soldOrders) {
-                    seller.soldOrders.push(order._id);
+                if (userSeller.soldOrders) {
+                    userSeller.soldOrders.push(order._id);
                 } else {
-                    seller.soldOrders = [order._id];
+                    userSeller.soldOrders = [order._id];
                 }
 
-                order.seller = seller._id;
-                await product.save();
+                if (!userSeller.gainToApp) {
+                    userSeller.gainToApp = 0;
+                }
+                userSeller.gainToApp += order.profit;
 
-                await seller.save();
+                await userSeller.save();
                 await order.save();
+
                 if (loggedInUser.orders) {
                     loggedInUser.orders.push(order._id);
                 } else {
@@ -143,49 +237,70 @@ exports.makeOrder = async(req, res, next) => {
         // End make user order
 
         // Start make store order
-        if (storeProducts.length > 0) {
-            const order = new Order({
-                orderedAt: Date.now(),
-                orderedBy: loggedInUser._id,
-                products: storeProducts,
-                store: storeProducts[0].store,
-            });
-            for (let i = 0; i < storeProducts.length; i++) {
-                let product = await Product.findById(storeProducts[i].product);
-                if (product.qty >= storeProducts[i].qty) {
-                    product.qty = product.qty - storeProducts[i].qty;
-                } else {
-                    const error = new Error(
-                        "a product quantity is not available in store."
-                    );
-                    error.statusCode = 404;
-                    throw error;
+        if (sellingStores.length > 0) {
+            for (let i = 0; i < sellingStores.length; i++) {
+                var storeProfit = 0;
+
+                for (let index = 0; index < sellingStores[i].products.length; index++) {
+                    const item = sellingStores[i].products[index];
+
+                    let product = await Product.findById(item.product);
+
+                    if (
+                        product.properties[item.productSelectedProperty].qty >= item.qty
+                    ) {
+                        product.properties[item.productSelectedProperty].qty =
+                            product.properties[item.productSelectedProperty].qty - item.qty;
+                    } else {
+                        const error = new Error(
+                            "a product quantity is not available in store."
+                        );
+                        error.statusCode = 400;
+                        throw error;
+                    }
+
+                    product.orderedBy = loggedInUser._id;
+                    product.orderedAt = Date.now();
+
+                    if (product.profitValue != 0) {
+                        storeProfit += product.profitValue * item.qty;
+                    } else if (product.profitPercentage != 0) {
+                        storeProfit +=
+                            (product.profitPercentage / 100) * item.price * item.qty;
+                    }
+
+                    await product.save();
                 }
-                product.orderedBy = loggedInUser._id;
-                product.orderedAt = Date.now();
-                await product.save();
-            }
-            await order.save();
 
-            let store = await Store.findById(storeProducts[0].store);
+                const order = new Order({
+                    orderedAt: Date.now(),
+                    orderedBy: loggedInUser._id,
+                    products: sellingStores[i].products,
+                    store: sellingStores[i].store,
+                    profit: storeProfit,
+                    from: sellingStores[i].products[0].itemAddress,
+                    to: to,
+                    detailedAddress: detailedAddress,
+                });
 
-            if (!store) {
-                const error = new Error("Could not find a store.");
-                error.statusCode = 404;
-                throw error;
-            }
+                let store = await Store.findById(sellingStores[i].store);
+                store.orders.push(order._id);
+                if (!store.gainToApp) {
+                    store.gainToApp = 0;
+                }
+                store.gainToApp += order.profit;
+                await store.save();
+                await order.save();
 
-            store.orders.push(order._id);
-            await store.save();
-
-            if (loggedInUser.orders) {
-                loggedInUser.orders.push(order._id);
-            } else {
-                loggedInUser.orders = [order._id];
+                if (loggedInUser.orders) {
+                    loggedInUser.orders.push(order._id);
+                } else {
+                    loggedInUser.orders = [order._id];
+                }
             }
             await loggedInUser.save();
         }
-        // End make store order
+        // // // End make store order
         return res.status(200).json({ message: "order created!", data: "Done" });
     } catch (err) {
         if (!err.statusCode) {

@@ -59,6 +59,15 @@ const storeSchema = new Schema({
         type: Number,
         default: undefined,
     },
+    address: {
+        type: Schema.Types.ObjectId,
+        ref: "Place",
+        required: true,
+    },
+    detailedAddress: {
+        type: String,
+        required: true,
+    },
     branches: {
         type: [{
             type: Schema.Types.ObjectId,
@@ -74,8 +83,24 @@ const storeSchema = new Schema({
         content: { type: String, default: "" },
         rate: { type: Number, default: 0 },
     }, ],
-    nextRentalDate: { type: String, default: undefined },
-    rent: { type: Number, default: undefined },
+
+    profitType: { type: String, default: "" },
+    profitPercentage: { type: Number, default: 0 },
+    profitValue: { type: Number, default: 0 },
+
+    discountType: { type: String, default: "" },
+    discountPercentage: { type: Number, default: 0 },
+    discountValue: { type: Number, default: 0 },
+
+    gainToApp: { type: Number, default: 0 },
+    totalGainCollected: { type: Number, default: 0 },
+
+    lastCollectBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
+    lastCollectAt: { type: String, default: undefined },
+
     createdAt: { type: String, default: undefined },
     updatedAt: { type: String, default: undefined },
 });

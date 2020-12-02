@@ -165,8 +165,9 @@ exports.updateOne = async(req, res, next) => {
             const group = await Group.findById(groupId);
 
             if (!group) {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error("Could not find group.");
                 error.statusCode = 404;
                 throw error;
@@ -176,8 +177,9 @@ exports.updateOne = async(req, res, next) => {
 
             const oldGroup = await Group.findOne({ name: name });
             if (oldGroup) {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error("Group with this name is already exist");
                 error.statusCode = 400;
                 throw error;
@@ -196,8 +198,9 @@ exports.updateOne = async(req, res, next) => {
             const group = await Group.findById(groupId);
 
             if (!group) {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error("Could not find group.");
                 error.statusCode = 404;
                 throw error;
@@ -208,8 +211,9 @@ exports.updateOne = async(req, res, next) => {
 
                 const oldGroup = await Group.findOne({ name: name });
                 if (oldGroup) {
-                    await awsDelete.delete(image);
-
+                    if (req.file) {
+                        await awsDelete.delete(req.file.location);
+                    }
                     const error = new Error("Group with this name is already exist");
                     error.statusCode = 400;
                     throw error;
@@ -224,8 +228,9 @@ exports.updateOne = async(req, res, next) => {
                     data: group,
                 });
             } else {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error(
                     "Not authorized as you're not a leader of this group!"
                 );
@@ -233,8 +238,9 @@ exports.updateOne = async(req, res, next) => {
                 throw error;
             }
         } else {
-            await awsDelete.delete(image);
-
+            if (req.file) {
+                await awsDelete.delete(req.file.location);
+            }
             const error = new Error(
                 "Not authorized as you're not a leader or admin!"
             );

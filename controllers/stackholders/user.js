@@ -58,6 +58,7 @@ exports.getOneByPhone = async(req, res, next) => {
 
 exports.updateOne = async(req, res, next) => {
     try {
+        console.log(req.body);
         user = req.user;
         // update user data
         const name = req.body.name;
@@ -65,27 +66,45 @@ exports.updateOne = async(req, res, next) => {
         const phone = req.body.phone;
         const dob = req.body.dob;
         const address = req.body.address;
+        const password = req.body.password; // complete profile
         const location = req.body.location;
-        user.name = name;
-        user.phone = phone;
-        if (image == null) {
+
+        if (!name && !user.name) {
+            user.name = undefined;
+        } else if (name) {
+            user.name = name;
+        }
+        if (password) {
+            user.password = undefined;
+        } else if (password) {
+            user.local.password = password;
+        }
+        if (!phone && !user.phone) {
+            user.phone = undefined;
+        } else if (phone) {
+            user.local.phone = phone;
+        }
+        if (!image && !user.image) {
             user.image = undefined;
-        } else {
+        } else if (image) {
             user.image = image;
         }
-        if (dob == null) {
-            user.dob = undefined;
-        } else {
-            user.dob = dob;
-        }
-        if (location == null) {
+        if (!address && !user.address) {
             user.address = undefined;
-            user.location = undefined;
-        } else {
-            user.location = location;
+        } else if (address) {
             user.address = address;
         }
-
+        if (!dob && !user.dob) {
+            user.dob = undefined;
+        } else if (dob) {
+            user.dob = dob;
+        }
+        if (!location && !user.location) {
+            user.location = undefined;
+        } else if (location) {
+            user.location = location;
+        }
+        console.log(user);
         await user.save();
         return res.status(200).json({ message: "Success", data: user });
     } catch (err) {

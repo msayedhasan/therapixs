@@ -42,6 +42,12 @@ router.put(
 
 router.delete("/:productId", passportJWT, productController.deleteOne);
 
+router.post(
+    "/addProductToStore/:productId/:storeId",
+    passportJWT,
+    productController.addProductToStore
+);
+
 router.get("/activate/:productId", passportJWT, productController.activateOne);
 
 router.get(
@@ -58,16 +64,16 @@ router.get(
     productController.availableOne
 );
 
-router.post(
-    "/addDiscount/:productId",
-    passportJWT,
-    productController.addDiscount
-);
+// router.post(
+//     "/addDiscount/:productId",
+//     passportJWT,
+//     productController.addDiscount
+// );
 
-router.delete(
-    "/deleteDiscount/:productId",
-    passportJWT,
-    productController.deleteDiscount
-);
+// router.delete(
+//     "/deleteDiscount/:productId",
+//     passportJWT,
+//     productController.deleteDiscount
+// );
 
 module.exports = router;

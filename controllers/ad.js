@@ -113,8 +113,9 @@ exports.updateOne = async(req, res, next) => {
 
             const oldAd = await Ad.findOne({ name: name });
             if (oldAd) {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error("Ad with this name is already exist");
                 error.statusCode = 400;
                 throw error;
@@ -129,13 +130,17 @@ exports.updateOne = async(req, res, next) => {
                 data: ad,
             });
         } else {
-            await awsDelete.delete(image);
-
+            if (req.file) {
+                await awsDelete.delete(req.file.location);
+            }
             const error = new Error("Not authorized as you're not an admin!");
             error.statusCode = 403;
             throw error;
         }
     } catch (err) {
+        if (req.file) {
+            await awsDelete.delete(req.file.location);
+        }
         if (!err.statusCode) {
             err.statusCode = 500;
         }

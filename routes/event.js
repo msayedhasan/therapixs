@@ -10,17 +10,21 @@ const router = express.Router();
 
 router.get("/", passportJWT, eventController.getAll);
 
-router.get("/:groupId", passportJWT, eventController.getGroupEvents);
-
 router.post(
     "/",
     passportJWT,
-    // awsUpload.single("image"),
+    awsUpload.single("image"),
     eventController.addOne
 );
 
-router.get("/event/:eventId", passportJWT, eventController.getOne);
+router.get("/:eventId", passportJWT, eventController.getOne);
+
+router.get("/:groupId", passportJWT, eventController.getGroupEvents);
 
 router.delete("/:eventId", passportJWT, eventController.deleteOne);
+
+router.get("/agree/:eventId", passportJWT, eventController.agreeOne);
+
+router.get("/disagree/:eventId", passportJWT, eventController.disagreeOne);
 
 module.exports = router;

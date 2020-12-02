@@ -7,14 +7,20 @@ const s3 = new aws.S3({
 });
 
 exports.delete = (fileUrl) => {
+    console.log(fileUrl);
     const params = {
         Bucket: "motobar-images",
-        Key: fileUrl ? fileUrl.split("amazonaws.com/")[1].replace(/%20/g, " ") : " ",
+        Key: fileUrl && fileUrl.includes("amazonaws.com/") ?
+            fileUrl.split("amazonaws.com/")[1].replace(/%20/g, " ") :
+            " ",
     };
     s3.deleteObject(params, function(err, data) {
         if (err) {
+            console.log("err from aws delete");
+
             console.log(err);
         }
+        console.log("data from aws delete");
         console.log(data);
     });
 };

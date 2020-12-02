@@ -25,9 +25,13 @@ exports.getAll = async(req, res, next) => {
 exports.getGroupEvents = async(req, res, next) => {
     try {
         const groupId = req.params.groupId;
-        const group = await Event.findById(groupId).populate({
+        const group = await Group.findById(groupId).populate({
             path: "events",
             model: "Event",
+            populate: {
+                path: "group",
+                model: "Group",
+            },
         });
         if (!group) {
             const error = new Error("Could not find your group.");
@@ -70,40 +74,46 @@ exports.getOne = async(req, res, next) => {
 };
 
 exports.addOne = async(req, res, next) => {
+    // upload image if exist
+    let image = "";
+    if (req.file) {
+        image = req.file.location;
+    } else {
+        const error = new Error("Upload event image.");
+        error.statusCode = 401;
+        throw error;
+    }
     try {
-        // const name = JSON.parse(req.body.name);
-        // const description = JSON.parse(req.body.description);
-        // console.log(name);
-        console.log(req.file);
-        console.log(req.body);
-        // upload image if exist
-        let image = "";
-        if (req.file) {
-            image = req.file.location;
-        } else {
-            const error = new Error("Upload event image.");
-            error.statusCode = 401;
-            throw error;
-        }
-
         const loggedInUser = req.user;
+
         if (loggedInUser.admin) {
-            const name = JSON.parse(req.body.name);
-            const description = JSON.parse(req.body.description);
+            let name;
+            let description;
+            let voting = false;
+            if (typeof req.body.name === "string") {
+                name = req.body.name;
+                description = req.body.description;
+                voting = req.body.voting;
+            } else {
+                name = JSON.parse(req.body.name);
+                description = JSON.parse(req.body.description);
+                voting = JSON.parse(req.body.voting);
+            }
 
             const event = new Event({
                 creator: loggedInUser._id,
                 createdAt: Date.now(),
+                image: image,
                 name: name,
                 description: description,
-                image: image,
+                voting: voting,
                 public: true,
             });
 
             if (event.voting === true) {
                 event.voting = true;
-                agreedBy = [];
-                disagreedBy = [];
+                event.agreedBy = [];
+                event.disagreedBy = [];
             }
 
             await event.save();
@@ -111,38 +121,53 @@ exports.addOne = async(req, res, next) => {
                 message: "event added successfully!",
                 data: event,
             });
-        } else if (loggedInUser.leader) {
+        } else if (loggedInUser.leader && loggedInUser.group) {
             const leader = await Leader.findById(loggedInUser.leaderId);
 
             if (!leader) {
                 await awsDelete.delete(image);
 
-                const error = new Error("Could not find your leadership.");
+                const error = new Error("Could not find your president.");
+                error.statusCode = 404;
+                throw error;
+            }
+            const group = await Group.findById(leader.group);
+            if (!group) {
+                await awsDelete.delete(image);
+
+                const error = new Error("Couldn't find the group.");
                 error.statusCode = 404;
                 throw error;
             }
 
-            const group = await Group.findById(leader.group);
-            if (!group || group.leader != leader) {
+            if (!group.leader.equals(loggedInUser.leaderId)) {
                 await awsDelete.delete(image);
 
-                const error = new Error("You're not a leader of a group.");
+                const error = new Error("You're not a president of this group.");
                 error.statusCode = 403;
                 throw error;
             }
 
-            const imageFile = req.file;
-            const name = JSON.parse(req.body.name);
-            const description = JSON.parse(req.body.description);
-
-            const image = imageFile.path;
+            let name;
+            let description;
+            let voting = false;
+            if (typeof req.body.name === "string") {
+                name = req.body.name;
+                description = req.body.description;
+                voting = req.body.voting;
+            } else {
+                name = JSON.parse(req.body.name);
+                description = JSON.parse(req.body.description);
+                voting = JSON.parse(req.body.voting);
+            }
 
             const event = new Event({
                 creator: loggedInUser._id,
                 createdAt: Date.now(),
+                image: image,
                 name: name,
                 description: description,
-                image: image,
+                voting: voting,
             });
 
             if (event.public === true) {
@@ -151,8 +176,8 @@ exports.addOne = async(req, res, next) => {
 
             if (event.voting === true) {
                 event.voting = true;
-                agreedBy = [];
-                disagreedBy = [];
+                event.agreedBy = [];
+                event.disagreedBy = [];
             }
 
             event.group = group._id;
@@ -167,11 +192,14 @@ exports.addOne = async(req, res, next) => {
         } else {
             await awsDelete.delete(image);
 
-            const error = new Error("Not authorized as you're not a leader!");
+            const error = new Error(
+                "Not authorized as you're not a leader of a group!"
+            );
             error.statusCode = 403;
             throw error;
         }
     } catch (err) {
+        await awsDelete.delete(image);
         if (!err.statusCode) {
             err.statusCode = 500;
         }
@@ -187,12 +215,6 @@ exports.deleteOne = async(req, res, next) => {
             const event = await Event.findById(eventId);
             if (!event) {
                 const error = new Error("Could not find event.");
-                error.statusCode = 404;
-                throw error;
-            }
-
-            if (!event.creator.equals(loggedInUser._id)) {
-                const error = new Error("you're not the creator of this event.");
                 error.statusCode = 404;
                 throw error;
             }
@@ -259,7 +281,7 @@ exports.agreeOne = async(req, res, next) => {
             if (event.public) {
                 if (event.agreedBy.includes(loggedInUser._id)) {
                     const error = new Error("you're already agree this event.");
-                    error.statusCode = 404;
+                    error.statusCode = 403;
                     throw error;
                 } else {
                     if (event.disagreedBy.includes(loggedInUser._id)) {
@@ -274,7 +296,7 @@ exports.agreeOne = async(req, res, next) => {
                     if (loggedInUser.group === event.group) {
                         if (event.agreedBy.includes(loggedInUser._id)) {
                             const error = new Error("you're already agreed this event.");
-                            error.statusCode = 404;
+                            error.statusCode = 401;
                             throw error;
                         } else {
                             if (event.disagreedBy.includes(loggedInUser._id)) {
@@ -285,21 +307,21 @@ exports.agreeOne = async(req, res, next) => {
                         }
                     } else {
                         const error = new Error("you're not a member of this group.");
-                        error.statusCode = 404;
+                        error.statusCode = 403;
                         throw error;
                     }
                 } else {
                     const error = new Error("you're not a member of group.");
-                    error.statusCode = 404;
+                    error.statusCode = 403;
                     throw error;
                 }
             }
         } else {
             const error = new Error("this event is not for voting.");
-            error.statusCode = 404;
+            error.statusCode = 401;
             throw error;
         }
-        return res.status(200).json({ message: "event updated!" });
+        return res.status(200).json({ message: "event updated!", data: "Done" });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -365,7 +387,7 @@ exports.disagreeOne = async(req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        return res.status(200).json({ message: "event updated!" });
+        return res.status(200).json({ message: "event updated!", data: "Done" });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;

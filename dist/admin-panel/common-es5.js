@@ -359,6 +359,123 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/pages/places/places.service.ts":
+  /*!************************************************!*\
+    !*** ./src/app/pages/places/places.service.ts ***!
+    \************************************************/
+
+  /*! exports provided: PlacesService */
+
+  /***/
+  function srcAppPagesPlacesPlacesServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PlacesService", function () {
+      return PlacesService;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _config_variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../config/variables */
+    "./src/app/config/variables.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+    var PlacesService = /*#__PURE__*/function () {
+      function PlacesService(http) {
+        _classCallCheck(this, PlacesService);
+
+        this.http = http;
+        this.places = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+      }
+
+      _createClass(PlacesService, [{
+        key: "getAll",
+        value: function getAll() {
+          var _this4 = this;
+
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + '/place').subscribe(function (res) {
+            if (res['data']) {
+              _this4.places.next(res['data']);
+            }
+          }, function (error) {
+            console.log(error); // this.error.next(error.error.message);
+          });
+        }
+      }, {
+        key: "getOne",
+        value: function getOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/place/".concat(itemId));
+        }
+      }, {
+        key: "addOne",
+        value: function addOne(form) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + '/place', form);
+        }
+      }, {
+        key: "updateOne",
+        value: function updateOne(form, itemId) {
+          return this.http.put(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/place/".concat(itemId), form);
+        }
+      }, {
+        key: "deleteOne",
+        value: function deleteOne(itemId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/place/".concat(itemId));
+        }
+      }]);
+
+      return PlacesService;
+    }();
+
+    PlacesService.ɵfac = function PlacesService_Factory(t) {
+      return new (t || PlacesService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]));
+    };
+
+    PlacesService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+      token: PlacesService,
+      factory: PlacesService.ɵfac,
+      providedIn: 'root'
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PlacesService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+          providedIn: 'root'
+        }]
+      }], function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+        }];
+      }, null);
+    })();
+    /***/
+
+  },
+
+  /***/
   "./src/app/pages/product-attributes/product-attributes.service.ts":
   /*!************************************************************************!*\
     !*** ./src/app/pages/product-attributes/product-attributes.service.ts ***!
@@ -423,11 +540,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProductAttributesService, [{
         key: "getAll",
         value: function getAll() {
-          var _this4 = this;
+          var _this5 = this;
 
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product-attribute').subscribe(function (res) {
             if (res['data']) {
-              _this4.productAttributes.next(res['data']);
+              _this5.productAttributes.next(res['data']);
             }
           });
         }
@@ -549,11 +666,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(StoresService, [{
         key: "getAll",
         value: function getAll() {
-          var _this5 = this;
+          var _this6 = this;
 
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/store').subscribe(function (res) {
             if (res['data']) {
-              _this5.stores.next(res['data']);
+              _this6.stores.next(res['data']);
             }
           }, function (error) {
             console.log(error); // this.error.next(error.error.message);
@@ -598,6 +715,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "unlockOne",
         value: function unlockOne(itemId) {
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/unlock/".concat(itemId));
+        }
+      }, {
+        key: "collect",
+        value: function collect(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/collect/".concat(itemId));
         }
       }]);
 

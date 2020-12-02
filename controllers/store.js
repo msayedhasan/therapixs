@@ -7,10 +7,19 @@ const awsDelete = require("../startup/aws-s3-delete");
 
 exports.getAll = async(req, res, next) => {
     try {
-        const stores = await Store.find().populate({
-            path: "owners",
-            model: "Owner",
-        });
+        const stores = await Store.find()
+            .populate({
+                path: "owners",
+                model: "Owner",
+            })
+            .populate({
+                path: "address",
+                model: "Place",
+            })
+            .populate({
+                path: "orders",
+                model: "Order",
+            });
 
         return res.status(200).json({
             message: "Success",
@@ -27,10 +36,15 @@ exports.getAll = async(req, res, next) => {
 exports.getOne = async(req, res, next) => {
     const storeId = req.params.storeId;
     try {
-        const store = await Store.findById(storeId).populate({
-            path: "owners",
-            model: "Owner",
-        });
+        const store = await Store.findById(storeId)
+            .populate({
+                path: "owners",
+                model: "Owner",
+            })
+            .populate({
+                path: "address",
+                model: "Place",
+            });
         if (!store) {
             const error = new Error("Could not find store.");
             error.statusCode = 404;
@@ -46,15 +60,43 @@ exports.getOne = async(req, res, next) => {
 };
 
 exports.addOne = async(req, res, next) => {
+    let image;
+    if (req.file) {
+        image = req.file.location;
+    }
     try {
         const loggedInUser = req.user;
 
-        let image;
-        if (req.file) {
-            image = req.file.location;
-        }
+        if (loggedInUser.admin) {
+            const name = JSON.parse(req.body.name);
+            const address = JSON.parse(req.body.address);
+            const detailedAddress = JSON.parse(req.body.detailedAddress);
 
-        if (loggedInUser.owner) {
+            const existedStore = await Store.findOne({ name: name });
+            if (existedStore) {
+                await awsDelete.delete(image);
+
+                const error = new Error("Store with this name is already exists");
+                error.statusCode = 400;
+                throw error;
+            }
+
+            const store = new Store({
+                name: name,
+                address: address,
+                detailedAddress: detailedAddress,
+                image: image,
+                creator: loggedInUser._id,
+                owners: [],
+                createdAt: Date.now(),
+            });
+            await store.save();
+
+            return res.status(201).json({
+                message: "Store added successfully!",
+                data: store,
+            });
+        } else if (loggedInUser.owner) {
             const owner = await Owner.findById(loggedInUser.ownerId);
 
             if (owner.ownerHistory.length > 0) {
@@ -70,7 +112,16 @@ exports.addOne = async(req, res, next) => {
                 }
             }
 
-            const name = JSON.parse(req.body.name);
+            let name;
+            if (typeof req.body.name === "string") {
+                name = req.body.name;
+                address = req.body.address;
+                detailedAddress = req.body.detailedAddress;
+            } else {
+                name = JSON.parse(req.body.name);
+                address = JSON.parse(req.body.address);
+                detailedAddress = JSON.parse(req.body.detailedAddress);
+            }
 
             const existedStore = await Store.findOne({ name: name });
             if (existedStore) {
@@ -83,6 +134,8 @@ exports.addOne = async(req, res, next) => {
 
             const store = new Store({
                 name: name,
+                address: address,
+                detailedAddress: detailedAddress,
                 image: image,
                 creator: loggedInUser._id,
                 owners: [owner._id],
@@ -101,31 +154,6 @@ exports.addOne = async(req, res, next) => {
                 message: "Store added successfully!",
                 data: store,
             });
-        } else if (loggedInUser.admin) {
-            const name = JSON.parse(req.body.name);
-
-            const existedStore = await Store.findOne({ name: name });
-            if (existedStore) {
-                await awsDelete.delete(image);
-
-                const error = new Error("Store with this name is already exists");
-                error.statusCode = 400;
-                throw error;
-            }
-
-            const store = new Store({
-                name: name,
-                image: image,
-                creator: loggedInUser._id,
-                owners: [],
-                createdAt: Date.now(),
-            });
-            await store.save();
-
-            return res.status(201).json({
-                message: "Store added successfully!",
-                data: store,
-            });
         } else {
             await awsDelete.delete(image);
 
@@ -134,6 +162,7 @@ exports.addOne = async(req, res, next) => {
             throw error;
         }
     } catch (err) {
+        await awsDelete.delete(image);
         if (!err.statusCode) {
             err.statusCode = 500;
         }
@@ -145,38 +174,77 @@ exports.updateOne = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
 
-        let image;
-        if (req.file) {
-            image = req.file.location;
-        } else {
-            image = store.image;
-        }
-
         if (loggedInUser.admin) {
             const storeId = req.params.storeId;
             const store = await Store.findById(storeId);
 
             if (!store) {
-                await awsDelete.delete(image);
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
 
                 const error = new Error("Could not find store.");
                 error.statusCode = 404;
                 throw error;
             }
-
+            let image;
+            if (req.file) {
+                image = req.file.location;
+            } else {
+                image = store.image;
+            }
             const name = JSON.parse(req.body.name);
+            // const address = JSON.parse(req.body.address);
+
+            const profitType = JSON.parse(req.body.profitType);
+            const profitValue = JSON.parse(req.body.profitValue);
+            const profitPercentage = JSON.parse(req.body.profitPercentage);
+            const discountType = JSON.parse(req.body.discountType);
+            const discountValue = JSON.parse(req.body.discountValue);
+            const discountPercentage = JSON.parse(req.body.discountPercentage);
 
             const oldStore = await Store.findOne({ name: name });
-            if (oldStore) {
-                await awsDelete.delete(image);
+            if (oldStore && !oldStore._id.equals(storeId)) {
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
 
                 const error = new Error("Store with this name is already exist");
                 error.statusCode = 400;
                 throw error;
             }
-
             store.name = name;
+            //   store.address = address;
             store.image = image;
+
+            store.profitType = profitType;
+            store.profitValue = profitValue;
+            store.profitPercentage = profitPercentage;
+
+            store.discountType = discountType;
+            store.discountValue = discountValue;
+            store.discountPercentage = discountPercentage;
+
+            if (store.products && store.products.length > 0) {
+                for (
+                    let productIndex = 0; productIndex < store.products.length; productIndex++
+                ) {
+                    const productId = store.products[productIndex];
+                    let product = await Product.findById(productId);
+                    if (product) {
+                        product.profitType = profitType;
+                        product.profitValue = profitValue;
+                        product.profitPercentage = profitPercentage;
+
+                        product.discountType = discountType;
+                        product.discountValue = discountValue;
+                        product.discountPercentage = discountPercentage;
+
+                        await product.save();
+                    }
+                }
+            }
+
             await store.save();
 
             return res.status(201).json({
@@ -189,28 +257,45 @@ exports.updateOne = async(req, res, next) => {
             const store = await Store.findById(storeId);
 
             if (!store) {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error("Could not find store.");
                 error.statusCode = 404;
                 throw error;
             }
-
+            let image;
+            if (req.file) {
+                image = req.file.location;
+            } else {
+                image = store.image;
+            }
             if (store.owners.includes(loggedInUser.ownerId)) {
                 const name = JSON.parse(req.body.name);
-                const imageFile = req.file;
+                // const address = JSON.parse(req.body.address);
+
+                const discountType = JSON.parse(req.body.discountType);
+                const discountValue = JSON.parse(req.body.discountValue);
+                const discountPercentage = JSON.parse(req.body.discountPercentage);
 
                 const oldStore = await Store.findOne({ name: name });
-                if (oldStore) {
-                    await awsDelete.delete(image);
-
+                if (oldStore && !oldStore._id.equals(storeId)) {
+                    if (req.file) {
+                        await awsDelete.delete(req.file.location);
+                    }
                     const error = new Error("Store with this name is already exist");
                     error.statusCode = 400;
                     throw error;
                 }
 
                 store.name = name;
+                // store.address = address;
                 store.image = image;
+
+                store.discountType = discountType;
+                store.discountValue = discountValue;
+                store.discountPercentage = discountPercentage;
+
                 await store.save();
 
                 return res.status(201).json({
@@ -218,8 +303,9 @@ exports.updateOne = async(req, res, next) => {
                     data: store,
                 });
             } else {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error(
                     "Not authorized as you're not an owner of this store!"
                 );
@@ -227,13 +313,17 @@ exports.updateOne = async(req, res, next) => {
                 throw error;
             }
         } else {
-            await awsDelete.delete(image);
-
+            if (req.file) {
+                await awsDelete.delete(req.file.location);
+            }
             const error = new Error("Not authorized as you're not an owner!");
             error.statusCode = 403;
             throw error;
         }
     } catch (err) {
+        if (req.file) {
+            await awsDelete.delete(req.file.location);
+        }
         if (!err.statusCode) {
             err.statusCode = 500;
         }
@@ -445,6 +535,47 @@ exports.unlockOne = async(req, res, next) => {
             await store.save();
 
             return res.status(200).json({ message: "Store unlocked!" });
+        } else {
+            const error = new Error("Not authorized as you're not an admin!");
+            error.statusCode = 403;
+            throw error;
+        }
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
+exports.collect = async(req, res, next) => {
+    try {
+        const loggedInUser = req.user;
+        const storeId = req.params.storeId;
+        if (loggedInUser.admin) {
+            const store = await Store.findById(storeId);
+            if (!store) {
+                const error = new Error("Could not find store.");
+                error.statusCode = 404;
+                throw error;
+            }
+
+            if (!store.totalGainCollected) {
+                store.totalGainCollected = 0;
+            }
+            if ((store.gainToApp === 0)) {
+                const error = new Error("No profit to collect.");
+                error.statusCode = 400;
+                throw error;
+            }
+
+            store.totalGainCollected += store.gainToApp;
+            store.gainToApp = 0;
+            store.lastCollectBy = loggedInUser._id;
+            store.lastCollectAt = Date.now();
+            await store.save();
+
+            return res.status(200).json({ message: "Profit collected!" });
         } else {
             const error = new Error("Not authorized as you're not an admin!");
             error.statusCode = 403;

@@ -20,6 +20,7 @@ exports.signup = async(req, res, next) => {
     const email = req.body.email;
     const phone = req.body.phone;
     const password = req.body.password;
+    const address = req.body.address;
     const fcmToken = req.body.fcmToken;
     hashedPassword = await bcrypt.hash(password, 12);
     try {
@@ -33,34 +34,35 @@ exports.signup = async(req, res, next) => {
             throw error;
         }
 
-        // check if user logged in with existing mail via facebook or google
-        let socialMediaUser = await User.findOne({
-            $or: [{ "google.email": email }, { "facebook.email": email }],
-        });
-        if (socialMediaUser) {
-            socialMediaUser.phone = phone;
-            socialMediaUser.methods.push("local");
-            socialMediaUser.local = {
-                email: email,
-                password: hashedPassword,
-            };
-            await socialMediaUser.save();
+        // // check if user logged in with existing mail via facebook or google
+        // let socialMediaUser = await User.findOne({
+        //     $or: [{ "google.email": email }, { "facebook.email": email }],
+        // });
+        // if (socialMediaUser) {
+        //     socialMediaUser.phone = phone;
+        //     socialMediaUser.methods.push("local");
+        //     socialMediaUser.local = {
+        //         email: email,
+        //         password: hashedPassword,
+        //     };
+        //     await socialMediaUser.save();
 
-            const token = setToken(socialMediaUser);
-            return res.status(201).json({
-                message: "Success",
-                token: token,
-            });
-        }
+        //     const token = setToken(socialMediaUser);
+        //     return res.status(201).json({
+        //         message: "Success",
+        //         token: token,
+        //     });
+        // }
 
         const newUser = new User({
             name: name,
             phone: phone,
-            methods: ["local"],
+            methods: ["phone"],
             local: {
-                email: email,
+                phone: phone,
                 password: hashedPassword,
             },
+            address: address,
             fcmToken: fcmToken,
         });
 

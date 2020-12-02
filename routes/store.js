@@ -38,4 +38,6 @@ router.get("/lock/:storeId", passportJWT, storeController.lockOne);
 
 router.get("/unlock/:storeId", passportJWT, storeController.unlockOne);
 
+router.get("/collect/:storeId", passportJWT, storeController.collect);
+
 module.exports = router;

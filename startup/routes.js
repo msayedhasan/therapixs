@@ -14,6 +14,8 @@ const storeRoutes = require("../routes/store");
 const productRoutes = require("../routes/product");
 
 const shipperRoutes = require("../routes/stackholders/shipper");
+const placeRoutes = require("../routes/place");
+const shippingRoutes = require("../routes/shipping");
 const orderRoutes = require("../routes/order");
 
 const adsRoutes = require("../routes/ad");
@@ -34,6 +36,8 @@ module.exports = function(app) {
     app.use("/product", productRoutes);
 
     app.use("/shipper", shipperRoutes);
+    app.use("/place", placeRoutes);
+    app.use("/shipping", shippingRoutes);
     app.use("/order", orderRoutes);
 
     app.use("/ads", adsRoutes);

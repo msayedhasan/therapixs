@@ -8,19 +8,48 @@ const awsDelete = require("../startup/aws-s3-delete");
 
 exports.getAll = async(req, res, next) => {
     try {
-        let products = await Product.find()
-            .populate({
-                path: "store",
-                model: "Store",
-            })
-            .populate({
-                path: "creator",
-                model: "User",
+        const loggedInUser = req.user;
+        if (loggedInUser.admin) {
+            let products = await Product.find()
+                .populate({
+                    path: "store",
+                    model: "Store",
+                })
+                .populate({
+                    path: "creator",
+                    model: "User",
+                });
+            return res.status(200).json({
+                message: "Fetched successfully",
+                data: products,
             });
-        return res.status(200).json({
-            message: "Fetched successfully",
-            data: products,
-        });
+        } else if (loggedInUser.owner) {
+            if (loggedInUser.store) {
+                let products = await Product.find({ store: loggedInUser.store })
+                    .populate({
+                        path: "store",
+                        model: "Store",
+                    })
+                    .populate({
+                        path: "creator",
+                        model: "User",
+                    });
+                return res.status(200).json({
+                    message: "Fetched successfully",
+                    data: products,
+                });
+            } else {
+                return res.status(200).json({
+                    message: "Fetched successfully",
+                    data: [],
+                });
+            }
+        } else {
+            return res.status(200).json({
+                message: "Fetched successfully",
+                data: [],
+            });
+        }
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -32,7 +61,19 @@ exports.getAll = async(req, res, next) => {
 exports.getOne = async(req, res, next) => {
     const productId = req.params.productId;
     try {
-        const product = await Product.findById(productId);
+        const product = await Product.findById(productId)
+            .populate({
+                path: "store",
+                model: "Store",
+                populate: {
+                    path: "address",
+                    model: "Place",
+                },
+            })
+            .populate({
+                path: "creator",
+                model: "User",
+            });
         if (!product) {
             const error = new Error("Could not find product.");
             error.statusCode = 404;
@@ -76,24 +117,12 @@ exports.addOne = async(req, res, next) => {
         const categoryAr = JSON.parse(req.body.category).name.ar;
         const properties = JSON.parse(req.body.properties);
 
-        let photos = [];
-        for (let index = 0; index < req.files.length; index++) {
-            photos.push(req.files[index].location);
-        }
-
-        const product = new Product({
-            photos: photos,
-            creator: loggedInUser._id,
-            createdAt: Date.now(),
-            name: name,
-            description: description,
-            category: {
-                _id: categoryId,
-                en: categoryEn,
-                ar: categoryAr,
-            },
-            properties: properties,
-        });
+        let profitType = JSON.parse(req.body.profitType);
+        let profitValue = JSON.parse(req.body.profitValue);
+        let profitPercentage = JSON.parse(req.body.profitPercentage);
+        let discountType = JSON.parse(req.body.discountType);
+        let discountValue = JSON.parse(req.body.discountValue);
+        let discountPercentage = JSON.parse(req.body.discountPercentage);
 
         const category = await Category.findById(categoryId);
         if (!category) {
@@ -116,6 +145,45 @@ exports.addOne = async(req, res, next) => {
             error.statusCode = 401;
             throw error;
         }
+
+        if (profitType === "") {
+            profitType = category.profitType;
+            profitValue = category.profitValue;
+            profitPercentage = category.profitPercentage;
+        }
+
+        if (discountType === "") {
+            discountType = category.discountType;
+            discountValue = category.discountValue;
+            discountPercentage = category.discountPercentage;
+        }
+
+        let photos = [];
+        for (let index = 0; index < req.files.length; index++) {
+            photos.push(req.files[index].location);
+        }
+
+        const product = new Product({
+            photos: photos,
+            creator: loggedInUser._id,
+            createdAt: Date.now(),
+            name: name,
+            description: description,
+            category: {
+                _id: categoryId,
+                en: categoryEn,
+                ar: categoryAr,
+            },
+            properties: properties,
+
+            profitType: profitType,
+            profitValue: profitValue,
+            profitPercentage: profitPercentage,
+
+            discountType: discountType,
+            discountValue: discountValue,
+            discountPercentage: discountPercentage,
+        });
 
         if (loggedInUser.owner) {
             const owner = await Owner.findById(loggedInUser.ownerId);
@@ -181,6 +249,127 @@ exports.addOne = async(req, res, next) => {
             message: "Product added successfully!",
             data: product,
         });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
+exports.updateOne = async(req, res, next) => {
+    try {
+        let photos = [];
+        if (req.files && req.files > 0) {
+            for (let index = 0; index < req.files.length; index++) {
+                photos.push(req.files[index].location);
+                console.log(req.files[index].location);
+            }
+        }
+        const loggedInUser = req.user;
+        if (!loggedInUser.admin && !loggedInUser.owner) {
+            if (req.files && req.files > 0) {
+                // delete photos from aws
+                for (let index = 0; index < photos.length; index++) {
+                    await awsDelete.delete(photos[index]);
+                }
+            }
+            const error = new Error("You're not admin or owner.");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        const productId = req.params.productId;
+
+        const product = await Product.findById(productId);
+
+        if (!product) {
+            if (req.files && req.files > 0) {
+                // delete photos from aws
+                for (let index = 0; index < photos.length; index++) {
+                    await awsDelete.delete(photos[index]);
+                }
+            }
+
+            const error = new Error("Could not find product.");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        const name = JSON.parse(req.body.name);
+        const description = JSON.parse(req.body.description);
+        const properties = JSON.parse(req.body.properties);
+
+        const profitType = JSON.parse(req.body.profitType);
+        const profitValue = JSON.parse(req.body.profitValue);
+        const profitPercentage = JSON.parse(req.body.profitPercentage);
+        const discountType = JSON.parse(req.body.discountType);
+        const discountValue = JSON.parse(req.body.discountValue);
+        const discountPercentage = JSON.parse(req.body.discountPercentage);
+
+        const originalPhotos = JSON.parse(req.body.originalPhotos);
+        // product.photos = photos.concat(originalPhotos);
+
+        product.name = name;
+        product.description = description;
+        product.updatedAt = Date.now();
+        product.properties = properties;
+
+        product.profitType = profitType;
+        product.profitValue = profitValue;
+        product.profitPercentage = profitPercentage;
+
+        product.discountType = discountType;
+        product.discountValue = discountValue;
+        product.discountPercentage = discountPercentage;
+
+        //////////////////////////
+        if (product.store) {
+            //// if owner to add to store or to user
+            if (loggedInUser.owner) {
+                const owner = await Owner.findById(loggedInUser.ownerId);
+
+                if (!owner) {
+                    const error = new Error("Could not find your ownership.");
+                    error.statusCode = 404;
+                    throw error;
+                }
+
+                const store = await Store.findById(owner.store);
+                if (!store) {
+                    const error = new Error("You're not an owner of a store.");
+                    error.statusCode = 404;
+                    throw error;
+                }
+
+                if (!store.equals(product.store)) {
+                    const error = new Error(
+                        "You're not an owner of store of this product."
+                    );
+                    error.statusCode = 404;
+                    throw error;
+                }
+            } else {
+                const error = new Error("you're not an owner.");
+                error.statusCode = 404;
+                throw error;
+            }
+        }
+
+        if (!product.creator.equals(loggedInUser._id)) {
+            // delete photos from aws
+            for (let index = 0; index < product.photos.length; index++) {
+                await awsDelete.delete(product.photos[index]);
+            }
+
+            const error = new Error("you're not the creator of this product.");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        await product.save();
+
+        return res.status(200).json({ message: "Product updated!", data: product });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -332,112 +521,6 @@ exports.availableOne = async(req, res, next) => {
     }
 };
 
-exports.updateOne = async(req, res, next) => {
-    try {
-        let photos = [];
-        if (req.files && req.files > 0) {
-            for (let index = 0; index < req.files.length; index++) {
-                photos.push(req.files[index].location);
-                console.log(req.files[index].location);
-            }
-        }
-        const loggedInUser = req.user;
-        if (!loggedInUser.admin && !loggedInUser.owner) {
-            if (req.files && req.files > 0) {
-                // delete photos from aws
-                for (let index = 0; index < photos.length; index++) {
-                    await awsDelete.delete(photos[index]);
-                }
-            }
-            const error = new Error("You're not admin or owner.");
-            error.statusCode = 401;
-            throw error;
-        }
-
-        const productId = req.params.productId;
-
-        const product = await Product.findById(productId);
-
-        if (!product) {
-            if (req.files && req.files > 0) {
-                // delete photos from aws
-                for (let index = 0; index < photos.length; index++) {
-                    await awsDelete.delete(photos[index]);
-                }
-            }
-
-            const error = new Error("Could not find product.");
-            error.statusCode = 404;
-            throw error;
-        }
-
-        const name = JSON.parse(req.body.name);
-        const description = JSON.parse(req.body.description);
-        const properties = JSON.parse(req.body.properties);
-
-        const originalPhotos = JSON.parse(req.body.originalPhotos);
-        // product.photos = photos.concat(originalPhotos);
-
-        product.name = name;
-        product.description = description;
-        product.updatedAt = Date.now();
-        product.properties = properties;
-
-        //////////////////////////
-        if (product.store) {
-            //// if owner to add to store or to user
-            if (loggedInUser.owner) {
-                const owner = await Owner.findById(loggedInUser.ownerId);
-
-                if (!owner) {
-                    const error = new Error("Could not find your ownership.");
-                    error.statusCode = 404;
-                    throw error;
-                }
-
-                const store = await Store.findById(owner.store);
-                if (!store) {
-                    const error = new Error("You're not an owner of a store.");
-                    error.statusCode = 404;
-                    throw error;
-                }
-
-                if (!store.equals(product.store)) {
-                    const error = new Error(
-                        "You're not an owner of store of this product."
-                    );
-                    error.statusCode = 404;
-                    throw error;
-                }
-            } else {
-                const error = new Error("you're not an owner.");
-                error.statusCode = 404;
-                throw error;
-            }
-        }
-
-        if (!product.creator.equals(loggedInUser._id)) {
-            // delete photos from aws
-            for (let index = 0; index < product.photos.length; index++) {
-                await awsDelete.delete(product.photos[index]);
-            }
-
-            const error = new Error("you're not the creator of this product.");
-            error.statusCode = 404;
-            throw error;
-        }
-
-        await product.save();
-
-        return res.status(200).json({ message: "Product updated!", data: product });
-    } catch (err) {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err);
-    }
-};
-
 exports.deleteOne = async(req, res, next) => {
     const loggedInUser = req.user;
     const productId = req.params.productId;
@@ -499,133 +582,46 @@ exports.deleteOne = async(req, res, next) => {
     }
 };
 
-exports.addDiscount = async(req, res, next) => {
+exports.addProductToStore = async(req, res, next) => {
     try {
         const loggedInUser = req.user;
+        if (loggedInUser.admin) {
+            const storeId = req.params.storeId;
+            const store = await Store.findById(storeId);
 
-        const productId = req.params.productId;
-
-        const product = await Product.findById(productId);
-
-        if (!product) {
-            const error = new Error("Could not find product.");
-            error.statusCode = 404;
-            throw error;
-        }
-
-        const percentDiscount = req.body.percentDiscount;
-        const valueDiscount = req.body.valueDiscount;
-
-        if (loggedInUser.owner) {
-            const owner = await Owner.findById(loggedInUser.ownerId);
-
-            if (!owner) {
-                const error = new Error("Could not find your ownership.");
-                error.statusCode = 404;
-                throw error;
-            }
-
-            const store = await Store.findById(owner.store);
             if (!store) {
-                const error = new Error("couldn`t find store.");
+                const error = new Error("Could not find store.");
                 error.statusCode = 404;
                 throw error;
             }
 
-            if (!store.active || store.locked) {
-                const error = new Error("store isn't active or locked.");
-                error.statusCode = 401;
+            const productId = req.params.productId;
+            const product = await Product.findById(productId);
+
+            if (!product) {
+                const error = new Error("Could not find product.");
+                error.statusCode = 404;
                 throw error;
             }
 
-            if (!owner.store.equals(product.store)) {
-                const error = new Error(
-                    "You're not an owner of store of this product."
-                );
-                error.statusCode = 401;
+            if (product.store) {
+                const error = new Error("This product is already in store.");
+                error.statusCode = 400;
                 throw error;
             }
 
-            if (product.percentDiscount) {
-                product.percentDiscount = percentDiscount;
-                product.valueDiscount = undefined;
-            } else {
-                product.valueDiscount = valueDiscount;
-                product.percentDiscount = undefined;
-            }
+            product.store = storeId;
+
             await product.save();
+            store.products.push(product._id);
+            await store.save();
 
             return res.status(201).json({
-                message: "discount added successfully!",
+                message: "Product added successfully!",
                 data: product,
             });
         } else {
-            const error = new Error("Not an owner.");
-            error.statusCode = 401;
-            throw error;
-        }
-    } catch (err) {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err);
-    }
-};
-
-exports.deleteDiscount = async(req, res, next) => {
-    try {
-        const loggedInUser = req.user;
-
-        const productId = req.params.productId;
-
-        const product = await Product.findById(productId);
-
-        if (!product) {
-            const error = new Error("Could not find product.");
-            error.statusCode = 404;
-            throw error;
-        }
-
-        if (loggedInUser.owner) {
-            const owner = await Owner.findById(loggedInUser.ownerId);
-
-            if (!owner) {
-                const error = new Error("Could not find your ownership.");
-                error.statusCode = 404;
-                throw error;
-            }
-
-            const store = await Store.findById(owner.store);
-            if (!store) {
-                const error = new Error("couldn`t find store.");
-                error.statusCode = 404;
-                throw error;
-            }
-
-            if (!store.active || store.locked) {
-                const error = new Error("store isn't active or locked.");
-                error.statusCode = 401;
-                throw error;
-            }
-
-            if (!owner.store.equals(product.store)) {
-                const error = new Error(
-                    "You're not an owner of store of this product."
-                );
-                error.statusCode = 403;
-                throw error;
-            }
-
-            product.percentDiscount = undefined;
-            product.valueDiscount = undefined;
-            await product.save();
-
-            return res.status(200).json({
-                message: "discount deleted successfully!",
-                data: product,
-            });
-        } else {
-            const error = new Error("Not an owner.");
+            const error = new Error("Not authorized!");
             error.statusCode = 403;
             throw error;
         }
@@ -636,6 +632,144 @@ exports.deleteDiscount = async(req, res, next) => {
         next(err);
     }
 };
+
+// // exports.addDiscount = async (req, res, next) => {
+// //   try {
+// //     const loggedInUser = req.user;
+
+// //     const productId = req.params.productId;
+
+// //     const product = await Product.findById(productId);
+
+// //     if (!product) {
+// //       const error = new Error("Could not find product.");
+// //       error.statusCode = 404;
+// //       throw error;
+// //     }
+
+// //     const percentDiscount = req.body.percentDiscount;
+// //     const valueDiscount = req.body.valueDiscount;
+
+// //     if (loggedInUser.owner) {
+// //       const owner = await Owner.findById(loggedInUser.ownerId);
+
+// //       if (!owner) {
+// //         const error = new Error("Could not find your ownership.");
+// //         error.statusCode = 404;
+// //         throw error;
+// //       }
+
+// //       const store = await Store.findById(owner.store);
+// //       if (!store) {
+// //         const error = new Error("couldn`t find store.");
+// //         error.statusCode = 404;
+// //         throw error;
+// //       }
+
+// //       if (!store.active || store.locked) {
+// //         const error = new Error("store isn't active or locked.");
+// //         error.statusCode = 401;
+// //         throw error;
+// //       }
+
+// //       if (!owner.store.equals(product.store)) {
+// //         const error = new Error(
+// //           "You're not an owner of store of this product."
+// //         );
+// //         error.statusCode = 401;
+// //         throw error;
+// //       }
+
+// //       if (product.percentDiscount) {
+// //         product.percentDiscount = percentDiscount;
+// //         product.valueDiscount = undefined;
+// //       } else {
+// //         product.valueDiscount = valueDiscount;
+// //         product.percentDiscount = undefined;
+// //       }
+// //       await product.save();
+
+// //       return res.status(201).json({
+// //         message: "discount added successfully!",
+// //         data: product,
+// //       });
+// //     } else {
+// //       const error = new Error("Not an owner.");
+// //       error.statusCode = 401;
+// //       throw error;
+// //     }
+// //   } catch (err) {
+// //     if (!err.statusCode) {
+// //       err.statusCode = 500;
+// //     }
+// //     next(err);
+// //   }
+// // };
+
+// // exports.deleteDiscount = async (req, res, next) => {
+// //   try {
+// //     const loggedInUser = req.user;
+
+// //     const productId = req.params.productId;
+
+// //     const product = await Product.findById(productId);
+
+// //     if (!product) {
+// //       const error = new Error("Could not find product.");
+// //       error.statusCode = 404;
+// //       throw error;
+// //     }
+
+// //     if (loggedInUser.owner) {
+// //       const owner = await Owner.findById(loggedInUser.ownerId);
+
+// //       if (!owner) {
+// //         const error = new Error("Could not find your ownership.");
+// //         error.statusCode = 404;
+// //         throw error;
+// //       }
+
+// //       const store = await Store.findById(owner.store);
+// //       if (!store) {
+// //         const error = new Error("couldn`t find store.");
+// //         error.statusCode = 404;
+// //         throw error;
+// //       }
+
+// //       if (!store.active || store.locked) {
+// //         const error = new Error("store isn't active or locked.");
+// //         error.statusCode = 401;
+// //         throw error;
+// //       }
+
+// //       if (!owner.store.equals(product.store)) {
+// //         const error = new Error(
+// //           "You're not an owner of store of this product."
+// //         );
+// //         error.statusCode = 403;
+// //         throw error;
+// //       }
+
+// //       product.percentDiscount = undefined;
+// //       product.valueDiscount = undefined;
+// //       await product.save();
+
+// //       return res.status(200).json({
+// //         message: "discount deleted successfully!",
+// //         data: product,
+// //       });
+// //     } else {
+// //       const error = new Error("Not an owner.");
+// //       error.statusCode = 403;
+// //       throw error;
+// //     }
+// //   } catch (err) {
+// //     if (!err.statusCode) {
+// //       err.statusCode = 500;
+// //     }
+// //     next(err);
+// //   }
+// // };
 ///////////////////////////////////////////////////
 ////////// mobile app only ////////////
 
@@ -645,6 +779,7 @@ exports.getActivatedProducts = async(req, res, next) => {
             .populate({
                 path: "store",
                 model: "Store",
+                populate: { path: "address", model: "Place" },
             })
             .populate({
                 path: "creator",

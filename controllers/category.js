@@ -118,6 +118,12 @@ exports.addOne = async(req, res, next) => {
             const nameEn = JSON.parse(req.body.name).en;
             const nameAr = JSON.parse(req.body.name).ar;
             const productAttributes = JSON.parse(req.body.productAttributes);
+            const profitType = JSON.parse(req.body.profitType);
+            const profitValue = JSON.parse(req.body.profitValue);
+            const profitPercentage = JSON.parse(req.body.profitPercentage);
+            const discountType = JSON.parse(req.body.discountType);
+            const discountValue = JSON.parse(req.body.discountValue);
+            const discountPercentage = JSON.parse(req.body.discountPercentage);
 
             const category = new Category({
                 creator: loggedInUser._id,
@@ -128,6 +134,12 @@ exports.addOne = async(req, res, next) => {
                     ar: nameAr,
                 },
                 productAttributes: productAttributes,
+                profitType: profitType,
+                profitValue: profitValue,
+                profitPercentage: profitPercentage,
+                discountType: discountType,
+                discountValue: discountValue,
+                discountPercentage: discountPercentage,
                 level: 0,
             });
 
@@ -140,9 +152,7 @@ exports.addOne = async(req, res, next) => {
         } else {
             await awsDelete.delete(image);
 
-            const error = new Error(
-                "Not authorized as you're not an admin, owner or manager!"
-            );
+            const error = new Error("Not authorized as you're not an admin!");
             error.statusCode = 403;
             throw error;
         }
@@ -164,26 +174,35 @@ exports.updateOne = async(req, res, next) => {
 
         const loggedInUser = req.user;
         if (loggedInUser.admin) {
-            const nameEn = JSON.parse(req.body.name).en;
-            const nameAr = JSON.parse(req.body.name).ar;
-            const productAttributes = JSON.parse(req.body.productAttributes);
-
             const categoryId = req.params.categoryId;
 
             const category = await Category.findById(categoryId);
 
             if (!category) {
-                await awsDelete.delete(image);
-
+                if (req.file) {
+                    await awsDelete.delete(req.file.location);
+                }
                 const error = new Error("Could not find category.");
                 error.statusCode = 404;
                 throw error;
             }
 
+            const nameEn = JSON.parse(req.body.name).en;
+            const nameAr = JSON.parse(req.body.name).ar;
+            const productAttributes = JSON.parse(req.body.productAttributes);
+
+            const profitType = JSON.parse(req.body.profitType);
+            const profitValue = JSON.parse(req.body.profitValue);
+            const profitPercentage = JSON.parse(req.body.profitPercentage);
+            const discountType = JSON.parse(req.body.discountType);
+            const discountValue = JSON.parse(req.body.discountValue);
+            const discountPercentage = JSON.parse(req.body.discountPercentage);
+
             if (productAttributes.length > 0) {
                 if (category.categories && category.categories.length > 0) {
-                    await awsDelete.delete(image);
-
+                    if (req.file) {
+                        await awsDelete.delete(req.file.location);
+                    }
                     const error = new Error("add attributes to sub-category.");
                     error.statusCode = 401;
                     throw error;
@@ -196,6 +215,167 @@ exports.updateOne = async(req, res, next) => {
             category.name.en = nameEn;
             category.name.ar = nameAr;
             category.productAttributes = productAttributes;
+
+            category.profitType = profitType;
+            category.profitValue = profitValue;
+            category.profitPercentage = profitPercentage;
+
+            category.discountType = discountType;
+            category.discountValue = discountValue;
+            category.discountPercentage = discountPercentage;
+
+            if (category.products && category.products.length > 0) {
+                for (
+                    let productIndex = 0; productIndex < category.products.length; productIndex++
+                ) {
+                    const productId = category.products[productIndex];
+                    let product = await Product.findById(productId);
+                    if (product) {
+                        product.profitType = profitType;
+                        product.profitValue = profitValue;
+                        product.profitPercentage = profitPercentage;
+
+                        product.discountType = discountType;
+                        product.discountValue = discountValue;
+                        product.discountPercentage = discountPercentage;
+
+                        await product.save();
+                    }
+                }
+            }
+
+            if (category.categories && category.categories.length > 0) {
+                for (
+                    let childIndex = 0; childIndex < category.categories.length; childIndex++
+                ) {
+                    const childCategoryId = category.categories[childIndex];
+                    let childCategory = await Category.findById(childCategoryId);
+                    if (childCategory) {
+                        childCategory.profitType = profitType;
+                        childCategory.profitValue = profitValue;
+                        childCategory.profitPercentage = profitPercentage;
+
+                        childCategory.discountType = discountType;
+                        childCategory.discountValue = discountValue;
+                        childCategory.discountPercentage = discountPercentage;
+
+                        await childCategory.save();
+                    }
+
+                    if (childCategory.products && childCategory.products.length > 0) {
+                        for (
+                            let productIndex = 0; productIndex < childCategory.products.length; productIndex++
+                        ) {
+                            const productId = childCategory.products[productIndex];
+                            let product = await Product.findById(productId);
+                            if (product) {
+                                product.profitType = profitType;
+                                product.profitValue = profitValue;
+                                product.profitPercentage = profitPercentage;
+
+                                product.discountType = discountType;
+                                product.discountValue = discountValue;
+                                product.discountPercentage = discountPercentage;
+
+                                await product.save();
+                            }
+                        }
+                    }
+
+                    if (childCategory.categories && childCategory.categories.length > 0) {
+                        for (
+                            let childIndex = 0; childIndex < childCategory.categories.length; childIndex++
+                        ) {
+                            const childCategoryId = childCategory.categories[childIndex];
+                            let childCategory2 = await Category.findById(childCategory2Id);
+                            if (childCategory2) {
+                                childCategory2.profitType = profitType;
+                                childCategory2.profitValue = profitValue;
+                                childCategory2.profitPercentage = profitPercentage;
+
+                                childCategory2.discountType = discountType;
+                                childCategory2.discountValue = discountValue;
+                                childCategory2.discountPercentage = discountPercentage;
+
+                                await childCategory2.save();
+                            }
+
+                            if (
+                                childCategory2.products &&
+                                childCategory2.products.length > 0
+                            ) {
+                                for (
+                                    let productIndex = 0; productIndex < childCategory2.products.length; productIndex++
+                                ) {
+                                    const productId = childCategory2.products[productIndex];
+                                    let product = await Product.findById(productId);
+                                    if (product) {
+                                        product.profitType = profitType;
+                                        product.profitValue = profitValue;
+                                        product.profitPercentage = profitPercentage;
+
+                                        product.discountType = discountType;
+                                        product.discountValue = discountValue;
+                                        product.discountPercentage = discountPercentage;
+
+                                        await product.save();
+                                    }
+                                }
+                            }
+                            if (
+                                childCategory2.categories &&
+                                childCategory2.categories.length > 0
+                            ) {
+                                for (
+                                    let childIndex = 0; childIndex < childCategory2.categories.length; childIndex++
+                                ) {
+                                    const childCategory2Id =
+                                        childCategory2.categories[childIndex];
+                                    let childCategory3 = await Category.findById(
+                                        childCategory3Id
+                                    );
+
+                                    if (childCategory3) {
+                                        childCategory3.profitType = profitType;
+                                        childCategory3.profitValue = profitValue;
+                                        childCategory3.profitPercentage = profitPercentage;
+
+                                        childCategory3.discountType = discountType;
+                                        childCategory3.discountValue = discountValue;
+                                        childCategory3.discountPercentage = discountPercentage;
+
+                                        await childCategory3.save();
+                                    }
+
+                                    if (
+                                        childCategory3.products &&
+                                        childCategory3.products.length > 0
+                                    ) {
+                                        for (
+                                            let productIndex = 0; productIndex < childCategory3.products.length; productIndex++
+                                        ) {
+                                            const productId = childCategory3.products[productIndex];
+                                            let product = await Product.findById(productId);
+                                            if (product) {
+                                                product.profitType = profitType;
+                                                product.profitValue = profitValue;
+                                                product.profitPercentage = profitPercentage;
+
+                                                product.discountType = discountType;
+                                                product.discountValue = discountValue;
+                                                product.discountPercentage = discountPercentage;
+
+                                                await product.save();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             category.updatedAt = Date.now();
             category.updatedBy = loggedInUser._id;
             if (category.categories) {
@@ -208,13 +388,17 @@ exports.updateOne = async(req, res, next) => {
                 .status(200)
                 .json({ message: "Category updated!", data: category });
         } else {
-            await awsDelete.delete(image);
-
+            if (req.file) {
+                await awsDelete.delete(req.file.location);
+            }
             const error = new Error("Not authorized as you're not an admin!");
             error.statusCode = 403;
             throw error;
         }
     } catch (err) {
+        if (req.file) {
+            await awsDelete.delete(req.file.location);
+        }
         if (!err.statusCode) {
             err.statusCode = 500;
         }
@@ -222,41 +406,41 @@ exports.updateOne = async(req, res, next) => {
     }
 };
 
-// deleteSubCategories = async (categories) => {
-//   for (let index = 0; index < category.categories.length; index++) {
-//     let subCategory = await Category.findById(category.categories[index]);
-//     if (subCategory.products) {
-//       for (let index = 0; index < subCategory.products.length; index++) {
-//         await Product.findByIdAndDelete(subCategory.products[index]);
-//       }
-//     }
-//     if (subCategory.categories) {
-//       for (let index = 0; index < subCategory.categories.length; index++) {
-//         await Category.findByIdAndDelete(subCategory.categories[index]);
-//       }
-//     }
+// // deleteSubCategories = async (categories) => {
+// //   for (let index = 0; index < category.categories.length; index++) {
+// //     let subCategory = await Category.findById(category.categories[index]);
+// //     if (subCategory.products) {
+// //       for (let index = 0; index < subCategory.products.length; index++) {
+// //         await Product.findByIdAndDelete(subCategory.products[index]);
+// //       }
+// //     }
+// //     if (subCategory.categories) {
+// //       for (let index = 0; index < subCategory.categories.length; index++) {
+// //         await Category.findByIdAndDelete(subCategory.categories[index]);
+// //       }
+// //     }
 
-//     await Category.findByIdAndDelete(subCategory.categories[index]);
-//   }
-// };
+// //     await Category.findByIdAndDelete(subCategory.categories[index]);
+// //   }
+// // };
 
-// deleteSubSubCategories = async (subCategories) => {
-//   for (let index = 0; index < category.categories.length; index++) {
-//     let subCategory = await Category.findById(category.categories[index]);
-//     if (subCategory.products) {
-//       for (let index = 0; index < subCategory.products.length; index++) {
-//         await Product.findByIdAndDelete(subCategory.products[index]);
-//       }
-//     }
-//     if (subCategory.categories) {
-//       for (let index = 0; index < subCategory.categories.length; index++) {
-//         await Category.findByIdAndDelete(subCategory.categories[index]);
-//       }
-//     }
+// // deleteSubSubCategories = async (subCategories) => {
+// //   for (let index = 0; index < category.categories.length; index++) {
+// //     let subCategory = await Category.findById(category.categories[index]);
+// //     if (subCategory.products) {
+// //       for (let index = 0; index < subCategory.products.length; index++) {
+// //         await Product.findByIdAndDelete(subCategory.products[index]);
+// //       }
+// //     }
+// //     if (subCategory.categories) {
+// //       for (let index = 0; index < subCategory.categories.length; index++) {
+// //         await Category.findByIdAndDelete(subCategory.categories[index]);
+// //       }
+// //     }
 
-//     await Category.findByIdAndDelete(subCategory.categories[index]);
-//   }
-// };
+// //     await Category.findByIdAndDelete(subCategory.categories[index]);
+// //   }
+// // };
 
 exports.deleteOne = async(req, res, next) => {
     const categoryId = req.params.categoryId;
@@ -395,6 +579,25 @@ exports.addSubCategory = async(req, res, next) => {
         const nameEn = JSON.parse(req.body.name).en;
         const nameAr = JSON.parse(req.body.name).ar;
 
+        let profitType = JSON.parse(req.body.profitType);
+        let profitValue = JSON.parse(req.body.profitValue);
+        let profitPercentage = JSON.parse(req.body.profitPercentage);
+        let discountType = JSON.parse(req.body.discountType);
+        let discountValue = JSON.parse(req.body.discountValue);
+        let discountPercentage = JSON.parse(req.body.discountPercentage);
+
+        if (profitType === "") {
+            profitType = parentCategory.profitType;
+            profitValue = parentCategory.profitValue;
+            profitPercentage = parentCategory.profitPercentage;
+        }
+
+        if (discountType === "") {
+            discountType = parentCategory.discountType;
+            discountValue = parentCategory.discountValue;
+            discountPercentage = parentCategory.discountPercentage;
+        }
+
         const category = new Category({
             creator: loggedInUser._id,
             createdAt: Date.now(),
@@ -405,6 +608,13 @@ exports.addSubCategory = async(req, res, next) => {
             },
             level: parentCategory.level + 1,
             parentCategory: parentCategory._id,
+
+            profitType: profitType,
+            profitValue: profitValue,
+            profitPercentage: profitPercentage,
+            discountType: discountType,
+            discountValue: discountValue,
+            discountPercentage: discountPercentage,
         });
 
         await category.save();
@@ -441,6 +651,14 @@ exports.getCategoryActivatedProducts = async(req, res, next) => {
             .populate({
                 path: "products",
                 model: "Product",
+                populate: {
+                    path: "store",
+                    model: "Store",
+                    populate: {
+                        path: "address",
+                        model: "Place",
+                    },
+                },
             })
             .populate({
                 path: "productAttributes",

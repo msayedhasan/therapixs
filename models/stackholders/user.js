@@ -45,6 +45,8 @@ const userSchema = new Schema({
     },
     fcmToken: String,
     address: String,
+    detailedAddress: String,
+
     location: {
         long: Number,
         lat: Number,
@@ -71,6 +73,8 @@ const userSchema = new Schema({
         }, ],
         default: undefined,
     },
+    gainToApp: { type: Number, default: 0 },
+    totalGainCollected: { type: Number, default: 0 },
     ///////// not for all users /////////
     admin: Boolean,
 

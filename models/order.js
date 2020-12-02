@@ -3,24 +3,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-    orderedAt: String,
-    orderedBy: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-
-    cancelled: {
-        type: Boolean,
-        default: false,
-    },
-    cancelledBy: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        default: undefined,
-    },
-    cancelledAt: String,
-
     seller: {
         type: Schema.Types.ObjectId,
         ref: "User",
@@ -44,7 +26,33 @@ const orderSchema = new Schema({
             ref: "Product",
             required: true,
         },
+        itemAddress: String,
     }, ],
+
+    profit: Number,
+
+    from: String,
+
+    to: String,
+    detailedAddress: String,
+
+    orderedAt: String,
+    orderedBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+
+    cancelled: {
+        type: Boolean,
+        default: false,
+    },
+    cancelledBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: undefined,
+    },
+    cancelledAt: String,
 
     confirmed: {
         type: Boolean,

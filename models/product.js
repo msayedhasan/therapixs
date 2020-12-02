@@ -91,8 +91,13 @@ const productSchema = new Schema({
         },
     }, ],
 
-    percentDiscount: Number,
-    valueDiscount: Number,
+    profitType: { type: String, default: "" },
+    profitPercentage: { type: Number, default: 0 },
+    profitValue: { type: Number, default: 0 },
+
+    discountType: { type: String, default: "" },
+    discountPercentage: { type: Number, default: 0 },
+    discountValue: { type: Number, default: 0 },
 
     createdAt: String,
     updatedAt: String,
