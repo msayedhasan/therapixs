@@ -54,12 +54,13 @@ passport.use(
                 }
 
                 if (profile.emails[0].value != "") {
-                    const existingUser = await User.findOne({
-                        $or: [
-                            { "local.email": profile.emails[0].value },
-                            { "google.email": profile.emails[0].value },
-                        ],
-                    });
+                    const existingUser = await User.findOne("google.email": profile.emails[0].value);
+                    //   const existingUser = await User.findOne({
+                    //     $or: [
+                    //       { "local.email": profile.emails[0].value },
+                    //       { "google.email": profile.emails[0].value },
+                    //     ],
+                    //   });
                     if (existingUser) {
                         console.log("existing user");
                         existingUser.methods.push("facebook");
