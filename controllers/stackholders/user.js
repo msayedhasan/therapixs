@@ -75,8 +75,6 @@ exports.updateOne = async(req, res, next) => {
             user.name = name;
         }
         if (password) {
-            user.password = undefined;
-        } else if (password) {
             user.local.password = password;
         }
         if (!phone && !user.phone) {
