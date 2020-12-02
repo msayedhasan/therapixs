@@ -30,7 +30,7 @@ exports.signup = async(req, res, next) => {
             phone: phone,
         });
         if (user) {
-            const error = new Error("user email or phone existed");
+            const error = new Error("user phone existed");
             error.statusCode = 401;
             throw error;
         }
