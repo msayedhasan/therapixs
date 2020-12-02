@@ -661,6 +661,14 @@ exports.getCategoryActivatedProducts = async(req, res, next) => {
                 },
             })
             .populate({
+                path: "products",
+                model: "Product",
+                populate: {
+                    path: "creator",
+                    model: "User",
+                },
+            })
+            .populate({
                 path: "productAttributes",
                 model: "ProductAttribute",
             })
