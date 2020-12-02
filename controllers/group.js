@@ -176,7 +176,7 @@ exports.updateOne = async(req, res, next) => {
             const name = JSON.parse(req.body.name);
 
             const oldGroup = await Group.findOne({ name: name });
-            if (oldGroup) {
+            if (oldGroup && !oldGroup._id.equals(groupId)) {
                 if (req.file) {
                     await awsDelete.delete(req.file.location);
                 }

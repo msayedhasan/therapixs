@@ -89,7 +89,7 @@ exports.updateOne = async(req, res, next) => {
             const name = req.body.name;
 
             const oldPlace = await Place.findOne({ name: name });
-            if (oldPlace) {
+            if (oldPlace && !oldPlace._id.equals(placeId)) {
                 const error = new Error("Place with this name is already exist");
                 error.statusCode = 400;
                 throw error;
