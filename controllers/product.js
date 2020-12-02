@@ -93,6 +93,11 @@ exports.getOne = async(req, res, next) => {
 
 exports.addOne = async(req, res, next) => {
     try {
+        let photos = [];
+        for (let index = 0; index < req.files.length; index++) {
+            photos.push(req.files[index].location);
+        }
+
         const loggedInUser = req.user;
         if (!loggedInUser.admin && !loggedInUser.owner) {
             // delete photos from aws
@@ -156,11 +161,6 @@ exports.addOne = async(req, res, next) => {
             discountType = category.discountType;
             discountValue = category.discountValue;
             discountPercentage = category.discountPercentage;
-        }
-
-        let photos = [];
-        for (let index = 0; index < req.files.length; index++) {
-            photos.push(req.files[index].location);
         }
 
         const product = new Product({
@@ -784,7 +784,9 @@ exports.getActivatedProducts = async(req, res, next) => {
             .populate({
                 path: "creator",
                 model: "User",
+                // populate: { path: "address", model: "Place" },
             });
+        console.log(products);
         return res.status(200).json({
             message: "Fetched successfully",
             data: products,

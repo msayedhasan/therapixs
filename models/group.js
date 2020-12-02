@@ -23,7 +23,7 @@ const groupSchema = new Schema({
     },
     image: {
         type: String,
-        default: "images/placeholder.jpg",
+        default: "https://via.placeholder.com/150",
     },
     creator: {
         type: Schema.Types.ObjectId,

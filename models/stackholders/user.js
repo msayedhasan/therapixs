@@ -9,7 +9,7 @@ const userSchema = new Schema({
     },
     image: {
         type: String,
-        default: "images/placeholder.jpg",
+        default: "https://via.placeholder.com/150",
     },
     dob: String,
     phone: Number,

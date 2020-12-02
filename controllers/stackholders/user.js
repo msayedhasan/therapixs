@@ -1,6 +1,7 @@
 const User = require("../../models/stackholders/user");
 const Product = require("../../models/product");
 const Store = require("../../models/store");
+const bcrypt = require("bcryptjs");
 
 exports.getAll = async(req, res, next) => {
     try {
@@ -68,17 +69,16 @@ exports.updateOne = async(req, res, next) => {
         const address = req.body.address;
         const password = req.body.password; // complete profile
         const location = req.body.location;
+        hashedPassword = await bcrypt.hash(password, 12);
 
+        console.log(password);
         if (!name && !user.name) {
             user.name = undefined;
         } else if (name) {
             user.name = name;
         }
         if (password) {
-            if (!user.local) {
-                user.local = {};
-            }
-            user.local.password = password;
+            user.local.password = hashedPassword;
         }
         if (!phone && !user.phone) {
             user.phone = undefined;
@@ -105,7 +105,6 @@ exports.updateOne = async(req, res, next) => {
         } else if (location) {
             user.location = location;
         }
-        console.log(user);
         await user.save();
         return res.status(200).json({ message: "Success", data: user });
     } catch (err) {
