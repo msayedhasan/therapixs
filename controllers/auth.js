@@ -139,10 +139,10 @@ exports.google = async(req, res, next) => {
                 token: token,
             });
         }
-        const existingUser = await User.findOne(
-            (facebook.email: email)
-            //   $or: [{ "local.email": email }, { "facebook.email": email }],
-        );
+        const existingUser = await User.find({ "facebook.email": email });
+        // const existingUser = await User.findOne({
+        //   $or: [{ "local.email": email }, { "facebook.email": email }],
+        // });
         if (existingUser) {
             // We want to merge google's data with local auth
             existingUser.methods.push("google");
