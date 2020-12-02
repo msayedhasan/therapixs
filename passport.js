@@ -54,7 +54,7 @@ passport.use(
                 }
 
                 if (profile.emails[0].value != "") {
-                    const existingUser = await User.find({
+                    const existingUser = await User.findOne({
                         "google.email": profile.emails[0].value,
                     });
                     //   const existingUser = await User.findOne({
@@ -64,7 +64,6 @@ passport.use(
                     //     ],
                     //   });
                     if (existingUser) {
-                        console.log("existing user");
                         existingUser.methods.push("facebook");
                         if (existingUser.name == "") {
                             existingUser.name = profile._json.name;
