@@ -112,7 +112,7 @@ exports.updateOne = async(req, res, next) => {
             const name = JSON.parse(req.body.name);
 
             const oldAd = await Ad.findOne({ name: name });
-            if (oldAd) {
+            if (oldAd && !oldAd._id.equals(adId)) {
                 if (req.file) {
                     await awsDelete.delete(req.file.location);
                 }
