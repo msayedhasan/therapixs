@@ -207,6 +207,42 @@ exports.verifyOtp = async (req, res, next) => {
   }
 };
 
+exports.resendOtp = async (req, res, next) => {
+  const phone = parseInt(req.body.phone);
+  const otp = parseInt(req.body.otp);
+  try {
+    // check if user logged in with phone or local email
+    let user = await User.findOne({
+      phone: phone,
+    });
+    if (!user) {
+      const error = new Error("user not found");
+      error.statusCode = 400;
+      throw error;
+    }
+    if (user.otp !== otp) {
+      const error = new Error("Invalid OTP");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    user.otp = 1;
+    user.otpVerified = false;
+    await user.save();
+
+    const token = setToken(user);
+    return res.status(201).json({
+      message: "Success",
+      token: token,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
 exports.google = async (req, res, next) => {
   // const email = req.body.email;
   const id = req.body.id;
