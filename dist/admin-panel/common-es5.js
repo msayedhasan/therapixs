@@ -61,6 +61,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/models/product.ts":
+  /*!***********************************!*\
+    !*** ./src/app/models/product.ts ***!
+    \***********************************/
+
+  /*! no static exports found */
+
+  /***/
+  function srcAppModelsProductTs(module, exports) {
+    var Product = function Product() {
+      _classCallCheck(this, Product);
+    };
+    /***/
+
+  },
+
+  /***/
   "./src/app/models/store.ts":
   /*!*********************************!*\
     !*** ./src/app/models/store.ts ***!
@@ -190,6 +207,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "addSubCategory",
         value: function addSubCategory(form, parentId) {
           return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/category/".concat(parentId), form);
+        }
+      }, {
+        key: "addDiscount",
+        value: function addDiscount(form, categoryId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/category/discount/add/".concat(categoryId), form);
+        }
+      }, {
+        key: "addProfit",
+        value: function addProfit(form, categoryId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/category/profit/add/".concat(categoryId), form);
         }
       }]);
 
@@ -602,6 +629,166 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/pages/products/products.service.ts":
+  /*!****************************************************!*\
+    !*** ./src/app/pages/products/products.service.ts ***!
+    \****************************************************/
+
+  /*! exports provided: ProductsService */
+
+  /***/
+  function srcAppPagesProductsProductsServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ProductsService", function () {
+      return ProductsService;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _models_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../models/product */
+    "./src/app/models/product.ts");
+    /* harmony import */
+
+
+    var _models_product__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_models_product__WEBPACK_IMPORTED_MODULE_2__);
+    /* harmony import */
+
+
+    var _config_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../config/variables */
+    "./src/app/config/variables.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+    var ProductsService = /*#__PURE__*/function () {
+      function ProductsService(http) {
+        _classCallCheck(this, ProductsService);
+
+        this.http = http;
+        this.products = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+      }
+
+      _createClass(ProductsService, [{
+        key: "getAll",
+        value: function getAll() {
+          var _this6 = this;
+
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product').subscribe(function (res) {
+            if (res['data']) {
+              _this6.products.next(res['data']);
+            }
+          });
+        }
+      }, {
+        key: "getOne",
+        value: function getOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/".concat(itemId));
+        }
+      }, {
+        key: "addOne",
+        value: function addOne(form) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product', form);
+        }
+      }, {
+        key: "updateOne",
+        value: function updateOne(form, itemId) {
+          return this.http.put(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/".concat(itemId), form);
+        }
+      }, {
+        key: "deleteOne",
+        value: function deleteOne(itemId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/".concat(itemId));
+        }
+      }, {
+        key: "addProductToStore",
+        value: function addProductToStore(productId, storeId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/addProductToStore/".concat(productId, "/").concat(storeId), {});
+        }
+      }, {
+        key: "activateOne",
+        value: function activateOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/activate/".concat(itemId));
+        }
+      }, {
+        key: "deactivateOne",
+        value: function deactivateOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/deactivate/".concat(itemId));
+        }
+      }, {
+        key: "soldOne",
+        value: function soldOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/sold/".concat(itemId));
+        }
+      }, {
+        key: "availableOne",
+        value: function availableOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/available/".concat(itemId));
+        }
+      }, {
+        key: "addDiscount",
+        value: function addDiscount(form, itemId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/discount/add/".concat(itemId), form);
+        }
+      }, {
+        key: "deleteDiscount",
+        value: function deleteDiscount(itemId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/discount/delete/".concat(itemId));
+        }
+      }]);
+
+      return ProductsService;
+    }();
+
+    ProductsService.ɵfac = function ProductsService_Factory(t) {
+      return new (t || ProductsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]));
+    };
+
+    ProductsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+      token: ProductsService,
+      factory: ProductsService.ɵfac,
+      providedIn: 'root'
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ProductsService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+          providedIn: 'root'
+        }]
+      }], function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }];
+      }, null);
+    })();
+    /***/
+
+  },
+
+  /***/
   "./src/app/pages/stores/stores.service.ts":
   /*!************************************************!*\
     !*** ./src/app/pages/stores/stores.service.ts ***!
@@ -666,11 +853,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(StoresService, [{
         key: "getAll",
         value: function getAll() {
-          var _this6 = this;
+          var _this7 = this;
 
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/store').subscribe(function (res) {
             if (res['data']) {
-              _this6.stores.next(res['data']);
+              _this7.stores.next(res['data']);
             }
           }, function (error) {
             console.log(error); // this.error.next(error.error.message);
@@ -721,6 +908,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function collect(itemId) {
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/collect/".concat(itemId));
         }
+      }, {
+        key: "addDiscount",
+        value: function addDiscount(form, itemId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/discount/add/".concat(itemId), form);
+        }
+      }, {
+        key: "deleteDiscount",
+        value: function deleteDiscount(itemId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/discount/delete/".concat(itemId));
+        }
+      }, {
+        key: "addProfit",
+        value: function addProfit(form, itemId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/profit/add/".concat(itemId), form);
+        }
+      }, {
+        key: "deleteProfit",
+        value: function deleteProfit(itemId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/store/profit/delete/".concat(itemId));
+        }
       }]);
 
       return StoresService;
@@ -746,6 +953,139 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }], function () {
         return [{
           type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
+        }];
+      }, null);
+    })();
+    /***/
+
+  },
+
+  /***/
+  "./src/app/pages/users/users.service.ts":
+  /*!**********************************************!*\
+    !*** ./src/app/pages/users/users.service.ts ***!
+    \**********************************************/
+
+  /*! exports provided: UsersService */
+
+  /***/
+  function srcAppPagesUsersUsersServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UsersService", function () {
+      return UsersService;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var _config_variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../config/variables */
+    "./src/app/config/variables.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+    var UsersService = /*#__PURE__*/function () {
+      function UsersService(http) {
+        _classCallCheck(this, UsersService);
+
+        this.http = http;
+        this.users = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+      }
+
+      _createClass(UsersService, [{
+        key: "getAll",
+        value: function getAll() {
+          var _this8 = this;
+
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + '/user').subscribe(function (res) {
+            _this8.users.next(res['data']);
+          });
+        }
+      }, {
+        key: "addShipper",
+        value: function addShipper(userId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/shipper/addShipper/".concat(userId), {});
+        }
+      }, {
+        key: "deleteShipper",
+        value: function deleteShipper(userId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/shipper/deleteShipper/".concat(userId));
+        }
+      }, {
+        key: "addLeader",
+        value: function addLeader(userId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/leader/addLeader/".concat(userId), {});
+        }
+      }, {
+        key: "deleteLeader",
+        value: function deleteLeader(userId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/leader/deleteLeader/".concat(userId));
+        }
+      }, {
+        key: "addOwner",
+        value: function addOwner(userId) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/owner/addOwner/".concat(userId), {});
+        }
+      }, {
+        key: "deleteOwner",
+        value: function deleteOwner(userId) {
+          return this.http["delete"](_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/owner/deleteOwner/".concat(userId));
+        }
+      }, {
+        key: "lockOne",
+        value: function lockOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/user/lock/".concat(itemId));
+        }
+      }, {
+        key: "unlockOne",
+        value: function unlockOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "/user/unlock/".concat(itemId));
+        }
+      }]);
+
+      return UsersService;
+    }();
+
+    UsersService.ɵfac = function UsersService_Factory(t) {
+      return new (t || UsersService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]));
+    };
+
+    UsersService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+      token: UsersService,
+      factory: UsersService.ɵfac,
+      providedIn: 'root'
+    });
+    /*@__PURE__*/
+
+    (function () {
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UsersService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+          providedIn: 'root'
+        }]
+      }], function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
         }];
       }, null);
     })();

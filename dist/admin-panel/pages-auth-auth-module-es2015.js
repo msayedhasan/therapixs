@@ -173,7 +173,7 @@ class LoginComponent {
         // this.isLoading = true;
         this.authService.postForm('auth/login', form).subscribe((res) => {
             if (res) {
-                if (!res['admin'] && !res['owner']) {
+                if (!res['admin'] && !res['owner'] && !res['shipper']) {
                     this.toastr.error('Not authorized', 'Error');
                 }
                 console.log(res['message']);

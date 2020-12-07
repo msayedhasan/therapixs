@@ -10,6 +10,7 @@ const schema = {
     login: joi.object({
         // email: joi.string().required(),
         phone: joi.number().required(),
+        fcmToken: joi.string(),
         password: joi.string().required(),
     }),
 
@@ -17,6 +18,7 @@ const schema = {
         name: joi.string().required(),
         // email: joi.string().required(),
         phone: joi.number().required(),
+        fcmToken: joi.string(),
         password: joi.string().required(),
         address: joi.string().required(),
     }),

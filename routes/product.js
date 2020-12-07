@@ -13,20 +13,29 @@ const router = express.Router();
 router.get("/", passportJWT, productController.getAll);
 
 router.get(
-    "/getActivatedProducts",
-    passportJWT,
-    productController.getActivatedProducts
+  "/getActivatedProducts",
+  passportJWT,
+  productController.getActivatedProducts
+);
+
+router.get(
+  "/getActivatedProducts/discount/:discountId",
+  passportJWT,
+  productController.getActivatedProductsWithDiscount
 );
 
 router.post(
-    "/",
-    // awsUpload.fields([
-    //   { name: "image", maxCount: 1 },
-    //   { name: "photos", maxCount: 5 },
-    // ]),
-    passportJWT,
-    awsUpload.array("photos", 5),
-    productController.addOne
+  "/",
+  passportJWT,
+  awsUpload.array("photos", 5),
+  productController.addOne
+);
+
+router.post(
+  "/app",
+  passportJWT,
+  awsUpload.array("photos", 5),
+  productController.appAddOne
 );
 
 router.get("/:productId", passportJWT, productController.getOne);
@@ -34,46 +43,46 @@ router.get("/:productId", passportJWT, productController.getOne);
 router.post("/addReview/:productId", passportJWT, productController.addReview);
 
 router.put(
-    "/:productId",
-    passportJWT,
-    awsUpload.array("photos", 5),
-    productController.updateOne
+  "/:productId",
+  passportJWT,
+  awsUpload.array("photos", 5),
+  productController.updateOne
 );
 
 router.delete("/:productId", passportJWT, productController.deleteOne);
 
 router.post(
-    "/addProductToStore/:productId/:storeId",
-    passportJWT,
-    productController.addProductToStore
+  "/addProductToStore/:productId/:storeId",
+  passportJWT,
+  productController.addProductToStore
 );
 
 router.get("/activate/:productId", passportJWT, productController.activateOne);
 
 router.get(
-    "/deactivate/:productId",
-    passportJWT,
-    productController.deactivateOne
+  "/deactivate/:productId",
+  passportJWT,
+  productController.deactivateOne
 );
 
 router.get("/sold/:productId", passportJWT, productController.soldOne);
 
 router.get(
-    "/available/:productId",
-    passportJWT,
-    productController.availableOne
+  "/available/:productId",
+  passportJWT,
+  productController.availableOne
 );
 
-// router.post(
-//     "/addDiscount/:productId",
-//     passportJWT,
-//     productController.addDiscount
-// );
+router.post(
+  "/discount/add/:productId",
+  passportJWT,
+  productController.addDiscount
+);
 
-// router.delete(
-//     "/deleteDiscount/:productId",
-//     passportJWT,
-//     productController.deleteDiscount
-// );
+router.delete(
+  "/discount/delete/:productId",
+  passportJWT,
+  productController.deleteDiscount
+);
 
 module.exports = router;

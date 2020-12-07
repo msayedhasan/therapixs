@@ -54594,56 +54594,68 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
     /* harmony import */
 
 
-    var _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    var _stores_stores_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../stores/stores.service */
+    "./src/app/pages/stores/stores.service.ts");
+    /* harmony import */
+
+
+    var _users_users_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../users/users.service */
+    "./src/app/pages/users/users.service.ts");
+    /* harmony import */
+
+
+    var ngx_spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ngx-spinner */
+    "./node_modules/ngx-spinner/__ivy_ngcc__/fesm2015/ngx-spinner.js");
+    /* harmony import */
+
+
+    var _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @swimlane/ngx-charts */
     "./node_modules/@swimlane/ngx-charts/__ivy_ngcc__/fesm2015/swimlane-ngx-charts.js");
 
     var CardNumberComponent = /*#__PURE__*/function () {
-      function CardNumberComponent() {
+      function CardNumberComponent(storesService, usersService, spinner) {
         _classCallCheck(this, CardNumberComponent);
 
-        this.totalTranscation = [{
-          name: 'Nuggtah Transaction',
-          value: 23942
+        this.storesService = storesService;
+        this.usersService = usersService;
+        this.spinner = spinner;
+        this.users = [{
+          name: 'Users',
+          value: 0
         }];
-        this.businessCustomers = [{
-          name: 'Customers',
-          value: 750
+        this.stores = [{
+          name: 'Stores',
+          value: 0
         }];
-        this.TotalVouchers = [{
-          name: 'Vouchers',
-          value: 55
-        }];
-        this.Cards = [[{
-          name: 'Nuggtah Transaction',
-          value: 23942
-        }], [{
-          name: 'Customers',
-          value: 750
-        }], [{
-          name: 'Vouchers',
-          value: 55
-        }]];
         this.isHovered = false;
         this.view = [225, 85];
         this.colorScheme = {
           domain: ['#0c425d']
         };
-        Object.assign(this, {
-          single: this.single
-        });
       }
 
       _createClass(CardNumberComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           this.sizing();
+          this.getStores();
+          this.getUsers();
         }
       }, {
         key: "ngDoCheck",
@@ -54673,177 +54685,158 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.view = [innerWidth / 5, 85];
           }
         }
+      }, {
+        key: "getStores",
+        value: function getStores() {
+          var _this85 = this;
+
+          this.spinner.show();
+          this.storesService.getAll();
+          this.storesService.stores.subscribe(function (data) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this85, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              return regeneratorRuntime.wrap(function _callee$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      if (data) {
+                        this.stores = [{
+                          name: 'Stores',
+                          value: data.length
+                        }];
+                      }
+
+                    case 1:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          });
+          this.spinner.hide();
+        }
+      }, {
+        key: "getUsers",
+        value: function getUsers() {
+          var _this86 = this;
+
+          this.spinner.show();
+          this.usersService.getAll();
+          this.usersService.users.subscribe(function (data) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this86, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+              return regeneratorRuntime.wrap(function _callee2$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
+                      if (data) {
+                        this.users = [{
+                          name: 'Users',
+                          value: data.length
+                        }];
+                      }
+
+                    case 1:
+                    case "end":
+                      return _context4.stop();
+                  }
+                }
+              }, _callee2, this);
+            }));
+          });
+          this.spinner.hide();
+        }
       }]);
 
       return CardNumberComponent;
     }();
 
     CardNumberComponent.ɵfac = function CardNumberComponent_Factory(t) {
-      return new (t || CardNumberComponent)();
+      return new (t || CardNumberComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_stores_stores_service__WEBPACK_IMPORTED_MODULE_2__["StoresService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_users_users_service__WEBPACK_IMPORTED_MODULE_3__["UsersService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"]));
     };
 
-    CardNumberComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+    CardNumberComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
       type: CardNumberComponent,
       selectors: [["app-card-number"]],
-      inputs: {
-        cardData: "cardData",
-        period: "period"
-      },
-      decls: 26,
-      vars: 21,
-      consts: [[1, "grid-noGutter"], [1, "col-8_sm-12", "grid-center", "card-container"], ["id", "item1"], ["src", "../../../../assets/images/card-number1.png", "id", "icon1", "alt", ""], ["id", "card1", 3, "scheme", "view", "results", "animations", "textColor", "resize"], ["id", "item2"], ["src", "../../../../assets/images/card-number2.png", "id", "icon2", "alt", ""], ["id", "card2", 3, "scheme", "view", "results", "animations", "textColor", "resize"], ["id", "item3"], ["src", "../../../../assets/images/card-number3.png", "id", "icon3", "alt", ""], ["id", "description3", 1, "description"], [1, "paragraph"], ["id", "card3", 3, "scheme", "view", "results", "animations", "textColor", "resize"]],
+      decls: 9,
+      vars: 12,
+      consts: [[1, "grid-center-noGutter"], [1, "col-8_sm-12", "grid-center", "card-container"], ["id", "item1"], ["src", "../../../../assets/images/card-number1.png", "id", "icon1", "alt", ""], ["id", "card1", 3, "scheme", "view", "results", "animations", "textColor", "resize"], ["id", "item2"], ["src", "../../../../assets/images/card-number2.png", "id", "icon2", "alt", ""], ["id", "card2", 3, "scheme", "view", "results", "animations", "textColor", "resize"]],
       template: function CardNumberComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "img", 3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](3, "img", 3);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "ngx-charts-number-card", 4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "ngx-charts-number-card", 4);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("resize", function CardNumberComponent_Template_ngx_charts_number_card_resize_4_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("resize", function CardNumberComponent_Template_ngx_charts_number_card_resize_4_listener($event) {
             return ctx.onResize($event);
-          }, false, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresolveWindow"]);
+          }, false, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresolveWindow"]);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "div", 1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "div", 5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "img", 6);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](7, "img", 6);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "ngx-charts-number-card", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "ngx-charts-number-card", 7);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("resize", function CardNumberComponent_Template_ngx_charts_number_card_resize_8_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("resize", function CardNumberComponent_Template_ngx_charts_number_card_resize_8_listener($event) {
             return ctx.onResize($event);
-          }, false, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresolveWindow"]);
+          }, false, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresolveWindow"]);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 8);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "img", 9);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 10);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "p", 11);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "b");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "Used vouchers");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "p", 11);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "b");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Unused vouchers");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "p", 11);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "b");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Expired vouchers");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "ngx-charts-number-card", 12);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("resize", function CardNumberComponent_Template_ngx_charts_number_card_resize_25_listener($event) {
-            return ctx.onResize($event);
-          }, false, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresolveWindow"]);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         }
 
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("scheme", ctx.colorScheme)("view", ctx.view)("scheme", ctx.colorScheme)("results", ctx.totalTranscation)("animations", true)("textColor", "#fff");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("scheme", ctx.colorScheme)("view", ctx.view)("scheme", ctx.colorScheme)("results", ctx.users)("animations", true)("textColor", "#fff");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("scheme", ctx.colorScheme)("view", ctx.view)("scheme", ctx.colorScheme)("results", ctx.businessCustomers)("animations", true)("textColor", "#fff");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.cardData && ctx.cardData.usedVouchers ? ctx.cardData.usedVouchers : "0", "\xA0");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.cardData && ctx.cardData.unUsedVouchers ? ctx.cardData.unUsedVouchers : "0", "\xA0");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.cardData && ctx.cardData.expiredVouchers ? ctx.cardData.expiredVouchers : "0", "\xA0");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("scheme", ctx.colorScheme)("view", ctx.view)("scheme", ctx.colorScheme)("results", ctx.TotalVouchers)("animations", true)("textColor", "#fff");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("scheme", ctx.colorScheme)("view", ctx.view)("scheme", ctx.colorScheme)("results", ctx.stores)("animations", true)("textColor", "#fff");
         }
       },
-      directives: [_swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_1__["NumberCardComponent"]],
+      directives: [_swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_5__["NumberCardComponent"]],
       styles: ["[_nghost-%COMP%] {\n  width: 100%;\n}\n\nsvg[_ngcontent-%COMP%] {\n  display: none;\n}\n\n.card-container[_ngcontent-%COMP%] {\n  position: relative;\n  padding-left: 5px !important;\n  transition: all 0.5s ease-out;\n}\n\n@media (max-width: 1024px) {\n  .card-container[_ngcontent-%COMP%] {\n    margin-top: 15px;\n    padding-left: 5px !important;\n  }\n}\n\n@media (max-width: 768px) {\n  .card-container[_ngcontent-%COMP%] {\n    margin-top: 30px;\n  }\n}\n\n.card-container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%] {\n  visibility: hidden;\n  display: flex;\n  position: absolute;\n  top: 15%;\n  right: 50%;\n  height: 70%;\n  border-left: 2px solid white;\n  color: white;\n  padding: 0 10px;\n  flex-direction: column;\n  justify-content: space-between;\n  transition: all 0.5s ease-out;\n}\n\n.card-container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%]   .head[_ngcontent-%COMP%] {\n  font-size: 12px;\n  font-weight: bold;\n}\n\n.card-container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%]   .paragraph[_ngcontent-%COMP%] {\n  font-size: 10px;\n}\n\n.card-container[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  position: absolute;\n  width: 40px;\n  left: 15%;\n  top: -20px;\n  z-index: 10;\n}\n\n.card-container[_ngcontent-%COMP%]:hover   .description[_ngcontent-%COMP%] {\n  visibility: visible;\n  right: 0;\n  z-index: 2;\n}\n\n[_nghost-%COMP%]     div.ngx-charts-outer {\n  position: relative;\n}\n\n[_nghost-%COMP%]     svg.ngx-charts {\n  transition: all 0.5s;\n}\n\n[_nghost-%COMP%]     g.number-card.chart {\n  transform: translate(0, 0);\n}\n\n[_nghost-%COMP%]     g.cell:hover {\n  opacity: 1;\n}\n\n[_nghost-%COMP%]     g.cell rect {\n  height: 85px;\n  transition: all 0.5s;\n}\n\n[_nghost-%COMP%]     g.cell rect:hover {\n  opacity: 1;\n}\n\n[_nghost-%COMP%]     g.cell text {\n  font-weight: 700;\n  font-size: 25px !important;\n  transform: translateY(12%) translateX(0);\n}\n\n@media (max-width: 576px) {\n  [_nghost-%COMP%]     g.cell text {\n    font-size: 16px !important;\n  }\n}\n\n[_nghost-%COMP%]     g.cell foreignObject {\n  y: 50;\n}\n\n[_nghost-%COMP%]     g.cell foreignObject p {\n  line-height: 12px !important;\n  font-size: 12px !important;\n  margin-top: 5px;\n}\n\n[_nghost-%COMP%]     g.number-card.chart.clickable {\n  transform: translateX(20px) translateY(0) !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvZGFzaGJvYXJkL2NhcmQtbnVtYmVyL0U6XFxVbnRpdGxlZCBGb2xkZXJcXHByaXZhdGVcXHByb2plY3RzXFxmdWxsX3N0YWNrXFxtb3RvYmFyXFxtb3RvYmFyX2FkbWluL3NyY1xcYXBwXFxwYWdlc1xcZGFzaGJvYXJkXFxjYXJkLW51bWJlclxcY2FyZC1udW1iZXIuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2Rhc2hib2FyZC9jYXJkLW51bWJlci9jYXJkLW51bWJlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7QUNDRjs7QURFQTtFQUNFLGFBQUE7QUNDRjs7QURFQTtFQUNFLGtCQUFBO0VBQ0EsNEJBQUE7RUFDQSw2QkFBQTtBQ0NGOztBRENFO0VBTEY7SUFNSSxnQkFBQTtJQUNBLDRCQUFBO0VDRUY7QUFDRjs7QURBRTtFQVZGO0lBV0ksZ0JBQUE7RUNHRjtBQUNGOztBREZFO0VBQ0Usa0JBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7RUFDQSxRQUFBO0VBQ0EsVUFBQTtFQUNBLFdBQUE7RUFDQSw0QkFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0VBQ0Esc0JBQUE7RUFDQSw4QkFBQTtFQUNBLDZCQUFBO0FDSUo7O0FESEk7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7QUNLTjs7QURGSTtFQUNFLGVBQUE7QUNJTjs7QURERTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0VBQ0EsV0FBQTtBQ0dKOztBREFJO0VBQ0UsbUJBQUE7RUFDQSxRQUFBO0VBQ0EsVUFBQTtBQ0VOOztBRElFO0VBQ0Usa0JBQUE7QUNESjs7QURHRTtFQUNFLG9CQUFBO0FDREo7O0FESUU7RUFDRSwwQkFBQTtBQ0ZKOztBRE1JO0VBQ0UsVUFBQTtBQ0pOOztBRE9JO0VBQ0UsWUFBQTtFQUNBLG9CQUFBO0FDTE47O0FETU07RUFDRSxVQUFBO0FDSlI7O0FEUUk7RUFDRSxnQkFBQTtFQUNBLDBCQUFBO0VBQ0Esd0NBQUE7QUNOTjs7QURPTTtFQUpGO0lBS0ksMEJBQUE7RUNKTjtBQUNGOztBRE9JO0VBQ0UsS0FBQTtBQ0xOOztBRE9NO0VBQ0UsNEJBQUE7RUFDQSwwQkFBQTtFQUNBLGVBQUE7QUNMUjs7QURVRTtFQUNFLG9EQUFBO0FDUkoiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9kYXNoYm9hcmQvY2FyZC1udW1iZXIvY2FyZC1udW1iZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG5zdmcge1xuICBkaXNwbGF5OiBub25lO1xufVxuXG4uY2FyZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHBhZGRpbmctbGVmdDogNXB4ICFpbXBvcnRhbnQ7XG4gIHRyYW5zaXRpb246IGFsbCAwLjVzIGVhc2Utb3V0O1xuXG4gIEBtZWRpYSAobWF4LXdpZHRoOiAxMDI0cHgpIHtcbiAgICBtYXJnaW4tdG9wOiAxNXB4O1xuICAgIHBhZGRpbmctbGVmdDogNXB4ICFpbXBvcnRhbnQ7XG4gIH1cblxuICBAbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgICBtYXJnaW4tdG9wOiAzMHB4O1xuICB9XG4gIC5kZXNjcmlwdGlvbiB7XG4gICAgdmlzaWJpbGl0eTogaGlkZGVuO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMTUlO1xuICAgIHJpZ2h0OiA1MCU7XG4gICAgaGVpZ2h0OiA3MCU7XG4gICAgYm9yZGVyLWxlZnQ6IDJweCBzb2xpZCB3aGl0ZTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgcGFkZGluZzogMCAxMHB4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjVzIGVhc2Utb3V0O1xuICAgIC5oZWFkIHtcbiAgICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIH1cblxuICAgIC5wYXJhZ3JhcGgge1xuICAgICAgZm9udC1zaXplOiAxMHB4O1xuICAgIH1cbiAgfVxuICBpbWcge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogNDBweDtcbiAgICBsZWZ0OiAxNSU7XG4gICAgdG9wOiAtMjBweDtcbiAgICB6LWluZGV4OiAxMDtcbiAgfVxuICAmOmhvdmVyIHtcbiAgICAuZGVzY3JpcHRpb24ge1xuICAgICAgdmlzaWJpbGl0eTogdmlzaWJsZTtcbiAgICAgIHJpZ2h0OiAwO1xuICAgICAgei1pbmRleDogMjtcbiAgICB9XG4gIH1cbn1cblxuOmhvc3QgOjpuZy1kZWVwIHtcbiAgZGl2Lm5neC1jaGFydHMtb3V0ZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgfVxuICBzdmcubmd4LWNoYXJ0cyB7XG4gICAgdHJhbnNpdGlvbjogYWxsIDAuNXM7XG4gIH1cblxuICBnLm51bWJlci1jYXJkLmNoYXJ0IHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgwLCAwKTtcbiAgfVxuXG4gIGcuY2VsbCB7XG4gICAgJjpob3ZlciB7XG4gICAgICBvcGFjaXR5OiAxO1xuICAgIH1cblxuICAgIHJlY3Qge1xuICAgICAgaGVpZ2h0OiA4NXB4O1xuICAgICAgdHJhbnNpdGlvbjogYWxsIDAuNXM7XG4gICAgICAmOmhvdmVyIHtcbiAgICAgICAgb3BhY2l0eTogMTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICB0ZXh0IHtcbiAgICAgIGZvbnQtd2VpZ2h0OiA3MDA7XG4gICAgICBmb250LXNpemU6IDI1cHggIWltcG9ydGFudDtcbiAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgxMiUpIHRyYW5zbGF0ZVgoMCk7XG4gICAgICBAbWVkaWEgKG1heC13aWR0aDogNTc2cHgpIHtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4ICFpbXBvcnRhbnQ7XG4gICAgICB9XG4gICAgfVxuXG4gICAgZm9yZWlnbk9iamVjdCB7XG4gICAgICB5OiA1MDtcblxuICAgICAgcCB7XG4gICAgICAgIGxpbmUtaGVpZ2h0OiAxMnB4ICFpbXBvcnRhbnQ7XG4gICAgICAgIGZvbnQtc2l6ZTogMTJweCAhaW1wb3J0YW50O1xuICAgICAgICBtYXJnaW4tdG9wOiA1cHg7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgZy5udW1iZXItY2FyZC5jaGFydC5jbGlja2FibGUge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgyMHB4KSB0cmFuc2xhdGVZKDApICFpbXBvcnRhbnQ7XG4gIH1cbn1cbiIsIjpob3N0IHtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbnN2ZyB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG5cbi5jYXJkLWNvbnRhaW5lciB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgcGFkZGluZy1sZWZ0OiA1cHggIWltcG9ydGFudDtcbiAgdHJhbnNpdGlvbjogYWxsIDAuNXMgZWFzZS1vdXQ7XG59XG5AbWVkaWEgKG1heC13aWR0aDogMTAyNHB4KSB7XG4gIC5jYXJkLWNvbnRhaW5lciB7XG4gICAgbWFyZ2luLXRvcDogMTVweDtcbiAgICBwYWRkaW5nLWxlZnQ6IDVweCAhaW1wb3J0YW50O1xuICB9XG59XG5AbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgLmNhcmQtY29udGFpbmVyIHtcbiAgICBtYXJnaW4tdG9wOiAzMHB4O1xuICB9XG59XG4uY2FyZC1jb250YWluZXIgLmRlc2NyaXB0aW9uIHtcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xuICBkaXNwbGF5OiBmbGV4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMTUlO1xuICByaWdodDogNTAlO1xuICBoZWlnaHQ6IDcwJTtcbiAgYm9yZGVyLWxlZnQ6IDJweCBzb2xpZCB3aGl0ZTtcbiAgY29sb3I6IHdoaXRlO1xuICBwYWRkaW5nOiAwIDEwcHg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgdHJhbnNpdGlvbjogYWxsIDAuNXMgZWFzZS1vdXQ7XG59XG4uY2FyZC1jb250YWluZXIgLmRlc2NyaXB0aW9uIC5oZWFkIHtcbiAgZm9udC1zaXplOiAxMnB4O1xuICBmb250LXdlaWdodDogYm9sZDtcbn1cbi5jYXJkLWNvbnRhaW5lciAuZGVzY3JpcHRpb24gLnBhcmFncmFwaCB7XG4gIGZvbnQtc2l6ZTogMTBweDtcbn1cbi5jYXJkLWNvbnRhaW5lciBpbWcge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiA0MHB4O1xuICBsZWZ0OiAxNSU7XG4gIHRvcDogLTIwcHg7XG4gIHotaW5kZXg6IDEwO1xufVxuLmNhcmQtY29udGFpbmVyOmhvdmVyIC5kZXNjcmlwdGlvbiB7XG4gIHZpc2liaWxpdHk6IHZpc2libGU7XG4gIHJpZ2h0OiAwO1xuICB6LWluZGV4OiAyO1xufVxuXG46aG9zdCA6Om5nLWRlZXAgZGl2Lm5neC1jaGFydHMtb3V0ZXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG46aG9zdCA6Om5nLWRlZXAgc3ZnLm5neC1jaGFydHMge1xuICB0cmFuc2l0aW9uOiBhbGwgMC41cztcbn1cbjpob3N0IDo6bmctZGVlcCBnLm51bWJlci1jYXJkLmNoYXJ0IHtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMCwgMCk7XG59XG46aG9zdCA6Om5nLWRlZXAgZy5jZWxsOmhvdmVyIHtcbiAgb3BhY2l0eTogMTtcbn1cbjpob3N0IDo6bmctZGVlcCBnLmNlbGwgcmVjdCB7XG4gIGhlaWdodDogODVweDtcbiAgdHJhbnNpdGlvbjogYWxsIDAuNXM7XG59XG46aG9zdCA6Om5nLWRlZXAgZy5jZWxsIHJlY3Q6aG92ZXIge1xuICBvcGFjaXR5OiAxO1xufVxuOmhvc3QgOjpuZy1kZWVwIGcuY2VsbCB0ZXh0IHtcbiAgZm9udC13ZWlnaHQ6IDcwMDtcbiAgZm9udC1zaXplOiAyNXB4ICFpbXBvcnRhbnQ7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgxMiUpIHRyYW5zbGF0ZVgoMCk7XG59XG5AbWVkaWEgKG1heC13aWR0aDogNTc2cHgpIHtcbiAgOmhvc3QgOjpuZy1kZWVwIGcuY2VsbCB0ZXh0IHtcbiAgICBmb250LXNpemU6IDE2cHggIWltcG9ydGFudDtcbiAgfVxufVxuOmhvc3QgOjpuZy1kZWVwIGcuY2VsbCBmb3JlaWduT2JqZWN0IHtcbiAgeTogNTA7XG59XG46aG9zdCA6Om5nLWRlZXAgZy5jZWxsIGZvcmVpZ25PYmplY3QgcCB7XG4gIGxpbmUtaGVpZ2h0OiAxMnB4ICFpbXBvcnRhbnQ7XG4gIGZvbnQtc2l6ZTogMTJweCAhaW1wb3J0YW50O1xuICBtYXJnaW4tdG9wOiA1cHg7XG59XG46aG9zdCA6Om5nLWRlZXAgZy5udW1iZXItY2FyZC5jaGFydC5jbGlja2FibGUge1xuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMjBweCkgdHJhbnNsYXRlWSgwKSAhaW1wb3J0YW50O1xufSJdfQ== */"],
       changeDetection: 0
     });
     /*@__PURE__*/
 
     (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CardNumberComponent, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](CardNumberComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
         args: [{
           selector: 'app-card-number',
           templateUrl: './card-number.component.html',
           styleUrls: ['./card-number.component.scss'],
-          changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectionStrategy"].OnPush
+          changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush
         }]
       }], function () {
-        return [];
-      }, {
-        cardData: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
-        }],
-        period: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
-        }]
-      });
+        return [{
+          type: _stores_stores_service__WEBPACK_IMPORTED_MODULE_2__["StoresService"]
+        }, {
+          type: _users_users_service__WEBPACK_IMPORTED_MODULE_3__["UsersService"]
+        }, {
+          type: ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"]
+        }];
+      }, null);
     })();
     /***/
 
@@ -54956,55 +54949,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _card_number_card_number_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @ngx-translate/core */
+    "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+    /* harmony import */
+
+
+    var _card_number_card_number_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! ./card-number/card-number.component */
     "./src/app/pages/dashboard/card-number/card-number.component.ts");
-    /* harmony import */
-
-
-    var _line_chart_line_chart_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./line-chart/line-chart.component */
-    "./src/app/pages/dashboard/line-chart/line-chart.component.ts");
-    /* harmony import */
-
-
-    var _pie_chart_pie_chart_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./pie-chart/pie-chart.component */
-    "./src/app/pages/dashboard/pie-chart/pie-chart.component.ts");
-    /* harmony import */
-
-
-    var _stacked_vertical_chart_stacked_vertical_chart_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./stacked-vertical-chart/stacked-vertical-chart.component */
-    "./src/app/pages/dashboard/stacked-vertical-chart/stacked-vertical-chart.component.ts");
-    /* harmony import */
-
-
-    var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-
-    function DashboardComponent_ul_25_Template(rf, ctx) {
-      if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ul", 74);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "li", 75);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " period ");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-    }
-
-    var _c0 = function _c0() {
-      return ["/reports/customers"];
-    };
 
     var DashboardComponent = /*#__PURE__*/function () {
-      function DashboardComponent() {
+      function DashboardComponent(translateService) {
         _classCallCheck(this, DashboardComponent);
+
+        this.translateService = translateService;
       }
 
       _createClass(DashboardComponent, [{
@@ -55016,15 +54975,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }();
 
     DashboardComponent.ɵfac = function DashboardComponent_Factory(t) {
-      return new (t || DashboardComponent)();
+      return new (t || DashboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__["TranslateService"]));
     };
 
     DashboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: DashboardComponent,
       selectors: [["app-dashboard"]],
-      decls: 131,
-      vars: 2,
-      consts: [[1, "grid-center-noGutter"], [1, "card", "col-22", "grid-center-noGutter", 2, "margin", "20px"], [1, "card-header", "col-24"], [1, "card-body", "col-23", 2, "padding", "35px 0 20px"], [1, "row", "grid-center-noGutter"], [1, "col-24", "grid-center-noGutter"], [1, "col-7_md-24", "grid-center", "filtering"], ["src", "assets/images/icons-10.png", "alt", "", 2, "position", "absolute", "bottom", "-10px", "height", "18px", "z-index", "66", "left", "20px", "background-color", "white"], [1, "col-23", "grid-middle-noGutter"], ["src", "assets/images/icons-06.svg", "alt", "", "width", "50px"], [1, "col", "grid-column-center-noGutter"], [1, "col", "grid-center-middle-noGutter", "filter_column1"], [2, "margin-right", "10px"], [1, "col", 2, "position", "relative"], ["dropdown", "", 1, "btn-group"], ["for", "button-basic", 1, "date"], [1, "material-icons"], ["id", "button-basic", "dropdownToggle", "", "type", "button", "aria-controls", "dropdown-basic", 1, "form-control", 2, "position", "absolute", "visibility", "hidden"], ["id", "dropdown-basic", "class", "dropdown-menu", "role", "menu", "ng-click", "$event.stopPropagation()", "aria-labelledby", "button-basic", 4, "dropdownMenu"], ["type", "text", "placeholder", "YYYY-MM-DD-YYYY-MM-DD", "id", "date", "autocomplete", "off"], [1, "grid-center", "col_md-24", "card-number"], [1, "col-24", "grid-center"], [1, "dashboard-card", "col-13_lg-16_sm-24"], [1, "grid-column-noGutter"], [1, "grid-middle-noGutter", "users"], [1, "icon", "trash"], [1, "card-title", "large"], [1, "col_sm-11_xs-24", "multiple_cards_container"], [1, "grid-column", "multiple_cards"], [1, "dashboard-card", "best-day", "col", "grid-column"], [1, "col", "grid-column-center-middle-nogutter"], [1, "grid-center", "icon", "best-day_logo"], [1, "grid-center"], [1, "card-title", "small"], [1, "grid-column-middle"], [1, "day"], [1, "date"], [1, "dashboard-card", "top-items", "col", "grid-noGutter"], [1, "col-24", "grid-middle-center"], [1, "icon", "medal"], [1, "col-24", "grid-column-middle"], [1, "col-24", "grid-center-noGutter", 2, "margin-bottom", "3px"], [1, "col-16"], [1, "top_item"], [1, "stat", "col-24", "grid-center-noGutter"], [1, "col-16", "grid-noGutter"], [1, "col"], [1, "col-right", "grid-column-middle-noGutter"], [1, "dashboard-card", "pickUp", "col-5_lg-7_sm-11_xs-24"], [1, "grid-column-middle-noGutter", 2, "height", "100%"], [1, "grid-center", "icon", "bag"], [1, "col", "grid-middle-center"], [2, "width", "100%", "text-align", "center"], [1, "col-13_lg-15_md-24", "grid", "two-cards"], [1, "dashboard-card", "retentions", "col-11_xs-24"], [1, "grid-column-middle-noGutter"], [1, "grid-middle", "card_header"], [1, "icon", "retentions"], [1, "col", "content"], [1, "grid-right-noGutter"], [2, "width", "100%"], [1, "dashboard-card", "age", "col-12_sm-11_xs-24", 2, "padding-top", "0px", "margin-top", "0px"], [1, "icon", "age"], [1, "grid"], [1, "dashboard-card", "life", "col_lg-8_sm-11_xs-24", 2, "padding-top", "15px"], [1, "col-24", "grid-center", "icon", "customer"], [1, "dashboard-card", "top-customers", "col-5_lg-8_sm-11_xs-24", 2, "padding-top", "15px"], [1, "col-24", "grid-center", "icon", "customers"], [2, "color", "#0c425dde", "font-weight", "bold"], [2, "margin-top", "15px"], [1, "grid-noGutter"], ["src", "assets/images/globe-11.svg", "alt", ""], [1, "col", "grid-right-bottom"], [1, "more", "grid-middle", 3, "routerLink"], ["id", "dropdown-basic", "role", "menu", "ng-click", "$event.stopPropagation()", "aria-labelledby", "button-basic", 1, "dropdown-menu"], ["role", "menuitem"]],
+      decls: 24,
+      vars: 0,
+      consts: [[1, "grid-center-noGutter"], [1, "card", "col-22", "grid-center-noGutter", 2, "margin", "20px"], [1, "card-header", "col-24"], [1, "card-body", "col-23", 2, "padding", "35px 0 20px"], [1, "row", "grid-center-noGutter"], [1, "col-24", "grid-center-noGutter"], [1, "grid-center", "col_md-24", "card-number"], [1, "col-24", "grid-center"], [1, "dashboard-card", "col-13_lg-16_sm-24"], [1, "col_sm-11_xs-24", "multiple_cards_container"], [1, "grid-column", "multiple_cards"], [1, "dashboard-card", "best-day", "col", "grid-column"], [1, "dashboard-card", "top-items", "col", "grid-noGutter"], [1, "dashboard-card", "pickUp", "col-5_lg-7_sm-11_xs-24"], [1, "col-13_lg-15_md-24", "grid", "two-cards"], [1, "dashboard-card", "retentions", "col-11_xs-24"], [1, "dashboard-card", "age", "col-12_sm-11_xs-24", 2, "padding-top", "0px", "margin-top", "0px"], [1, "dashboard-card", "life", "col_lg-8_sm-11_xs-24", 2, "padding-top", "15px"], [1, "dashboard-card", "top-customers", "col-5_lg-8_sm-11_xs-24", 2, "padding-top", "15px"]],
       template: function DashboardComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -55053,399 +55012,45 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 6);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "img", 7);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 8);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "img", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "app-card-number");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 10);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 11);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 12);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "Filter data by");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 7);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "div", 8);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 9);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "div", 10);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](16, "div", 11);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](17, "div", 12);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](18, "div", 13);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "div", 14);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "label", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](20, "div", 15);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "period ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](21, "div", 16);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "i", 16);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, "arrow_drop_down");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](24, "button", 17);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](25, DashboardComponent_ul_25_Template, 3, 0, "ul", 18);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](26, "input", 19);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "div", 20);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](28, "app-card-number");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "div", 4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "div", 21);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "div", 22);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "div", 23);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "div", 24);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](34, "div", 25);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "div");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "p", 26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](37, " Orders ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "app-line-chart");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "div", 27);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "div", 28);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "div", 29);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](42, "div", 30);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](43, "div", 31);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](44, "div", 32);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](45, "p", 33);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](46, " Best Selling Day ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "div", 34);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](48, "h6", 35);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](49, "Tuesday");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](50, "h6", 36);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](51, "20-1-2020");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](52, "div", 37);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](53, "div", 38);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](54, "div", 39);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](55, "div", 40);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](56, "p", 33);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](57, " Top Selling Item ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](58, "div", 41);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](59, "div", 42);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](60, "p", 43);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](61, " item ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](62, "div", 44);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](63, "div", 45);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](64, "div", 46);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](65, "p");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](66, "Revenue");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](67, "p");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](68, " 20 SAR ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](69, "div", 47);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](70, "p");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](71, "Unit Sold");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](72, "p");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](73, " item ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](74, "div", 48);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](75, "div", 49);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](76, "div", 50);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](77, "p", 26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](78, " Pick up data ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](79, "div", 51);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](80, "h2", 52);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](81, " Coming Soon ... ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](82, "i", 16);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](83, "refresh");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](84, "div", 53);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](85, "div", 54);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](86, "div", 55);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](87, "div", 46);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](88, "div", 56);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](89, "div", 57);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](90, "p", 26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](91, " Retentions ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](92, "div", 58);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](93, "p");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, "How well do you retain users");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](95, "div", 0);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](96, "span");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](97, "Retention cohort");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](98, "span", 59);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](99, "div", 60);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](100, "div", 61);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](101, "div", 23);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](102, "div", 56);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](103, "div", 62);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](104, "p", 26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](105, " Age and Gender ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](106, "div", 63);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](107, "div");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](108, "app-pie-chart");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](109, "div", 64);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](110, "div", 34);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](111, "div", 65);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](112, "p", 26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](113, " Customer Life Cycle ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](114, "app-stacked-vertical-chart");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](115, "div", 66);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](116, "div", 49);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](117, "div", 67);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](118, "p", 26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](119, " Top 5 Customers ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](120, "span", 68);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](121, "ul", 69);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](122, "li", 70);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](123, "img", 71);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](124, "p");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](125, " Customer name ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](126, "div", 72);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](127, "a", 73);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](128, "More Customers");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](129, "i", 16);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](130, "chevron_right");
-
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "div", 17);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](23, "div", 18);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -55456,15 +55061,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        }
-
-        if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](127);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](1, _c0));
         }
       },
-      directives: [_card_number_card_number_component__WEBPACK_IMPORTED_MODULE_1__["CardNumberComponent"], _line_chart_line_chart_component__WEBPACK_IMPORTED_MODULE_2__["LineChartComponent"], _pie_chart_pie_chart_component__WEBPACK_IMPORTED_MODULE_3__["PieChartComponent"], _stacked_vertical_chart_stacked_vertical_chart_component__WEBPACK_IMPORTED_MODULE_4__["StackedVerticalChartComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLinkWithHref"]],
+      directives: [_card_number_card_number_component__WEBPACK_IMPORTED_MODULE_2__["CardNumberComponent"]],
       styles: [".row-header[_ngcontent-%COMP%] {\n  background: #f5f5f5;\n  border-bottom: 1px solid #e2e2e2;\n  padding: 10px;\n  width: 100%;\n}\n.row-header[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  margin: 0 5px;\n}\n.filtering[_ngcontent-%COMP%] {\n  position: relative;\n  border: 2px solid #0C425dde;\n  border-radius: 10px;\n  height: 85px;\n  background-color: white;\n  font-size: 12px;\n}\n.filtering[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  width: 60px;\n  margin-right: 10px;\n}\n.filtering[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  color: #ffa500;\n  font-size: 20px;\n  margin-left: auto;\n}\n.filtering[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin: 0;\n  font-size: 10px;\n  padding: 0 5px;\n  border-radius: 20px;\n  display: flex;\n  align-items: center;\n}\n.filtering[_ngcontent-%COMP%]   label[_ngcontent-%COMP%]    + input[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  visibility: hidden;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column1[_ngcontent-%COMP%] {\n  margin-bottom: 5px;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column1[_ngcontent-%COMP%]   .btn-group[_ngcontent-%COMP%] {\n  width: 100%;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column1[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  width: 100%;\n  color: #0C425dde;\n  border: 1px solid #0C425dde;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column1[_ngcontent-%COMP%]   .dropdown-menu[_ngcontent-%COMP%]   li[_ngcontent-%COMP%], .filtering[_ngcontent-%COMP%]   .filter_column1[_ngcontent-%COMP%]   .dropdown-menu[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  padding: 8px;\n  color: #555;\n  cursor: pointer;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column1[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  visibility: hidden;\n  position: absolute;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column2[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-weight: bold;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column2[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  color: #0C425dde;\n  border: 2px solid #0C425dde;\n}\n.filtering[_ngcontent-%COMP%]   .filter_column2[_ngcontent-%COMP%]   label.date1[_ngcontent-%COMP%] {\n  margin-right: 5px;\n}\n@media (max-width: 1024px) {\n  .card-number[_ngcontent-%COMP%] {\n    margin-top: 20px;\n  }\n}\n.row[_ngcontent-%COMP%] {\n  margin-bottom: 22px;\n}\n.row[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%] {\n  margin-left: 22px;\n  padding-bottom: 0;\n  margin-bottom: 20px;\n}\n@media (max-width: 768px) {\n  .row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%] {\n    margin-left: 0;\n  }\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%] {\n  height: 100%;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%] {\n  margin-left: 0;\n  margin-bottom: 22px;\n  background-color: white;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0 !important;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.best-day[_ngcontent-%COMP%]   .best-day_logo[_ngcontent-%COMP%] {\n  background-position-y: -295px;\n  width: 50px;\n  height: 45px;\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.best-day[_ngcontent-%COMP%]   .day[_ngcontent-%COMP%] {\n  font-weight: normal;\n  color: #7c7e7d;\n  margin: 3px 0;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.best-day[_ngcontent-%COMP%]   .date[_ngcontent-%COMP%] {\n  font-weight: normal;\n  color: #7c7e7d;\n  margin: 0;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.top-items[_ngcontent-%COMP%] {\n  padding: 10px;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.top-items[_ngcontent-%COMP%]   .medal[_ngcontent-%COMP%] {\n  background-position-y: -205px;\n  width: 30px;\n  height: 40px;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.top-items[_ngcontent-%COMP%]   .top_item[_ngcontent-%COMP%] {\n  font-size: 14px;\n  color: #0C425dde;\n  margin-bottom: 0;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.top-items[_ngcontent-%COMP%]   .stat[_ngcontent-%COMP%] {\n  height: 30px;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.top-items[_ngcontent-%COMP%]   .stat[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  color: #7c7e7d;\n  margin: 0;\n  font-size: 12px;\n}\n.row[_ngcontent-%COMP%]   .multiple_cards_container[_ngcontent-%COMP%]   .multiple_cards[_ngcontent-%COMP%]   .dashboard-card.top-items[_ngcontent-%COMP%]   .stat[_ngcontent-%COMP%]   p[_ngcontent-%COMP%]:first-child {\n  font-size: 10px;\n}\n@media (max-width: 1280px) {\n  .row[_ngcontent-%COMP%]   .two-cards[_ngcontent-%COMP%] {\n    margin: auto;\n    order: 1;\n  }\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%] {\n  background-color: white;\n  border-radius: 10px;\n  border: none;\n  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;\n  margin-left: 22px;\n  padding: 6px;\n  margin-bottom: 20px !important;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .trash[_ngcontent-%COMP%] {\n  background-position-y: -225px;\n  width: 50px;\n  height: 60px;\n  margin-right: 10px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]:first-child {\n  margin: 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .card-title[_ngcontent-%COMP%] {\n  color: #0C425dde;\n  font-weight: bold;\n  margin: 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .card-title.small[_ngcontent-%COMP%] {\n  font-size: 14px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .card-title.large[_ngcontent-%COMP%] {\n  font-size: 20px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .more[_ngcontent-%COMP%] {\n  font-size: 10px;\n  color: #a6d4bd;\n  margin: 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .more[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 16px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .users[_ngcontent-%COMP%] {\n  margin: 15px 0 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .users[_ngcontent-%COMP%]   .subscript[_ngcontent-%COMP%] {\n  font-size: 10px;\n  color: #0C425dde;\n  margin: 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .users[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  margin-right: 30px;\n  border: 1px solid #0C425dde;\n  border-radius: 20px;\n  font-size: 12px;\n  padding: 3px 5px;\n  color: #0C425dde;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .users[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 16px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .users[_ngcontent-%COMP%]   .filtered[_ngcontent-%COMP%] {\n  font-size: 12px;\n  width: 100%;\n  margin-top: 5px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card[_ngcontent-%COMP%]   .users[_ngcontent-%COMP%]   .filtered[_ngcontent-%COMP%]   p[_ngcontent-%COMP%]:first-of-type {\n  color: #0C425dde;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  -webkit-animation-timing-function: linear;\n          animation-timing-function: linear;\n  -webkit-animation-name: refreshing;\n          animation-name: refreshing;\n  -webkit-animation-duration: 2.5s;\n          animation-duration: 2.5s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  color: #0C425dde;\n}\n@media (max-width: 1280px) {\n  .row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%] {\n    margin-left: 0;\n    padding-top: 25px;\n  }\n}\n@media (max-width: 768px) {\n  .row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%] {\n    margin-left: auto;\n  }\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   .bag[_ngcontent-%COMP%] {\n  background-position-y: -415px;\n  width: 50px;\n  height: 50px;\n  margin-top: 20px;\n}\n@media (max-width: 1280px) {\n  .row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   .bag[_ngcontent-%COMP%] {\n    margin-top: 0;\n  }\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   .card-title[_ngcontent-%COMP%] {\n  margin: 5px 0 8px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   .feedback[_ngcontent-%COMP%] {\n  margin: 10px 0 14px;\n  font-size: 14px;\n  color: #7c7e7d;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   .value[_ngcontent-%COMP%] {\n  font-size: 45px;\n  font-weight: bold;\n  color: #7c7e7d;\n  margin: 0;\n  margin-bottom: 5px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   .subscript[_ngcontent-%COMP%] {\n  font-size: 10px;\n  color: #737574ab;\n  margin-bottom: 24px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.pickUp[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   .rating[_ngcontent-%COMP%] {\n  margin-top: -10px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .card_header[_ngcontent-%COMP%] {\n  margin: 25px 0 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .card_header[_ngcontent-%COMP%]   .retentions[_ngcontent-%COMP%] {\n  background-position-y: -163px;\n  width: 50px;\n  height: 50px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .card_header[_ngcontent-%COMP%]   .logo[_ngcontent-%COMP%] {\n  height: 50px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .card_header[_ngcontent-%COMP%]   .card-title[_ngcontent-%COMP%] {\n  display: inline;\n  margin: 0 12px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%] {\n  max-width: 95% !important;\n  padding-bottom: 5px;\n  border-bottom: 2px solid #0C425dde;\n  margin-bottom: 5px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 5px 0;\n  font-size: 12px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .content[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  font-size: 9px;\n  color: #737574ab;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .view-retentions[_ngcontent-%COMP%] {\n  font-size: 10px;\n  color: #a6d4bd;\n  margin: 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.retentions[_ngcontent-%COMP%]   .view-retentions[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  font-size: 14px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.age[_ngcontent-%COMP%] {\n  margin-left: auto;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.age[_ngcontent-%COMP%]   .card_header[_ngcontent-%COMP%] {\n  margin: 30px 0 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.age[_ngcontent-%COMP%]   .card_header[_ngcontent-%COMP%]   .age[_ngcontent-%COMP%] {\n  background-position-y: -105px;\n  width: 50px;\n  height: 50px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.age[_ngcontent-%COMP%]   .card_header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  display: inline;\n  margin: 0 12px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.life[_ngcontent-%COMP%] {\n  padding-top: 25px;\n}\n@media (max-width: 1280px) {\n  .row[_ngcontent-%COMP%]   .dashboard-card.life[_ngcontent-%COMP%] {\n    margin-left: auto;\n  }\n}\n@media (max-width: 768px) {\n  .row[_ngcontent-%COMP%]   .dashboard-card.life[_ngcontent-%COMP%] {\n    margin-left: 0;\n  }\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.life[_ngcontent-%COMP%]   .customer[_ngcontent-%COMP%] {\n  background-position-y: -45px;\n  width: 50px;\n  height: 50px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.life[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 5px 0;\n}\n@media (max-width: 1280px) {\n  .row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%] {\n    margin-left: auto;\n  }\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   .customers[_ngcontent-%COMP%] {\n  background-position-y: 0;\n  width: 75px;\n  height: 50px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   .card-title[_ngcontent-%COMP%] {\n  margin: 5px 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  width: 90%;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\n  border-bottom: 1px solid #f1f1f1;\n  padding: 5px 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]:last-child {\n  border: 0;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  height: 25px;\n  opacity: 0.5;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  display: inline;\n  color: #737574ab;\n  margin: 0 5px;\n  font-size: 14px;\n  line-height: 1.5;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]   i[_ngcontent-%COMP%] {\n  color: #a6d4bd;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   .buttons[_ngcontent-%COMP%] {\n  font-size: 10px;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   .buttons[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  margin-right: 10px;\n  border: 1px solid #0C425dde;\n  border-radius: 20px;\n  padding: 3px 5px;\n  color: #0C425dde;\n}\n.row[_ngcontent-%COMP%]   .dashboard-card.top-customers[_ngcontent-%COMP%]   .buttons[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:first-of-type {\n  border: 1px solid orange;\n  color: orange;\n  margin-right: 5px;\n}\napp-stacked-vertical-bar[_ngcontent-%COMP%] {\n  transform: translateX(-35px);\n}\n.icon[_ngcontent-%COMP%] {\n  background-image: url(/assets/images/icons-03.svg);\n  background-position-x: 0;\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n@-webkit-keyframes refreshing {\n  from {\n    transform: rotate(0);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes refreshing {\n  from {\n    transform: rotate(0);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvZGFzaGJvYXJkL0U6XFxVbnRpdGxlZCBGb2xkZXJcXHByaXZhdGVcXHByb2plY3RzXFxmdWxsX3N0YWNrXFxtb3RvYmFyXFxtb3RvYmFyX2FkbWluL3NyY1xcYXBwXFxwYWdlc1xcZGFzaGJvYXJkXFxkYXNoYm9hcmQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2Rhc2hib2FyZC9FOlxcVW50aXRsZWQgRm9sZGVyXFxwcml2YXRlXFxwcm9qZWN0c1xcZnVsbF9zdGFja1xcbW90b2JhclxcbW90b2Jhcl9hZG1pbi9zcmNcXGFwcFxccGFnZXNcXGRhc2hib2FyZFxcc2Fzc1xcdmFyaWFibGVzLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDSSxtQkFBQTtFQUNBLGdDQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7QUNESjtBREdJO0VBQ0ksYUFBQTtBQ0RSO0FES0E7RUFDSSxrQkFBQTtFQUNBLDJCQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FDRko7QURJSTtFQUNJLFdBQUE7RUFDQSxrQkFBQTtBQ0ZSO0FES0k7RUFDSSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0FDSFI7QURNSTtFQUNJLGlCQUFBO0VBQ0EsU0FBQTtFQUNBLGVBQUE7RUFDQSxjQUFBO0VBQ0EsbUJBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7QUNKUjtBRE1RO0VBQ0ksa0JBQUE7RUFDQSxPQUFBO0VBQ0EsTUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtBQ0paO0FEUUk7RUFDSSxrQkFBQTtBQ05SO0FET1E7RUFDSSxXQUFBO0FDTFo7QURPUTtFQUNJLFdBQUE7RUFDQSxnQkV6REE7RUYwREEsMkJBQUE7QUNMWjtBRE9ROztFQUVJLFlBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtBQ0xaO0FET1E7RUFDSSxrQkFBQTtFQUNBLGtCQUFBO0FDTFo7QURVUTtFQUNJLGlCQUFBO0FDUlo7QURXUTtFQUNJLGdCRTlFQTtFRitFQSwyQkFBQTtBQ1RaO0FEV1k7RUFDSSxpQkFBQTtBQ1RoQjtBRGdCSTtFQURKO0lBRVEsZ0JBQUE7RUNaTjtBQUNGO0FEZUE7RUFDSSxtQkUzRmlCO0FEK0VyQjtBRGNJO0VBQ0ksZ0JBQUE7QUNaUjtBRGVJO0VBQ0ksaUJFbEdhO0VGbUdiLGlCQUFBO0VBQ0EsbUJBQUE7QUNiUjtBRGVRO0VBTEo7SUFNUSxjQUFBO0VDWlY7QUFDRjtBRGNRO0VBQ0ksWUFBQTtBQ1paO0FEY1k7RUFDSSxjQUFBO0VBQ0EsbUJFL0dLO0VGZ0hMLHVCQUFBO0FDWmhCO0FEY2dCO0VBQ0ksMkJBQUE7QUNacEI7QURnQm9CO0VBQ0ksNkJBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLHNCQUFBO0VBQ0EsNEJBQUE7QUNkeEI7QURpQm9CO0VBQ0ksbUJBQUE7RUFDQSxjRW5JWDtFRm9JVyxhQUFBO0FDZnhCO0FEa0JvQjtFQUNJLG1CQUFBO0VBQ0EsY0V6SVg7RUYwSVcsU0FBQTtBQ2hCeEI7QURvQmdCO0VBQ0ksYUFBQTtBQ2xCcEI7QURvQm9CO0VBQ0ksNkJBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQ2xCeEI7QURxQm9CO0VBQ0ksZUFBQTtFQUNBLGdCRTNKWjtFRjRKWSxnQkFBQTtBQ25CeEI7QURzQm9CO0VBQ0ksWUFBQTtBQ3BCeEI7QURzQndCO0VBQ0ksY0VqS2Y7RUZrS2UsU0FBQTtFQUNBLGVBQUE7QUNwQjVCO0FEc0I0QjtFQUNJLGVBQUE7QUNwQmhDO0FEOEJRO0VBREo7SUFFUSxZQUFBO0lBQ0EsUUFBQTtFQzNCVjtBQUNGO0FEOEJJO0VBQ0ksdUJBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7RUFDQSw4Q0FBQTtFQUNBLGlCRXpMYTtFRjBMYixZQUFBO0VBQ0EsOEJBQUE7QUM1QlI7QUQ4QlE7RUFDSSw2QkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUM1Qlo7QUQrQlE7RUFDSSxTQUFBO0FDN0JaO0FEZ0NRO0VBQ0ksZ0JFN01BO0VGOE1BLGlCQUFBO0VBQ0EsU0FBQTtBQzlCWjtBRGdDWTtFQUNJLGVBQUE7QUM5QmhCO0FEaUNZO0VBQ0ksZUFBQTtBQy9CaEI7QURtQ1E7RUFDSSxlQUFBO0VBQ0EsY0V6TkE7RUYwTkEsU0FBQTtBQ2pDWjtBRG1DWTtFQUNJLGVBQUE7QUNqQ2hCO0FEcUNRO0VBQ0ksZ0JBQUE7QUNuQ1o7QURxQ1k7RUFDSSxlQUFBO0VBQ0EsZ0JFek9KO0VGME9JLFNBQUE7QUNuQ2hCO0FEc0NZO0VBQ0ksa0JBQUE7RUFDQSwyQkFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0VBQ0EsZ0JFblBKO0FEK01aO0FEc0NnQjtFQUNJLGVBQUE7QUNwQ3BCO0FEd0NZO0VBQ0ksZUFBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0FDdENoQjtBRHdDZ0I7RUFDSSxnQkVoUVI7QUQwTlo7QUQ0Q1k7RUFDSSx5Q0FBQTtVQUFBLGlDQUFBO0VBQ0Esa0NBQUE7VUFBQSwwQkFBQTtFQUNBLGdDQUFBO1VBQUEsd0JBQUE7RUFDQSwyQ0FBQTtVQUFBLG1DQUFBO0VBQ0EsZ0JFM1FKO0FEaU9aO0FENENZO0VBUko7SUFTUSxjQUFBO0lBQ0EsaUJBQUE7RUN6Q2Q7QUFDRjtBRDJDWTtFQWJKO0lBY1EsaUJBQUE7RUN4Q2Q7QUFDRjtBRDBDWTtFQUtJLDZCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtBQzVDaEI7QURxQ2dCO0VBREo7SUFFUSxhQUFBO0VDbENsQjtBQUNGO0FEMENZO0VBQ0ksaUJBQUE7QUN4Q2hCO0FEMkNZO0VBQ0ksbUJBQUE7RUFDQSxlQUFBO0VBQ0EsY0V0U0g7QUQ2UGI7QUQ2Q2dCO0VBQ0ksZUFBQTtFQUNBLGlCQUFBO0VBQ0EsY0U3U1A7RUY4U08sU0FBQTtFQUNBLGtCQUFBO0FDM0NwQjtBRDhDZ0I7RUFDSSxlQUFBO0VBQ0EsZ0JFclRSO0VGc1RRLG1CQUFBO0FDNUNwQjtBRCtDZ0I7RUFDSSxpQkFBQTtBQzdDcEI7QURtRFk7RUFDSSxnQkFBQTtBQ2pEaEI7QURtRGdCO0VBQ0ksNkJBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQ2pEcEI7QURvRGdCO0VBQ0ksWUFBQTtBQ2xEcEI7QURxRGdCO0VBQ0ksZUFBQTtFQUNBLGNBQUE7QUNuRHBCO0FEdURZO0VBQ0kseUJBQUE7RUFDQSxtQkFBQTtFQUNBLGtDQUFBO0VBQ0Esa0JBQUE7QUNyRGhCO0FEdURnQjtFQUNJLGFBQUE7RUFDQSxlQUFBO0FDckRwQjtBRHdEZ0I7RUFDSSxjQUFBO0VBQ0EsZ0JFaFdSO0FEMFNaO0FEMERZO0VBQ0ksZUFBQTtFQUNBLGNFcFdKO0VGcVdJLFNBQUE7QUN4RGhCO0FEMERnQjtFQUNJLGVBQUE7QUN4RHBCO0FENkRRO0VBQ0ksaUJBQUE7QUMzRFo7QUQ2RFk7RUFDSSxnQkFBQTtBQzNEaEI7QUQ2RGdCO0VBQ0ksNkJBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQzNEcEI7QUQ4RGdCO0VBQ0ksZUFBQTtFQUNBLGNBQUE7QUM1RHBCO0FEaUVRO0VBQ0ksaUJBQUE7QUMvRFo7QURpRVk7RUFISjtJQUlRLGlCQUFBO0VDOURkO0FBQ0Y7QURnRVk7RUFQSjtJQVFRLGNBQUE7RUM3RGQ7QUFDRjtBRCtEWTtFQUNJLDRCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7QUM3RGhCO0FEZ0VZO0VBQ0ksYUFBQTtBQzlEaEI7QURtRVk7RUFESjtJQUVRLGlCQUFBO0VDaEVkO0FBQ0Y7QURrRVk7RUFDSSx3QkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0FDaEVoQjtBRG1FWTtFQUNJLGFBQUE7QUNqRWhCO0FEb0VZO0VBQ0ksZ0JBQUE7RUFDQSxVQUFBO0VBQ0EsU0FBQTtFQUNBLFVBQUE7QUNsRWhCO0FEb0VnQjtFQUNJLGdDQUFBO0VBQ0EsY0FBQTtBQ2xFcEI7QURvRW9CO0VBQ0ksU0FBQTtBQ2xFeEI7QURxRW9CO0VBQ0ksWUFBQTtFQUNBLFlBQUE7QUNuRXhCO0FEc0VvQjtFQUNJLGVBQUE7RUFDQSxnQkU1Ylo7RUY2YlksYUFBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQ3BFeEI7QUR1RW9CO0VBQ0ksY0VqY1o7QUQ0WFo7QUQwRVk7RUFDSSxlQUFBO0FDeEVoQjtBRDBFZ0I7RUFDSSxrQkFBQTtFQUNBLDJCQUFBO0VBQ0EsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLGdCRWpkUjtBRHlZWjtBRDJFZ0I7RUFDSSx3QkFBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtBQ3pFcEI7QURnRkE7RUFDSSw0QkFBQTtBQzdFSjtBRGdGQTtFQUNJLGtEQUFBO0VBQ0Esd0JBQUE7RUFDQSxzQkFBQTtFQUNBLDRCQUFBO0FDN0VKO0FEZ0ZBO0VBQ0k7SUFDSSxvQkFBQTtFQzdFTjtFRCtFRTtJQUNJLHlCQUFBO0VDN0VOO0FBQ0Y7QUR1RUE7RUFDSTtJQUNJLG9CQUFBO0VDN0VOO0VEK0VFO0lBQ0kseUJBQUE7RUM3RU47QUFDRiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwiLi9zYXNzL3ZhcmlhYmxlcy5zY3NzXCI7XG5cbi5yb3ctaGVhZGVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjVmNWY1O1xuICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZTJlMmUyO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgd2lkdGg6IDEwMCU7XG5cbiAgICBpIHtcbiAgICAgICAgbWFyZ2luOiAwIDVweDtcbiAgICB9XG59XG5cbi5maWx0ZXJpbmcge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBib3JkZXI6IDJweCBzb2xpZCAkYmx1ZUNvbG9yO1xuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgaGVpZ2h0OiA4NXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtc2l6ZTogMTJweDtcblxuICAgIHN2ZyB7XG4gICAgICAgIHdpZHRoOiA2MHB4O1xuICAgICAgICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG4gICAgfVxuXG4gICAgaSB7XG4gICAgICAgIGNvbG9yOiAjZmZhNTAwO1xuICAgICAgICBmb250LXNpemU6IDIwcHg7XG4gICAgICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgIH1cblxuICAgIGxhYmVsIHtcbiAgICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgZm9udC1zaXplOiAxMHB4O1xuICAgICAgICBwYWRkaW5nOiAwIDVweDtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcblxuICAgICAgICAmICsgaW5wdXQge1xuICAgICAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgICAgICAgbGVmdDogMDtcbiAgICAgICAgICAgIHRvcDogMDtcbiAgICAgICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICAgICAgdmlzaWJpbGl0eTogaGlkZGVuO1xuICAgICAgICB9XG4gICAgfVxuXG4gICAgLmZpbHRlcl9jb2x1bW4xIHtcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogNXB4O1xuICAgICAgICAuYnRuLWdyb3VwIHtcbiAgICAgICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICB9XG4gICAgICAgIGxhYmVsIHtcbiAgICAgICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICAgICAgY29sb3I6ICRibHVlQ29sb3I7XG4gICAgICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAkYmx1ZUNvbG9yO1xuICAgICAgICB9XG4gICAgICAgIC5kcm9wZG93bi1tZW51IGxpLFxuICAgICAgICAuZHJvcGRvd24tbWVudSBpbnB1dCB7XG4gICAgICAgICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICAgICAgICBjb2xvcjogIzU1NTtcbiAgICAgICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgfVxuICAgICAgICBpbnB1dCB7XG4gICAgICAgICAgICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gICAgICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICAgIH1cbiAgICB9XG5cbiAgICAuZmlsdGVyX2NvbHVtbjIge1xuICAgICAgICBpIHtcbiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgICAgICB9XG5cbiAgICAgICAgbGFiZWwge1xuICAgICAgICAgICAgY29sb3I6ICRibHVlQ29sb3I7XG4gICAgICAgICAgICBib3JkZXI6IDJweCBzb2xpZCAkYmx1ZUNvbG9yO1xuXG4gICAgICAgICAgICAmLmRhdGUxIHtcbiAgICAgICAgICAgICAgICBtYXJnaW4tcmlnaHQ6IDVweDtcbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgIH1cbn1cblxuLmNhcmQtbnVtYmVyIHtcbiAgICBAbWVkaWEgKG1heC13aWR0aDogMTAyNHB4KSB7XG4gICAgICAgIG1hcmdpbi10b3A6IDIwcHg7XG4gICAgfVxufVxuXG4ucm93IHtcbiAgICBtYXJnaW4tYm90dG9tOiAkbWFyZ2luQmV0d2VlbkNhcmRzO1xuXG4gICAgJjpsYXN0LWNoaWxkIHtcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMDtcbiAgICB9XG5cbiAgICAubXVsdGlwbGVfY2FyZHNfY29udGFpbmVyIHtcbiAgICAgICAgbWFyZ2luLWxlZnQ6ICRtYXJnaW5CZXR3ZWVuQ2FyZHM7XG4gICAgICAgIHBhZGRpbmctYm90dG9tOiAwO1xuICAgICAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuXG4gICAgICAgIEBtZWRpYSAobWF4LXdpZHRoOiA3NjhweCkge1xuICAgICAgICAgICAgbWFyZ2luLWxlZnQ6IDA7XG4gICAgICAgIH1cblxuICAgICAgICAubXVsdGlwbGVfY2FyZHMge1xuICAgICAgICAgICAgaGVpZ2h0OiAxMDAlO1xuXG4gICAgICAgICAgICAuZGFzaGJvYXJkLWNhcmQge1xuICAgICAgICAgICAgICAgIG1hcmdpbi1sZWZ0OiAwO1xuICAgICAgICAgICAgICAgIG1hcmdpbi1ib3R0b206ICRtYXJnaW5CZXR3ZWVuQ2FyZHM7XG4gICAgICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG5cbiAgICAgICAgICAgICAgICAmOmxhc3QtY2hpbGQge1xuICAgICAgICAgICAgICAgICAgICBtYXJnaW4tYm90dG9tOiAwICFpbXBvcnRhbnQ7XG4gICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgJi5iZXN0LWRheSB7XG4gICAgICAgICAgICAgICAgICAgIC5iZXN0LWRheV9sb2dvIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQtcG9zaXRpb24teTogLTI5NXB4O1xuICAgICAgICAgICAgICAgICAgICAgICAgd2lkdGg6IDUwcHg7XG4gICAgICAgICAgICAgICAgICAgICAgICBoZWlnaHQ6IDQ1cHg7XG4gICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgICAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgICAgICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgICAgIC5kYXkge1xuICAgICAgICAgICAgICAgICAgICAgICAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiAkZ3JheUNvbG9yMjtcbiAgICAgICAgICAgICAgICAgICAgICAgIG1hcmdpbjogM3B4IDA7XG4gICAgICAgICAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgICAgICAgICAuZGF0ZSB7XG4gICAgICAgICAgICAgICAgICAgICAgICBmb250LXdlaWdodDogbm9ybWFsO1xuICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6ICRncmF5Q29sb3IyO1xuICAgICAgICAgICAgICAgICAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgJi50b3AtaXRlbXMge1xuICAgICAgICAgICAgICAgICAgICBwYWRkaW5nOiAxMHB4O1xuXG4gICAgICAgICAgICAgICAgICAgIC5tZWRhbCB7XG4gICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IC0yMDVweDtcbiAgICAgICAgICAgICAgICAgICAgICAgIHdpZHRoOiAzMHB4O1xuICAgICAgICAgICAgICAgICAgICAgICAgaGVpZ2h0OiA0MHB4O1xuICAgICAgICAgICAgICAgICAgICB9XG5cbiAgICAgICAgICAgICAgICAgICAgLnRvcF9pdGVtIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiAkYmx1ZUNvbG9yO1xuICAgICAgICAgICAgICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogMDtcbiAgICAgICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgICAgIC5zdGF0IHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGhlaWdodDogMzBweDtcblxuICAgICAgICAgICAgICAgICAgICAgICAgcCB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6ICRncmF5Q29sb3IyO1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBmb250LXNpemU6IDEycHg7XG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAmOmZpcnN0LWNoaWxkIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4O1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgIH1cblxuICAgIC50d28tY2FyZHMge1xuICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogMTI4MHB4KSB7XG4gICAgICAgICAgICBtYXJnaW46IGF1dG87XG4gICAgICAgICAgICBvcmRlcjogMTtcbiAgICAgICAgfVxuICAgIH1cblxuICAgIC5kYXNoYm9hcmQtY2FyZCB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICAgICAgICBib3JkZXI6IG5vbmU7XG4gICAgICAgIGJveC1zaGFkb3c6IHJnYmEoMCwgMCwgMCwgMC4yKSAwcHggMHB4IDhweCAwcHg7XG4gICAgICAgIG1hcmdpbi1sZWZ0OiAkbWFyZ2luQmV0d2VlbkNhcmRzO1xuICAgICAgICBwYWRkaW5nOiA2cHg7XG4gICAgICAgIG1hcmdpbi1ib3R0b206IDIwcHggIWltcG9ydGFudDtcblxuICAgICAgICAudHJhc2gge1xuICAgICAgICAgICAgYmFja2dyb3VuZC1wb3NpdGlvbi15OiAtMjI1cHg7XG4gICAgICAgICAgICB3aWR0aDogNTBweDtcbiAgICAgICAgICAgIGhlaWdodDogNjBweDtcbiAgICAgICAgICAgIG1hcmdpbi1yaWdodDogMTBweDtcbiAgICAgICAgfVxuXG4gICAgICAgICY6Zmlyc3QtY2hpbGQge1xuICAgICAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICB9XG5cbiAgICAgICAgLmNhcmQtdGl0bGUge1xuICAgICAgICAgICAgY29sb3I6ICRibHVlQ29sb3I7XG4gICAgICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICAgICAgICAgIG1hcmdpbjogMDtcblxuICAgICAgICAgICAgJi5zbWFsbCB7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAmLmxhcmdlIHtcbiAgICAgICAgICAgICAgICBmb250LXNpemU6IDIwcHg7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICAubW9yZSB7XG4gICAgICAgICAgICBmb250LXNpemU6IDEwcHg7XG4gICAgICAgICAgICBjb2xvcjogJGxpZ2h0Qmx1ZTtcbiAgICAgICAgICAgIG1hcmdpbjogMDtcblxuICAgICAgICAgICAgaSB7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICAgICAgfVxuICAgICAgICB9XG5cbiAgICAgICAgLnVzZXJzIHtcbiAgICAgICAgICAgIG1hcmdpbjogMTVweCAwIDA7XG5cbiAgICAgICAgICAgIC5zdWJzY3JpcHQge1xuICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTBweDtcbiAgICAgICAgICAgICAgICBjb2xvcjogJGJsdWVDb2xvcjtcbiAgICAgICAgICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIGJ1dHRvbiB7XG4gICAgICAgICAgICAgICAgbWFyZ2luLXJpZ2h0OiAzMHB4O1xuICAgICAgICAgICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICRibHVlQ29sb3I7XG4gICAgICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgICAgICAgICAgICAgICBmb250LXNpemU6IDEycHg7XG4gICAgICAgICAgICAgICAgcGFkZGluZzogM3B4IDVweDtcbiAgICAgICAgICAgICAgICBjb2xvcjogJGJsdWVDb2xvcjtcblxuICAgICAgICAgICAgICAgIGkge1xuICAgICAgICAgICAgICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAuZmlsdGVyZWQge1xuICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICAgICAgICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgICAgICAgICBtYXJnaW4tdG9wOiA1cHg7XG5cbiAgICAgICAgICAgICAgICBwOmZpcnN0LW9mLXR5cGUge1xuICAgICAgICAgICAgICAgICAgICBjb2xvcjogJGJsdWVDb2xvcjtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICAmLnBpY2tVcCB7XG4gICAgICAgICAgICBpIHtcbiAgICAgICAgICAgICAgICBhbmltYXRpb24tdGltaW5nLWZ1bmN0aW9uOiBsaW5lYXI7XG4gICAgICAgICAgICAgICAgYW5pbWF0aW9uLW5hbWU6IHJlZnJlc2hpbmc7XG4gICAgICAgICAgICAgICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAyLjVzO1xuICAgICAgICAgICAgICAgIGFuaW1hdGlvbi1pdGVyYXRpb24tY291bnQ6IGluZmluaXRlO1xuICAgICAgICAgICAgICAgIGNvbG9yOiAkYmx1ZUNvbG9yO1xuICAgICAgICAgICAgfVxuICAgICAgICAgICAgQG1lZGlhIChtYXgtd2lkdGg6IDEyODBweCkge1xuICAgICAgICAgICAgICAgIG1hcmdpbi1sZWZ0OiAwO1xuICAgICAgICAgICAgICAgIHBhZGRpbmctdG9wOiAyNXB4O1xuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgICAgICAgICAgICAgICBtYXJnaW4tbGVmdDogYXV0bztcbiAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgLmJhZyB7XG4gICAgICAgICAgICAgICAgQG1lZGlhIChtYXgtd2lkdGg6IDEyODBweCkge1xuICAgICAgICAgICAgICAgICAgICBtYXJnaW4tdG9wOiAwO1xuICAgICAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgICAgIGJhY2tncm91bmQtcG9zaXRpb24teTogLTQxNXB4O1xuICAgICAgICAgICAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgICAgICAgICAgIGhlaWdodDogNTBweDtcbiAgICAgICAgICAgICAgICBtYXJnaW4tdG9wOiAyMHB4O1xuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAuY2FyZC10aXRsZSB7XG4gICAgICAgICAgICAgICAgbWFyZ2luOiA1cHggMCA4cHg7XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIC5mZWVkYmFjayB7XG4gICAgICAgICAgICAgICAgbWFyZ2luOiAxMHB4IDAgMTRweDtcbiAgICAgICAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgICAgICAgICAgY29sb3I6ICRncmF5Q29sb3IyO1xuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAuY29udGVudCB7XG4gICAgICAgICAgICAgICAgLnZhbHVlIHtcbiAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiA0NXB4O1xuICAgICAgICAgICAgICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICAgICAgICAgICAgICAgICAgY29sb3I6ICRncmF5Q29sb3IyO1xuICAgICAgICAgICAgICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgICAgICAgICAgICAgIG1hcmdpbi1ib3R0b206IDVweDtcbiAgICAgICAgICAgICAgICB9XG5cbiAgICAgICAgICAgICAgICAuc3Vic2NyaXB0IHtcbiAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4O1xuICAgICAgICAgICAgICAgICAgICBjb2xvcjogJGdyYXlDb2xvcjtcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogMjRweDtcbiAgICAgICAgICAgICAgICB9XG5cbiAgICAgICAgICAgICAgICAucmF0aW5nIHtcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luLXRvcDogLTEwcHg7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICB9XG5cbiAgICAgICAgJi5yZXRlbnRpb25zIHtcbiAgICAgICAgICAgIC5jYXJkX2hlYWRlciB7XG4gICAgICAgICAgICAgICAgbWFyZ2luOiAyNXB4IDAgMDtcblxuICAgICAgICAgICAgICAgIC5yZXRlbnRpb25zIHtcbiAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZC1wb3NpdGlvbi15OiAtMTYzcHg7XG4gICAgICAgICAgICAgICAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgICAgICAgICAgICAgICBoZWlnaHQ6IDUwcHg7XG4gICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgLmxvZ28ge1xuICAgICAgICAgICAgICAgICAgICBoZWlnaHQ6IDUwcHg7XG4gICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgLmNhcmQtdGl0bGUge1xuICAgICAgICAgICAgICAgICAgICBkaXNwbGF5OiBpbmxpbmU7XG4gICAgICAgICAgICAgICAgICAgIG1hcmdpbjogMCAxMnB4O1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgLmNvbnRlbnQge1xuICAgICAgICAgICAgICAgIG1heC13aWR0aDogOTUlICFpbXBvcnRhbnQ7XG4gICAgICAgICAgICAgICAgcGFkZGluZy1ib3R0b206IDVweDtcbiAgICAgICAgICAgICAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgJGJsdWVDb2xvcjtcbiAgICAgICAgICAgICAgICBtYXJnaW4tYm90dG9tOiA1cHg7XG5cbiAgICAgICAgICAgICAgICBwIHtcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luOiA1cHggMDtcbiAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgICAgIHNwYW4ge1xuICAgICAgICAgICAgICAgICAgICBmb250LXNpemU6IDlweDtcbiAgICAgICAgICAgICAgICAgICAgY29sb3I6ICRncmF5Q29sb3I7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAudmlldy1yZXRlbnRpb25zIHtcbiAgICAgICAgICAgICAgICBmb250LXNpemU6IDEwcHg7XG4gICAgICAgICAgICAgICAgY29sb3I6ICRsaWdodEJsdWU7XG4gICAgICAgICAgICAgICAgbWFyZ2luOiAwO1xuXG4gICAgICAgICAgICAgICAgaSB7XG4gICAgICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICAmLmFnZSB7XG4gICAgICAgICAgICBtYXJnaW4tbGVmdDogYXV0bztcblxuICAgICAgICAgICAgLmNhcmRfaGVhZGVyIHtcbiAgICAgICAgICAgICAgICBtYXJnaW46IDMwcHggMCAwO1xuXG4gICAgICAgICAgICAgICAgLmFnZSB7XG4gICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQtcG9zaXRpb24teTogLTEwNXB4O1xuICAgICAgICAgICAgICAgICAgICB3aWR0aDogNTBweDtcbiAgICAgICAgICAgICAgICAgICAgaGVpZ2h0OiA1MHB4O1xuICAgICAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgICAgIHAge1xuICAgICAgICAgICAgICAgICAgICBkaXNwbGF5OiBpbmxpbmU7XG4gICAgICAgICAgICAgICAgICAgIG1hcmdpbjogMCAxMnB4O1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuXG4gICAgICAgICYubGlmZSB7XG4gICAgICAgICAgICBwYWRkaW5nLXRvcDogMjVweDtcblxuICAgICAgICAgICAgQG1lZGlhIChtYXgtd2lkdGg6IDEyODBweCkge1xuICAgICAgICAgICAgICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgICAgICAgICAgICAgICBtYXJnaW4tbGVmdDogMDtcbiAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgLmN1c3RvbWVyIHtcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IC00NXB4O1xuICAgICAgICAgICAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgICAgICAgICAgIGhlaWdodDogNTBweDtcbiAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgcCB7XG4gICAgICAgICAgICAgICAgbWFyZ2luOiA1cHggMDtcbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuXG4gICAgICAgICYudG9wLWN1c3RvbWVycyB7XG4gICAgICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogMTI4MHB4KSB7XG4gICAgICAgICAgICAgICAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIC5jdXN0b21lcnMge1xuICAgICAgICAgICAgICAgIGJhY2tncm91bmQtcG9zaXRpb24teTogMDtcbiAgICAgICAgICAgICAgICB3aWR0aDogNzVweDtcbiAgICAgICAgICAgICAgICBoZWlnaHQ6IDUwcHg7XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIC5jYXJkLXRpdGxlIHtcbiAgICAgICAgICAgICAgICBtYXJnaW46IDVweCAwO1xuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICB1bCB7XG4gICAgICAgICAgICAgICAgbGlzdC1zdHlsZTogbm9uZTtcbiAgICAgICAgICAgICAgICBwYWRkaW5nOiAwO1xuICAgICAgICAgICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgICAgICAgICB3aWR0aDogOTAlO1xuXG4gICAgICAgICAgICAgICAgbGkge1xuICAgICAgICAgICAgICAgICAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgJGJvcmRlcjtcbiAgICAgICAgICAgICAgICAgICAgcGFkZGluZzogNXB4IDA7XG5cbiAgICAgICAgICAgICAgICAgICAgJjpsYXN0LWNoaWxkIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGJvcmRlcjogMDtcbiAgICAgICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgICAgIGltZyB7XG4gICAgICAgICAgICAgICAgICAgICAgICBoZWlnaHQ6IDI1cHg7XG4gICAgICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAwLjU7XG4gICAgICAgICAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgICAgICAgICBwIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGRpc3BsYXk6IGlubGluZTtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiAkZ3JheUNvbG9yO1xuICAgICAgICAgICAgICAgICAgICAgICAgbWFyZ2luOiAwIDVweDtcbiAgICAgICAgICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgICAgICAgICAgICAgICAgIGxpbmUtaGVpZ2h0OiAxLjU7XG4gICAgICAgICAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgICAgICAgICBpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiAkbGlnaHRCbHVlO1xuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAuYnV0dG9ucyB7XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4O1xuXG4gICAgICAgICAgICAgICAgYnV0dG9uIHtcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xuICAgICAgICAgICAgICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAkYmx1ZUNvbG9yO1xuICAgICAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiAyMHB4O1xuICAgICAgICAgICAgICAgICAgICBwYWRkaW5nOiAzcHggNXB4O1xuICAgICAgICAgICAgICAgICAgICBjb2xvcjogJGJsdWVDb2xvcjtcbiAgICAgICAgICAgICAgICB9XG5cbiAgICAgICAgICAgICAgICBidXR0b246Zmlyc3Qtb2YtdHlwZSB7XG4gICAgICAgICAgICAgICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIG9yYW5nZTtcbiAgICAgICAgICAgICAgICAgICAgY29sb3I6IG9yYW5nZTtcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luLXJpZ2h0OiA1cHg7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgfVxufVxuXG5hcHAtc3RhY2tlZC12ZXJ0aWNhbC1iYXIge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtMzVweCk7XG59XG5cbi5pY29uIHtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoL2Fzc2V0cy9pbWFnZXMvaWNvbnMtMDMuc3ZnKTtcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXg6IDA7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xufVxuXG5Aa2V5ZnJhbWVzIHJlZnJlc2hpbmcge1xuICAgIGZyb20ge1xuICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwKTtcbiAgICB9XG4gICAgdG8ge1xuICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xuICAgIH1cbn1cbiIsIi5yb3ctaGVhZGVyIHtcbiAgYmFja2dyb3VuZDogI2Y1ZjVmNTtcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlMmUyZTI7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIHdpZHRoOiAxMDAlO1xufVxuLnJvdy1oZWFkZXIgaSB7XG4gIG1hcmdpbjogMCA1cHg7XG59XG5cbi5maWx0ZXJpbmcge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGJvcmRlcjogMnB4IHNvbGlkICMwQzQyNWRkZTtcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgaGVpZ2h0OiA4NXB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgZm9udC1zaXplOiAxMnB4O1xufVxuLmZpbHRlcmluZyBzdmcge1xuICB3aWR0aDogNjBweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuLmZpbHRlcmluZyBpIHtcbiAgY29sb3I6ICNmZmE1MDA7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG59XG4uZmlsdGVyaW5nIGxhYmVsIHtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIG1hcmdpbjogMDtcbiAgZm9udC1zaXplOiAxMHB4O1xuICBwYWRkaW5nOiAwIDVweDtcbiAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5maWx0ZXJpbmcgbGFiZWwgKyBpbnB1dCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwJTtcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xufVxuLmZpbHRlcmluZyAuZmlsdGVyX2NvbHVtbjEge1xuICBtYXJnaW4tYm90dG9tOiA1cHg7XG59XG4uZmlsdGVyaW5nIC5maWx0ZXJfY29sdW1uMSAuYnRuLWdyb3VwIHtcbiAgd2lkdGg6IDEwMCU7XG59XG4uZmlsdGVyaW5nIC5maWx0ZXJfY29sdW1uMSBsYWJlbCB7XG4gIHdpZHRoOiAxMDAlO1xuICBjb2xvcjogIzBDNDI1ZGRlO1xuICBib3JkZXI6IDFweCBzb2xpZCAjMEM0MjVkZGU7XG59XG4uZmlsdGVyaW5nIC5maWx0ZXJfY29sdW1uMSAuZHJvcGRvd24tbWVudSBsaSxcbi5maWx0ZXJpbmcgLmZpbHRlcl9jb2x1bW4xIC5kcm9wZG93bi1tZW51IGlucHV0IHtcbiAgcGFkZGluZzogOHB4O1xuICBjb2xvcjogIzU1NTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuLmZpbHRlcmluZyAuZmlsdGVyX2NvbHVtbjEgaW5wdXQge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbn1cbi5maWx0ZXJpbmcgLmZpbHRlcl9jb2x1bW4yIGkge1xuICBmb250LXdlaWdodDogYm9sZDtcbn1cbi5maWx0ZXJpbmcgLmZpbHRlcl9jb2x1bW4yIGxhYmVsIHtcbiAgY29sb3I6ICMwQzQyNWRkZTtcbiAgYm9yZGVyOiAycHggc29saWQgIzBDNDI1ZGRlO1xufVxuLmZpbHRlcmluZyAuZmlsdGVyX2NvbHVtbjIgbGFiZWwuZGF0ZTEge1xuICBtYXJnaW4tcmlnaHQ6IDVweDtcbn1cblxuQG1lZGlhIChtYXgtd2lkdGg6IDEwMjRweCkge1xuICAuY2FyZC1udW1iZXIge1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG4gIH1cbn1cblxuLnJvdyB7XG4gIG1hcmdpbi1ib3R0b206IDIycHg7XG59XG4ucm93Omxhc3QtY2hpbGQge1xuICBtYXJnaW4tYm90dG9tOiAwO1xufVxuLnJvdyAubXVsdGlwbGVfY2FyZHNfY29udGFpbmVyIHtcbiAgbWFyZ2luLWxlZnQ6IDIycHg7XG4gIHBhZGRpbmctYm90dG9tOiAwO1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufVxuQG1lZGlhIChtYXgtd2lkdGg6IDc2OHB4KSB7XG4gIC5yb3cgLm11bHRpcGxlX2NhcmRzX2NvbnRhaW5lciB7XG4gICAgbWFyZ2luLWxlZnQ6IDA7XG4gIH1cbn1cbi5yb3cgLm11bHRpcGxlX2NhcmRzX2NvbnRhaW5lciAubXVsdGlwbGVfY2FyZHMge1xuICBoZWlnaHQ6IDEwMCU7XG59XG4ucm93IC5tdWx0aXBsZV9jYXJkc19jb250YWluZXIgLm11bHRpcGxlX2NhcmRzIC5kYXNoYm9hcmQtY2FyZCB7XG4gIG1hcmdpbi1sZWZ0OiAwO1xuICBtYXJnaW4tYm90dG9tOiAyMnB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbn1cbi5yb3cgLm11bHRpcGxlX2NhcmRzX2NvbnRhaW5lciAubXVsdGlwbGVfY2FyZHMgLmRhc2hib2FyZC1jYXJkOmxhc3QtY2hpbGQge1xuICBtYXJnaW4tYm90dG9tOiAwICFpbXBvcnRhbnQ7XG59XG4ucm93IC5tdWx0aXBsZV9jYXJkc19jb250YWluZXIgLm11bHRpcGxlX2NhcmRzIC5kYXNoYm9hcmQtY2FyZC5iZXN0LWRheSAuYmVzdC1kYXlfbG9nbyB7XG4gIGJhY2tncm91bmQtcG9zaXRpb24teTogLTI5NXB4O1xuICB3aWR0aDogNTBweDtcbiAgaGVpZ2h0OiA0NXB4O1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xufVxuLnJvdyAubXVsdGlwbGVfY2FyZHNfY29udGFpbmVyIC5tdWx0aXBsZV9jYXJkcyAuZGFzaGJvYXJkLWNhcmQuYmVzdC1kYXkgLmRheSB7XG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XG4gIGNvbG9yOiAjN2M3ZTdkO1xuICBtYXJnaW46IDNweCAwO1xufVxuLnJvdyAubXVsdGlwbGVfY2FyZHNfY29udGFpbmVyIC5tdWx0aXBsZV9jYXJkcyAuZGFzaGJvYXJkLWNhcmQuYmVzdC1kYXkgLmRhdGUge1xuICBmb250LXdlaWdodDogbm9ybWFsO1xuICBjb2xvcjogIzdjN2U3ZDtcbiAgbWFyZ2luOiAwO1xufVxuLnJvdyAubXVsdGlwbGVfY2FyZHNfY29udGFpbmVyIC5tdWx0aXBsZV9jYXJkcyAuZGFzaGJvYXJkLWNhcmQudG9wLWl0ZW1zIHtcbiAgcGFkZGluZzogMTBweDtcbn1cbi5yb3cgLm11bHRpcGxlX2NhcmRzX2NvbnRhaW5lciAubXVsdGlwbGVfY2FyZHMgLmRhc2hib2FyZC1jYXJkLnRvcC1pdGVtcyAubWVkYWwge1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IC0yMDVweDtcbiAgd2lkdGg6IDMwcHg7XG4gIGhlaWdodDogNDBweDtcbn1cbi5yb3cgLm11bHRpcGxlX2NhcmRzX2NvbnRhaW5lciAubXVsdGlwbGVfY2FyZHMgLmRhc2hib2FyZC1jYXJkLnRvcC1pdGVtcyAudG9wX2l0ZW0ge1xuICBmb250LXNpemU6IDE0cHg7XG4gIGNvbG9yOiAjMEM0MjVkZGU7XG4gIG1hcmdpbi1ib3R0b206IDA7XG59XG4ucm93IC5tdWx0aXBsZV9jYXJkc19jb250YWluZXIgLm11bHRpcGxlX2NhcmRzIC5kYXNoYm9hcmQtY2FyZC50b3AtaXRlbXMgLnN0YXQge1xuICBoZWlnaHQ6IDMwcHg7XG59XG4ucm93IC5tdWx0aXBsZV9jYXJkc19jb250YWluZXIgLm11bHRpcGxlX2NhcmRzIC5kYXNoYm9hcmQtY2FyZC50b3AtaXRlbXMgLnN0YXQgcCB7XG4gIGNvbG9yOiAjN2M3ZTdkO1xuICBtYXJnaW46IDA7XG4gIGZvbnQtc2l6ZTogMTJweDtcbn1cbi5yb3cgLm11bHRpcGxlX2NhcmRzX2NvbnRhaW5lciAubXVsdGlwbGVfY2FyZHMgLmRhc2hib2FyZC1jYXJkLnRvcC1pdGVtcyAuc3RhdCBwOmZpcnN0LWNoaWxkIHtcbiAgZm9udC1zaXplOiAxMHB4O1xufVxuQG1lZGlhIChtYXgtd2lkdGg6IDEyODBweCkge1xuICAucm93IC50d28tY2FyZHMge1xuICAgIG1hcmdpbjogYXV0bztcbiAgICBvcmRlcjogMTtcbiAgfVxufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgYm9yZGVyOiBub25lO1xuICBib3gtc2hhZG93OiByZ2JhKDAsIDAsIDAsIDAuMikgMHB4IDBweCA4cHggMHB4O1xuICBtYXJnaW4tbGVmdDogMjJweDtcbiAgcGFkZGluZzogNnB4O1xuICBtYXJnaW4tYm90dG9tOiAyMHB4ICFpbXBvcnRhbnQ7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZCAudHJhc2gge1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IC0yMjVweDtcbiAgd2lkdGg6IDUwcHg7XG4gIGhlaWdodDogNjBweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQ6Zmlyc3QtY2hpbGQge1xuICBtYXJnaW46IDA7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZCAuY2FyZC10aXRsZSB7XG4gIGNvbG9yOiAjMEM0MjVkZGU7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBtYXJnaW46IDA7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZCAuY2FyZC10aXRsZS5zbWFsbCB7XG4gIGZvbnQtc2l6ZTogMTRweDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkIC5jYXJkLXRpdGxlLmxhcmdlIHtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQgLm1vcmUge1xuICBmb250LXNpemU6IDEwcHg7XG4gIGNvbG9yOiAjYTZkNGJkO1xuICBtYXJnaW46IDA7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZCAubW9yZSBpIHtcbiAgZm9udC1zaXplOiAxNnB4O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQgLnVzZXJzIHtcbiAgbWFyZ2luOiAxNXB4IDAgMDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkIC51c2VycyAuc3Vic2NyaXB0IHtcbiAgZm9udC1zaXplOiAxMHB4O1xuICBjb2xvcjogIzBDNDI1ZGRlO1xuICBtYXJnaW46IDA7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZCAudXNlcnMgYnV0dG9uIHtcbiAgbWFyZ2luLXJpZ2h0OiAzMHB4O1xuICBib3JkZXI6IDFweCBzb2xpZCAjMEM0MjVkZGU7XG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgcGFkZGluZzogM3B4IDVweDtcbiAgY29sb3I6ICMwQzQyNWRkZTtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkIC51c2VycyBidXR0b24gaSB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkIC51c2VycyAuZmlsdGVyZWQge1xuICBmb250LXNpemU6IDEycHg7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW4tdG9wOiA1cHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZCAudXNlcnMgLmZpbHRlcmVkIHA6Zmlyc3Qtb2YtdHlwZSB7XG4gIGNvbG9yOiAjMEM0MjVkZGU7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5waWNrVXAgaSB7XG4gIGFuaW1hdGlvbi10aW1pbmctZnVuY3Rpb246IGxpbmVhcjtcbiAgYW5pbWF0aW9uLW5hbWU6IHJlZnJlc2hpbmc7XG4gIGFuaW1hdGlvbi1kdXJhdGlvbjogMi41cztcbiAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogaW5maW5pdGU7XG4gIGNvbG9yOiAjMEM0MjVkZGU7XG59XG5AbWVkaWEgKG1heC13aWR0aDogMTI4MHB4KSB7XG4gIC5yb3cgLmRhc2hib2FyZC1jYXJkLnBpY2tVcCB7XG4gICAgbWFyZ2luLWxlZnQ6IDA7XG4gICAgcGFkZGluZy10b3A6IDI1cHg7XG4gIH1cbn1cbkBtZWRpYSAobWF4LXdpZHRoOiA3NjhweCkge1xuICAucm93IC5kYXNoYm9hcmQtY2FyZC5waWNrVXAge1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICB9XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5waWNrVXAgLmJhZyB7XG4gIGJhY2tncm91bmQtcG9zaXRpb24teTogLTQxNXB4O1xuICB3aWR0aDogNTBweDtcbiAgaGVpZ2h0OiA1MHB4O1xuICBtYXJnaW4tdG9wOiAyMHB4O1xufVxuQG1lZGlhIChtYXgtd2lkdGg6IDEyODBweCkge1xuICAucm93IC5kYXNoYm9hcmQtY2FyZC5waWNrVXAgLmJhZyB7XG4gICAgbWFyZ2luLXRvcDogMDtcbiAgfVxufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQucGlja1VwIC5jYXJkLXRpdGxlIHtcbiAgbWFyZ2luOiA1cHggMCA4cHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5waWNrVXAgLmZlZWRiYWNrIHtcbiAgbWFyZ2luOiAxMHB4IDAgMTRweDtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBjb2xvcjogIzdjN2U3ZDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLnBpY2tVcCAuY29udGVudCAudmFsdWUge1xuICBmb250LXNpemU6IDQ1cHg7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBjb2xvcjogIzdjN2U3ZDtcbiAgbWFyZ2luOiAwO1xuICBtYXJnaW4tYm90dG9tOiA1cHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5waWNrVXAgLmNvbnRlbnQgLnN1YnNjcmlwdCB7XG4gIGZvbnQtc2l6ZTogMTBweDtcbiAgY29sb3I6ICM3Mzc1NzRhYjtcbiAgbWFyZ2luLWJvdHRvbTogMjRweDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLnBpY2tVcCAuY29udGVudCAucmF0aW5nIHtcbiAgbWFyZ2luLXRvcDogLTEwcHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5yZXRlbnRpb25zIC5jYXJkX2hlYWRlciB7XG4gIG1hcmdpbjogMjVweCAwIDA7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5yZXRlbnRpb25zIC5jYXJkX2hlYWRlciAucmV0ZW50aW9ucyB7XG4gIGJhY2tncm91bmQtcG9zaXRpb24teTogLTE2M3B4O1xuICB3aWR0aDogNTBweDtcbiAgaGVpZ2h0OiA1MHB4O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQucmV0ZW50aW9ucyAuY2FyZF9oZWFkZXIgLmxvZ28ge1xuICBoZWlnaHQ6IDUwcHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5yZXRlbnRpb25zIC5jYXJkX2hlYWRlciAuY2FyZC10aXRsZSB7XG4gIGRpc3BsYXk6IGlubGluZTtcbiAgbWFyZ2luOiAwIDEycHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5yZXRlbnRpb25zIC5jb250ZW50IHtcbiAgbWF4LXdpZHRoOiA5NSUgIWltcG9ydGFudDtcbiAgcGFkZGluZy1ib3R0b206IDVweDtcbiAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICMwQzQyNWRkZTtcbiAgbWFyZ2luLWJvdHRvbTogNXB4O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQucmV0ZW50aW9ucyAuY29udGVudCBwIHtcbiAgbWFyZ2luOiA1cHggMDtcbiAgZm9udC1zaXplOiAxMnB4O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQucmV0ZW50aW9ucyAuY29udGVudCBzcGFuIHtcbiAgZm9udC1zaXplOiA5cHg7XG4gIGNvbG9yOiAjNzM3NTc0YWI7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5yZXRlbnRpb25zIC52aWV3LXJldGVudGlvbnMge1xuICBmb250LXNpemU6IDEwcHg7XG4gIGNvbG9yOiAjYTZkNGJkO1xuICBtYXJnaW46IDA7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5yZXRlbnRpb25zIC52aWV3LXJldGVudGlvbnMgaSB7XG4gIGZvbnQtc2l6ZTogMTRweDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLmFnZSB7XG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQuYWdlIC5jYXJkX2hlYWRlciB7XG4gIG1hcmdpbjogMzBweCAwIDA7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5hZ2UgLmNhcmRfaGVhZGVyIC5hZ2Uge1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IC0xMDVweDtcbiAgd2lkdGg6IDUwcHg7XG4gIGhlaWdodDogNTBweDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLmFnZSAuY2FyZF9oZWFkZXIgcCB7XG4gIGRpc3BsYXk6IGlubGluZTtcbiAgbWFyZ2luOiAwIDEycHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC5saWZlIHtcbiAgcGFkZGluZy10b3A6IDI1cHg7XG59XG5AbWVkaWEgKG1heC13aWR0aDogMTI4MHB4KSB7XG4gIC5yb3cgLmRhc2hib2FyZC1jYXJkLmxpZmUge1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICB9XG59XG5AbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgLnJvdyAuZGFzaGJvYXJkLWNhcmQubGlmZSB7XG4gICAgbWFyZ2luLWxlZnQ6IDA7XG4gIH1cbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLmxpZmUgLmN1c3RvbWVyIHtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbi15OiAtNDVweDtcbiAgd2lkdGg6IDUwcHg7XG4gIGhlaWdodDogNTBweDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLmxpZmUgcCB7XG4gIG1hcmdpbjogNXB4IDA7XG59XG5AbWVkaWEgKG1heC13aWR0aDogMTI4MHB4KSB7XG4gIC5yb3cgLmRhc2hib2FyZC1jYXJkLnRvcC1jdXN0b21lcnMge1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICB9XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC50b3AtY3VzdG9tZXJzIC5jdXN0b21lcnMge1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IDA7XG4gIHdpZHRoOiA3NXB4O1xuICBoZWlnaHQ6IDUwcHg7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC50b3AtY3VzdG9tZXJzIC5jYXJkLXRpdGxlIHtcbiAgbWFyZ2luOiA1cHggMDtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLnRvcC1jdXN0b21lcnMgdWwge1xuICBsaXN0LXN0eWxlOiBub25lO1xuICBwYWRkaW5nOiAwO1xuICBtYXJnaW46IDA7XG4gIHdpZHRoOiA5MCU7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC50b3AtY3VzdG9tZXJzIHVsIGxpIHtcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNmMWYxZjE7XG4gIHBhZGRpbmc6IDVweCAwO1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQudG9wLWN1c3RvbWVycyB1bCBsaTpsYXN0LWNoaWxkIHtcbiAgYm9yZGVyOiAwO1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQudG9wLWN1c3RvbWVycyB1bCBsaSBpbWcge1xuICBoZWlnaHQ6IDI1cHg7XG4gIG9wYWNpdHk6IDAuNTtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLnRvcC1jdXN0b21lcnMgdWwgbGkgcCB7XG4gIGRpc3BsYXk6IGlubGluZTtcbiAgY29sb3I6ICM3Mzc1NzRhYjtcbiAgbWFyZ2luOiAwIDVweDtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBsaW5lLWhlaWdodDogMS41O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQudG9wLWN1c3RvbWVycyB1bCBsaSBpIHtcbiAgY29sb3I6ICNhNmQ0YmQ7XG59XG4ucm93IC5kYXNoYm9hcmQtY2FyZC50b3AtY3VzdG9tZXJzIC5idXR0b25zIHtcbiAgZm9udC1zaXplOiAxMHB4O1xufVxuLnJvdyAuZGFzaGJvYXJkLWNhcmQudG9wLWN1c3RvbWVycyAuYnV0dG9ucyBidXR0b24ge1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkICMwQzQyNWRkZTtcbiAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgcGFkZGluZzogM3B4IDVweDtcbiAgY29sb3I6ICMwQzQyNWRkZTtcbn1cbi5yb3cgLmRhc2hib2FyZC1jYXJkLnRvcC1jdXN0b21lcnMgLmJ1dHRvbnMgYnV0dG9uOmZpcnN0LW9mLXR5cGUge1xuICBib3JkZXI6IDFweCBzb2xpZCBvcmFuZ2U7XG4gIGNvbG9yOiBvcmFuZ2U7XG4gIG1hcmdpbi1yaWdodDogNXB4O1xufVxuXG5hcHAtc3RhY2tlZC12ZXJ0aWNhbC1iYXIge1xuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoLTM1cHgpO1xufVxuXG4uaWNvbiB7XG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybCgvYXNzZXRzL2ltYWdlcy9pY29ucy0wMy5zdmcpO1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXg6IDA7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG59XG5cbkBrZXlmcmFtZXMgcmVmcmVzaGluZyB7XG4gIGZyb20ge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDApO1xuICB9XG4gIHRvIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xuICB9XG59IiwiJGJsdWVDb2xvcjogIzBDNDI1ZGRlO1xuJGdyYXlDb2xvcjogIzczNzU3NGFiO1xuJGdyYXlDb2xvcjI6ICM3YzdlN2Q7XG4kbGlnaHRCbHVlOiAjYTZkNGJkO1xuJG1hcmdpbkJldHdlZW5DYXJkczogMjJweDtcbiRheGlzRm9udFNpemU6IDEycHg7XG4kc21hbGxBeGlzRm9udFNpemU6IDEwcHg7XG4kYm9yZGVyOiAjZjFmMWYxO1xuIl19 */"]
     });
     /*@__PURE__*/
@@ -55478,7 +55077,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           styleUrls: ['./dashboard.component.scss']
         }]
       }], function () {
-        return [];
+        return [{
+          type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__["TranslateService"]
+        }];
       }, null);
     })();
     /***/

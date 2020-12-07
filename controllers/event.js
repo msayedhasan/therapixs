@@ -90,14 +90,17 @@ exports.addOne = async(req, res, next) => {
             let name;
             let description;
             let voting = false;
+            let public = false;
             if (typeof req.body.name === "string") {
                 name = req.body.name;
                 description = req.body.description;
                 voting = req.body.voting;
+                public = req.body.public;
             } else {
                 name = JSON.parse(req.body.name);
                 description = JSON.parse(req.body.description);
                 voting = JSON.parse(req.body.voting);
+                public = JSON.parse(req.body.public);
             }
 
             const event = new Event({
@@ -151,14 +154,17 @@ exports.addOne = async(req, res, next) => {
             let name;
             let description;
             let voting = false;
+            let public = false;
             if (typeof req.body.name === "string") {
                 name = req.body.name;
                 description = req.body.description;
                 voting = req.body.voting;
+                public = req.body.public;
             } else {
                 name = JSON.parse(req.body.name);
                 description = JSON.parse(req.body.description);
                 voting = JSON.parse(req.body.voting);
+                public = JSON.parse(req.body.public);
             }
 
             const event = new Event({
@@ -168,6 +174,7 @@ exports.addOne = async(req, res, next) => {
                 name: name,
                 description: description,
                 voting: voting,
+                public: public,
             });
 
             if (event.public === true) {

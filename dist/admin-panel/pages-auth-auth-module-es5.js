@@ -318,7 +318,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.authService.postForm('auth/login', form).subscribe(function (res) {
             if (res) {
-              if (!res['admin'] && !res['owner']) {
+              if (!res['admin'] && !res['owner'] && !res['shipper']) {
                 _this2.toastr.error('Not authorized', 'Error');
               }
 

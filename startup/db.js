@@ -4,7 +4,6 @@ const winston = require("winston");
 // const MONGODB_URI = `mongodb://localhost:27017/motobike`;
 // const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.ouhxh.mongodb.net/test`;
 const MONGODB_URI = `mongodb+srv://mohamedsayed:mohamedsayed@cluster0.ouhxh.mongodb.net/test`;
-// const MONGODB_URI = `mongodb+srv://mohamedsayed:mohamedsayed@motobar.wkdho.mongodb.net/test`;
 
 
 module.exports = () => {

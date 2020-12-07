@@ -11,36 +11,46 @@ const router = express.Router();
 router.get("/", passportJWT, categoryController.getAll);
 
 router.get(
-    "/getBaseCategories",
-    passportJWT,
-    categoryController.getBaseCategories
+  "/getBaseCategories",
+  passportJWT,
+  categoryController.getBaseCategories
 );
 
 router.get("/:categoryId", passportJWT, categoryController.getOne);
 
-router.get("/:categoryId/getCategoryActivatedProducts", passportJWT, categoryController.getCategoryActivatedProducts);
-
-router.post(
-    "/",
-    passportJWT,
-    awsUpload.single("image"),
-    categoryController.addOne
+router.get(
+  "/:categoryId/getCategoryActivatedProducts",
+  passportJWT,
+  categoryController.getCategoryActivatedProducts
 );
 
 router.post(
-    "/:categoryId",
-    passportJWT,
-    awsUpload.single("image"),
-    categoryController.addSubCategory
+  "/",
+  passportJWT,
+  awsUpload.single("image"),
+  categoryController.addOne
+);
+
+router.post(
+  "/:categoryId",
+  passportJWT,
+  awsUpload.single("image"),
+  categoryController.addSubCategory
 );
 
 router.put(
-    "/:categoryId",
-    passportJWT,
-    awsUpload.single("image"),
-    categoryController.updateOne
+  "/:categoryId",
+  passportJWT,
+  awsUpload.single("image"),
+  categoryController.updateOne
 );
 
 router.delete("/:categoryId", passportJWT, categoryController.deleteOne);
+
+router.post(
+  "/discount/add/:categoryId",
+  passportJWT,
+  categoryController.addDiscount
+);
 
 module.exports = router;

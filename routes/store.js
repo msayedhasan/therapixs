@@ -15,17 +15,17 @@ router.get("/", passportJWT, storeController.getAll);
 router.get("/:storeId", passportJWT, storeController.getOne);
 
 router.post(
-    "/",
-    passportJWT,
-    awsUpload.single("image"),
-    storeController.addOne
+  "/",
+  passportJWT,
+  awsUpload.single("image"),
+  storeController.addOne
 );
 
 router.put(
-    "/:storeId",
-    passportJWT,
-    awsUpload.single("image"),
-    storeController.updateOne
+  "/:storeId",
+  passportJWT,
+  awsUpload.single("image"),
+  storeController.updateOne
 );
 
 router.delete("/:storeId", passportJWT, storeController.deleteOne);
@@ -39,5 +39,21 @@ router.get("/lock/:storeId", passportJWT, storeController.lockOne);
 router.get("/unlock/:storeId", passportJWT, storeController.unlockOne);
 
 router.get("/collect/:storeId", passportJWT, storeController.collect);
+
+router.post("/discount/add/:storeId", passportJWT, storeController.addDiscount);
+
+router.delete(
+  "/discount/delete/:storeId",
+  passportJWT,
+  storeController.deleteDiscount
+);
+
+router.post("/profit/add/:storeId", passportJWT, storeController.addProfit);
+
+router.delete(
+  "/profit/delete/:storeId",
+  passportJWT,
+  storeController.deleteProfit
+);
 
 module.exports = router;

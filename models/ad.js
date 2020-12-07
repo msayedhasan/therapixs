@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const adSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
+  discount: {
+    type: Schema.Types.ObjectId,
+    ref: "Discount",
+    default: undefined,
   },
   image: {
     type: String,

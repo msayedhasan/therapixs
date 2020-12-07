@@ -41,6 +41,19 @@ class ProductAttribute {
 
 /***/ }),
 
+/***/ "./src/app/models/product.ts":
+/*!***********************************!*\
+  !*** ./src/app/models/product.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+class Product {
+}
+
+
+/***/ }),
+
 /***/ "./src/app/models/store.ts":
 /*!*********************************!*\
   !*** ./src/app/models/store.ts ***!
@@ -116,6 +129,12 @@ class CategoriesService {
     }
     addSubCategory(form, parentId) {
         return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/category/${parentId}`, form);
+    }
+    addDiscount(form, categoryId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/category/discount/add/${categoryId}`, form);
+    }
+    addProfit(form, categoryId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/category/profit/add/${categoryId}`, form);
     }
 }
 CategoriesService.ɵfac = function CategoriesService_Factory(t) { return new (t || CategoriesService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };
@@ -314,6 +333,86 @@ ProductAttributesService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
 
 /***/ }),
 
+/***/ "./src/app/pages/products/products.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/pages/products/products.service.ts ***!
+  \****************************************************/
+/*! exports provided: ProductsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsService", function() { return ProductsService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _models_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/product */ "./src/app/models/product.ts");
+/* harmony import */ var _models_product__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_models_product__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _config_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config/variables */ "./src/app/config/variables.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+
+
+
+
+
+class ProductsService {
+    constructor(http) {
+        this.http = http;
+        this.products = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+    }
+    getAll() {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product').subscribe((res) => {
+            if (res['data']) {
+                this.products.next(res['data']);
+            }
+        });
+    }
+    getOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/${itemId}`);
+    }
+    addOne(form) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product', form);
+    }
+    updateOne(form, itemId) {
+        return this.http.put(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/${itemId}`, form);
+    }
+    deleteOne(itemId) {
+        return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/${itemId}`);
+    }
+    addProductToStore(productId, storeId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/addProductToStore/${productId}/${storeId}`, {});
+    }
+    activateOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/activate/${itemId}`);
+    }
+    deactivateOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/deactivate/${itemId}`);
+    }
+    soldOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/sold/${itemId}`);
+    }
+    availableOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/available/${itemId}`);
+    }
+    addDiscount(form, itemId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/discount/add/${itemId}`, form);
+    }
+    deleteDiscount(itemId) {
+        return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/discount/delete/${itemId}`);
+    }
+}
+ProductsService.ɵfac = function ProductsService_Factory(t) { return new (t || ProductsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };
+ProductsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: ProductsService, factory: ProductsService.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ProductsService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root',
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "./src/app/pages/stores/stores.service.ts":
 /*!************************************************!*\
   !*** ./src/app/pages/stores/stores.service.ts ***!
@@ -378,6 +477,18 @@ class StoresService {
     collect(itemId) {
         return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/store/collect/${itemId}`);
     }
+    addDiscount(form, itemId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/store/discount/add/${itemId}`, form);
+    }
+    deleteDiscount(itemId) {
+        return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/store/discount/delete/${itemId}`);
+    }
+    addProfit(form, itemId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/store/profit/add/${itemId}`, form);
+    }
+    deleteProfit(itemId) {
+        return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/store/profit/delete/${itemId}`);
+    }
 }
 StoresService.ɵfac = function StoresService_Factory(t) { return new (t || StoresService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };
 StoresService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: StoresService, factory: StoresService.ɵfac, providedIn: 'root' });
@@ -387,6 +498,72 @@ StoresService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInj
                 providedIn: 'root',
             }]
     }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "./src/app/pages/users/users.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/pages/users/users.service.ts ***!
+  \**********************************************/
+/*! exports provided: UsersService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersService", function() { return UsersService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _config_variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config/variables */ "./src/app/config/variables.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+
+
+
+
+class UsersService {
+    constructor(http) {
+        this.http = http;
+        this.users = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+    }
+    getAll() {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + '/user').subscribe((res) => {
+            this.users.next(res['data']);
+        });
+    }
+    addShipper(userId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/shipper/addShipper/${userId}`, {});
+    }
+    deleteShipper(userId) {
+        return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/shipper/deleteShipper/${userId}`);
+    }
+    addLeader(userId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/leader/addLeader/${userId}`, {});
+    }
+    deleteLeader(userId) {
+        return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/leader/deleteLeader/${userId}`);
+    }
+    addOwner(userId) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/owner/addOwner/${userId}`, {});
+    }
+    deleteOwner(userId) {
+        return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/owner/deleteOwner/${userId}`);
+    }
+    lockOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/user/lock/${itemId}`);
+    }
+    unlockOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + `/user/unlock/${itemId}`);
+    }
+}
+UsersService.ɵfac = function UsersService_Factory(t) { return new (t || UsersService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
+UsersService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: UsersService, factory: UsersService.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UsersService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root',
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }]; }, null); })();
 
 
 /***/ })

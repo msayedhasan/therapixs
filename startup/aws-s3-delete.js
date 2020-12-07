@@ -7,7 +7,6 @@ const s3 = new aws.S3({
 });
 
 exports.delete = (fileUrl) => {
-    console.log(fileUrl);
     const params = {
         Bucket: "motobar-images",
         Key: fileUrl && fileUrl.includes("amazonaws.com/") ?
