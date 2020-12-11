@@ -257,6 +257,7 @@ class NotificationsComponent {
             this.tableElements = this.items;
             if (FilterRecord !== '') {
                 this.tableElements = this.items.filter((item) => {
+                    var _a;
                     if (FilterRecord.toLowerCase() === 'owner') {
                         return item.owner;
                     }
@@ -267,8 +268,7 @@ class NotificationsComponent {
                         return item.leader;
                     }
                     else {
-                        return (item.name.toLowerCase().includes(FilterRecord) ||
-                            item.phone.toString().includes(FilterRecord));
+                        return (item.name.toLowerCase().includes(FilterRecord) || ((_a = item.phone) === null || _a === void 0 ? void 0 : _a.toString().includes(FilterRecord)));
                     }
                 });
             }
