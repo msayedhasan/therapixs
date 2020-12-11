@@ -665,8 +665,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "selectProductAttribute",
         value: function selectProductAttribute(event, propInd, attIndex) {
-          console.log(event);
-
           if (!this.properties[propInd]) {
             this.properties[propInd] = [];
           }
@@ -676,12 +674,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
 
           this.properties[propInd][attIndex] = event;
+          console.log(this.properties);
         }
       }, {
         key: "selectProductAttributeText",
         value: function selectProductAttributeText(event, propInd, attIndex) {
-          console.log(event.target.value);
-
           if (!this.properties[propInd]) {
             this.properties[propInd] = [];
           }
@@ -695,6 +692,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             nameEn: event.target.value,
             nameAr: ''
           };
+          console.log(this.properties);
         } // End select dropdown
 
       }, {
@@ -1111,24 +1109,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       };
     };
 
-    function EditProductComponent_ng_container_14_ng_container_4_ng_container_1_Template(rf, ctx) {
+    function EditProductComponent_ng_container_14_ng_container_4_ng_container_1_ng_container_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r15 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "app-select", 21);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function EditProductComponent_ng_container_14_ng_container_4_ng_container_1_Template_app_select_itemselected_1_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function EditProductComponent_ng_container_14_ng_container_4_ng_container_1_ng_container_1_Template_app_select_itemselected_1_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r15);
 
-          var attIndex_r11 = ctx.index;
+          var attIndex_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
 
           var propInd_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).index;
 
-          var ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r14 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r12.selectProductAttribute($event, propInd_r3, attIndex_r11);
+          return ctx_r14.selectProductAttribute($event, propInd_r3, attIndex_r11);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1137,16 +1135,111 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
 
       if (rf & 2) {
-        var att_r10 = ctx.$implicit;
-        var attIndex_r11 = ctx.index;
+        var ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+        var attIndex_r11 = ctx_r18.index;
+        var att_r10 = ctx_r18.$implicit;
 
         var propInd_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).index;
 
-        var ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](7, _c0, attIndex_r11 % 2 != 0))("label", att_r10.get("name").get("en").value)("fieldId", att_r10.get("name").get("en").value)("ItemsList", ctx_r9.attributesDropDown[attIndex_r11].values)("fieldClass", "col-18_md-24")("required", true)("initialSelectedItem", ctx_r9.initialSelectedProductAttribute[propInd_r3][attIndex_r11]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](7, _c0, attIndex_r11 % 2 != 0))("label", att_r10.get("name").get("en").value)("fieldId", att_r10.get("name").get("en").value)("initialSelectedItem", ctx_r12.initialSelectedProductAttribute[propInd_r3][attIndex_r11])("ItemsList", ctx_r12.attributesDropDown[attIndex_r11].values)("fieldClass", "col-18_md-24")("required", true);
+      }
+    }
+
+    function EditProductComponent_ng_container_14_ng_container_4_ng_container_1_ng_container_2_Template(rf, ctx) {
+      if (rf & 1) {
+        var _r21 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 22);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 23);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "label", 24);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 25);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "input", 26);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("input", function EditProductComponent_ng_container_14_ng_container_4_ng_container_1_ng_container_2_Template_input_input_6_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r21);
+
+          var attIndex_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
+
+          var propInd_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).index;
+
+          var ctx_r20 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+          return ctx_r20.selectProductAttributeText($event, propInd_r3, attIndex_r11);
+        });
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
+      }
+
+      if (rf & 2) {
+        var ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+        var attIndex_r11 = ctx_r24.index;
+        var att_r10 = ctx_r24.$implicit;
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](6, _c0, attIndex_r11 % 2 != 0));
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("for", att_r10.get("name").get("en").value);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](att_r10.get("name").get("en").value);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("id", att_r10.get("name").get("en").value)("placeholder", att_r10.get("name").get("en").value)("tooltip", att_r10.get("name").get("en").value);
+      }
+    }
+
+    function EditProductComponent_ng_container_14_ng_container_4_ng_container_1_Template(rf, ctx) {
+      if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, EditProductComponent_ng_container_14_ng_container_4_ng_container_1_ng_container_1_Template, 2, 9, "ng-container", 12);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, EditProductComponent_ng_container_14_ng_container_4_ng_container_1_ng_container_2_Template, 7, 8, "ng-container", 12);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
+      }
+
+      if (rf & 2) {
+        var attIndex_r11 = ctx.index;
+
+        var ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r9.attributesDropDown[attIndex_r11].values.length > 0);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r9.attributesDropDown[attIndex_r11].values.length === 0);
       }
     }
 
@@ -1154,7 +1247,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, EditProductComponent_ng_container_14_ng_container_4_ng_container_1_Template, 2, 9, "ng-container", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, EditProductComponent_ng_container_14_ng_container_4_ng_container_1_Template, 3, 2, "ng-container", 11);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
       }
@@ -1207,18 +1300,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function EditProductComponent_ng_container_15_Template(rf, ctx) {
       if (rf & 1) {
-        var _r18 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r27 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 27);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EditProductComponent_ng_container_15_Template_button_click_1_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r27);
 
-          var ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r26 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r17.addProperty();
+          return ctx_r26.addProperty();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Add property ");
@@ -1292,8 +1385,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.spinner.show();
           this.productsService.getOne(id).subscribe(function (res) {
-            console.log(res);
-
             _this5.getCategory(res['data']['category']._id);
 
             _this5.toastr.info(res['message'], 'Info');
@@ -1314,6 +1405,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               var propertyControl = _this5.form.get('properties');
 
               propertyControl.push(_this5.fb.group({
+                _id: [''],
                 price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                 qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                 productAttributes: _this5.fb.array([])
@@ -1328,7 +1420,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   _this5.properties[propIndex][attIndex] = [];
                 }
 
-                _this5.properties[propIndex][attIndex] = res['data']['properties'][propIndex]['productAttributes'][attIndex];
+                _this5.properties[propIndex][attIndex] = {
+                  _id: res['data']['properties'][propIndex]['productAttributes'][attIndex].value._id,
+                  nameEn: res['data']['properties'][propIndex]['productAttributes'][attIndex].value.en,
+                  nameAr: res['data']['properties'][propIndex]['productAttributes'][attIndex].value.ar
+                }; // this.properties[propIndex][attIndex] =
+                //   res['data']['properties'][propIndex]['productAttributes'][
+                //     attIndex
+                //   ];
               }
             }
 
@@ -1339,16 +1438,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             _this5.toastr.error(error.error.message, 'Error'); // this.error.next(error.error.message);
 
           });
-          console.log(this.form);
           this.spinner.hide();
         }
       }, {
         key: "addProperty",
         value: function addProperty() {
+          this.initialSelectedProductAttribute.push([]);
           var properties = this.form.get('properties');
 
           if (properties['controls'][properties.length - 1].valid) {
             properties.push(this.fb.group({
+              _id: [''],
               price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
               qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
               productAttributes: this.fb.array([])
@@ -1444,18 +1544,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               var att = attributes['controls'][attIndex];
 
               if (this.properties[propIndex][attIndex]) {
-                att.get('value').get('_id').patchValue(this.properties[propIndex][attIndex].value._id);
-                att.get('value').get('en').patchValue(this.properties[propIndex][attIndex].value.en);
-                att.get('value').get('ar').patchValue(this.properties[propIndex][attIndex].value.ar);
+                att.get('value').get('_id').patchValue(this.properties[propIndex][attIndex]._id);
+                att.get('value').get('en').patchValue(this.properties[propIndex][attIndex].nameEn);
+                att.get('value').get('ar').patchValue(this.properties[propIndex][attIndex].nameAr);
 
                 if (!this.initialSelectedProductAttribute[propIndex]) {
                   this.initialSelectedProductAttribute[propIndex] = [];
                 }
 
                 this.initialSelectedProductAttribute[propIndex][attIndex] = {
-                  _id: this.properties[propIndex][attIndex].value._id,
-                  nameEn: this.properties[propIndex][attIndex].value.en,
-                  nameAr: this.properties[propIndex][attIndex].value.ar
+                  _id: this.properties[propIndex][attIndex]._id,
+                  nameEn: this.properties[propIndex][attIndex].nameEn,
+                  nameAr: this.properties[propIndex][attIndex].nameAr
                 };
               }
             }
@@ -1477,8 +1577,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.properties[propInd][attIndex] = event;
         }
       }, {
+        key: "selectProductAttributeText",
+        value: function selectProductAttributeText(event, propInd, attIndex) {
+          if (!this.properties[propInd]) {
+            this.properties[propInd] = [];
+          }
+
+          if (!this.properties[propInd][attIndex]) {
+            this.properties[propInd][attIndex] = [];
+          }
+
+          this.properties[propInd][attIndex] = {
+            _id: "".concat(propInd, " ff ").concat(attIndex),
+            nameEn: event.target.value,
+            nameAr: ''
+          };
+        }
+      }, {
         key: "onSubmit",
-        value: function onSubmit(formValue) {
+        value: function onSubmit() {
           var _this7 = this;
 
           this.spinner.show(); // // // Start product attributes
@@ -1490,9 +1607,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             for (var i = 0; i < attributes['controls'].length; i++) {
               var att = attributes['controls'][i];
-              att.get('value').get('_id').patchValue(this.properties[index][i]._id);
-              att.get('value').get('en').patchValue(this.properties[index][i].nameEn);
-              att.get('value').get('ar').patchValue(this.properties[index][i].nameAr);
+
+              if (this.properties[index]) {
+                if (this.properties[index][i]) {
+                  att.get('value').get('_id').patchValue(this.properties[index][i]._id);
+                  att.get('value').get('en').patchValue(this.properties[index][i].nameEn);
+                  att.get('value').get('ar').patchValue(this.properties[index][i].nameAr);
+                }
+              }
             }
 
             attributes.patchValue(attributes.controls);
@@ -1502,19 +1624,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           var formData = new FormData();
 
-          for (var key in formValue) {
+          for (var key in this.form.value) {
             if (key === 'photos') {
               for (var _i2 = 0; _i2 < this.form.value[key].length; _i2++) {
                 formData.append(key, this.form.value[key][_i2]);
               }
             } else {
               // contains object
-              formData.append(key, JSON.stringify(formValue[key]));
+              formData.append(key, JSON.stringify(this.form.value[key]));
             }
           }
 
           this.productsService.updateOne(formData, this.productId).subscribe(function (res) {
-            console.log(res);
             _this7.originalPhotos = []; // this.form.reset();
 
             _this7.toastr.info(res['message'], 'Info');
@@ -1542,7 +1663,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selectors: [["app-edit-product"]],
       decls: 21,
       vars: 20,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "initialPhotos", "control"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-24", 2, "margin-bottom", "15px"], [4, "ngFor", "ngForOf"], [4, "ngIf"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"], ["type", "number", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], ["type", "number", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], [1, "col-24", 2, "height", "2px", "background-color", "#e9e9e9", "margin", "10px"], [1, "col-24", "actions"], ["tooltip", "Remove property", 1, "material-icons", 2, "cursor", "pointer", 3, "click"], [1, "col-11_sm-24", 3, "ngClass", "label", "fieldId", "ItemsList", "fieldClass", "required", "initialSelectedItem", "itemselected"], ["type", "submit", 1, "btn", "color1", 3, "disabled", "click"]],
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", "grid-center-noGutter", "content"], [1, "title", "col-24", "grid-center"], [1, "form", "col-23"], [1, "grid-middle-noGutter"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "initialPhotos", "control"], ["type", "text", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "tooltipMsg", "control", "fieldClass"], ["type", "text", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "placeholder", "tooltipMsg", "control", "fieldClass"], [1, "col-24", 2, "margin-bottom", "15px"], [4, "ngFor", "ngForOf"], [4, "ngIf"], [1, "grid-right"], ["type", "submit", 1, "btn", "col-3_sm-5_xs-6", "color1", "round", 3, "disabled", "click"], ["type", "button", 1, "btn", "col-3_sm-5_xs-6", "color2", "round", 3, "routerLink"], ["type", "number", 1, "col-11_sm-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], ["type", "number", 1, "col-11_sm-24", "grid-right", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], [1, "col-24", 2, "height", "2px", "background-color", "#e9e9e9", "margin", "10px"], [1, "col-24", "actions"], ["tooltip", "Remove property", 1, "material-icons", 2, "cursor", "pointer", 3, "click"], [1, "col-11_sm-24", 3, "ngClass", "label", "fieldId", "initialSelectedItem", "ItemsList", "fieldClass", "required", "itemselected"], [1, "form-group", "col-11_sm-24", "grid-center-middle-noGutter"], [1, "col_sm-24", "grid_sm-noGutter", 3, "ngClass"], [3, "for"], [1, "col-18_md-24", "grid"], ["type", "text", "autocomplete", "off", "placement", "top", 1, "form-control", 3, "id", "placeholder", "tooltip", "input"], ["type", "submit", 1, "btn", "color1", 3, "disabled", "click"]],
       template: function EditProductComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -1594,7 +1715,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "button", 14);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EditProductComponent_Template_button_click_17_listener() {
-            return ctx.onSubmit(ctx.form.value);
+            return ctx.onSubmit();
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, " Submit ");
@@ -1974,7 +2095,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](item_r41.properties[0].price);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](item_r41.properties[0] == null ? null : item_r41.properties[0].price);
       }
     }
 

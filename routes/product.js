@@ -38,6 +38,8 @@ router.post(
   productController.appAddOne
 );
 
+router.get("/bestSelling", passportJWT, productController.getBestSelling);
+
 router.get("/:productId", passportJWT, productController.getOne);
 
 router.post("/addReview/:productId", passportJWT, productController.addReview);

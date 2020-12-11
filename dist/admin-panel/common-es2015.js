@@ -28,6 +28,19 @@ class Group {
 
 /***/ }),
 
+/***/ "./src/app/models/order.ts":
+/*!*********************************!*\
+  !*** ./src/app/models/order.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+class Order {
+}
+
+
+/***/ }),
+
 /***/ "./src/app/models/product-attribute.ts":
 /*!*********************************************!*\
   !*** ./src/app/models/product-attribute.ts ***!
@@ -205,6 +218,62 @@ class GroupsService {
 GroupsService.ɵfac = function GroupsService_Factory(t) { return new (t || GroupsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };
 GroupsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: GroupsService, factory: GroupsService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](GroupsService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root',
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "./src/app/pages/orders/orders.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/pages/orders/orders.service.ts ***!
+  \************************************************/
+/*! exports provided: OrdersService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersService", function() { return OrdersService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _models_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/order */ "./src/app/models/order.ts");
+/* harmony import */ var _models_order__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_models_order__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _config_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config/variables */ "./src/app/config/variables.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+
+
+
+
+
+class OrdersService {
+    constructor(http) {
+        this.http = http;
+        this.orders = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+    }
+    getAll() {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/order').subscribe((res) => {
+            if (res['data']) {
+                this.orders.next(res['data']);
+            }
+        });
+    }
+    confirmOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/order/confirmOne/${itemId}`);
+    }
+    shipOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/order/shipOne/${itemId}`);
+    }
+    deliverOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/order/deliverOne/${itemId}`);
+    }
+}
+OrdersService.ɵfac = function OrdersService_Factory(t) { return new (t || OrdersService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };
+OrdersService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: OrdersService, factory: OrdersService.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](OrdersService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: 'root',
@@ -399,6 +468,9 @@ class ProductsService {
     }
     deleteDiscount(itemId) {
         return this.http.delete(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/discount/delete/${itemId}`);
+    }
+    bestSelling() {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/bestSelling`);
     }
 }
 ProductsService.ɵfac = function ProductsService_Factory(t) { return new (t || ProductsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };

@@ -209,7 +209,6 @@ exports.verifyOtp = async (req, res, next) => {
 
 exports.resendOtp = async (req, res, next) => {
   const phone = parseInt(req.body.phone);
-  const otp = parseInt(req.body.otp);
   try {
     // check if user logged in with phone or local email
     let user = await User.findOne({
@@ -217,11 +216,6 @@ exports.resendOtp = async (req, res, next) => {
     });
     if (!user) {
       const error = new Error("user not found");
-      error.statusCode = 400;
-      throw error;
-    }
-    if (user.otp !== otp) {
-      const error = new Error("Invalid OTP");
       error.statusCode = 400;
       throw error;
     }

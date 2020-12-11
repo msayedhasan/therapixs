@@ -1091,7 +1091,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     if (FilterRecord !== '') {
                       this.tableElements = this.items.filter(function (item) {
-                        return item.name.toLowerCase().includes(FilterRecord) || item.phone.toString().includes(FilterRecord);
+                        if (FilterRecord.toLowerCase() === 'owner') {
+                          return item.owner;
+                        } else if (FilterRecord.toLowerCase() === 'shipper') {
+                          return item.shipper;
+                        } else if (FilterRecord.toLowerCase() === 'president') {
+                          return item.leader;
+                        } else {
+                          return item.name.toLowerCase().includes(FilterRecord) || item.phone.toString().includes(FilterRecord);
+                        }
                       });
                     }
 

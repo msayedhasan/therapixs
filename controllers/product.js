@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const ProductProperty = require("../models/productProperty");
 const Category = require("../models/category");
 const Store = require("../models/store");
 const Discount = require("../models/discount");
@@ -15,6 +16,10 @@ exports.getAll = async (req, res, next) => {
     if (loggedInUser.admin) {
       let products = await Product.find()
         .populate({
+          path: "properties",
+          model: "productProperty",
+        })
+        .populate({
           path: "store",
           model: "Store",
         })
@@ -29,6 +34,10 @@ exports.getAll = async (req, res, next) => {
     } else if (loggedInUser.owner) {
       if (loggedInUser.store) {
         let products = await Product.find({ store: loggedInUser.store })
+          .populate({
+            path: "properties",
+            model: "productProperty",
+          })
           .populate({
             path: "store",
             model: "Store",
@@ -65,6 +74,10 @@ exports.getOne = async (req, res, next) => {
   const productId = req.params.productId;
   try {
     const product = await Product.findById(productId)
+      .populate({
+        path: "properties",
+        model: "productProperty",
+      })
       .populate({
         path: "store",
         model: "Store",
@@ -147,6 +160,19 @@ exports.addOne = async (req, res, next) => {
       throw error;
     }
 
+    let propertiesIds = [];
+
+    for (let index = 0; index < properties.length; index++) {
+      const productProperty = new ProductProperty({
+        price: properties[index].price,
+        qty: properties[index].qty,
+        productAttributes: properties[index].productAttributes,
+      });
+
+      await productProperty.save();
+      propertiesIds.push(productProperty._id);
+    }
+
     const product = new Product({
       photos: photos,
       creator: loggedInUser._id,
@@ -158,8 +184,22 @@ exports.addOne = async (req, res, next) => {
         en: categoryEn,
         ar: categoryAr,
       },
-      properties: properties,
+      properties: propertiesIds,
     });
+
+    // const product = new Product({
+    //   photos: photos,
+    //   creator: loggedInUser._id,
+    //   createdAt: Date.now(),
+    //   name: name,
+    //   description: description,
+    //   category: {
+    //     _id: categoryId,
+    //     en: categoryEn,
+    //     ar: categoryAr,
+    //   },
+    //   properties: properties,
+    // });
 
     if (
       category.discountType !== "" ||
@@ -330,15 +370,59 @@ exports.updateOne = async (req, res, next) => {
     product.name = name;
     product.description = description;
     product.updatedAt = Date.now();
-    product.properties = properties;
 
-    //////////////////////////
+    if (product.properties.length > properties.length) {
+      for (let index = 0; index < product.properties.length; index++) {
+        let obj = properties.find(
+          (e) => e._id === product.properties[index].toString()
+        );
+        if (!obj) {
+          const prodProp = await ProductProperty.findById(
+            product.properties[index]
+          );
+          if (prodProp) {
+            await ProductProperty.findByIdAndDelete(prodProp);
+          }
+          product.properties.pull(product.properties[index]);
+        }
+      }
+    }
+    for (let index = 0; index < properties.length; index++) {
+      if (properties[index]._id) {
+        const prodProp = await ProductProperty.findById(properties[index]._id);
+        if (prodProp) {
+          prodProp.price = properties[index].price;
+          prodProp.qty = properties[index].qty;
+          prodProp.productAttributes = properties[index].productAttributes;
+
+          await prodProp.save();
+        }
+      } else {
+        const productProperty = new ProductProperty({
+          price: properties[index].price,
+          qty: properties[index].qty,
+          productAttributes: properties[index].productAttributes,
+        });
+
+        await productProperty.save();
+        product.properties.push(productProperty._id);
+      }
+    }
+
     if (product.store) {
+      //////////////////////////
       //// if owner to add to store or to user
       if (loggedInUser.owner) {
         const owner = await Owner.findById(loggedInUser.ownerId);
 
         if (!owner) {
+          if (req.files && req.files > 0) {
+            // delete photos from aws
+            for (let index = 0; index < req.files.length; index++) {
+              await awsDelete.delete(req.files[index].location);
+            }
+          }
+
           const error = new Error("Could not find your ownership.");
           error.statusCode = 404;
           throw error;
@@ -346,12 +430,26 @@ exports.updateOne = async (req, res, next) => {
 
         const store = await Store.findById(owner.store);
         if (!store) {
+          if (req.files && req.files > 0) {
+            // delete photos from aws
+            for (let index = 0; index < req.files.length; index++) {
+              await awsDelete.delete(req.files[index].location);
+            }
+          }
+
           const error = new Error("You're not an owner of a store.");
           error.statusCode = 404;
           throw error;
         }
 
         if (!store.equals(product.store)) {
+          if (req.files && req.files > 0) {
+            // delete photos from aws
+            for (let index = 0; index < req.files.length; index++) {
+              await awsDelete.delete(req.files[index].location);
+            }
+          }
+
           const error = new Error(
             "You're not an owner of store of this product."
           );
@@ -536,6 +634,7 @@ exports.availableOne = async (req, res, next) => {
   }
 };
 
+// delete the product should delete it from any unshipped order
 exports.deleteOne = async (req, res, next) => {
   const loggedInUser = req.user;
   const productId = req.params.productId;
@@ -555,10 +654,12 @@ exports.deleteOne = async (req, res, next) => {
     }
 
     if (!product.creator.equals(loggedInUser._id) || loggedInUser.admin) {
-      category.products.pull(productId);
+      if (category.products.includes(productId)) {
+        category.products.pull(productId);
+      }
 
       const creator = await User.findById(product.creator);
-      if (creator.products) {
+      if (creator && creator.products) {
         if (creator.products.includes(productId)) {
           creator.products.pull(productId);
         }
@@ -579,7 +680,17 @@ exports.deleteOne = async (req, res, next) => {
       for (let index = 0; index < product.photos.length; index++) {
         await awsDelete.delete(product.photos[index]);
       }
-      await creator.save();
+
+      for (let index = 0; index < product.properties.length; index++) {
+        const prop = await ProductProperty.findById(product.properties[index]);
+        if (prop) {
+          await ProductProperty.findByIdAndDelete(product.properties[index]);
+        }
+      }
+
+      if (creator) {
+        await creator.save();
+      }
 
       await category.save();
 
@@ -1154,12 +1265,79 @@ exports.deleteProfit = async (req, res, next) => {
   }
 };
 
+//*//*//*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/ */
+// Dashboard
+exports.getBestSelling = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    if (loggedInUser.admin) {
+      let products = await Product.find()
+        .populate({
+          path: "properties",
+          model: "productProperty",
+        })
+        .populate({
+          path: "store",
+          model: "Store",
+        })
+        .populate({
+          path: "creator",
+          model: "User",
+        });
+
+      return res.status(200).json({
+        message: "Fetched successfully",
+        data: products,
+      });
+    } else if (loggedInUser.owner) {
+      if (loggedInUser.store) {
+        let products = await Product.find({ store: loggedInUser.store })
+          .populate({
+            path: "properties",
+            model: "productProperty",
+          })
+          .populate({
+            path: "store",
+            model: "Store",
+          })
+          .populate({
+            path: "creator",
+            model: "User",
+          });
+        return res.status(200).json({
+          message: "Fetched successfully",
+          data: products,
+        });
+      } else {
+        return res.status(200).json({
+          message: "Fetched successfully",
+          data: [],
+        });
+      }
+    } else {
+      return res.status(200).json({
+        message: "Fetched successfully",
+        data: [],
+      });
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
 ///////////////////////////////////////////////////
 ////////// mobile app only ////////////
 
 exports.getActivatedProducts = async (req, res, next) => {
   try {
     let products = await Product.find({ active: true })
+      .populate({
+        path: "properties",
+        model: "productProperty",
+      })
       .populate({
         path: "store",
         model: "Store",
@@ -1187,6 +1365,10 @@ exports.getActivatedProductsWithDiscount = async (req, res, next) => {
     const discountId = req.params.discountId;
     let products = await Product.find({ active: true, discount: discountId })
       .populate({
+        path: "properties",
+        model: "productProperty",
+      })
+      .populate({
         path: "store",
         model: "Store",
         populate: { path: "address", model: "Place" },
@@ -1196,6 +1378,7 @@ exports.getActivatedProductsWithDiscount = async (req, res, next) => {
         model: "User",
         // populate: { path: "address", model: "Place" },
       });
+
     return res.status(200).json({
       message: "Fetched successfully",
       data: products,

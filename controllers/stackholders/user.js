@@ -77,8 +77,8 @@ exports.updateOne = async (req, res, next) => {
     const location = req.body.location;
     const bikeModel = req.body.bikeModel;
     const bikeBrand = req.body.bikeBrand;
+    const allowNotification = req.body.allowNotification;
     const fcmToken = req.body.fcmToken;
-    hashedPassword = await bcrypt.hash(password, 12);
 
     if (!name && !user.name) {
       user.name = undefined;
@@ -86,7 +86,7 @@ exports.updateOne = async (req, res, next) => {
       user.name = name;
     }
     if (password) {
-      user.local.password = hashedPassword;
+      user.local.password = await bcrypt.hash(password, 12);
       user.resetPassword = undefined;
     }
     if (!phone && !user.phone) {
@@ -103,6 +103,11 @@ exports.updateOne = async (req, res, next) => {
       user.bikeBrand = undefined;
     } else if (bikeBrand) {
       user.bikeBrand = bikeBrand;
+    }
+    if (!allowNotification && !user.allowNotification) {
+      user.allowNotification = undefined;
+    } else if (allowNotification) {
+      user.allowNotification = allowNotification;
     }
     if (!image && !user.image) {
       user.image = undefined;

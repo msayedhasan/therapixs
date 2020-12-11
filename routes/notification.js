@@ -8,6 +8,8 @@ const notificationController = require("../controllers/notification");
 
 const router = express.Router();
 
-router.post("/", passportJWT, notificationController.send);
+// router.post("/single", passportJWT, notificationController.sendToDevice);
+router.post("/single", passportJWT, notificationController.send);
+router.post("/multiple", passportJWT, notificationController.sendMultiCast);
 
 module.exports = router;

@@ -56,4 +56,11 @@ router.delete(
   storeController.deleteProfit
 );
 
+router.post(
+  "/app",
+  passportJWT,
+  awsUpload.single("image"),
+  storeController.appAddOne
+);
+
 module.exports = router;

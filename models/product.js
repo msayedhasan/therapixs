@@ -3,12 +3,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-  orderedBy: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  orderedQty: Number,
-  orderedAt: String,
+  orders: [
+    {
+      at: String,
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+      order: {
+        type: Schema.Types.ObjectId,
+        ref: "Order",
+      },
+    },
+  ],
+
   sold: {
     type: Boolean,
     default: false,
@@ -64,26 +72,25 @@ const productSchema = new Schema({
   },
   properties: [
     {
-      price: {
-        type: Number,
-        required: true,
-      },
-      qty: {
-        type: Number,
-        required: true,
-      },
-      productAttributes: [],
+      type: Schema.Types.ObjectId,
+      ref: "productProperty",
     },
   ],
-  // price: {
-  //   type: Number,
-  //   required: true,
-  // },
-  // qty: {
-  //   type: Number,
-  //   required: true,
-  // },
-  // productAttributes: [],
+
+  // properties: [
+  //   {
+  //     price: {
+  //       type: Number,
+  //       required: true,
+  //     },
+  //     qty: {
+  //       type: Number,
+  //       required: true,
+  //     },
+  //     productAttributes: [],
+  //   },
+  // ],
+
   reviews: [
     {
       content: { type: String, default: "" },

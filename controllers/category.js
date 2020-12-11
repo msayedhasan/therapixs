@@ -21,6 +21,10 @@ exports.getAll = async (req, res, next) => {
       .populate({
         path: "products",
         model: "Product",
+        populate: {
+          path: "properties",
+          model: "productProperty",
+        },
       })
       .populate({
         path: "productAttributes",
@@ -54,6 +58,10 @@ exports.getBaseCategories = async (req, res, next) => {
       .populate({
         path: "products",
         model: "Product",
+        populate: {
+          path: "properties",
+          model: "productProperty",
+        },
       })
       .populate({
         path: "productAttributes",
@@ -86,6 +94,10 @@ exports.getOne = async (req, res, next) => {
       .populate({
         path: "products",
         model: "Product",
+        populate: {
+          path: "properties",
+          model: "productProperty",
+        },
       })
       .populate({
         path: "productAttributes",
@@ -209,7 +221,6 @@ exports.updateOne = async (req, res, next) => {
       category.name.ar = nameAr;
       category.productAttributes = productAttributes;
 
-
       category.updatedAt = Date.now();
       category.updatedBy = loggedInUser._id;
       if (category.categories && category.categories.length > 0) {
@@ -294,6 +305,10 @@ exports.deleteOne = async (req, res, next) => {
         .populate({
           path: "products",
           model: "Product",
+          populate: {
+            path: "properties",
+            model: "productProperty",
+          },
         });
       if (!category) {
         const error = new Error("Could not find category.");
@@ -630,10 +645,7 @@ exports.addProfit = async (req, res, next) => {
     const profitPercentage = req.body.profitPercentage;
     const validTill = req.body.validTill;
 
-    if (
-      profitType === "" ||
-      (profitValue === 0 && profitPercentage === 0)
-    ) {
+    if (profitType === "" || (profitValue === 0 && profitPercentage === 0)) {
       const error = new Error("No profit to add.");
       error.statusCode = 400;
       throw error;
@@ -791,6 +803,11 @@ exports.getCategoryActivatedProducts = async (req, res, next) => {
         },
       })
       .populate({
+        path: "products",
+        model: "Product",
+        populate: { path: "properties", model: "productProperty" },
+      })
+      .populate({
         path: "productAttributes",
         model: "ProductAttribute",
       })
@@ -808,11 +825,13 @@ exports.getCategoryActivatedProducts = async (req, res, next) => {
     if (category.products && category.products.length > 0) {
       category.products = category.products.filter((e) => e.active);
     }
+
     return res.status(200).json({
       message: "fetched successfully",
       data: category,
     });
   } catch (err) {
+    console.log(err);
     if (!err.statusCode) {
       err.statusCode = 500;
     }

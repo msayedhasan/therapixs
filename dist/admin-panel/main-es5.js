@@ -248,7 +248,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-orders-orders-module */
-          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~971b91a0"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-discoun~8441768f"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-discounts-discounts-module~pag~85aef3e5"), __webpack_require__.e("default~pages-discounts-discounts-module~pages-events-events-module~pages-groups-groups-module~pages~50154fed"), __webpack_require__.e("pages-orders-orders-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-dashboa~971b91a0"), __webpack_require__.e("default~pages-ads-ads-module~pages-auth-auth-module~pages-categories-categories-module~pages-discoun~8441768f"), __webpack_require__.e("default~pages-ads-ads-module~pages-categories-categories-module~pages-discounts-discounts-module~pag~85aef3e5"), __webpack_require__.e("default~pages-discounts-discounts-module~pages-events-events-module~pages-groups-groups-module~pages~50154fed"), __webpack_require__.e("common"), __webpack_require__.e("pages-orders-orders-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/orders/orders.module */
           "./src/app/pages/orders/orders.module.ts")).then(function (m) {
             return m.OrdersModule;

@@ -16,8 +16,10 @@ router.get("/shipOne/:orderId", passportJWT, orderController.shipOne);
 
 router.get("/deliverOne/:orderId", passportJWT, orderController.deliverOne);
 
-router.get("/:storeId", passportJWT, orderController.getStore);
+router.get("/getStore/:storeId", passportJWT, orderController.getStore);
 
 router.post("/cancel/:orderId", passportJWT, orderController.cancelOne);
+
+router.get("/:orderId", passportJWT, orderController.getOne);
 
 module.exports = router;

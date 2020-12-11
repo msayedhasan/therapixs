@@ -459,8 +459,21 @@ class UsersComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.tableElements = this.items;
             if (FilterRecord !== '') {
-                this.tableElements = this.items.filter((item) => item.name.toLowerCase().includes(FilterRecord) ||
-                    item.phone.toString().includes(FilterRecord));
+                this.tableElements = this.items.filter((item) => {
+                    if (FilterRecord.toLowerCase() === 'owner') {
+                        return item.owner;
+                    }
+                    else if (FilterRecord.toLowerCase() === 'shipper') {
+                        return item.shipper;
+                    }
+                    else if (FilterRecord.toLowerCase() === 'president') {
+                        return item.leader;
+                    }
+                    else {
+                        return (item.name.toLowerCase().includes(FilterRecord) ||
+                            item.phone.toString().includes(FilterRecord));
+                    }
+                });
             }
             this.itemResource = new angular7_data_table__WEBPACK_IMPORTED_MODULE_2__["DataTableResource"](this.tableElements);
             this.itemCount = yield this.itemResource.count();

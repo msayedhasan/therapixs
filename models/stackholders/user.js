@@ -12,6 +12,10 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  allowNotification: {
+    type: Boolean,
+    default: true,
+  },
   name: {
     type: String,
     required: true,

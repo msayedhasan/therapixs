@@ -88,32 +88,14 @@ exports.deleteOne = async (req, res, next) => {
 
     if (discount.store) {
       store = await Store.findById(discount.store);
-
-      if (!store) {
-        const error = new Error("Could not find store.");
-        error.statusCode = 404;
-        throw error;
-      }
     }
 
     if (discount.category) {
       category = await Category.findById(discount.category);
-
-      if (!category) {
-        const error = new Error("Could not find category.");
-        error.statusCode = 404;
-        throw error;
-      }
     }
 
     if (discount.product) {
       product = await Product.findById(discount.product);
-
-      if (!product) {
-        const error = new Error("Could not find product.");
-        error.statusCode = 404;
-        throw error;
-      }
     }
 
     if (loggedInUser.admin) {

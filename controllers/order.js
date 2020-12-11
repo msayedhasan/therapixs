@@ -1,6 +1,7 @@
 const Order = require("../models/order");
 const Store = require("../models/store");
 const Product = require("../models/product");
+const ProductProperty = require("../models/productProperty");
 const Owner = require("../models/stackholders/owner");
 const User = require("../models/stackholders/user");
 
@@ -90,7 +91,10 @@ exports.makeOrder = async (req, res, next) => {
 
     // Start Loop on products to check availability of them
     for (let index = 0; index < products.length; index++) {
-      let product = await Product.findById(products[index].product);
+      let product = await Product.findById(products[index].product).populate({
+        path: "properties",
+        model: "productProperty",
+      });
       if (!product) {
         const error = new Error(
           "Could not find a product please check your cart again."
@@ -103,9 +107,14 @@ exports.makeOrder = async (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
+
+      let selectedProperty = product.properties.find(
+        (e) => e._id.toString() === products[index].productSelectedPropertyId
+      );
       if (
         product.sold ||
-        product.properties[products[index].productSelectedProperty].qty == 0
+        // product.properties[products[index].productSelectedProperty].qty == 0
+        selectedProperty.qty === 0
       ) {
         const error = new Error("a product is already sold.");
         error.statusCode = 401;
@@ -113,7 +122,8 @@ exports.makeOrder = async (req, res, next) => {
       }
 
       if (
-        product.properties[products[index].productSelectedProperty].qty <
+        selectedProperty.qty <
+        // product.properties[products[index].productSelectedProperty].qty
         products[index].qty
       ) {
         const error = new Error("a product quantity is not available.");
@@ -173,11 +183,13 @@ exports.makeOrder = async (req, res, next) => {
 
           let product = await Product.findById(item.product);
 
-          if (
-            product.properties[item.productSelectedProperty].qty >= item.qty
-          ) {
-            product.properties[item.productSelectedProperty].qty =
-              product.properties[item.productSelectedProperty].qty - item.qty;
+          const property = await ProductProperty.findById(
+            products[index].productSelectedPropertyId
+          );
+
+          if (property.qty >= item.qty) {
+            property.qty = property.qty - item.qty;
+            await property.save();
           } else {
             const error = new Error(
               "a product quantity is not available with the seller."
@@ -186,8 +198,10 @@ exports.makeOrder = async (req, res, next) => {
             throw error;
           }
 
-          product.orderedBy = loggedInUser._id;
-          product.orderedAt = Date.now();
+          product.orders.push({
+            user: loggedInUser._id,
+            at: Date.now(),
+          });
 
           if (product.profitValue != 0) {
             sellerProfit += product.profitValue * item.qty;
@@ -246,11 +260,12 @@ exports.makeOrder = async (req, res, next) => {
 
           let product = await Product.findById(item.product);
 
-          if (
-            product.properties[item.productSelectedProperty].qty >= item.qty
-          ) {
-            product.properties[item.productSelectedProperty].qty =
-              product.properties[item.productSelectedProperty].qty - item.qty;
+          const property = await ProductProperty.findById(
+            products[index].productSelectedPropertyId
+          );
+
+          if (property.qty >= item.qty) {
+            property.qty = property.qty - item.qty;
           } else {
             const error = new Error(
               "a product quantity is not available in store."
@@ -259,8 +274,10 @@ exports.makeOrder = async (req, res, next) => {
             throw error;
           }
 
-          product.orderedBy = loggedInUser._id;
-          product.orderedAt = Date.now();
+          product.orders.push({
+            user: loggedInUser._id,
+            at: Date.now(),
+          });
 
           if (product.profitValue != 0) {
             storeProfit += product.profitValue * item.qty;
@@ -614,21 +631,52 @@ exports.cancelOne = async (req, res, next) => {
         throw error;
       }
 
-      const parsedProduct = await Product.findById(itemInOrder.product);
-      for (let index = 0; index < parsedProduct.properties.length; index++) {}
-      // order.delivered = true;
-      // order.deliveredAt = Date.now();
-      // order.deliveredBy = loggedInUser._id;
-      // await order.save();
+      order.products.pull(itemInOrder);
 
-      return res
-        .status(200)
-        .json({ message: "order canceled not working yet!" });
+      const parsedProperty = await ProductProperty.findById(
+        itemInOrder.productSelectedPropertyId
+      );
+      if (parsedProperty) {
+        parsedProperty.qty += itemInOrder.qty;
+        await parsedProperty.save();
+      }
+
+      if (order.products && order.products.length > 0) {
+        await order.save();
+      } else {
+        if (loggedInUser.orders.includes(orderId)) {
+          loggedInUser.orders.pull(orderId);
+          await loggedInUser.save();
+        }
+
+        await Order.findByIdAndDelete(orderId);
+      }
+      return res.status(200).json({ message: "order canceled!" });
     } else {
       const error = new Error("Not authorized as you're not the buyer!");
       error.statusCode = 403;
       throw error;
     }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.getOne = async (req, res, next) => {
+  try {
+    const orderId = req.params.orderId;
+    const order = await Order.findById(orderId);
+    if (!order) {
+      const error = new Error("Could not find order.");
+      error.statusCode = 404;
+      throw error;
+    }
+    return res
+      .status(200)
+      .json({ message: "fetched successfully!", data: order });
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;

@@ -12,12 +12,26 @@ var options = {
   timeToLive: 60 * 60 * 24,
 };
 
-exports.send = async (fcmToken, message) => {
-  await admin.messaging().sendToDevice(fcmToken, message, options);
+exports.send = async (message) => {
+  // return admin
+  //   .messaging()
+  //   .send(message)
+  //   .then((response) => {
+  //     console.log("Successfully sent message:", response);
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error sending message:", error);
+  //   });
+  return await admin.messaging().send(message);
+  // return await admin.messaging().sendToDevice(fcmToken, message, options);
+};
+
+exports.sendToDevice = async (fcmToken, message) => {
+  return await admin.messaging().sendToDevice(fcmToken, message, options);
 };
 
 exports.sendMultiCast = async (message) => {
-  await admin.messaging().sendMulticast(message);
+  return await admin.messaging().sendMulticast(message);
 };
 
 // admin.messaging().sendToDevice(fcmToken, payload, options).then(res => console.log(res);).catch(err => console.log("error sending message: " , err);)

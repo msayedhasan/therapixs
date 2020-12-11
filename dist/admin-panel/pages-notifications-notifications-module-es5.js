@@ -471,6 +471,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(NotificationsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          this.getData();
+        }
+      }, {
+        key: "getData",
+        value: function getData() {
           var _this = this;
 
           this.spinner.show();
@@ -554,7 +559,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     if (FilterRecord !== '') {
                       this.tableElements = this.items.filter(function (item) {
-                        return item.name.toLowerCase().includes(FilterRecord) || item.phone.toString().includes(FilterRecord);
+                        if (FilterRecord.toLowerCase() === 'owner') {
+                          return item.owner;
+                        } else if (FilterRecord.toLowerCase() === 'shipper') {
+                          return item.shipper;
+                        } else if (FilterRecord.toLowerCase() === 'president') {
+                          return item.leader;
+                        } else {
+                          return item.name.toLowerCase().includes(FilterRecord) || item.phone.toString().includes(FilterRecord);
+                        }
                       });
                     }
 
@@ -591,6 +604,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function sendNotification() {
           var _this2 = this;
 
+          this.spinner.show();
+
           for (var index = 0; index < this.selectedRows.length; index++) {
             var row = this.selectedRows[index];
 
@@ -602,17 +617,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var newForm = Object.assign(Object.assign({}, this.form.value), {
             fcmTokens: this.fcmTokens
           });
-          this.spinner.show();
-          this.notificationService.send(newForm).subscribe(function (res) {
-            console.log(res);
 
-            _this2.toastr.info(res['message'], 'Info');
-          }, function (error) {
-            console.log(error);
+          if (this.fcmTokens.length === 0) {
+            return this.toastr.error('Select at least one user with available notification', 'Error');
+          } else if (this.fcmTokens.length === 1) {
+            this.notificationService.send(newForm).subscribe(function (res) {
+              console.log(res);
 
-            _this2.toastr.error(error.error.message, 'Error'); // this.error.next(error.error.message);
+              _this2.toastr.info(res['message'], 'Info');
+            }, function (error) {
+              console.log(error);
 
-          });
+              _this2.toastr.error(error.error.message, 'Error'); // this.error.next(error.error.message);
+
+            });
+          } else {
+            this.notificationService.sendMultiCast(newForm).subscribe(function (res) {
+              console.log(res);
+
+              _this2.toastr.info(res['message'], 'Info');
+            }, function (error) {
+              console.log(error);
+
+              _this2.toastr.error(error.error.message, 'Error'); // this.error.next(error.error.message);
+
+            });
+          }
+
+          this.selectedRows = [];
+          this.fcmTokens = [];
+          this.form.reset();
+          this.getData();
           this.spinner.hide();
           this.modalRef.hide();
         }
@@ -1081,7 +1116,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(NotificationsService, [{
         key: "send",
         value: function send(form) {
-          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification', form);
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification/single', form);
+        }
+      }, {
+        key: "sendMultiCast",
+        value: function sendMultiCast(form) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification/multiple', form);
         }
       }]);
 

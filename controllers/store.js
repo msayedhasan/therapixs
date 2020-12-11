@@ -137,16 +137,9 @@ exports.addOne = async (req, res, next) => {
         }
       }
 
-      let name;
-      if (typeof req.body.name === "string") {
-        name = req.body.name;
-        address = req.body.address;
-        detailedAddress = req.body.detailedAddress;
-      } else {
-        name = JSON.parse(req.body.name);
-        address = JSON.parse(req.body.address);
-        detailedAddress = JSON.parse(req.body.detailedAddress);
-      }
+      const name = JSON.parse(req.body.name);
+      const address = JSON.parse(req.body.address);
+      const detailedAddress = JSON.parse(req.body.detailedAddress);
 
       const existedStore = await Store.findOne({ name: name });
       if (existedStore) {
@@ -857,10 +850,7 @@ exports.addProfit = async (req, res, next) => {
     const profitPercentage = req.body.profitPercentage;
     const validTill = req.body.validTill;
 
-    if (
-      profitType === "" ||
-      (profitValue === 0 && profitPercentage === 0)
-    ) {
+    if (profitType === "" || (profitValue === 0 && profitPercentage === 0)) {
       const error = new Error("No profit to add.");
       error.statusCode = 400;
       throw error;
@@ -1079,6 +1069,113 @@ exports.deleteProfit = async (req, res, next) => {
       throw error;
     }
   } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+//*//**//**//**//***//**/ */ */ */ */ */
+// Mobile api
+
+exports.appAddOne = async (req, res, next) => {
+  let image;
+  if (req.file) {
+    image = req.file.location;
+  }
+  try {
+    const loggedInUser = req.user;
+
+    if (loggedInUser.admin) {
+      const name = req.body.name;
+      const address = req.body.address;
+      const detailedAddress = req.body.detailedAddress;
+
+      const existedStore = await Store.findOne({ name: name });
+      if (existedStore) {
+        await awsDelete.delete(image);
+
+        const error = new Error("Store with this name is already exists");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      const store = new Store({
+        name: name,
+        address: address,
+        detailedAddress: detailedAddress,
+        image: image,
+        creator: loggedInUser._id,
+        owners: [],
+        createdAt: Date.now(),
+      });
+      await store.save();
+
+      return res.status(201).json({
+        message: "Store added successfully!",
+        data: store,
+      });
+    } else if (loggedInUser.owner) {
+      const owner = await Owner.findById(loggedInUser.ownerId);
+
+      if (owner.ownerHistory.length > 0) {
+        if (
+          owner.ownerHistory[owner.ownerHistory.length - 1].to == null ||
+          owner.ownerHistory[owner.ownerHistory.length - 1].to == undefined
+        ) {
+          await awsDelete.delete(image);
+
+          const error = new Error("You're already an owner of store.");
+          error.statusCode = 400;
+          throw error;
+        }
+      }
+
+      const name = req.body.name;
+      const address = req.body.address;
+      const detailedAddress = req.body.detailedAddress;
+
+      const existedStore = await Store.findOne({ name: name });
+      if (existedStore) {
+        await awsDelete.delete(image);
+
+        const error = new Error("Store with this name is already exists");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      const store = new Store({
+        name: name,
+        address: address,
+        detailedAddress: detailedAddress,
+        image: image,
+        creator: loggedInUser._id,
+        owners: [owner._id],
+        createdAt: Date.now(),
+      });
+      await store.save();
+
+      owner.ownerHistory.push({
+        from: Date.now(),
+        store: store._id,
+      });
+      owner.store = store;
+      await owner.save();
+
+      return res.status(201).json({
+        message: "Store added successfully!",
+        data: store,
+      });
+    } else {
+      await awsDelete.delete(image);
+
+      const error = new Error("Not authorized as you're not an owner!");
+      error.statusCode = 403;
+      throw error;
+    }
+  } catch (err) {
+    await awsDelete.delete(image);
     if (!err.statusCode) {
       err.statusCode = 500;
     }

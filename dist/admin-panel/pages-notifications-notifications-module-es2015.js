@@ -222,6 +222,9 @@ class NotificationsComponent {
         });
     }
     ngOnInit() {
+        this.getData();
+    }
+    getData() {
         this.spinner.show();
         this.items = [];
         this.tableElements = [];
@@ -253,8 +256,21 @@ class NotificationsComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.tableElements = this.items;
             if (FilterRecord !== '') {
-                this.tableElements = this.items.filter((item) => item.name.toLowerCase().includes(FilterRecord) ||
-                    item.phone.toString().includes(FilterRecord));
+                this.tableElements = this.items.filter((item) => {
+                    if (FilterRecord.toLowerCase() === 'owner') {
+                        return item.owner;
+                    }
+                    else if (FilterRecord.toLowerCase() === 'shipper') {
+                        return item.shipper;
+                    }
+                    else if (FilterRecord.toLowerCase() === 'president') {
+                        return item.leader;
+                    }
+                    else {
+                        return (item.name.toLowerCase().includes(FilterRecord) ||
+                            item.phone.toString().includes(FilterRecord));
+                    }
+                });
             }
             this.itemResource = new angular7_data_table__WEBPACK_IMPORTED_MODULE_2__["DataTableResource"](this.tableElements);
             this.itemCount = yield this.itemResource.count();
@@ -273,6 +289,7 @@ class NotificationsComponent {
         }
     }
     sendNotification() {
+        this.spinner.show();
         for (let index = 0; index < this.selectedRows.length; index++) {
             const row = this.selectedRows[index];
             if (row.fcmToken) {
@@ -280,15 +297,33 @@ class NotificationsComponent {
             }
         }
         let newForm = Object.assign(Object.assign({}, this.form.value), { fcmTokens: this.fcmTokens });
-        this.spinner.show();
-        this.notificationService.send(newForm).subscribe((res) => {
-            console.log(res);
-            this.toastr.info(res['message'], 'Info');
-        }, (error) => {
-            console.log(error);
-            this.toastr.error(error.error.message, 'Error');
-            // this.error.next(error.error.message);
-        });
+        if (this.fcmTokens.length === 0) {
+            return this.toastr.error('Select at least one user with available notification', 'Error');
+        }
+        else if (this.fcmTokens.length === 1) {
+            this.notificationService.send(newForm).subscribe((res) => {
+                console.log(res);
+                this.toastr.info(res['message'], 'Info');
+            }, (error) => {
+                console.log(error);
+                this.toastr.error(error.error.message, 'Error');
+                // this.error.next(error.error.message);
+            });
+        }
+        else {
+            this.notificationService.sendMultiCast(newForm).subscribe((res) => {
+                console.log(res);
+                this.toastr.info(res['message'], 'Info');
+            }, (error) => {
+                console.log(error);
+                this.toastr.error(error.error.message, 'Error');
+                // this.error.next(error.error.message);
+            });
+        }
+        this.selectedRows = [];
+        this.fcmTokens = [];
+        this.form.reset();
+        this.getData();
         this.spinner.hide();
         this.modalRef.hide();
     }
@@ -516,7 +551,10 @@ class NotificationsService {
         this.http = http;
     }
     send(form) {
-        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification', form);
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification/single', form);
+    }
+    sendMultiCast(form) {
+        return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification/multiple', form);
     }
 }
 NotificationsService.ɵfac = function NotificationsService_Factory(t) { return new (t || NotificationsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
