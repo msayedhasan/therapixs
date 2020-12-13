@@ -55,6 +55,12 @@ const storeSchema = new Schema({
       ref: "Product",
     },
   ],
+  bikes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Bike",
+    },
+  ],
   orders: [
     {
       type: Schema.Types.ObjectId,

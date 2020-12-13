@@ -24,6 +24,12 @@ const profitSchema = new Schema({
     default: undefined,
   },
 
+  bike: {
+    type: Schema.Types.ObjectId,
+    ref: "Bike",
+    default: undefined,
+  },
+
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User",

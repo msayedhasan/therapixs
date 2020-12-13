@@ -74,6 +74,15 @@ const userSchema = new Schema({
     ],
     default: undefined,
   },
+  bikes: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Bike",
+      },
+    ],
+    default: undefined,
+  },
   orders: {
     type: [
       {

@@ -133,9 +133,6 @@ exports.addOne = async (req, res, next) => {
       const nameEn = JSON.parse(req.body.name).en;
       const nameAr = JSON.parse(req.body.name).ar;
       const productAttributes = JSON.parse(req.body.productAttributes);
-      const profitType = JSON.parse(req.body.profitType);
-      const profitValue = JSON.parse(req.body.profitValue);
-      const profitPercentage = JSON.parse(req.body.profitPercentage);
 
       const category = new Category({
         creator: loggedInUser._id,
@@ -146,12 +143,7 @@ exports.addOne = async (req, res, next) => {
           ar: nameAr,
         },
         productAttributes: productAttributes,
-        profitType: profitType,
-        profitValue: profitValue,
-        profitPercentage: profitPercentage,
-        discountType: discountType,
-        discountValue: discountValue,
-        discountPercentage: discountPercentage,
+
         level: 0,
       });
 

@@ -39212,10 +39212,8 @@ class DashboardComponent {
     getBestSelling() {
         this.spinner.show();
         this.productsService.bestSelling().subscribe((res) => {
-            console.log(res);
             if (res['data']) {
                 let x = res['data'].sort((a, b) => b.orders.length - a.orders.length);
-                console.log(x);
                 this.bestSelling = x[0];
             }
         }, (error) => {

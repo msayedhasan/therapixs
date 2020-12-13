@@ -12,6 +12,7 @@ const eventRoutes = require("../routes/event");
 const ownerRoutes = require("../routes/stackholders/owner");
 const storeRoutes = require("../routes/store");
 const productRoutes = require("../routes/product");
+const bikeRoutes = require("../routes/bike");
 
 const shipperRoutes = require("../routes/stackholders/shipper");
 const placeRoutes = require("../routes/place");
@@ -25,7 +26,6 @@ const discountsRoutes = require("../routes/discount");
 const profitsRoutes = require("../routes/profit");
 
 const notificationsRoutes = require("../routes/notification");
-
 
 module.exports = function (app) {
   app.use("/auth", authRoutes);
@@ -41,6 +41,7 @@ module.exports = function (app) {
   app.use("/owner", ownerRoutes);
   app.use("/store", storeRoutes);
   app.use("/product", productRoutes);
+  app.use("/bike", bikeRoutes);
 
   app.use("/shipper", shipperRoutes);
   app.use("/place", placeRoutes);

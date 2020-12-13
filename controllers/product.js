@@ -673,7 +673,9 @@ exports.deleteOne = async (req, res, next) => {
           throw error;
         }
 
-        store.products.pull(productId);
+        if (store.products.includes(productId)) {
+          store.products.pull(productId);
+        }
         await store.save();
       }
       // delete photos from aws

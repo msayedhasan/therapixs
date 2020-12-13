@@ -55019,13 +55019,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.spinner.show();
           this.productsService.bestSelling().subscribe(function (res) {
-            console.log(res);
-
             if (res['data']) {
               var x = res['data'].sort(function (a, b) {
                 return b.orders.length - a.orders.length;
               });
-              console.log(x);
               _this87.bestSelling = x[0];
             }
           }, function (error) {
