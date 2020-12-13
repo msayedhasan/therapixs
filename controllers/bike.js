@@ -1395,15 +1395,6 @@ exports.addReview = async (req, res, next) => {
 exports.appAddOne = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
-    if (!loggedInUser.admin && !loggedInUser.owner) {
-      // delete photos from aws
-      for (let index = 0; index < req.files.length; index++) {
-        await awsDelete.delete(req.files[index].location);
-      }
-      const error = new Error("You're not admin or owner.");
-      error.statusCode = 401;
-      throw error;
-    }
 
     if (req.files.length === 0) {
       const error = new Error("Add at least one image.");
