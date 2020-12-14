@@ -9,10 +9,19 @@ const awsDelete = require("../startup/aws-s3-delete");
 
 exports.getAll = async (req, res, next) => {
   try {
-    let events = await Event.find().populate({
-      path: "group",
-      model: "Group",
-    });
+    let events = await Event.find({ public: true })
+      .populate({
+        path: "group",
+        model: "Group",
+      })
+      .populate({
+        path: "agreedBy",
+        model: "User",
+      })
+      .populate({
+        path: "disagreedBy",
+        model: "User",
+      });
     return res.status(200).json({
       message: "Fetched successfully",
       data: events,
@@ -58,7 +67,19 @@ exports.getGroupEvents = async (req, res, next) => {
 exports.getOne = async (req, res, next) => {
   const eventId = req.params.eventId;
   try {
-    const event = await Event.findById(eventId);
+    const event = await Event.findById(eventId)
+      .populate({
+        path: "group",
+        model: "Group",
+      })
+      .populate({
+        path: "agreedBy",
+        model: "User",
+      })
+      .populate({
+        path: "disagreedBy",
+        model: "User",
+      });
     if (!event) {
       const error = new Error("Could not find event.");
       error.statusCode = 404;
@@ -287,7 +308,7 @@ exports.agreeOne = async (req, res, next) => {
       if (event.public) {
         if (event.agreedBy.includes(loggedInUser._id)) {
           const error = new Error("you're already agree this event.");
-          error.statusCode = 403;
+          error.statusCode = 400;
           throw error;
         } else {
           if (event.disagreedBy.includes(loggedInUser._id)) {
@@ -302,7 +323,7 @@ exports.agreeOne = async (req, res, next) => {
           if (loggedInUser.group === event.group) {
             if (event.agreedBy.includes(loggedInUser._id)) {
               const error = new Error("you're already agreed this event.");
-              error.statusCode = 401;
+              error.statusCode = 400;
               throw error;
             } else {
               if (event.disagreedBy.includes(loggedInUser._id)) {
@@ -324,7 +345,7 @@ exports.agreeOne = async (req, res, next) => {
       }
     } else {
       const error = new Error("this event is not for voting.");
-      error.statusCode = 401;
+      error.statusCode = 400;
       throw error;
     }
     return res.status(200).json({ message: "event updated!", data: "Done" });

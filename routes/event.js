@@ -19,7 +19,7 @@ router.post(
 
 router.get("/:eventId", passportJWT, eventController.getOne);
 
-router.get("/:groupId", passportJWT, eventController.getGroupEvents);
+router.get("/group/:groupId", passportJWT, eventController.getGroupEvents);
 
 router.delete("/:eventId", passportJWT, eventController.deleteOne);
 

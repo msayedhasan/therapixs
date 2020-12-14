@@ -87,8 +87,7 @@ exports.addOne = async (req, res, next) => {
         message: "Group added successfully!",
         data: group,
       });
-    }
-    if (loggedInUser.leader) {
+    } else if (loggedInUser.leader) {
       const leader = await Leader.findById(loggedInUser.leaderId);
 
       if (leader.leaderHistory.length > 0) {
@@ -124,12 +123,15 @@ exports.addOne = async (req, res, next) => {
       });
       await group.save();
 
-      leader.ownerHistory.push({
+      leader.leaderHistory.push({
         from: Date.now(),
         group: group._id,
       });
       leader.group = group;
       await leader.save();
+
+      loggedInUser.group = group._id;
+      await loggedInUser.save();
 
       return res.status(201).json({
         message: "Group added successfully!",
@@ -297,7 +299,9 @@ exports.deleteOne = async (req, res, next) => {
       // Start deleting leadership
       const leader = await Leader.findById(group.leader);
       if (leader) {
-        leader.leaderHistory[leader.leaderHistory.length - 1].to = Date.now();
+        if (leader.leaderHistory.length > 0) {
+          leader.leaderHistory[leader.leaderHistory.length - 1].to = Date.now();
+        }
         leader.group = undefined;
         await leader.save();
       }
@@ -309,7 +313,7 @@ exports.deleteOne = async (req, res, next) => {
       // End deleting group
       return res.status(200).json({ message: "Group deleted!" });
     }
-    //  else if (loggedInUser.owner) {
+    //  else if (loggedInUser.leader) {
     //   const groupId = req.params.groupId;
     //   const group = await Group.findById(groupId);
     //   if (!group) {
@@ -318,7 +322,7 @@ exports.deleteOne = async (req, res, next) => {
     //     throw error;
     //   }
 
-    //   if (group.owners.includes(loggedInUser.ownerId)) {
+    //   if (group.leaders.includes(loggedInUser.leaderId)) {
     //     group.active = false;
     //     await group.save();
 
@@ -328,14 +332,14 @@ exports.deleteOne = async (req, res, next) => {
     //     });
     //   } else {
     //     const error = new Error(
-    //       "Not authorized as you're not an owner of this group!"
+    //       "Not authorized as you're not an leader of this group!"
     //     );
     //     error.statusCode = 403;
     //     throw error;
     //   }
     // }
     else {
-      const error = new Error("Not authorized as you're not an owner!");
+      const error = new Error("Not authorized as you're not an admin!");
       error.statusCode = 403;
       throw error;
     }
@@ -655,6 +659,35 @@ exports.cancelRequestToJoin = async (req, res, next) => {
   }
 };
 
+exports.exitGroup = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    if (!loggedInUser.group) {
+      const error = new Error("You're not a member of any group.");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    const group = await Group.findById(loggedInUser.group);
+    if (group) {
+      // if he sent request to the group
+      if (!group.members.includes(loggedInUser._id)) {
+        group.members.pull(loggedInUser._id);
+        await group.save();
+      }
+    }
+
+    loggedInUser.group = undefined;
+    await loggedInUser.save();
+    return res.status(200).json({ message: "exited group!" });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
 exports.groupRequests = async (req, res, next) => {
   const groupId = req.params.groupId;
   try {
@@ -669,6 +702,104 @@ exports.groupRequests = async (req, res, next) => {
       throw error;
     }
     return res.status(200).json({ message: "Success", data: group.requests });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.appAddOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    let image;
+    if (req.file) {
+      image = req.file.location;
+    }
+
+    if (loggedInUser.admin) {
+      const name = req.body.name;
+
+      const existedGroup = await Group.findOne({ name: name });
+      if (existedGroup) {
+        await awsDelete.delete(image);
+
+        const error = new Error("Group with this name is already exists");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      const group = new Group({
+        name: name,
+        image: image,
+        creator: loggedInUser._id,
+        createdAt: Date.now(),
+      });
+      await group.save();
+
+      return res.status(201).json({
+        message: "Group added successfully!",
+        data: group,
+      });
+    }
+    if (loggedInUser.leader) {
+      const leader = await Leader.findById(loggedInUser.leaderId);
+
+      if (leader.leaderHistory.length > 0) {
+        if (
+          leader.leaderHistory[leader.leaderHistory.length - 1].to == null ||
+          leader.leaderHistory[leader.leaderHistory.length - 1].to == undefined
+        ) {
+          await awsDelete.delete(image);
+
+          const error = new Error("You're already an leader of a group.");
+          error.statusCode = 400;
+          throw error;
+        }
+      }
+
+      const name = req.body.name;
+
+      const existedGroup = await Group.findOne({ name: name });
+      if (existedGroup) {
+        await awsDelete.delete(image);
+
+        const error = new Error("Group with this name is already exists");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      const group = new Group({
+        name: name,
+        image: image,
+        creator: loggedInUser._id,
+        leader: leader._id,
+        createdAt: Date.now(),
+      });
+      await group.save();
+
+      leader.leaderHistory.push({
+        from: Date.now(),
+        group: group._id,
+      });
+      leader.group = group;
+      await leader.save();
+
+      loggedInUser.group = group._id;
+      await loggedInUser.save();
+
+      return res.status(201).json({
+        message: "Group added successfully!",
+        data: group,
+      });
+    } else {
+      await awsDelete.delete(image);
+
+      const error = new Error("Not authorized as you're not a leader!");
+      error.statusCode = 403;
+      throw error;
+    }
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;

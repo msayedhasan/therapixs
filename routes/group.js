@@ -19,6 +19,14 @@ router.post(
     groupController.addOne
 );
 
+
+router.post(
+    "/app",
+    passportJWT,
+    awsUpload.single("image"),
+    groupController.appAddOne
+);
+
 router.get("/:groupId", passportJWT, groupController.getOne);
 
 router.put(
