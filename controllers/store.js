@@ -5,7 +5,10 @@ const Profit = require("../models/profit");
 const Owner = require("../models/stackholders/owner");
 const User = require("../models/stackholders/user");
 
+const discountController = require("./discount");
+
 const awsDelete = require("../startup/aws-s3-delete");
+const schedule = require("node-schedule");
 
 exports.getAll = async (req, res, next) => {
   try {
@@ -650,6 +653,13 @@ exports.addDiscount = async (req, res, next) => {
 
       await store.save();
 
+      if (validTill) {
+        let date = new Date(validTill);
+        schedule.scheduleJob(date, () => {
+          discountController.deleteDiscountAtTime(discount._id);
+        });
+      }
+
       return res.status(201).json({
         message: "Store discount added successfully!",
         data: store,
@@ -694,6 +704,12 @@ exports.addDiscount = async (req, res, next) => {
         }
         await store.save();
 
+        if (validTill) {
+          let date = new Date(validTill);
+          schedule.scheduleJob(date, () => {
+            discountController.deleteDiscountAtTime(discount._id);
+          });
+        }
         return res.status(201).json({
           message: "Store discount added successfully!",
           data: store,
@@ -848,7 +864,6 @@ exports.addProfit = async (req, res, next) => {
     const profitType = req.body.profitType;
     const profitValue = req.body.profitValue;
     const profitPercentage = req.body.profitPercentage;
-    const validTill = req.body.validTill;
 
     if (profitType === "" || (profitValue === 0 && profitPercentage === 0)) {
       const error = new Error("No profit to add.");
@@ -865,7 +880,6 @@ exports.addProfit = async (req, res, next) => {
         profitPercentage: profitPercentage,
         creator: loggedInUser._id,
         createdAt: Date.now(),
-        validTill: validTill,
       });
       await profit.save();
 
@@ -910,7 +924,6 @@ exports.addProfit = async (req, res, next) => {
           profitPercentage: profitPercentage,
           creator: loggedInUser._id,
           createdAt: Date.now(),
-          validTill: validTill,
         });
         await profit.save();
 

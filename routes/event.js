@@ -8,7 +8,8 @@ const awsUpload = require("../startup/aws-s3-upload");
 
 const router = express.Router();
 
-router.get("/", passportJWT, eventController.getAll);
+router.get("/admin", passportJWT, eventController.getAll);
+router.get("/", passportJWT, eventController.getAllPublic);
 
 router.post(
   "/",

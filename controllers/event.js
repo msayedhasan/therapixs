@@ -9,6 +9,33 @@ const awsDelete = require("../startup/aws-s3-delete");
 
 exports.getAll = async (req, res, next) => {
   try {
+    let events = await Event.find()
+      .populate({
+        path: "group",
+        model: "Group",
+      })
+      .populate({
+        path: "agreedBy",
+        model: "User",
+      })
+      .populate({
+        path: "disagreedBy",
+        model: "User",
+      });
+    return res.status(200).json({
+      message: "Fetched successfully",
+      data: events,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.getAllPublic = async (req, res, next) => {
+  try {
     let events = await Event.find({ public: true })
       .populate({
         path: "group",

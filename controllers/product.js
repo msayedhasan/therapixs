@@ -8,7 +8,10 @@ const Order = require("../models/order");
 const User = require("../models/stackholders/user");
 const Owner = require("../models/stackholders/owner");
 
+const discountController = require("./discount");
+
 const awsDelete = require("../startup/aws-s3-delete");
+const schedule = require("node-schedule");
 
 exports.getAll = async (req, res, next) => {
   try {
@@ -849,6 +852,13 @@ exports.addDiscount = async (req, res, next) => {
 
       await product.save();
 
+      if (validTill) {
+        let date = new Date(validTill);
+        schedule.scheduleJob(date, () => {
+          discountController.deleteDiscountAtTime(discount._id);
+        });
+      }
+
       return res.status(201).json({
         message: "Product discount added successfully!",
         data: product,
@@ -878,6 +888,12 @@ exports.addDiscount = async (req, res, next) => {
 
             await product.save();
 
+            if (validTill) {
+              let date = new Date(validTill);
+              schedule.scheduleJob(date, () => {
+                discountController.deleteDiscountAtTime(discount._id);
+              });
+            }
             return res.status(201).json({
               message: "product discount added successfully!",
               data: store,
@@ -914,6 +930,13 @@ exports.addDiscount = async (req, res, next) => {
           product.discount = discount._id;
 
           await product.save();
+
+          if (validTill) {
+            let date = new Date(validTill);
+            schedule.scheduleJob(date, () => {
+              discountController.deleteDiscountAtTime(discount._id);
+            });
+          }
 
           return res.status(201).json({
             message: "Product discount added successfully!",
@@ -1052,7 +1075,6 @@ exports.addProfit = async (req, res, next) => {
     const profitType = req.body.profitType;
     const profitValue = req.body.profitValue;
     const profitPercentage = req.body.profitPercentage;
-    const validTill = req.body.validTill;
 
     if (profitType === "" || (profitValue === 0 && profitPercentage === 0)) {
       const error = new Error("No profit to add.");
@@ -1069,7 +1091,6 @@ exports.addProfit = async (req, res, next) => {
         profitPercentage: profitPercentage,
         creator: loggedInUser._id,
         createdAt: Date.now(),
-        validTill: validTill,
       });
       await profit.save();
 
@@ -1098,7 +1119,6 @@ exports.addProfit = async (req, res, next) => {
               profitPercentage: profitPercentage,
               creator: loggedInUser._id,
               createdAt: Date.now(),
-              validTill: validTill,
             });
             await profit.save();
 
@@ -1135,7 +1155,6 @@ exports.addProfit = async (req, res, next) => {
             profitPercentage: profitPercentage,
             creator: loggedInUser._id,
             createdAt: Date.now(),
-            validTill: validTill,
           });
           await profit.save();
 

@@ -660,7 +660,7 @@ class EventsService {
         this.events = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
     }
     getAll() {
-        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/event').subscribe((res) => {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/event/admin').subscribe((res) => {
             if (res['data']) {
                 this.events.next(res['data']);
             }

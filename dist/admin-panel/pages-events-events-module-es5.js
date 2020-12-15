@@ -1394,7 +1394,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getAll() {
           var _this4 = this;
 
-          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/event').subscribe(function (res) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/event/admin').subscribe(function (res) {
             if (res['data']) {
               _this4.events.next(res['data']);
             }
