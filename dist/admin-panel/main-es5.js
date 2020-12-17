@@ -2117,15 +2117,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/' + endPoint, form).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (resData) {
             var _a, _b, _c;
 
-            var userData = {
-              token: resData.token,
-              admin: (_a = resData['admin']) !== null && _a !== void 0 ? _a : false,
-              owner: (_b = resData['owner']) !== null && _b !== void 0 ? _b : false,
-              shipper: (_c = resData['shipper']) !== null && _c !== void 0 ? _c : false
-            }; // const userData = new User(resData.token);
+            if (resData['admin']) {
+              var userData = {
+                token: resData.token,
+                admin: (_a = resData['admin']) !== null && _a !== void 0 ? _a : false
+              }; // const userData = new User(resData.token);
 
-            _this5.user.next(userData); // localStorage.setItem('userData', JSON.stringify(userData));
+              _this5.user.next(userData); // localStorage.setItem('userData', JSON.stringify(userData));
 
+            } else if (resData['owner']) {
+              var _userData = {
+                token: resData.token,
+                owner: (_b = resData['owner']) !== null && _b !== void 0 ? _b : false,
+                store: resData['store']
+              }; // const userData = new User(resData.token);
+
+              _this5.user.next(_userData); // localStorage.setItem('userData', JSON.stringify(userData));
+
+            } else if (resData['shipper']) {
+              var _userData2 = {
+                token: resData.token,
+                shipper: (_c = resData['shipper']) !== null && _c !== void 0 ? _c : false
+              }; // const userData = new User(resData.token);
+
+              _this5.user.next(_userData2); // localStorage.setItem('userData', JSON.stringify(userData));
+
+            }
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (err) {
             console.log(err);
 

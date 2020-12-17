@@ -129,6 +129,7 @@ exports.login = async (req, res, next) => {
       admin: user.admin,
       owner: user.owner,
       shipper: user.shipper,
+      store: user.store,
       token: token,
     });
   } catch (err) {

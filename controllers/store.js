@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const Store = require("../models/store");
+const Gain = require("../models/gain");
 const Discount = require("../models/discount");
 const Profit = require("../models/profit");
 const Owner = require("../models/stackholders/owner");
@@ -72,6 +73,10 @@ exports.getOne = async (req, res, next) => {
       .populate({
         path: "address",
         model: "Place",
+      })
+      .populate({
+        path: "orders",
+        model: "Order",
       });
     if (!store) {
       const error = new Error("Could not find store.");
@@ -553,6 +558,13 @@ exports.collect = async (req, res, next) => {
       store.lastCollectAt = Date.now();
       await store.save();
 
+      const gain = new Gain({
+        store: store._id,
+        collectedBy: loggedInUser._id,
+        collectedAt: Date.now(),
+      });
+
+      await gain.save();
       return res.status(200).json({ message: "Profit collected!" });
     } else {
       const error = new Error("Not authorized as you're not an admin!");
