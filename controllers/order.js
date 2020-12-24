@@ -525,6 +525,8 @@ exports.getStore = async (req, res, next) => {
   const storeId = req.params.storeId;
   try {
     const loggedInUser = req.user;
+    console.log(loggedInUser.owner);
+
     if (loggedInUser.admin) {
       const store = await Store.findById(storeId)
         .populate({
@@ -534,6 +536,10 @@ exports.getStore = async (req, res, next) => {
             path: "store",
             model: "Store",
           },
+        })
+        .populate({
+          path: "orders",
+          model: "Order",
         })
         .populate({
           path: "orderedBy",
@@ -574,6 +580,10 @@ exports.getStore = async (req, res, next) => {
             path: "store",
             model: "Store",
           },
+        })
+        .populate({
+          path: "orders",
+          model: "Order",
         })
         .populate({
           path: "orderedBy",
