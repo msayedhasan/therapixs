@@ -55587,7 +55587,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "p", 20);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, "Shipped orders");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, "Shipping orders");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 

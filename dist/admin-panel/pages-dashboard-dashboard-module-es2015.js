@@ -39489,7 +39489,7 @@ function DashboardComponent_ng_container_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](26, "div", 18);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](27, "div", 19);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "p", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, "Shipped orders");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, "Shipping orders");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](30, "div", 21);
