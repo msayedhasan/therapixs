@@ -584,22 +584,6 @@ exports.getStore = async (req, res, next) => {
         .populate({
           path: "orders",
           model: "Order",
-        })
-        .populate({
-          path: "orderedBy",
-          model: "User",
-        })
-        .populate({
-          path: "cancelledBy",
-          model: "User",
-        })
-        .populate({
-          path: "confirmedBy",
-          model: "User",
-        })
-        .populate({
-          path: "shippedBy",
-          model: "User",
         });
       if (!store) {
         const error = new Error("Could not find store.");
