@@ -63,11 +63,7 @@ exports.getAll = async (req, res, next) => {
       }
     } else if (loggedInUser.shipper) {
       let orders = await Order.find({
-        $or: [
-          { confirmed: true },
-          { shipped: false },
-          { shippedBy: loggedInUser._id },
-        ],
+        $or: [{ shipped: false }, { shippedBy: loggedInUser._id }],
       })
         .populate({
           path: "products.product",
