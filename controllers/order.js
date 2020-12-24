@@ -9,7 +9,7 @@ exports.getAll = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
 
-    if (loggedInUser.admin || loggedInUser.shipper) {
+    if (loggedInUser.admin) {
       let orders = await Order.find()
         .populate({
           path: "products.product",
@@ -61,6 +61,30 @@ exports.getAll = async (req, res, next) => {
           data: [],
         });
       }
+    } else if (loggedInUser.shipper) {
+      let orders = await Order.find({
+        $or: [{ shipped: false }, { shippedBy: loggedInUser._id }],
+      })
+        .populate({
+          path: "products.product",
+          model: "Product",
+        })
+        .populate({
+          path: "store",
+          model: "Store",
+        })
+        .populate({
+          path: "orderedBy",
+          model: "User",
+        })
+        .populate({
+          path: "seller",
+          model: "User",
+        });
+      return res.status(200).json({
+        message: "Fetched successfully",
+        data: orders,
+      });
     } else {
       return res.status(200).json({
         message: "Fetched successfully",

@@ -19,6 +19,7 @@ const orderSchema = new Schema({
     {
       qty: Number,
       price: Number,
+      shippingCost: Number,
       productName: String,
       productImage: String,
       productSelectedProperty: Number,
@@ -74,7 +75,7 @@ const orderSchema = new Schema({
   },
   shippedBy: {
     type: Schema.Types.ObjectId,
-    ref: "Shipper",
+    ref: "User",
     default: undefined,
   },
   shippedAt: String,
