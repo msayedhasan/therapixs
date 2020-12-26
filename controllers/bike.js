@@ -1428,6 +1428,9 @@ exports.appAddOne = async (req, res, next) => {
     const modelId = req.body.model._id;
     const modelEn = req.body.model.name.en;
     const modelAr = req.body.model.name.ar;
+    const makeId = req.body.make._id;
+    const makeEn = req.body.make.name.en;
+    const makeAr = req.body.make.name.ar;
     const transmissionTypeId = req.body.transmissionType._id;
     const transmissionTypeEn = req.body.transmissionType.name.en;
     const transmissionTypeAr = req.body.transmissionType.name.ar;
@@ -1461,6 +1464,11 @@ exports.appAddOne = async (req, res, next) => {
         ar: conditionAr,
       },
       model: {
+        _id: modelId,
+        en: modelEn,
+        ar: modelAr,
+      },
+      make: {
         _id: modelId,
         en: modelEn,
         ar: modelAr,
@@ -1565,7 +1573,7 @@ exports.appAddOne = async (req, res, next) => {
     await bike.save();
 
     return res.status(201).json({
-      message: "Bike added successfully!",
+      message: "Head to MotoZone to make bike inspection!",
       data: bike,
     });
   } catch (err) {

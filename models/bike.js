@@ -29,14 +29,23 @@ const bikeSchema = new Schema({
   model: {
     _id: {
       type: String,
-      required: true,
     },
     ar: {
       type: String,
     },
     en: {
       type: String,
-      required: true,
+    },
+  },
+  make: {
+    _id: {
+      type: String,
+    },
+    ar: {
+      type: String,
+    },
+    en: {
+      type: String,
     },
   },
 

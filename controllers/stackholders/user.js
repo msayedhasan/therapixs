@@ -99,10 +99,20 @@ exports.updateOne = async (req, res, next) => {
     } else if (bikeModel) {
       user.bikeModel = bikeModel;
     }
+    if (!bikeYear && !user.bikeYear) {
+      user.bikeYear = undefined;
+    } else if (bikeYear) {
+      user.bikeYear = bikeYear;
+    }
     if (!bikeBrand && !user.bikeBrand) {
       user.bikeBrand = undefined;
     } else if (bikeBrand) {
       user.bikeBrand = bikeBrand;
+    }
+    if (!bikeMake && !user.bikeMake) {
+      user.bikeMake = undefined;
+    } else if (bikeMake) {
+      user.bikeMake = bikeMake;
     }
     if (!allowNotification && !user.allowNotification) {
       user.allowNotification = undefined;
