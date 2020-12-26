@@ -16,14 +16,12 @@ const bikeSchema = new Schema({
   condition: {
     _id: {
       type: String,
-      required: true,
     },
     ar: {
       type: String,
     },
     en: {
       type: String,
-      required: true,
     },
   },
   model: {
@@ -52,54 +50,46 @@ const bikeSchema = new Schema({
   transmissionType: {
     _id: {
       type: String,
-      required: true,
     },
     ar: {
       type: String,
     },
     en: {
       type: String,
-      required: true,
     },
   },
 
   distance: {
     _id: {
       type: String,
-      required: true,
     },
     ar: {
       type: String,
     },
     en: {
       type: String,
-      required: true,
     },
   },
   paymentOption: {
     _id: {
       type: String,
-      required: true,
     },
     ar: {
       type: String,
     },
     en: {
       type: String,
-      required: true,
     },
   },
   capacity: {
     _id: {
       type: String,
-      required: true,
     },
     ar: {
       type: String,
     },
     en: {
       type: String,
-      required: true,
     },
   },
   color: String,

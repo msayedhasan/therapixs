@@ -190,20 +190,6 @@ exports.addOne = async (req, res, next) => {
       properties: propertiesIds,
     });
 
-    // const product = new Product({
-    //   photos: photos,
-    //   creator: loggedInUser._id,
-    //   createdAt: Date.now(),
-    //   name: name,
-    //   description: description,
-    //   category: {
-    //     _id: categoryId,
-    //     en: categoryEn,
-    //     ar: categoryAr,
-    //   },
-    //   properties: properties,
-    // });
-
     if (
       category.discountType !== "" ||
       category.discountValue !== 0 ||
@@ -1541,6 +1527,19 @@ exports.appAddOne = async (req, res, next) => {
       throw error;
     }
 
+    let propertiesIds = [];
+
+    for (let index = 0; index < properties.length; index++) {
+      const productProperty = new ProductProperty({
+        price: properties[index].price,
+        qty: properties[index].qty,
+        productAttributes: properties[index].productAttributes,
+      });
+
+      await productProperty.save();
+      propertiesIds.push(productProperty._id);
+    }
+
     const product = new Product({
       photos: photos,
       creator: loggedInUser._id,
@@ -1552,7 +1551,7 @@ exports.appAddOne = async (req, res, next) => {
         en: categoryEn,
         ar: categoryAr,
       },
-      properties: properties,
+      properties: propertiesIds,
     });
 
     if (

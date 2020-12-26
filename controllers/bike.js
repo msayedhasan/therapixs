@@ -1422,27 +1422,27 @@ exports.appAddOne = async (req, res, next) => {
     const price = req.body.price;
     const color = req.body.color;
     const year = req.body.year;
-    const conditionId = req.body.condition._id;
-    const conditionEn = req.body.condition.name.en;
-    const conditionAr = req.body.condition.name.ar;
-    const modelId = req.body.model._id;
-    const modelEn = req.body.model.name.en;
-    const modelAr = req.body.model.name.ar;
-    const makeId = req.body.make._id;
-    const makeEn = req.body.make.name.en;
-    const makeAr = req.body.make.name.ar;
-    const transmissionTypeId = req.body.transmissionType._id;
-    const transmissionTypeEn = req.body.transmissionType.name.en;
-    const transmissionTypeAr = req.body.transmissionType.name.ar;
-    const distanceId = req.body.distance._id;
-    const distanceEn = req.body.distance.name.en;
-    const distanceAr = req.body.distance.name.ar;
-    const paymentOptionId = req.body.paymentOption._id;
-    const paymentOptionEn = req.body.paymentOption.name.en;
-    const paymentOptionAr = req.body.paymentOption.name.ar;
-    const capacityId = req.body.capacity._id;
-    const capacityEn = req.body.capacity.name.en;
-    const capacityAr = req.body.capacity.name.ar;
+    const conditionId = req.body.condition?._id;
+    const conditionEn = req.body.condition?.name.en;
+    const conditionAr = req.body.condition?.name.ar;
+    const modelId = req.body.model?._id;
+    const modelEn = req.body.model?.name.en;
+    const modelAr = req.body.model?.name.ar;
+    const makeId = req.body.make?._id;
+    const makeEn = req.body.make?.name.en;
+    const makeAr = req.body.make?.name.ar;
+    const transmissionTypeId = req.body.transmissionType?._id;
+    const transmissionTypeEn = req.body.transmissionType?.name.en;
+    const transmissionTypeAr = req.body.transmissionType?.name.ar;
+    const distanceId = req.body.distance?._id;
+    const distanceEn = req.body.distance?.name.en;
+    const distanceAr = req.body.distance?.name.ar;
+    const paymentOptionId = req.body.paymentOption?._id;
+    const paymentOptionEn = req.body.paymentOption?.name.en;
+    const paymentOptionAr = req.body.paymentOption?.name.ar;
+    const capacityId = req.body.capacity?._id;
+    const capacityEn = req.body.capacity?.name.en;
+    const capacityAr = req.body.capacity?.name.ar;
 
     let photos = [];
     for (let index = 0; index < req.files.length; index++) {
@@ -1469,9 +1469,9 @@ exports.appAddOne = async (req, res, next) => {
         ar: modelAr,
       },
       make: {
-        _id: modelId,
-        en: modelEn,
-        ar: modelAr,
+        _id: makeId,
+        en: makeEn,
+        ar: makeAr,
       },
       transmissionType: {
         _id: transmissionTypeId,

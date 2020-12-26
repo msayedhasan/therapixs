@@ -152,8 +152,8 @@ const userSchema = new Schema({
   },
   bikeBrand: { type: String, default: undefined },
   bikeModel: { type: Number, default: undefined },
-  bikeYear: { type: String, default: undefined },
-  bikeMake: { type: Number, default: undefined },
+  bikeYear: { type: Number, default: undefined },
+  bikeMake: { type: String, default: undefined },
   reviews: {
     default: undefined,
     type: [

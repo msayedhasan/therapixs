@@ -8,7 +8,7 @@ exports.getAll = async (req, res, next) => {
     const loggedInUser = req.user;
     if (loggedInUser.admin) {
       const users = await User.find({ admin: undefined }).select(
-        "name phone locked admin owner shipper leader dob address fcmToken"
+        "name phone locked admin owner shipper leader dob address fcmToken bikeMake bikeYear"
       );
 
       return res.status(200).json({
@@ -77,6 +77,8 @@ exports.updateOne = async (req, res, next) => {
     const location = req.body.location;
     const bikeModel = req.body.bikeModel;
     const bikeBrand = req.body.bikeBrand;
+    const bikeMake = req.body.bikeMake;
+    const bikeYear = req.body.bikeYear;
     const allowNotification = req.body.allowNotification;
     const fcmToken = req.body.fcmToken;
 
