@@ -11,7 +11,8 @@
         "test": "mocha"
     },
     "engines": {
-        "node": "14.4.0"
+        "node": "14.4.0",
+        "npm": "6.14.5"
     },
     "author": "",
     "license": "ISC",
