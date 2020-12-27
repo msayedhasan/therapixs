@@ -14,6 +14,11 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 // Error handling function
 app.use(errors);
 
+process.on('uncaughtException', err => {
+  console.log(`Uncaught Exception: ${err.message}`)
+  process.exit(1)
+})
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log("Server connected");
