@@ -1,5 +1,5 @@
 module.exports = {
-  JWT_SECRET: "secret",
+  JWT_SECRET: "bearerTokenSecretMotoBarApp",
   oauth: {
     facebook: {
       clientID: "1000436580434030",
