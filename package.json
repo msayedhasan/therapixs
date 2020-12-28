@@ -6,7 +6,6 @@
     "scripts": {
         "start": "node index.js",
         "start:dev": "nodemon index.js",
-        "build": "webpack",
         "deploy": "node index.js",
         "test": "mocha",
         "heroku-prebuild": "npm install --dev"
