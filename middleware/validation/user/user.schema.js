@@ -5,6 +5,7 @@ const schema = {
         id: joi.required(),
         email: joi.string().required(),
         name: joi.string().required(),
+        fcmToken: joi.string(),
     }),
 
     login: joi.object({

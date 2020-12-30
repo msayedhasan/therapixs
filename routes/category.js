@@ -53,4 +53,10 @@ router.post(
   categoryController.addDiscount
 );
 
+router.post(
+  "/profit/add/:categoryId",
+  passportJWT,
+  categoryController.addProfit
+);
+
 module.exports = router;
