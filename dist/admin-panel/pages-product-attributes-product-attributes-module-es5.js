@@ -1171,6 +1171,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 45);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProductAttributesComponent_ng_template_65_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
+
+          var ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r21.modalRef.hide();
+        });
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 46);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\xD7");
@@ -1190,9 +1198,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProductAttributesComponent_ng_template_65_Template_button_click_9_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
 
-          var ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r23 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r21.deleteElement();
+          return ctx_r23.deleteElement();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -1204,9 +1212,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProductAttributesComponent_ng_template_65_Template_button_click_11_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
 
-          var ctx_r23 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r23.modalRef.hide();
+          return ctx_r24.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -1221,6 +1229,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function ProductAttributesComponent_ng_template_67_Template(rf, ctx) {
       if (rf & 1) {
+        var _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 42);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 51);
@@ -1232,6 +1242,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 45);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProductAttributesComponent_ng_template_67_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r26);
+
+          var ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r25.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 46);
 
@@ -1453,10 +1471,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selectors: [["app-product-attributes"]],
       decls: 69,
       vars: 39,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, ""], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid-noGutter", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. English Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateDelete", ""], ["templateLock", ""], ["id", "my-table", "title", "List of Product attributes", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "reload"], [3, "property", "header"], ["dataTableCell", ""], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round"]],
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, ""], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid-noGutter", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. English Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateDelete", ""], ["templateLock", ""], ["id", "my-table", "title", "List of Product attributes", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "reload"], [3, "property", "header"], ["dataTableCell", ""], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round"]],
       template: function ProductAttributesComponent_Template(rf, ctx) {
         if (rf & 1) {
-          var _r24 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+          var _r27 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
 
@@ -1571,7 +1589,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](41, "a", 24);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProductAttributesComponent_Template_a_click_41_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r24);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r27);
 
             var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](40);
 
@@ -1603,7 +1621,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](49, "a", 26);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ProductAttributesComponent_Template_a_click_49_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r24);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r27);
 
             var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](40);
 

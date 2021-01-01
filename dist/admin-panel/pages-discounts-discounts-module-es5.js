@@ -1234,7 +1234,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       if (rf & 2) {
         var item_r13 = ctx.item;
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](item_r13.store ? item_r13.store.name : item_r13.category ? item_r13.category.name : item_r13.product ? item_r13.product.name : item_r13.bike ? item_r13.bike.name : "-");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](item_r13.store ? item_r13.store.name : item_r13.category ? item_r13.store ? item_r13.store.name + "->" + item_r13.category.name.en : item_r13.category.name.en : item_r13.product ? item_r13.product.name : item_r13.bike ? item_r13.bike.name : "-");
       }
     }
 
@@ -1386,6 +1386,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "button", 35);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DiscountsComponent_ng_template_39_Template_button_click_3_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
+
+          var ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r21.modalRef.hide();
+        });
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "span", 36);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "\xD7");
@@ -1415,9 +1423,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DiscountsComponent_ng_template_39_Template_button_click_11_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
 
-          var ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r23 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r21.addAdvertise();
+          return ctx_r23.addAdvertise();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Confirm ");
@@ -1429,9 +1437,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DiscountsComponent_ng_template_39_Template_button_click_13_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
 
-          var ctx_r23 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r23.modalRef.hide();
+          return ctx_r24.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, " Cancel ");
@@ -1454,7 +1462,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function DiscountsComponent_ng_template_41_Template(rf, ctx) {
       if (rf & 1) {
-        var _r25 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 33);
 
@@ -1467,6 +1475,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 35);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DiscountsComponent_ng_template_41_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r26);
+
+          var ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r25.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 36);
 
@@ -1485,11 +1501,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 42);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DiscountsComponent_ng_template_41_Template_button_click_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r26);
 
-          var ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r27 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r24.deleteElement();
+          return ctx_r27.deleteElement();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -1499,11 +1515,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 43);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DiscountsComponent_ng_template_41_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r26);
 
-          var ctx_r26 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r26.modalRef.hide();
+          return ctx_r28.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -1728,7 +1744,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selectors: [["app-discounts"]],
       decls: 43,
       vars: 24,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, "grid-right", "col-3_xlg-4_lg-6_sm-10"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateAdvertise", ""], ["templateDelete", ""], ["id", "my-table", "title", "List of Discounts", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "reload"], [3, "property", "header"], [3, "header"], ["dataTableCell", ""], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["tooltip", "Advertise", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "lock", 3, "click"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "font-weight", "bold", "justify-content", "center"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"]],
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "grid-column-noGutter"], [1, "grid-right", "col-3_xlg-4_lg-6_sm-10"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateAdvertise", ""], ["templateDelete", ""], ["id", "my-table", "title", "List of Discounts", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "reload"], [3, "property", "header"], [3, "header"], ["dataTableCell", ""], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["tooltip", "Advertise", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "lock", 3, "click"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "font-weight", "bold", "justify-content", "center"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body"], [1, "form-group", "grid-center-middle-noGutter", "col-24"], [1, "col-24", "grid-center"], [3, "fieldId", "image", "control"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"]],
       template: function DiscountsComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);

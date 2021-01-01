@@ -59,7 +59,7 @@ class AddBikeComponent {
                     ar: [],
                 }),
             }),
-            model: this.fb.group({
+            make: this.fb.group({
                 _id: [],
                 name: this.fb.group({
                     en: [],
@@ -97,13 +97,27 @@ class AddBikeComponent {
             color: [''],
             year: [''],
         });
-        this.models = [
+        this.makes = [
             { _id: 1, nameEn: 'BMW', nameAr: '' },
             { _id: 2, nameEn: 'Halawa', nameAr: '' },
             { _id: 3, nameEn: 'Peugeot', nameAr: '' },
             { _id: 4, nameEn: 'Vespa', nameAr: '' },
+            { _id: 5, nameEn: 'Bajaj', nameAr: '' },
+            { _id: 6, nameEn: 'Benelli', nameAr: '' },
+            { _id: 7, nameEn: 'Dayun', nameAr: '' },
+            { _id: 8, nameEn: 'Ducati', nameAr: '' },
+            { _id: 9, nameEn: 'Egos', nameAr: '' },
+            { _id: 10, nameEn: 'Harley-Davidson', nameAr: '' },
+            { _id: 11, nameEn: 'Honda', nameAr: '' },
+            { _id: 12, nameEn: 'Kawasaki', nameAr: '' },
+            { _id: 13, nameEn: 'KTM', nameAr: '' },
+            { _id: 14, nameEn: 'Piaggio', nameAr: '' },
+            { _id: 15, nameEn: 'Suzuki', nameAr: '' },
+            { _id: 16, nameEn: 'SYM', nameAr: '' },
+            { _id: 17, nameEn: 'Yamaha', nameAr: '' },
+            { _id: 18, nameEn: 'Other make', nameAr: '' },
         ];
-        this.selectedModel = {};
+        this.selectedMake = {};
         this.conditions = [
             { _id: 1, nameEn: 'New', nameAr: 'جديد' },
             { _id: 2, nameEn: 'Used', nameAr: 'مستعمل' },
@@ -121,6 +135,7 @@ class AddBikeComponent {
             { _id: 4, nameEn: '30000 - 40000', nameAr: '' },
             { _id: 5, nameEn: '40000 - 50000', nameAr: '' },
             { _id: 6, nameEn: '50000 - 60000', nameAr: '' },
+            { _id: 7, nameEn: 'above 60000', nameAr: '' },
         ];
         this.selectedDistance = {};
         this.paymentOptions = [
@@ -144,13 +159,13 @@ class AddBikeComponent {
         ];
         this.selectedCapacity = {};
     }
-    selectModel(event) {
-        this.selectedModel = {};
+    selectMake(event) {
+        this.selectedMake = {};
         if (event) {
-            this.selectedModel = event;
+            this.selectedMake = event;
         }
         else {
-            this.selectedModel = {};
+            this.selectedMake = {};
         }
     }
     selectCondition(event) {
@@ -220,17 +235,17 @@ class AddBikeComponent {
             .get('name')
             .get('ar')
             .patchValue(this.selectedCondition['nameAr']);
-        this.form.get('model').get('_id').patchValue(this.selectedModel['_id']);
+        this.form.get('make').get('_id').patchValue(this.selectedMake['_id']);
         this.form
-            .get('model')
+            .get('make')
             .get('name')
             .get('en')
-            .patchValue(this.selectedModel['nameEn']);
+            .patchValue(this.selectedMake['nameEn']);
         this.form
-            .get('model')
+            .get('make')
             .get('name')
             .get('ar')
-            .patchValue(this.selectedModel['nameAr']);
+            .patchValue(this.selectedMake['nameAr']);
         this.form
             .get('transmissionType')
             .get('_id')
@@ -339,7 +354,7 @@ AddBikeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](15, "app-textarea", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](16, "app-input-text", 10);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "app-select", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function AddBikeComponent_Template_app_select_itemselected_17_listener($event) { return ctx.selectModel($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function AddBikeComponent_Template_app_select_itemselected_17_listener($event) { return ctx.selectMake($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "app-select", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function AddBikeComponent_Template_app_select_itemselected_18_listener($event) { return ctx.selectCondition($event); });
@@ -383,7 +398,7 @@ AddBikeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Price")("fieldId", "price")("required", true)("placeholder", "Bike Cost")("control", ctx.form.get("price"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "model")("ItemsList", ctx.models)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "make")("ItemsList", ctx.makes)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Condition")("fieldId", "condition")("ItemsList", ctx.conditions)("placeholder", "Choose condition")("fieldClass", "col-18_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
@@ -586,7 +601,7 @@ function BikesComponent_ng_template_62_ng_template_28_Template(rf, ctx) { if (rf
 } if (rf & 2) {
     const item_r54 = ctx.item;
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](item_r54.model == null ? null : item_r54.model.en);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"]((item_r54.make == null ? null : item_r54.make.en) || (item_r54.model == null ? null : item_r54.model.en));
 } }
 function BikesComponent_ng_template_62_ng_template_31_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span");
@@ -769,7 +784,7 @@ function BikesComponent_ng_template_62_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("header", "Condition")("sortable", true);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("header", "Model")("sortable", true);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("header", "Make")("sortable", true);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("header", "Distance")("sortable", true);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
@@ -840,6 +855,7 @@ function BikesComponent_ng_template_64_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to add this bike to a store? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r80 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r80.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -866,7 +882,7 @@ function BikesComponent_ng_template_64_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "div", 70);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](21, "label", 71);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "input", 72);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function BikesComponent_ng_template_64_Template_input_ngModelChange_22_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r80 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r80.forPeriod = $event; })("change", function BikesComponent_ng_template_64_Template_input_change_22_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r82 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r82.changePeriod($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function BikesComponent_ng_template_64_Template_input_ngModelChange_22_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r82 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r82.forPeriod = $event; })("change", function BikesComponent_ng_template_64_Template_input_change_22_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r83 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r83.changePeriod($event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](23, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnamespaceSVG"]();
@@ -883,11 +899,11 @@ function BikesComponent_ng_template_64_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnamespaceHTML"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](27, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_28_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r83 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r83.addDiscount(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_28_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r84.addDiscount(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](30, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_30_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r84.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_30_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81); const ctx_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r85.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](31, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -906,13 +922,14 @@ function BikesComponent_ng_template_64_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r5.forPeriod);
 } }
 function BikesComponent_ng_template_66_Template(rf, ctx) { if (rf & 1) {
-    const _r86 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r87 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 84);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 85);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to Delete discount from This bike ? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r87); const ctx_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r86.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -921,24 +938,25 @@ function BikesComponent_ng_template_66_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 64);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r86); const ctx_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r85.deleteDiscount(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r87); const ctx_r88 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r88.deleteDiscount(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r86); const ctx_r87 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r87.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r87); const ctx_r89 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r89.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
 function BikesComponent_ng_template_68_Template(rf, ctx) { if (rf & 1) {
-    const _r89 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r91 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 60);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 61);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to add this bike to a store? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91); const ctx_r90 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r90.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -947,16 +965,16 @@ function BikesComponent_ng_template_68_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 64);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 17);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "app-select", 86);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("itemselected", function BikesComponent_ng_template_68_Template_app_select_itemselected_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r89); const ctx_r88 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r88.selectStore($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("itemselected", function BikesComponent_ng_template_68_Template_app_select_itemselected_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91); const ctx_r92 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r92.selectStore($event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r89); const ctx_r90 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r90.addBikeToStore(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91); const ctx_r93 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r93.addBikeToStore(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_13_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r89); const ctx_r91 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r91.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_13_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91); const ctx_r94 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r94.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -967,13 +985,14 @@ function BikesComponent_ng_template_68_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("label", "Store")("fieldId", "store")("ItemsList", ctx_r9.selectStoresList)("placeholder", "Choose store")("fieldClass", "col-18_md-24")("required", true);
 } }
 function BikesComponent_ng_template_70_Template(rf, ctx) { if (rf & 1) {
-    const _r93 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r96 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 60);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 85);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to activate This Element ? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96); const ctx_r95 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r95.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -982,24 +1001,25 @@ function BikesComponent_ng_template_70_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 64);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r93); const ctx_r92 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r92.activateElement(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96); const ctx_r97 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r97.activateElement(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r93); const ctx_r94 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r94.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96); const ctx_r98 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r98.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
 function BikesComponent_ng_template_72_Template(rf, ctx) { if (rf & 1) {
-    const _r96 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r100 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 60);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 85);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to deactivate This Element ? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r100); const ctx_r99 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r99.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1008,24 +1028,25 @@ function BikesComponent_ng_template_72_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 64);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96); const ctx_r95 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r95.deactivateElement(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r100); const ctx_r101 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r101.deactivateElement(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96); const ctx_r97 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r97.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r100); const ctx_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r102.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
 function BikesComponent_ng_template_74_Template(rf, ctx) { if (rf & 1) {
-    const _r99 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r104 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 84);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 85);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to Delete This Element ? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r104); const ctx_r103 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r103.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1034,24 +1055,25 @@ function BikesComponent_ng_template_74_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 64);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r99); const ctx_r98 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r98.deleteElement(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r104); const ctx_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r105.deleteElement(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r99); const ctx_r100 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r100.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r104); const ctx_r106 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r106.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
 function BikesComponent_ng_template_76_Template(rf, ctx) { if (rf & 1) {
-    const _r102 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r108 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 87);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 88);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to change this element status to be available? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r108); const ctx_r107 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r107.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1060,24 +1082,25 @@ function BikesComponent_ng_template_76_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 64);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r102); const ctx_r101 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r101.availableElement(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r108); const ctx_r109 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r109.availableElement(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r102); const ctx_r103 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r103.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r108); const ctx_r110 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r110.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
 function BikesComponent_ng_template_78_Template(rf, ctx) { if (rf & 1) {
-    const _r105 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r112 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "h4", 87);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "i", 88);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Do you want to change this element status to be sold out? ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r112); const ctx_r111 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r111.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\u00D7");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1086,11 +1109,11 @@ function BikesComponent_ng_template_78_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 64);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 75);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r105); const ctx_r104 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r104.soldElement(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r112); const ctx_r113 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r113.soldElement(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r105); const ctx_r106 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r106.modalRef.hide(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r112); const ctx_r114 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r114.modalRef.hide(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1361,8 +1384,8 @@ class BikesComponent {
     }
 }
 BikesComponent.ɵfac = function BikesComponent_Factory(t) { return new (t || BikesComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_bikes_service__WEBPACK_IMPORTED_MODULE_3__["BikesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_stores_stores_service__WEBPACK_IMPORTED_MODULE_4__["StoresService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__["BsModalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_7__["NgxSpinnerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_export_as__WEBPACK_IMPORTED_MODULE_9__["ExportAsService"])); };
-BikesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: BikesComponent, selectors: [["app-bikes"]], decls: 80, vars: 39, consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header", "grid-noGutter"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "col-3_xlg-4_lg-6_sm-10", "grid-column-noGutter"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid-noGutter", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name, Creator, Store", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateAddDiscount", ""], ["templateDeleteDiscount", ""], ["templateAddToStore", ""], ["templateActivate", ""], ["templateDeactivate", ""], ["templateDelete", ""], ["templateAvailable", ""], ["templateSold", ""], ["id", "my-table", "title", "List of Bikes", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "reload"], [3, "width", "property", "resizable", "header"], ["dataTableCell", ""], [3, "property", "header", "sortable"], [3, "header"], [3, "property", "header"], [3, "header", "sortable"], [3, "width", "header"], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["width", "30px", "height", "30px", "alt", "", 3, "src"], [4, "ngIf"], [1, "badge", "blocked"], [1, "badge", "active"], [1, "badge", "deleted"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "ngClass", "tooltip", "click"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "tooltip", "click"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-user", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "col-24"], [1, "col-24", 3, "label", "fieldId", "items", "control", "fieldClass"], [1, "col-11_sm-24", "form-group", "grid-center-middle-noGutter"], [1, "col_sm-24", "grid_sm-noGutter", "field-label"], ["for", "period"], [1, "col-11_sm-24", "grid"], ["tooltip", "for specific time", 1, "toggleButton"], ["type", "checkbox", "id", "period", 3, "ngModel", "ngModelChange", "change"], ["viewBox", "0 0 44 44"], ["d", "M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758", "transform", "translate(-2.000000, -2.000000)"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], ["type", "number", 1, "col-24", 3, "label", "fieldId", "placeholder", "control", "fieldClass", "change"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "col-19_xlg-18_lg-17_md-24", "grid-noGutter"], ["type", "text", "bsDatepicker", "", "autocomplete", "off", "placeholder", "YYYY-MM-DD", 1, "form-control", "col", 3, "bsValue", "minDate", "bsConfig", "bsValueChange"], ["type", "time", 1, "form-control", "col", 3, "ngModel", "ngModelChange"], [2, "height", "20px", "width", "100%"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], [1, "col-24", 3, "label", "fieldId", "ItemsList", "placeholder", "fieldClass", "required", "itemselected"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"]], template: function BikesComponent_Template(rf, ctx) { if (rf & 1) {
-        const _r107 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+BikesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: BikesComponent, selectors: [["app-bikes"]], decls: 80, vars: 39, consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header", "grid-noGutter"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "col-3_xlg-4_lg-6_sm-10", "grid-column-noGutter"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid-noGutter", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name, Creator, Store", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateAddDiscount", ""], ["templateDeleteDiscount", ""], ["templateAddToStore", ""], ["templateActivate", ""], ["templateDeactivate", ""], ["templateDelete", ""], ["templateAvailable", ""], ["templateSold", ""], ["id", "my-table", "title", "List of Bikes", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "reload"], [3, "width", "property", "resizable", "header"], ["dataTableCell", ""], [3, "property", "header", "sortable"], [3, "header"], [3, "property", "header"], [3, "header", "sortable"], [3, "width", "header"], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["width", "30px", "height", "30px", "alt", "", 3, "src"], [4, "ngIf"], [1, "badge", "blocked"], [1, "badge", "active"], [1, "badge", "deleted"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "ngClass", "tooltip", "click"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "tooltip", "click"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-user", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body"], [1, "col-24"], [1, "col-24", 3, "label", "fieldId", "items", "control", "fieldClass"], [1, "col-11_sm-24", "form-group", "grid-center-middle-noGutter"], [1, "col_sm-24", "grid_sm-noGutter", "field-label"], ["for", "period"], [1, "col-11_sm-24", "grid"], ["tooltip", "for specific time", 1, "toggleButton"], ["type", "checkbox", "id", "period", 3, "ngModel", "ngModelChange", "change"], ["viewBox", "0 0 44 44"], ["d", "M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758", "transform", "translate(-2.000000, -2.000000)"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], ["type", "number", 1, "col-24", 3, "label", "fieldId", "placeholder", "control", "fieldClass", "change"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "col-19_xlg-18_lg-17_md-24", "grid-noGutter"], ["type", "text", "bsDatepicker", "", "autocomplete", "off", "placeholder", "YYYY-MM-DD", 1, "form-control", "col", 3, "bsValue", "minDate", "bsConfig", "bsValueChange"], ["type", "time", 1, "form-control", "col", 3, "ngModel", "ngModelChange"], [2, "height", "20px", "width", "100%"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], [1, "col-24", 3, "label", "fieldId", "ItemsList", "placeholder", "fieldClass", "required", "itemselected"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"]], template: function BikesComponent_Template(rf, ctx) { if (rf & 1) {
+        const _r115 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 2);
@@ -1417,7 +1440,7 @@ BikesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](37, "div", 20);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](38, "input", 21, 22);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](40, "a", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_Template_a_click_40_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r107); const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39); return ctx.FilterRecords(_r0.value); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_Template_a_click_40_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r115); const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39); return ctx.FilterRecords(_r0.value); });
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](41, "span", 24);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](42);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](43, "translate");
@@ -1430,7 +1453,7 @@ BikesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](48, "a", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_Template_a_click_48_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r107); const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39); ctx.FilterRecords(""); return _r0.value = ""; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_Template_a_click_48_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r115); const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39); ctx.FilterRecords(""); return _r0.value = ""; });
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](49, "span", 24);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](50);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](51, "translate");
@@ -1770,13 +1793,27 @@ class EditBikeComponent {
                 }),
             }),
         });
-        this.models = [
+        this.makes = [
             { _id: '1', nameEn: 'BMW', nameAr: '' },
             { _id: '2', nameEn: 'Halawa', nameAr: '' },
-            { _id: '2', nameEn: 'Peugeot', nameAr: '' },
-            { _id: '2', nameEn: 'Vespa', nameAr: '' },
+            { _id: '3', nameEn: 'Peugeot', nameAr: '' },
+            { _id: '4', nameEn: 'Vespa', nameAr: '' },
+            { _id: '5', nameEn: 'Bajaj', nameAr: '' },
+            { _id: '6', nameEn: 'Benelli', nameAr: '' },
+            { _id: '7', nameEn: 'Dayun', nameAr: '' },
+            { _id: '8', nameEn: 'Ducati', nameAr: '' },
+            { _id: '9', nameEn: 'Egos', nameAr: '' },
+            { _id: '10', nameEn: 'Harley-Davidson', nameAr: '' },
+            { _id: '11', nameEn: 'Honda', nameAr: '' },
+            { _id: '12', nameEn: 'Kawasaki', nameAr: '' },
+            { _id: '13', nameEn: 'KTM', nameAr: '' },
+            { _id: '14', nameEn: 'Piaggio', nameAr: '' },
+            { _id: '15', nameEn: 'Suzuki', nameAr: '' },
+            { _id: '16', nameEn: 'SYM', nameAr: '' },
+            { _id: '17', nameEn: 'Yamaha', nameAr: '' },
+            { _id: '18', nameEn: 'Other make', nameAr: '' },
         ];
-        this.selectedModel = {};
+        this.selectedMake = {};
         this.conditions = [
             { _id: '1', nameEn: 'New', nameAr: 'جديد' },
             { _id: '2', nameEn: 'Used', nameAr: 'مستعمل' },
@@ -1794,6 +1831,7 @@ class EditBikeComponent {
             { _id: '4', nameEn: '30000 - 40000', nameAr: '' },
             { _id: '5', nameEn: '40000 - 50000', nameAr: '' },
             { _id: '6', nameEn: '50000 - 60000', nameAr: '' },
+            { _id: '7', nameEn: 'above 60000', nameAr: '' },
         ];
         this.selectedDistance = {};
         this.paymentOptions = [
@@ -1925,7 +1963,7 @@ class EditBikeComponent {
                 nameEn: res['data']['condition']['en'],
                 nameAr: res['data']['condition']['ar'],
             };
-            this.selectedModel = {
+            this.selectedMake = {
                 _id: res['data']['model']['_id'],
                 nameEn: res['data']['model']['en'],
                 nameAr: res['data']['model']['ar'],
@@ -1962,13 +2000,13 @@ class EditBikeComponent {
         });
         this.spinner.hide();
     }
-    selectModel(event) {
-        this.selectedModel = {};
+    selectMake(event) {
+        this.selectedMake = {};
         if (event) {
-            this.selectedModel = event;
+            this.selectedMake = event;
         }
         else {
-            this.selectedModel = {};
+            this.selectedMake = {};
         }
     }
     selectCondition(event) {
@@ -2039,17 +2077,17 @@ class EditBikeComponent {
             .get('name')
             .get('ar')
             .patchValue(this.selectedCondition['nameAr']);
-        this.form.get('model').get('_id').patchValue(this.selectedModel['_id']);
+        this.form.get('model').get('_id').patchValue(this.selectedMake['_id']);
         this.form
             .get('model')
             .get('name')
             .get('en')
-            .patchValue(this.selectedModel['nameEn']);
+            .patchValue(this.selectedMake['nameEn']);
         this.form
             .get('model')
             .get('name')
             .get('ar')
-            .patchValue(this.selectedModel['nameAr']);
+            .patchValue(this.selectedMake['nameAr']);
         this.form
             .get('transmissionType')
             .get('_id')
@@ -2150,7 +2188,7 @@ EditBikeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "app-textarea", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "app-input-text", 10);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "app-select", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function EditBikeComponent_Template_app_select_itemselected_12_listener($event) { return ctx.selectModel($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function EditBikeComponent_Template_app_select_itemselected_12_listener($event) { return ctx.selectMake($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "app-select", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function EditBikeComponent_Template_app_select_itemselected_13_listener($event) { return ctx.selectCondition($event); });
@@ -2192,7 +2230,7 @@ EditBikeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Price")("fieldId", "price")("required", true)("placeholder", "Bike Cost")("control", ctx.form.get("price"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "model")("ItemsList", ctx.models)("initialSelectedItem", ctx.selectedModel)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "make")("ItemsList", ctx.makes)("initialSelectedItem", ctx.selectedMake)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Condition")("fieldId", "condition")("initialSelectedItem", ctx.selectedCondition)("ItemsList", ctx.conditions)("placeholder", "Choose condition")("fieldClass", "col-18_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);

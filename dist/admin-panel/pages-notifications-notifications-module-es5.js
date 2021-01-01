@@ -326,6 +326,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](10, "data-table-column", 32);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](11, "data-table-column", 32);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](12, "data-table-column", 32);
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -357,6 +361,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "address")("header", "Address")("sortable", true);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "bikeMake")("header", "Bike Make")("sortable", true);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "bikeYear" || false)("header", "Bike Year")("sortable", true);
       }
     }
 
@@ -367,6 +379,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 37);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "button", 38);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NotificationsComponent_ng_template_61_Template_button_click_1_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r20);
+
+          var ctx_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r19.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "span", 39);
 
@@ -403,9 +423,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NotificationsComponent_ng_template_61_Template_button_click_11_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r20);
 
-          var ctx_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r19.sendNotification();
+          return ctx_r21.sendNotification();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Confirm ");
@@ -417,9 +437,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NotificationsComponent_ng_template_61_Template_button_click_13_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r20);
 
-          var ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r22 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r21.modalRef.hide();
+          return ctx_r22.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, " Cancel ");
@@ -559,7 +579,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     if (FilterRecord !== '') {
                       this.tableElements = this.items.filter(function (item) {
-                        var _a;
+                        var _a, _b, _c, _d, _e;
 
                         if (FilterRecord.toLowerCase() === 'owner') {
                           return item.owner;
@@ -567,8 +587,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                           return item.shipper;
                         } else if (FilterRecord.toLowerCase() === 'president') {
                           return item.leader;
+                        } else if (FilterRecord.toLowerCase() === 'user') {
+                          return !item.owner && !item.shipper && !item.leader;
                         } else {
-                          return item.name.toLowerCase().includes(FilterRecord) || ((_a = item.phone) === null || _a === void 0 ? void 0 : _a.toString().includes(FilterRecord));
+                          return item.name.toLowerCase().includes(FilterRecord) || ((_a = item.phone) === null || _a === void 0 ? void 0 : _a.toString().includes(FilterRecord)) || ((_b = item.address) === null || _b === void 0 ? void 0 : _b.toLowerCase().includes(FilterRecord)) || ((_c = item.bikeMake) === null || _c === void 0 ? void 0 : _c.toLowerCase().includes(FilterRecord)) || ((_d = item.bikeYear) === null || _d === void 0 ? void 0 : _d.toString().includes(FilterRecord)) || ((_e = item.bikeModel) === null || _e === void 0 ? void 0 : _e.toString().includes(FilterRecord));
                         }
                       });
                     }
@@ -667,10 +689,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-notifications"]],
       decls: 63,
       vars: 37,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header", "grid-noGutter"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "col-4_lg-6_sm-10", "grid-column-noGutter"], [1, "btn", "color1", "round", "addbtn", 3, "click"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. English Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateNotification", ""], ["id", "my-table", "title", "List of Users", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "selectColumn", "multiSelect", "selectOnRowClick", "reload", "rowClick"], [3, "property", "header", "sortable"], [3, "property", "header"], ["dataTableCell", ""], [3, "header"], [4, "ngIf"], [1, "modal-header"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "col-24"], ["type", "text", 1, "col-24", 3, "label", "fieldId", "placeholder", "control", "fieldClass"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"]],
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header", "grid-noGutter"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "col-4_lg-6_sm-10", "grid-column-noGutter"], [1, "btn", "color1", "round", "addbtn", 3, "click"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. English Name", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateNotification", ""], ["id", "my-table", "title", "List of Users", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "selectColumn", "multiSelect", "selectOnRowClick", "reload", "rowClick"], [3, "property", "header", "sortable"], [3, "property", "header"], ["dataTableCell", ""], [3, "header"], [4, "ngIf"], [1, "modal-header"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body"], [1, "col-24"], ["type", "text", 1, "col-24", 3, "label", "fieldId", "placeholder", "control", "fieldClass"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"]],
       template: function NotificationsComponent_Template(rf, ctx) {
         if (rf & 1) {
-          var _r22 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+          var _r23 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
 
@@ -741,7 +763,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](24, "a", 15);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NotificationsComponent_Template_a_click_24_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r23);
 
             var _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](62);
 
@@ -789,7 +811,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](40, "a", 23);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NotificationsComponent_Template_a_click_40_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r23);
 
             var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39);
 
@@ -821,7 +843,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](48, "a", 25);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NotificationsComponent_Template_a_click_48_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r22);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r23);
 
             var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39);
 
@@ -877,7 +899,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](59, NotificationsComponent_ng_template_59_Template, 11, 21, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](59, NotificationsComponent_ng_template_59_Template, 13, 27, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](61, NotificationsComponent_ng_template_61_Template, 15, 10, "ng-template", 29, 30, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
         }

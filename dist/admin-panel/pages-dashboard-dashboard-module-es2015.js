@@ -39817,6 +39817,19 @@ class LineChartComponent {
     onSelect(event) {
         console.log(event);
     }
+    getWeekNumber(d) {
+        // Copy date so don't modify original
+        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        // Set to nearest Thursday: current date + 4 - current day number
+        // Make Sunday's day number 7
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+        // Get first day of year
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        // Calculate full weeks to nearest Thursday
+        var weekNo = Math.ceil(((Number(d) - Number(yearStart)) / 86400000 + 1) / 7);
+        // Return array of year and week number
+        return [d.getUTCFullYear(), weekNo];
+    }
     getOrders() {
         this.spinner.show();
         this.ordersService.getAll();
@@ -39827,6 +39840,7 @@ class LineChartComponent {
                     var formattedDate = date.toISOString().substring(0, 10);
                     // console.log(date.getMonth() + 1);
                     // console.log(date.getFullYear());
+                    // console.log(this.getWeekNumber(date));
                     if (this.multi[0].series.length > 0) {
                         if (this.multi[0].series.find((e) => e['name'] === formattedDate)) {
                             this.multi[0].series.find((e) => e['name'] === formattedDate)['value'] += 1;

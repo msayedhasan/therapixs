@@ -129,7 +129,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               ar: []
             })
           }),
-          model: this.fb.group({
+          make: this.fb.group({
             _id: [],
             name: this.fb.group({
               en: [],
@@ -167,7 +167,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           color: [''],
           year: ['']
         });
-        this.models = [{
+        this.makes = [{
           _id: 1,
           nameEn: 'BMW',
           nameAr: ''
@@ -183,8 +183,64 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _id: 4,
           nameEn: 'Vespa',
           nameAr: ''
+        }, {
+          _id: 5,
+          nameEn: 'Bajaj',
+          nameAr: ''
+        }, {
+          _id: 6,
+          nameEn: 'Benelli',
+          nameAr: ''
+        }, {
+          _id: 7,
+          nameEn: 'Dayun',
+          nameAr: ''
+        }, {
+          _id: 8,
+          nameEn: 'Ducati',
+          nameAr: ''
+        }, {
+          _id: 9,
+          nameEn: 'Egos',
+          nameAr: ''
+        }, {
+          _id: 10,
+          nameEn: 'Harley-Davidson',
+          nameAr: ''
+        }, {
+          _id: 11,
+          nameEn: 'Honda',
+          nameAr: ''
+        }, {
+          _id: 12,
+          nameEn: 'Kawasaki',
+          nameAr: ''
+        }, {
+          _id: 13,
+          nameEn: 'KTM',
+          nameAr: ''
+        }, {
+          _id: 14,
+          nameEn: 'Piaggio',
+          nameAr: ''
+        }, {
+          _id: 15,
+          nameEn: 'Suzuki',
+          nameAr: ''
+        }, {
+          _id: 16,
+          nameEn: 'SYM',
+          nameAr: ''
+        }, {
+          _id: 17,
+          nameEn: 'Yamaha',
+          nameAr: ''
+        }, {
+          _id: 18,
+          nameEn: 'Other make',
+          nameAr: ''
         }];
-        this.selectedModel = {};
+        this.selectedMake = {};
         this.conditions = [{
           _id: 1,
           nameEn: 'New',
@@ -228,6 +284,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }, {
           _id: 6,
           nameEn: '50000 - 60000',
+          nameAr: ''
+        }, {
+          _id: 7,
+          nameEn: 'above 60000',
           nameAr: ''
         }];
         this.selectedDistance = {};
@@ -294,14 +354,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
 
       _createClass(AddBikeComponent, [{
-        key: "selectModel",
-        value: function selectModel(event) {
-          this.selectedModel = {};
+        key: "selectMake",
+        value: function selectMake(event) {
+          this.selectedMake = {};
 
           if (event) {
-            this.selectedModel = event;
+            this.selectedMake = event;
           } else {
-            this.selectedModel = {};
+            this.selectedMake = {};
           }
         }
       }, {
@@ -377,9 +437,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.form.get('condition').get('_id').patchValue(this.selectedCondition['_id']);
           this.form.get('condition').get('name').get('en').patchValue(this.selectedCondition['nameEn']);
           this.form.get('condition').get('name').get('ar').patchValue(this.selectedCondition['nameAr']);
-          this.form.get('model').get('_id').patchValue(this.selectedModel['_id']);
-          this.form.get('model').get('name').get('en').patchValue(this.selectedModel['nameEn']);
-          this.form.get('model').get('name').get('ar').patchValue(this.selectedModel['nameAr']);
+          this.form.get('make').get('_id').patchValue(this.selectedMake['_id']);
+          this.form.get('make').get('name').get('en').patchValue(this.selectedMake['nameEn']);
+          this.form.get('make').get('name').get('ar').patchValue(this.selectedMake['nameAr']);
           this.form.get('transmissionType').get('_id').patchValue(this.selectedTransmissionType['_id']);
           this.form.get('transmissionType').get('name').get('en').patchValue(this.selectedTransmissionType['nameEn']);
           this.form.get('transmissionType').get('name').get('ar').patchValue(this.selectedTransmissionType['nameAr']);
@@ -487,7 +547,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "app-select", 11);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function AddBikeComponent_Template_app_select_itemselected_17_listener($event) {
-            return ctx.selectModel($event);
+            return ctx.selectMake($event);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -588,7 +648,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "model")("ItemsList", ctx.models)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "make")("ItemsList", ctx.makes)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -1044,7 +1104,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](item_r54.model == null ? null : item_r54.model.en);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"]((item_r54.make == null ? null : item_r54.make.en) || (item_r54.model == null ? null : item_r54.model.en));
       }
     }
 
@@ -1475,7 +1535,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("header", "Model")("sortable", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("header", "Make")("sortable", true);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
@@ -1648,6 +1708,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81);
+
+          var ctx_r80 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r80.modalRef.hide();
+        });
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "\xD7");
@@ -1703,15 +1771,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function BikesComponent_ng_template_64_Template_input_ngModelChange_22_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81);
 
-          var ctx_r80 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r82 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r80.forPeriod = $event;
+          return ctx_r82.forPeriod = $event;
         })("change", function BikesComponent_ng_template_64_Template_input_change_22_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81);
 
-          var ctx_r82 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r83 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r82.changePeriod($event);
+          return ctx_r83.changePeriod($event);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1749,9 +1817,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_28_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81);
 
-          var ctx_r83 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r83.addDiscount();
+          return ctx_r84.addDiscount();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, " Confirm ");
@@ -1763,9 +1831,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_64_Template_button_click_30_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r81);
 
-          var ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r84.modalRef.hide();
+          return ctx_r85.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](31, " Cancel ");
@@ -1804,7 +1872,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function BikesComponent_ng_template_66_Template(rf, ctx) {
       if (rf & 1) {
-        var _r86 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r87 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
 
@@ -1817,6 +1885,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r87);
+
+          var ctx_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r86.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
@@ -1835,11 +1911,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r86);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r87);
 
-          var ctx_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r88 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r85.deleteDiscount();
+          return ctx_r88.deleteDiscount();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -1849,11 +1925,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_66_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r86);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r87);
 
-          var ctx_r87 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r89 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r87.modalRef.hide();
+          return ctx_r89.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -1868,7 +1944,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function BikesComponent_ng_template_68_Template(rf, ctx) {
       if (rf & 1) {
-        var _r89 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r91 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
 
@@ -1881,6 +1957,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91);
+
+          var ctx_r90 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r90.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
@@ -1899,11 +1983,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "app-select", 86);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("itemselected", function BikesComponent_ng_template_68_Template_app_select_itemselected_9_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r89);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91);
 
-          var ctx_r88 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r92 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r88.selectStore($event);
+          return ctx_r92.selectStore($event);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1915,11 +1999,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 76);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r89);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91);
 
-          var ctx_r90 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r93 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r90.addBikeToStore();
+          return ctx_r93.addBikeToStore();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Confirm ");
@@ -1929,11 +2013,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "button", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_68_Template_button_click_13_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r89);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r91);
 
-          var ctx_r91 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r94 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r91.modalRef.hide();
+          return ctx_r94.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, " Cancel ");
@@ -1956,7 +2040,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function BikesComponent_ng_template_70_Template(rf, ctx) {
       if (rf & 1) {
-        var _r93 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r96 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
 
@@ -1969,6 +2053,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96);
+
+          var ctx_r95 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r95.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
@@ -1987,11 +2079,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r93);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96);
 
-          var ctx_r92 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r97 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r92.activateElement();
+          return ctx_r97.activateElement();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -2001,11 +2093,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_70_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r93);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96);
 
-          var ctx_r94 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r98 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r94.modalRef.hide();
+          return ctx_r98.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -2020,7 +2112,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function BikesComponent_ng_template_72_Template(rf, ctx) {
       if (rf & 1) {
-        var _r96 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r100 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
 
@@ -2033,6 +2125,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r100);
+
+          var ctx_r99 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r99.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
@@ -2051,11 +2151,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r100);
 
-          var ctx_r95 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r101 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r95.deactivateElement();
+          return ctx_r101.deactivateElement();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -2065,11 +2165,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_72_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r96);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r100);
 
-          var ctx_r97 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r97.modalRef.hide();
+          return ctx_r102.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -2084,7 +2184,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function BikesComponent_ng_template_74_Template(rf, ctx) {
       if (rf & 1) {
-        var _r99 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r104 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
 
@@ -2097,6 +2197,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r104);
+
+          var ctx_r103 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r103.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
@@ -2115,11 +2223,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r99);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r104);
 
-          var ctx_r98 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r98.deleteElement();
+          return ctx_r105.deleteElement();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -2129,11 +2237,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_74_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r99);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r104);
 
-          var ctx_r100 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r106 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r100.modalRef.hide();
+          return ctx_r106.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -2148,7 +2256,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function BikesComponent_ng_template_76_Template(rf, ctx) {
       if (rf & 1) {
-        var _r102 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r108 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
 
@@ -2161,6 +2269,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r108);
+
+          var ctx_r107 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r107.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
@@ -2179,11 +2295,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r102);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r108);
 
-          var ctx_r101 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r109 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r101.availableElement();
+          return ctx_r109.availableElement();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -2193,11 +2309,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_76_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r102);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r108);
 
-          var ctx_r103 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r110 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r103.modalRef.hide();
+          return ctx_r110.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -2212,7 +2328,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     function BikesComponent_ng_template_78_Template(rf, ctx) {
       if (rf & 1) {
-        var _r105 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r112 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 59);
 
@@ -2225,6 +2341,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 62);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_4_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r112);
+
+          var ctx_r111 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          return ctx_r111.modalRef.hide();
+        });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "span", 63);
 
@@ -2243,11 +2367,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 76);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r105);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r112);
 
-          var ctx_r104 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r113 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r104.soldElement();
+          return ctx_r113.soldElement();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, " Confirm ");
@@ -2257,11 +2381,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_ng_template_78_Template_button_click_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r105);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r112);
 
-          var ctx_r106 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r114 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r106.modalRef.hide();
+          return ctx_r114.modalRef.hide();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, " Cancel ");
@@ -2690,10 +2814,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selectors: [["app-bikes"]],
       decls: 80,
       vars: 39,
-      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header", "grid-noGutter"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "col-3_xlg-4_lg-6_sm-10", "grid-column-noGutter"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid-noGutter", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name, Creator, Store", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateAddDiscount", ""], ["templateDeleteDiscount", ""], ["templateAddToStore", ""], ["templateActivate", ""], ["templateDeactivate", ""], ["templateDelete", ""], ["templateAvailable", ""], ["templateSold", ""], ["id", "my-table", "title", "List of Bikes", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "reload"], [3, "width", "property", "resizable", "header"], ["dataTableCell", ""], [3, "property", "header", "sortable"], [3, "header"], [3, "property", "header"], [3, "header", "sortable"], [3, "width", "header"], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["width", "30px", "height", "30px", "alt", "", 3, "src"], [4, "ngIf"], [1, "badge", "blocked"], [1, "badge", "active"], [1, "badge", "deleted"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "ngClass", "tooltip", "click"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "tooltip", "click"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-user", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right"], ["aria-hidden", "true"], [1, "modal-body"], [1, "col-24"], [1, "col-24", 3, "label", "fieldId", "items", "control", "fieldClass"], [1, "col-11_sm-24", "form-group", "grid-center-middle-noGutter"], [1, "col_sm-24", "grid_sm-noGutter", "field-label"], ["for", "period"], [1, "col-11_sm-24", "grid"], ["tooltip", "for specific time", 1, "toggleButton"], ["type", "checkbox", "id", "period", 3, "ngModel", "ngModelChange", "change"], ["viewBox", "0 0 44 44"], ["d", "M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758", "transform", "translate(-2.000000, -2.000000)"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], ["type", "number", 1, "col-24", 3, "label", "fieldId", "placeholder", "control", "fieldClass", "change"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "col-19_xlg-18_lg-17_md-24", "grid-noGutter"], ["type", "text", "bsDatepicker", "", "autocomplete", "off", "placeholder", "YYYY-MM-DD", 1, "form-control", "col", 3, "bsValue", "minDate", "bsConfig", "bsValueChange"], ["type", "time", 1, "form-control", "col", 3, "ngModel", "ngModelChange"], [2, "height", "20px", "width", "100%"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], [1, "col-24", 3, "label", "fieldId", "ItemsList", "placeholder", "fieldClass", "required", "itemselected"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"]],
+      consts: [[1, "grid-center-noGutter"], [1, "col-20_sm-22_xs-23", 2, "margin-top", "20px"], [1, "card"], [1, "card-header", "grid-noGutter"], [1, "card-body", "grid-center-noGutter"], [1, "col-24", "grid-spaceBetween-noGutter"], [1, "card", "xs-hidden"], [1, "card-body"], [2, "display", "inline-block", "background-color", "#4899c2", "padding", "15px", "color", "white"], [1, "material-icons"], [2, "display", "inline-block", "margin", "0 10px"], [2, "color", "#20a8d8", "font-size", "18px", "font-weight", "600"], [2, "color", "#73818f", "font-size", "80%", "font-weight", "700"], [1, "col-top", "xs-24", "grid-noGutter", 2, "margin-top", "15px"], [1, "col-3_xlg-4_lg-6_sm-10", "grid-column-noGutter"], [1, "btn", "color1", "round", "addbtn", 3, "routerLink"], [1, "col-24", "grid-center-noGutter", 2, "margin-top", "20px"], [1, "col-24", "grid-noGutter"], [1, "col-12_xs-24", "grid-left-noGutter", 2, "margin-left", "10px"], ["for", "", 1, "col-24", "grid-noGutter", 2, "font-weight", "bold"], [1, "col-24", "grid"], ["type", "text", "placeholder", "e.g. Name, Creator, Store", 1, "form-control", "col"], ["FilterRecord", ""], [1, "btn", "col-4", "color1", "round", "search", 3, "click"], [1, "md-hidden"], [1, "btn", "col-4", "color2", "round", "search", 3, "click"], [1, "grid-right-noGutter", 2, "margin-top", "20px"], [1, "btn", "color5", "round", 3, "click"], [1, "grid-center-noGutter", 2, "margin-top", "20px"], [4, "ngTemplateOutlet"], ["table", ""], ["id", "template2"], ["templateAddDiscount", ""], ["templateDeleteDiscount", ""], ["templateAddToStore", ""], ["templateActivate", ""], ["templateDeactivate", ""], ["templateDelete", ""], ["templateAvailable", ""], ["templateSold", ""], ["id", "my-table", "title", "List of Bikes", 3, "items", "itemCount", "pageLimits", "limit", "pagination", "noDataMessage", "reload"], [3, "width", "property", "resizable", "header"], ["dataTableCell", ""], [3, "property", "header", "sortable"], [3, "header"], [3, "property", "header"], [3, "header", "sortable"], [3, "width", "header"], ["header", "Actions", 3, "width"], ["class", "grid-center"], ["width", "30px", "height", "30px", "alt", "", 3, "src"], [4, "ngIf"], [1, "badge", "blocked"], [1, "badge", "active"], [1, "badge", "deleted"], ["placement", "bottom", 1, "pencil", 3, "routerLink", "tooltip"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "ngClass", "tooltip", "click"], ["placement", "bottom", "triggers", "mouseenter:mouseleave", 3, "tooltip", "click"], ["tooltip", "Delete", "placement", "bottom", "triggers", "mouseenter:mouseleave", 1, "trash", 3, "click"], [1, "modal-header"], [2, "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-user", "fa-lg", "mt-4"], ["type", "button", "aria-label", "Close", 1, "close", "pull-right", 3, "click"], ["aria-hidden", "true"], [1, "modal-body"], [1, "col-24"], [1, "col-24", 3, "label", "fieldId", "items", "control", "fieldClass"], [1, "col-11_sm-24", "form-group", "grid-center-middle-noGutter"], [1, "col_sm-24", "grid_sm-noGutter", "field-label"], ["for", "period"], [1, "col-11_sm-24", "grid"], ["tooltip", "for specific time", 1, "toggleButton"], ["type", "checkbox", "id", "period", 3, "ngModel", "ngModelChange", "change"], ["viewBox", "0 0 44 44"], ["d", "M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758", "transform", "translate(-2.000000, -2.000000)"], [1, "grid-right"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color1", "round", 2, "margin-right", "10px", 3, "click"], ["type", "button", 1, "btn", "col-5_sm-5_xs-6", "color2", "round", 3, "click"], ["type", "number", 1, "col-24", 3, "label", "fieldId", "placeholder", "control", "fieldClass", "change"], [1, "col-24", "grid-middle-spaceBetween-noGutter"], [1, "col-19_xlg-18_lg-17_md-24", "grid-noGutter"], ["type", "text", "bsDatepicker", "", "autocomplete", "off", "placeholder", "YYYY-MM-DD", 1, "form-control", "col", 3, "bsValue", "minDate", "bsConfig", "bsValueChange"], ["type", "time", 1, "form-control", "col", 3, "ngModel", "ngModelChange"], [2, "height", "20px", "width", "100%"], [2, "color", "red", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-trash", "fa-lg", "mt-4"], [1, "col-24", 3, "label", "fieldId", "ItemsList", "placeholder", "fieldClass", "required", "itemselected"], [2, "color", "#0c425d", "font-weight", "bold", "justify-content", "center"], [1, "fa", "fa-lock", "fa-lg", "mt-4"]],
       template: function BikesComponent_Template(rf, ctx) {
         if (rf & 1) {
-          var _r107 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+          var _r115 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
 
@@ -2804,7 +2928,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](40, "a", 23);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_Template_a_click_40_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r107);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r115);
 
             var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39);
 
@@ -2836,7 +2960,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](48, "a", 25);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function BikesComponent_Template_a_click_48_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r107);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r115);
 
             var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](39);
 
@@ -3456,7 +3580,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             })
           })
         });
-        this.models = [{
+        this.makes = [{
           _id: '1',
           nameEn: 'BMW',
           nameAr: ''
@@ -3465,15 +3589,71 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           nameEn: 'Halawa',
           nameAr: ''
         }, {
-          _id: '2',
+          _id: '3',
           nameEn: 'Peugeot',
           nameAr: ''
         }, {
-          _id: '2',
+          _id: '4',
           nameEn: 'Vespa',
           nameAr: ''
+        }, {
+          _id: '5',
+          nameEn: 'Bajaj',
+          nameAr: ''
+        }, {
+          _id: '6',
+          nameEn: 'Benelli',
+          nameAr: ''
+        }, {
+          _id: '7',
+          nameEn: 'Dayun',
+          nameAr: ''
+        }, {
+          _id: '8',
+          nameEn: 'Ducati',
+          nameAr: ''
+        }, {
+          _id: '9',
+          nameEn: 'Egos',
+          nameAr: ''
+        }, {
+          _id: '10',
+          nameEn: 'Harley-Davidson',
+          nameAr: ''
+        }, {
+          _id: '11',
+          nameEn: 'Honda',
+          nameAr: ''
+        }, {
+          _id: '12',
+          nameEn: 'Kawasaki',
+          nameAr: ''
+        }, {
+          _id: '13',
+          nameEn: 'KTM',
+          nameAr: ''
+        }, {
+          _id: '14',
+          nameEn: 'Piaggio',
+          nameAr: ''
+        }, {
+          _id: '15',
+          nameEn: 'Suzuki',
+          nameAr: ''
+        }, {
+          _id: '16',
+          nameEn: 'SYM',
+          nameAr: ''
+        }, {
+          _id: '17',
+          nameEn: 'Yamaha',
+          nameAr: ''
+        }, {
+          _id: '18',
+          nameEn: 'Other make',
+          nameAr: ''
         }];
-        this.selectedModel = {};
+        this.selectedMake = {};
         this.conditions = [{
           _id: '1',
           nameEn: 'New',
@@ -3517,6 +3697,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }, {
           _id: '6',
           nameEn: '50000 - 60000',
+          nameAr: ''
+        }, {
+          _id: '7',
+          nameEn: 'above 60000',
           nameAr: ''
         }];
         this.selectedDistance = {};
@@ -3660,7 +3844,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               nameEn: res['data']['condition']['en'],
               nameAr: res['data']['condition']['ar']
             };
-            _this13.selectedModel = {
+            _this13.selectedMake = {
               _id: res['data']['model']['_id'],
               nameEn: res['data']['model']['en'],
               nameAr: res['data']['model']['ar']
@@ -3699,14 +3883,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.hide();
         }
       }, {
-        key: "selectModel",
-        value: function selectModel(event) {
-          this.selectedModel = {};
+        key: "selectMake",
+        value: function selectMake(event) {
+          this.selectedMake = {};
 
           if (event) {
-            this.selectedModel = event;
+            this.selectedMake = event;
           } else {
-            this.selectedModel = {};
+            this.selectedMake = {};
           }
         }
       }, {
@@ -3780,9 +3964,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.form.get('condition').get('_id').patchValue(this.selectedCondition['_id']);
           this.form.get('condition').get('name').get('en').patchValue(this.selectedCondition['nameEn']);
           this.form.get('condition').get('name').get('ar').patchValue(this.selectedCondition['nameAr']);
-          this.form.get('model').get('_id').patchValue(this.selectedModel['_id']);
-          this.form.get('model').get('name').get('en').patchValue(this.selectedModel['nameEn']);
-          this.form.get('model').get('name').get('ar').patchValue(this.selectedModel['nameAr']);
+          this.form.get('model').get('_id').patchValue(this.selectedMake['_id']);
+          this.form.get('model').get('name').get('en').patchValue(this.selectedMake['nameEn']);
+          this.form.get('model').get('name').get('ar').patchValue(this.selectedMake['nameAr']);
           this.form.get('transmissionType').get('_id').patchValue(this.selectedTransmissionType['_id']);
           this.form.get('transmissionType').get('name').get('en').patchValue(this.selectedTransmissionType['nameEn']);
           this.form.get('transmissionType').get('name').get('ar').patchValue(this.selectedTransmissionType['nameAr']);
@@ -3873,7 +4057,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "app-select", 11);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("itemselected", function EditBikeComponent_Template_app_select_itemselected_12_listener($event) {
-            return ctx.selectModel($event);
+            return ctx.selectMake($event);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3970,7 +4154,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "model")("ItemsList", ctx.models)("initialSelectedItem", ctx.selectedModel)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("fieldId", "make")("ItemsList", ctx.makes)("initialSelectedItem", ctx.selectedMake)("placeholder", "Choose transmission type")("fieldClass", "col-18_md-24")("required", true);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
