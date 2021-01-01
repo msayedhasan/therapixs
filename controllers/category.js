@@ -627,37 +627,36 @@ exports.addDiscount = async (req, res, next) => {
 exports.addProfit = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
-
-    const categoryId = req.params.categoryId;
-    const category = await Category.findById(categoryId);
-    if (!category) {
-      const error = new Error("Could not find category.");
-      error.statusCode = 404;
-      throw error;
-    }
-
-    const storeId = req.body.storeId;
-    let store;
-    if (storeId) {
-      store = await Store.findById(storeId);
-
-      if (!store) {
-        const error = new Error("Could not find store.");
+    if (loggedInUser.admin) {
+      const categoryId = req.params.categoryId;
+      const category = await Category.findById(categoryId);
+      if (!category) {
+        const error = new Error("Could not find category.");
         error.statusCode = 404;
         throw error;
       }
-    }
-    const profitType = req.body.profitType;
-    const profitValue = req.body.profitValue;
-    const profitPercentage = req.body.profitPercentage;
 
-    if (profitType === "" || (profitValue === 0 && profitPercentage === 0)) {
-      const error = new Error("No profit to add.");
-      error.statusCode = 400;
-      throw error;
-    }
+      const storeId = req.body.storeId;
+      let store;
+      if (storeId) {
+        store = await Store.findById(storeId);
 
-    if (loggedInUser.admin) {
+        if (!store) {
+          const error = new Error("Could not find store.");
+          error.statusCode = 404;
+          throw error;
+        }
+      }
+      const profitType = req.body.profitType;
+      const profitValue = req.body.profitValue;
+      const profitPercentage = req.body.profitPercentage;
+
+      if (profitType === "" || (profitValue === 0 && profitPercentage === 0)) {
+        const error = new Error("No profit to add.");
+        error.statusCode = 400;
+        throw error;
+      }
+
       const profit = new Profit({
         profitOn: "category",
         store: storeId,
@@ -685,6 +684,13 @@ exports.addProfit = async (req, res, next) => {
             }
           }
         }
+
+        category.profitType = profitType;
+        category.profitValue = profitValue;
+        category.profitPercentage = profitPercentage;
+        category.profit = profit._id;
+
+        await category.save();
       } else {
         if (store.products && store.products.length > 0) {
           for (
@@ -711,55 +717,55 @@ exports.addProfit = async (req, res, next) => {
         message: "Category profit added successfully!",
         data: store,
       });
-    } else if (loggedInUser.owner) {
-      if (!store) {
-        const error = new Error("Could not find store.");
-        error.statusCode = 404;
-        throw error;
-      }
-      if (store.owners.includes(loggedInUser.ownerId)) {
-        const profit = new Profit({
-          profitOn: "category",
-          store: storeId,
-          profitType: profitType,
-          profitValue: profitValue,
-          profitPercentage: profitPercentage,
-          creator: loggedInUser._id,
-          createdAt: Date.now(),
-        });
-        await profit.save();
+      // } else if (loggedInUser.owner) {
+      //   if (!store) {
+      //     const error = new Error("Could not find store.");
+      //     error.statusCode = 404;
+      //     throw error;
+      //   }
+      //   if (store.owners.includes(loggedInUser.ownerId)) {
+      //     const profit = new Profit({
+      //       profitOn: "category",
+      //       store: storeId,
+      //       profitType: profitType,
+      //       profitValue: profitValue,
+      //       profitPercentage: profitPercentage,
+      //       creator: loggedInUser._id,
+      //       createdAt: Date.now(),
+      //     });
+      //     await profit.save();
 
-        if (store.products && store.products.length > 0) {
-          for (
-            let prodIndex = 0;
-            prodIndex < store.products.length;
-            prodIndex++
-          ) {
-            const product = await Product.findById(store.products[prodIndex]);
-            if (product) {
-              if (product.category._id === categoryId.toString()) {
-                product.profitType = profitType;
-                product.profitValue = profitValue;
-                product.profitPercentage = profitPercentage;
-                product.profit = profit._id;
+      //     if (store.products && store.products.length > 0) {
+      //       for (
+      //         let prodIndex = 0;
+      //         prodIndex < store.products.length;
+      //         prodIndex++
+      //       ) {
+      //         const product = await Product.findById(store.products[prodIndex]);
+      //         if (product) {
+      //           if (product.category._id === categoryId.toString()) {
+      //             product.profitType = profitType;
+      //             product.profitValue = profitValue;
+      //             product.profitPercentage = profitPercentage;
+      //             product.profit = profit._id;
 
-                await product.save();
-              }
-            }
-          }
-        }
+      //             await product.save();
+      //           }
+      //         }
+      //       }
+      //     }
 
-        return res.status(201).json({
-          message: "Category profit added successfully!",
-          data: store,
-        });
-      } else {
-        const error = new Error(
-          "Not authorized as you're not an owner of this store!"
-        );
-        error.statusCode = 403;
-        throw error;
-      }
+      //     return res.status(201).json({
+      //       message: "Category profit added successfully!",
+      //       data: store,
+      //     });
+      //   } else {
+      //     const error = new Error(
+      //       "Not authorized as you're not an owner of this store!"
+      //     );
+      //     error.statusCode = 403;
+      //     throw error;
+      //   }
     } else {
       const error = new Error("Not authorized!");
       error.statusCode = 403;
