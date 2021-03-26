@@ -12,11 +12,7 @@ const router = express.Router();
 
 router.get("/", passportJWT, bikeController.getAll);
 
-router.get(
-  "/getActivatedBikes",
-  passportJWT,
-  bikeController.getActivatedBikes
-);
+router.get("/getActivatedBikes", passportJWT, bikeController.getActivatedBikes);
 
 router.get(
   "/getActivatedBikes/discount/:discountId",
@@ -27,14 +23,16 @@ router.get(
 router.post(
   "/",
   passportJWT,
-  awsUpload.array("photos", 5),
+  awsUpload.array("photos"),
+  // awsUpload.array("photos", 10),
   bikeController.addOne
 );
 
 router.post(
   "/app",
   passportJWT,
-  awsUpload.array("photos", 5),
+  awsUpload.array("photos"),
+  // awsUpload.array("photos", 10),
   bikeController.appAddOne
 );
 
@@ -47,7 +45,8 @@ router.post("/addReview/:bikeId", passportJWT, bikeController.addReview);
 router.put(
   "/:bikeId",
   passportJWT,
-  awsUpload.array("photos", 5),
+  awsUpload.array("photos"),
+  // awsUpload.array("photos", 10),
   bikeController.updateOne
 );
 

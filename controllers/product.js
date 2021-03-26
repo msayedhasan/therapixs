@@ -125,7 +125,7 @@ exports.addOne = async (req, res, next) => {
 
     if (req.files.length === 0) {
       const error = new Error("Add at least one image.");
-      error.statusCode = 401;
+      error.statusCode = 400;
       throw error;
     }
 
@@ -301,9 +301,172 @@ exports.addOne = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     for (let index = 0; index < req.files.length; index++) {
-      await awsDelete.delete(req.files[index].location);
+      awsDelete.delete(req.files[index].location);
     }
 
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.copyOne = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    if (loggedInUser.admin || loggedInUser.owner) {
+      const originalProductId = req.params.productId;
+
+      const originalProduct = await Product.findById(originalProductId);
+
+      if (!originalProduct) {
+        const error = new Error("Could not find original product.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      let newProductProperties = [];
+      let newProperties = [];
+
+      if (originalProduct.properties) {
+        for (
+          let index = 0;
+          index < originalProduct.properties.length;
+          index++
+        ) {
+          const property = originalProduct.properties[index];
+
+          const originalProductProperty = await ProductProperty.findById(
+            property
+          );
+
+          if (!originalProductProperty) {
+            const error = new Error(
+              "Could not find original product property."
+            );
+            error.statusCode = 404;
+            throw error;
+          }
+
+          const newProperty = new ProductProperty({
+            price: originalProductProperty.price,
+            qty: originalProductProperty.qty,
+            productAttributes: originalProductProperty.productAttributes,
+          });
+
+          newProperties.push(newProperty);
+          newProductProperties.push(newProperty._id);
+        }
+      }
+
+      const product = new Product({
+        active: false,
+        photos: originalProduct.photos,
+        creator: loggedInUser._id,
+        createdAt: Date.now(),
+        name: originalProduct.name + " copy",
+        description: originalProduct.description,
+        category: {
+          _id: originalProduct.category._id,
+          en: originalProduct.category.en,
+          ar: originalProduct.category.ar,
+        },
+        store: originalProduct.store,
+        properties: newProductProperties,
+        discountType: originalProduct.discountType,
+        discountValue: originalProduct.discountValue,
+        discountPercentage: originalProduct.discountPercentage,
+        discount: originalProduct.discount,
+        profitType: originalProduct.profitType,
+        profitValue: originalProduct.profitValue,
+        profitPercentage: originalProduct.profitPercentage,
+        profit: originalProduct.profit,
+      });
+
+      const category = await Category.findById(originalProduct.category._id);
+      if (!category) {
+        const error = new Error("Could not find category.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (originalProduct.store) {
+        if (loggedInUser.owner) {
+          const owner = await Owner.findById(loggedInUser.ownerId);
+          if (!owner) {
+            const error = new Error("Could not find your ownership.");
+            error.statusCode = 404;
+            throw error;
+          }
+
+          const store = await Store.findById(owner.store);
+          if (!store) {
+            const error = new Error("You're not an owner of a store.");
+            error.statusCode = 403;
+            throw error;
+          }
+
+          if (!store.active || store.locked) {
+            const error = new Error("store isn't active or locked.");
+            error.statusCode = 400;
+            throw error;
+          }
+
+          if (!store.equals(originalProduct.store)) {
+            const error = new Error(
+              "You're not an owner of store of this product."
+            );
+            error.statusCode = 401;
+            throw error;
+          }
+
+          store.products.push(product._id);
+
+          await store.save();
+        } else if (loggedInUser.admin) {
+          const store = await Store.findById(originalProduct.store);
+          if (!store) {
+            const error = new Error("couldn't find the store.");
+            error.statusCode = 400;
+            throw error;
+          }
+
+          store.products.push(product._id);
+
+          await store.save();
+        }
+      }
+
+      //** Start save product to logged in user */
+      if (loggedInUser.products) {
+        loggedInUser.products.push(product._id);
+      } else {
+        loggedInUser.products = [product._id];
+      }
+      await loggedInUser.save();
+      //** End save product to logged in user */
+
+      category.products.push(product._id);
+
+      if (newProperties && newProperties.length > 0) {
+        for (let index = 0; index < newProperties.length; index++) {
+          await newProperties[index].save();
+        }
+      }
+
+      await category.save();
+      await product.save();
+
+      return res.status(201).json({
+        message: "Product copied successfully!",
+        data: product,
+      });
+    } else {
+      const error = new Error("You're not admin or owner.");
+      error.statusCode = 401;
+      throw error;
+    }
+  } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
     }
@@ -314,11 +477,10 @@ exports.addOne = async (req, res, next) => {
 exports.updateOne = async (req, res, next) => {
   try {
     let photos = [];
-    if (req.files && req.files > 0) {
-      for (let index = 0; index < req.files.length; index++) {
-        photos.push(req.files[index].location);
-      }
+    for (let index = 0; index < req.files.length; index++) {
+      photos.push(req.files[index].location);
     }
+
     const loggedInUser = req.user;
     if (!loggedInUser.admin && !loggedInUser.owner) {
       if (req.files && req.files > 0) {
@@ -353,11 +515,42 @@ exports.updateOne = async (req, res, next) => {
     const description = JSON.parse(req.body.description);
     const properties = JSON.parse(req.body.properties);
 
-    const originalPhotos = JSON.parse(req.body.originalPhotos);
-    // product.photos = photos.concat(originalPhotos);
+    //** start updating category */
+    const categoryId = JSON.parse(req.body.category)._id;
+    const categoryEn = JSON.parse(req.body.category).name.en;
+    const categoryAr = JSON.parse(req.body.category).name.ar;
+
+    const category = await Category.findById(categoryId);
+    if (!category) {
+      // delete photos from aws
+      for (let index = 0; index < req.files.length; index++) {
+        await awsDelete.delete(req.files[index].location);
+      }
+
+      const error = new Error("Could not find selected category.");
+      error.statusCode = 404;
+      throw error;
+    }
+    if (category.categories && category.categories.length > 0) {
+      // delete photos from aws
+      for (let index = 0; index < req.files.length; index++) {
+        await awsDelete.delete(req.files[index].location);
+      }
+
+      const error = new Error("choose sub-category to add product in.");
+      error.statusCode = 400;
+      throw error;
+    }
+    //** End updating category */
+
+    const originalPhotos = req.body.photos;
+    product.photos = photos.concat(originalPhotos);
 
     product.name = name;
     product.description = description;
+    product.category._id = categoryId;
+    product.category.en = categoryEn;
+    product.category.ar = categoryAr;
     product.updatedAt = Date.now();
 
     if (product.properties.length > properties.length) {
@@ -445,22 +638,24 @@ exports.updateOne = async (req, res, next) => {
           error.statusCode = 404;
           throw error;
         }
+      } else if (
+        !product.creator.equals(loggedInUser._id) &&
+        !loggedInUser.admin
+      ) {
+        // delete photos from aws
+        for (let index = 0; index < req.files.length; index++) {
+          await awsDelete.delete(req.files[index].location);
+        }
+
+        const error = new Error("you're not the creator of this product.");
+        error.statusCode = 404;
+        throw error;
+      } else if (loggedInUser.admin) {
       } else {
         const error = new Error("you're not an owner.");
         error.statusCode = 404;
         throw error;
       }
-    }
-
-    if (!product.creator.equals(loggedInUser._id)) {
-      // delete photos from aws
-      for (let index = 0; index < req.files.length; index++) {
-        await awsDelete.delete(req.files[index].location);
-      }
-
-      const error = new Error("you're not the creator of this product.");
-      error.statusCode = 404;
-      throw error;
     }
 
     await product.save();
@@ -470,7 +665,7 @@ exports.updateOne = async (req, res, next) => {
     if (req.files && req.files > 0) {
       // delete photos from aws
       for (let index = 0; index < req.files.length; index++) {
-        await awsDelete.delete(req.files[index].location);
+        awsDelete.delete(req.files[index].location);
       }
     }
     if (!err.statusCode) {
@@ -480,6 +675,44 @@ exports.updateOne = async (req, res, next) => {
   }
 };
 
+// exports.S3ToCDN = async (req, res, next) => {
+//   try {
+//     const products = await Product.find();
+//     for (let index = 0; index < products.length; index++) {
+//       const element = products[index];
+//       const product = await Product.findById(element._id);
+//       var productPhotos;
+//       if (product.photos) {
+//         for (let index = 0; index < product.photos.length; index++) {
+//           const x = product.photos[index];
+//           if (x && x.includes("motobar-images.s3.amazonaws.com")) {
+//             console.log(x);
+//             y = x.replace(
+//               "motobar-images.s3.amazonaws.com",
+//               "d1qpbviydkq0wh.cloudfront.net"
+//             );
+//             if (productPhotos) {
+//               productPhotos[index] = y;
+//             } else {
+//               productPhotos = [];
+//               productPhotos[index] = y;
+//             }
+//             // product.photos[index] = y;
+//           }
+//         }
+//       }
+//       product.photos = productPhotos;
+//       await product.save();
+//     }
+
+//     return res.json({ message: "changed successfully" });
+//   } catch (err) {
+//     if (!err.statusCode) {
+//       err.statusCode = 500;
+//     }
+//     next(err);
+//   }
+// };
 exports.activateOne = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
@@ -1338,6 +1571,66 @@ exports.getBestSelling = async (req, res, next) => {
 ///////////////////////////////////////////////////
 ////////// mobile app only ////////////
 
+exports.searchProducts = async (req, res, next) => {
+  try {
+    const query = req.body.query;
+
+    let products = await Product.find()
+      .populate({
+        path: "properties",
+        model: "productProperty",
+        populate: {
+          path: "properties.productAttributes",
+          model: "ProductAttribute",
+        },
+      })
+      .populate({
+        path: "store",
+        model: "Store",
+        populate: { path: "address", model: "Place" },
+      })
+      .populate({
+        path: "creator",
+        model: "User",
+      });
+
+    const arabic = /[\u0600-\u06FF]/;
+    const filteredProducts = products.filter((e) => {
+      return (
+        e.name.includes(query) ||
+        e.description.includes(query) ||
+        e.category?.en?.includes(query) ||
+        e.category?.ar?.includes(arabic.test(query))
+        // ||
+        // e.properties.filter((prop) => {
+        //   return prop.productAttributes.filter((element) => {
+        //     return (
+        //       element.name?.en?.includes(query) ||
+        //       element.name?.ar?.includes(arabic.test(query)) ||
+        //       element.value?.en?.includes(query) ||
+        //       element.value?.ar?.includes(arabic.test(query))
+        //     );
+        //   });
+        // })
+      );
+
+      console.log(e);
+    });
+
+    console.log(filteredProducts.length);
+    return res.status(200).json({
+      message: "Fetched successfully",
+      data: filteredProducts,
+    });
+  } catch (err) {
+    console.log(err);
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
 exports.getActivatedProducts = async (req, res, next) => {
   try {
     let products = await Product.find({ active: true })
@@ -1665,7 +1958,7 @@ exports.appAddOne = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     for (let index = 0; index < req.files.length; index++) {
-      await awsDelete.delete(req.files[index].location);
+      awsDelete.delete(req.files[index].location);
     }
 
     if (!err.statusCode) {

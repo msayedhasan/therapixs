@@ -662,7 +662,7 @@ exports.cancelOne = async (req, res, next) => {
       if (order.products && order.products.length > 0) {
         await order.save();
       } else {
-        if (loggedInUser.orders.includes(orderId)) {
+        if (loggedInUser.orders && loggedInUser.orders.includes(orderId)) {
           loggedInUser.orders.pull(orderId);
           await loggedInUser.save();
         }
@@ -675,6 +675,82 @@ exports.cancelOne = async (req, res, next) => {
       error.statusCode = 403;
       throw error;
     }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.cancelCompleteOrder = async (req, res, next) => {
+  try {
+    const loggedInUser = req.user;
+    const orderId = req.params.orderId;
+    const order = await Order.findById(orderId);
+    if (!order) {
+      const error = new Error("Could not find order.");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    for (let index = 0; index < order.products.length; index++) {
+      const product = order.products[index];
+
+      let itemInOrder = order.products.find(
+        (e) =>
+          e.product.toString() === product.product.toString() &&
+          e.productName === product.productName
+      );
+
+      if (!itemInOrder) {
+        const error = new Error("Couldn't find item in order.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (loggedInUser._id.equals(order.orderedBy) || loggedInUser.admin) {
+        if (order.shipped) {
+          const error = new Error("order is already shipped.");
+          error.statusCode = 404;
+          throw error;
+        }
+
+        if (order.delivered) {
+          const error = new Error("order is already delivered.");
+          error.statusCode = 404;
+          throw error;
+        }
+
+        order.products.pull(itemInOrder);
+
+        const parsedProperty = await ProductProperty.findById(
+          itemInOrder.productSelectedPropertyId
+        );
+        if (parsedProperty) {
+          parsedProperty.qty += itemInOrder.qty;
+          await parsedProperty.save();
+        }
+
+        if (order.products && order.products.length > 0) {
+          await order.save();
+        } else {
+          if (loggedInUser.orders && loggedInUser.orders.includes(orderId)) {
+            loggedInUser.orders.pull(orderId);
+            await loggedInUser.save();
+          }
+
+          await Order.findByIdAndDelete(orderId);
+        }
+      } else {
+        const error = new Error(
+          "Not authorized as you're not an admin or the buyer!"
+        );
+        error.statusCode = 403;
+        throw error;
+      }
+    }
+    return res.status(200).json({ message: "order deleted!" });
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;

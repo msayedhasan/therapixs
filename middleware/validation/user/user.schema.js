@@ -1,28 +1,28 @@
 const joi = require("@hapi/joi");
 
 const schema = {
-    google: joi.object({
-        id: joi.required(),
-        email: joi.string().required(),
-        name: joi.string().required(),
-        fcmToken: joi.string(),
-    }),
+  google: joi.object({
+    id: joi.required(),
+    email: joi.string().required(),
+    name: joi.string().required(),
+    fcmToken: joi.string().optional().allow(""),
+  }),
 
-    login: joi.object({
-        // email: joi.string().required(),
-        phone: joi.number().required(),
-        fcmToken: joi.string(),
-        password: joi.string().required(),
-    }),
+  login: joi.object({
+    // email: joi.string().required(),
+    phone: joi.number().required(),
+    fcmToken: joi.string().optional().allow(""),
+    password: joi.string().required(),
+  }),
 
-    signup: joi.object({
-        name: joi.string().required(),
-        // email: joi.string().required(),
-        phone: joi.number().required(),
-        fcmToken: joi.string(),
-        password: joi.string().required(),
-        address: joi.string().required(),
-    }),
+  signup: joi.object({
+    name: joi.string().required(),
+    // email: joi.string().required(),
+    phone: joi.number().required(),
+    fcmToken: joi.string().optional().allow(""),
+    password: joi.string().required(),
+    address: joi.string().required(),
+  }),
 };
 
 module.exports = schema;

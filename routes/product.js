@@ -27,27 +27,32 @@ router.get(
 router.post(
   "/",
   passportJWT,
-  awsUpload.array("photos", 5),
+  awsUpload.array("photos"),
   productController.addOne
 );
+router.get("/copy/:productId", passportJWT, productController.copyOne);
 
 router.post(
   "/app",
   passportJWT,
-  awsUpload.array("photos", 5),
+  awsUpload.array("photos"),
   productController.appAddOne
 );
 
 router.get("/bestSelling", passportJWT, productController.getBestSelling);
 
+// router.get("/S3ToCDN", productController.S3ToCDN);
+
 router.get("/:productId", passportJWT, productController.getOne);
 
 router.post("/addReview/:productId", passportJWT, productController.addReview);
 
+router.post("/search", passportJWT, productController.searchProducts);
+
 router.put(
   "/:productId",
   passportJWT,
-  awsUpload.array("photos", 5),
+  awsUpload.array("photos"),
   productController.updateOne
 );
 

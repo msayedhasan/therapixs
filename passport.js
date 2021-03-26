@@ -56,15 +56,15 @@ passport.use(
         }
 
         if (profile.emails[0].value != "") {
+          // const existingUser = await User.findOne({
+          //   "google.email": profile.emails[0].value,
+          // });
           const existingUser = await User.findOne({
-            "google.email": profile.emails[0].value,
+            $or: [
+              { "apple.email": profile.emails[0].value },
+              { "google.email": profile.emails[0].value },
+            ],
           });
-          //   const existingUser = await User.findOne({
-          //     $or: [
-          //       { "local.email": profile.emails[0].value },
-          //       { "google.email": profile.emails[0].value },
-          //     ],
-          //   });
           if (existingUser) {
             existingUser.methods.push("facebook");
             if (existingUser.name == "") {
@@ -92,7 +92,6 @@ passport.use(
           },
         });
 
-        newUser.otp = 1;
         newUser.otpVerified = false;
 
         await newUser.save();

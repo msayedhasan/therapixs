@@ -263,7 +263,7 @@ exports.addOne = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     for (let index = 0; index < req.files.length; index++) {
-      await awsDelete.delete(req.files[index].location);
+      awsDelete.delete(req.files[index].location);
     }
 
     if (!err.statusCode) {
@@ -729,6 +729,9 @@ exports.addBikeToStore = async (req, res, next) => {
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
+    }
+    if (req.file) {
+      awsDelete.delete(req.file.location);
     }
     next(err);
   }

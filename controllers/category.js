@@ -167,6 +167,9 @@ exports.addOne = async (req, res, next) => {
     if (!err.statusCode) {
       err.statusCode = 500;
     }
+    if (req.file) {
+      awsDelete.delete(req.file.location);
+    }
     next(err);
   }
 };
@@ -237,7 +240,7 @@ exports.updateOne = async (req, res, next) => {
     }
   } catch (err) {
     if (req.file) {
-      await awsDelete.delete(req.file.location);
+      awsDelete.delete(req.file.location);
     }
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -452,6 +455,9 @@ exports.addSubCategory = async (req, res, next) => {
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
+    }
+    if (req.file) {
+      awsDelete.delete(req.file.location);
     }
     next(err);
   }

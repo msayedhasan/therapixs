@@ -481,6 +481,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/order/confirmOne/".concat(itemId));
         }
       }, {
+        key: "cancelOne",
+        value: function cancelOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/order/cancelCompleteOrder/".concat(itemId));
+        }
+      }, {
         key: "shipOne",
         value: function shipOne(itemId) {
           return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/order/shipOne/".concat(itemId));
@@ -825,9 +830,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.http = http;
         this.products = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+        this.lastParsedPage = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
       }
 
       _createClass(ProductsService, [{
+        key: "pagination",
+        value: function pagination(event) {
+          console.log('event from products service');
+          console.log(event);
+          this.lastParsedPage.next(event);
+        }
+      }, {
         key: "getAll",
         value: function getAll() {
           var _this7 = this;
@@ -847,6 +860,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "addOne",
         value: function addOne(form) {
           return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product', form);
+        }
+      }, {
+        key: "copyOne",
+        value: function copyOne(itemId) {
+          return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + "/product/copy/".concat(itemId));
         }
       }, {
         key: "updateOne",

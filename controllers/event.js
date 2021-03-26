@@ -125,16 +125,17 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.addOne = async (req, res, next) => {
-  // upload image if exist
-  let image = "";
-  if (req.file) {
-    image = req.file.location;
-  } else {
-    const error = new Error("Upload event image.");
-    error.statusCode = 401;
-    throw error;
-  }
   try {
+    // upload image if exist
+    let image = "";
+    if (req.file) {
+      image = req.file.location;
+    } else {
+      const error = new Error("Upload event image.");
+      error.statusCode = 401;
+      throw error;
+    }
+
     const loggedInUser = req.user;
 
     if (loggedInUser.admin) {
@@ -252,7 +253,7 @@ exports.addOne = async (req, res, next) => {
     }
   } catch (err) {
     if (req.file) {
-      await awsDelete.delete(req.file.location);
+      awsDelete.delete(req.file.location);
     }
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -581,7 +582,7 @@ exports.appAddOne = async (req, res, next) => {
     }
   } catch (err) {
     if (req.file) {
-      await awsDelete.delete(req.file.location);
+      awsDelete.delete(req.file.location);
     }
     if (!err.statusCode) {
       err.statusCode = 500;

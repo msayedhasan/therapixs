@@ -264,6 +264,9 @@ class OrdersService {
     confirmOne(itemId) {
         return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/order/confirmOne/${itemId}`);
     }
+    cancelOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/order/cancelCompleteOrder/${itemId}`);
+    }
     shipOne(itemId) {
         return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/order/shipOne/${itemId}`);
     }
@@ -428,6 +431,12 @@ class ProductsService {
     constructor(http) {
         this.http = http;
         this.products = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+        this.lastParsedPage = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+    }
+    pagination(event) {
+        console.log('event from products service');
+        console.log(event);
+        this.lastParsedPage.next(event);
     }
     getAll() {
         return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product').subscribe((res) => {
@@ -441,6 +450,9 @@ class ProductsService {
     }
     addOne(form) {
         return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + '/product', form);
+    }
+    copyOne(itemId) {
+        return this.http.get(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/copy/${itemId}`);
     }
     updateOne(form, itemId) {
         return this.http.put(_config_variables__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + `/product/${itemId}`, form);

@@ -10,7 +10,7 @@ const userSchema = new Schema({
   otp: { type: Number, default: undefined },
   resetPassword: {
     type: Boolean,
-    default: false,
+    default: undefined,
   },
   allowNotification: {
     type: Boolean,
@@ -22,7 +22,7 @@ const userSchema = new Schema({
   },
   image: {
     type: String,
-    default: "https://via.placeholder.com/150",
+    default: "",
   },
   dob: String,
   phone: Number,
@@ -47,6 +47,12 @@ const userSchema = new Schema({
     id: {
       type: String,
     },
+    email: {
+      type: String,
+      lowercase: true,
+    },
+  },
+  apple: {
     email: {
       type: String,
       lowercase: true,

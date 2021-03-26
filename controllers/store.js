@@ -93,11 +93,12 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.addOne = async (req, res, next) => {
-  let image;
-  if (req.file) {
-    image = req.file.location;
-  }
   try {
+    let image;
+    if (req.file) {
+      image = req.file.location;
+    }
+
     const loggedInUser = req.user;
 
     if (loggedInUser.admin) {
@@ -188,7 +189,9 @@ exports.addOne = async (req, res, next) => {
       throw error;
     }
   } catch (err) {
-    await awsDelete.delete(image);
+    if (req.file) {
+      awsDelete.delete(req.file.location);
+    }
     if (!err.statusCode) {
       err.statusCode = 500;
     }
@@ -305,7 +308,7 @@ exports.updateOne = async (req, res, next) => {
     }
   } catch (err) {
     if (req.file) {
-      await awsDelete.delete(req.file.location);
+      awsDelete.delete(req.file.location);
     }
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -1105,11 +1108,12 @@ exports.deleteProfit = async (req, res, next) => {
 // Mobile api
 
 exports.appAddOne = async (req, res, next) => {
-  let image;
-  if (req.file) {
-    image = req.file.location;
-  }
   try {
+    let image;
+    if (req.file) {
+      image = req.file.location;
+    }
+
     const loggedInUser = req.user;
 
     if (loggedInUser.admin) {
@@ -1200,7 +1204,9 @@ exports.appAddOne = async (req, res, next) => {
       throw error;
     }
   } catch (err) {
-    await awsDelete.delete(image);
+    if (req.file) {
+      awsDelete.delete(req.file.location);
+    }
     if (!err.statusCode) {
       err.statusCode = 500;
     }

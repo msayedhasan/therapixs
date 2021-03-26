@@ -24,6 +24,20 @@ router.post("/verifyOtp", authController.verifyOtp);
 router.post("/resendOtp", authController.resendOtp);
 
 router.post("/google", googleValidation, authController.google);
+router.post(
+  "/syncGoogle",
+  passportJWT,
+  googleValidation,
+  authController.syncGoogle
+);
+
+router.post("/apple", authController.apple);
+router.post("/syncApple", passportJWT, authController.syncApple);
+
+router.post("/facebook", authController.facebook);
+router.post("/syncFacebook", passportJWT, authController.syncFacebook);
+
+router.get("/me", passportJWT, authController.getProfile);
 
 router.post(
   "/oauth/facebook",
@@ -39,7 +53,5 @@ router.post(
   passport.authenticate("googleToken", { session: false }),
   authController.googleOAuth
 );
-
-router.get("/me", passportJWT, authController.getProfile);
 
 module.exports = router;

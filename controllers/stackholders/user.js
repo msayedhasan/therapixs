@@ -3,12 +3,25 @@ const Product = require("../../models/product");
 const Store = require("../../models/store");
 const bcrypt = require("bcryptjs");
 
+// const SMS = require("../../startup/sms_send");
+
+generateOTP = () => {
+  // Declare a digits variable
+  // which stores all digits
+  var digits = "0123456789";
+  let OTP = "";
+  for (let i = 0; i < 4; i++) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+};
+
 exports.getAll = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
     if (loggedInUser.admin) {
       const users = await User.find({ admin: undefined }).select(
-        "name phone locked admin owner shipper leader dob address fcmToken bikeMake bikeYear"
+        "name phone locked admin owner shipper leader dob address fcmToken bikeMake bikeYear otp otpVerified methods"
       );
 
       return res.status(200).json({
@@ -89,12 +102,16 @@ exports.updateOne = async (req, res, next) => {
     }
     if (password) {
       user.local.password = await bcrypt.hash(password, 12);
-      user.resetPassword = undefined;
+      if (user.resetPassword) {
+        user.resetPassword = undefined;
+      }
     }
     if (!phone && !user.phone) {
       user.phone = undefined;
-    } else if (phone) {
-      user.phone = parseInt(phone);
+    } else if (phone && user.phone != phone) {
+      // user.phone = parseInt(phone);
+      // user.otp = generateOTP();
+      // SMS.send(user.phone, `Your MotoBar verification code is ${user.otp}`);
     }
     if (!bikeModel && !user.bikeModel) {
       user.bikeModel = undefined;

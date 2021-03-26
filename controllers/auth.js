@@ -1,5 +1,8 @@
+const SMS = require("../startup/sms_send");
+
 const { JWT_SECRET } = require("../config/index");
 const bcrypt = require("bcryptjs");
+const cookie = require("cookie");
 
 const jwt = require("jsonwebtoken");
 
@@ -16,7 +19,19 @@ setToken = (user) => {
   );
 };
 
+generateOTP = () => {
+  // Declare a digits variable
+  // which stores all digits
+  var digits = "0123456789";
+  let OTP = "";
+  for (let i = 0; i < 4; i++) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+};
+
 exports.signup = async (req, res, next) => {
+  console.log("sign up");
   const name = req.body.name;
   //   const email = req.body.email;
   const phone = parseInt(req.body.phone);
@@ -40,48 +55,55 @@ exports.signup = async (req, res, next) => {
       throw error;
     }
 
-    // // check if user logged in with existing mail via facebook or google
-    // let socialMediaUser = await User.findOne({
-    //     $or: [{ "google.email": email }, { "facebook.email": email }],
-    // });
-    // if (socialMediaUser) {
-    //     socialMediaUser.phone = phone;
-    //     socialMediaUser.methods.push("local");
-    //     socialMediaUser.local = {
-    //         email: email,
-    //         password: hashedPassword,
-    //     };
-    //     await socialMediaUser.save();
-
-    //     const token = setToken(socialMediaUser);
-    //     return res.status(201).json({
-    //         message: "Success",
-    //         token: token,
-    //     });
-    // }
-
     const newUser = new User({
       name: name,
       phone: phone,
       methods: ["phone"],
       local: {
-        phone: phone,
         password: hashedPassword,
       },
       address: address,
       fcmToken: fcmToken,
     });
 
-    newUser.otp = 1;
-    newUser.otpVerified = false;
+    let generatedOTP = generateOTP();
+    console.log("generateOTP");
+    let smsRes = await SMS.send(
+      newUser.phone,
+      `Your MotoBar OTP is ${generatedOTP}`
+    );
+    if (smsRes) {
+      if (smsRes[0] && smsRes[0].type === "success") {
+        newUser.otp = generatedOTP;
+        newUser.otpVerified = false;
+        await newUser.save();
+        const token = setToken(newUser);
+        return res.status(201).json({
+          message: "Success",
+          token: token,
+        });
+      } else {
+        console.log("smsRes error");
+        console.log(smsRes);
 
-    await newUser.save();
+        const error = new Error(smsRes.error.msg);
+        error.statusCode = 400;
+        throw error;
 
-    const token = setToken(newUser);
-    return res.status(201).json({
-      message: "Success",
-      token: token,
-    });
+        newUser.otp = 2222;
+        newUser.otpVerified = false;
+        await newUser.save();
+        const token = setToken(newUser);
+        return res.status(201).json({
+          message: "Success",
+          token: token,
+        });
+      }
+    } else {
+      const error = new Error("Failed to send OTP");
+      error.statusCode = 400;
+      throw error;
+    }
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -124,6 +146,21 @@ exports.login = async (req, res, next) => {
 
     await user.save();
     const token = setToken(user);
+
+    res.cookie("jwt", token, {
+      maxAge: 3600,
+      httpOnly: true,
+      secure: true,
+    });
+
+    res.setHeader(
+      "Set-Cookie",
+      cookie.serialize("token", token, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+      })
+    );
+
     return res.status(200).json({
       message: "Logged in successfully",
       admin: user.admin,
@@ -141,6 +178,7 @@ exports.login = async (req, res, next) => {
 };
 
 exports.resetPassword = async (req, res, next) => {
+  console.log("reset password");
   const phone = parseInt(req.body.phone);
   try {
     // check if user logged in with phone or local email
@@ -153,17 +191,33 @@ exports.resetPassword = async (req, res, next) => {
       throw error;
     }
 
-    user.otp = 1;
-    user.otpVerified = false;
-    user.resetPassword = true;
+    let generatedOTP = generateOTP();
 
-    await user.save();
-
-    const token = setToken(user);
-    return res.status(201).json({
-      message: "Success",
-      token: token,
-    });
+    let smsRes = await SMS.send(
+      user.phone,
+      `Your MotoBar OTP is ${generatedOTP}`
+    );
+    if (smsRes) {
+      if (smsRes[0] && smsRes[0].type === "success") {
+        user.otp = generatedOTP;
+        user.otpVerified = false;
+        user.resetPassword = true;
+        await user.save();
+        const token = setToken(user);
+        return res.status(201).json({
+          message: "Success",
+          token: token,
+        });
+      } else {
+        const error = new Error(smsRes.error.msg);
+        error.statusCode = 400;
+        throw error;
+      }
+    } else {
+      const error = new Error("Failed to send OTP");
+      error.statusCode = 400;
+      throw error;
+    }
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -193,6 +247,7 @@ exports.verifyOtp = async (req, res, next) => {
 
     user.otp = undefined;
     user.otpVerified = true;
+
     await user.save();
 
     const token = setToken(user);
@@ -209,6 +264,7 @@ exports.verifyOtp = async (req, res, next) => {
 };
 
 exports.resendOtp = async (req, res, next) => {
+  console.log("resend otp");
   const phone = parseInt(req.body.phone);
   try {
     // check if user logged in with phone or local email
@@ -221,14 +277,175 @@ exports.resendOtp = async (req, res, next) => {
       throw error;
     }
 
-    user.otp = 1;
-    user.otpVerified = false;
-    await user.save();
+    let generatedOTP = generateOTP();
 
-    const token = setToken(user);
-    return res.status(201).json({
-      message: "Success",
+    let smsRes = await SMS.send(
+      user.phone,
+      `Your MotoBar OTP is ${generatedOTP}`
+    );
+
+    if (smsRes) {
+      if (smsRes[0] && smsRes[0].type === "success") {
+        user.otp = generatedOTP;
+        user.otpVerified = false;
+        await user.save();
+        const token = setToken(user);
+        return res.status(201).json({
+          message: "Success",
+          token: token,
+        });
+      } else {
+        const error = new Error(smsRes.error.msg);
+        error.statusCode = 400;
+        throw error;
+      }
+    } else {
+      const error = new Error("Failed to send OTP");
+      error.statusCode = 400;
+      throw error;
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.apple = async (req, res, next) => {
+  // const email = req.body.email;
+  const email = req.body.email;
+  const name = req.body.name;
+  const fcmToken = req.body.fcmToken;
+
+  try {
+    let existingAppleUser = await User.findOne({
+      "apple.email": email,
+    });
+    // check database for same apple email
+    if (existingAppleUser) {
+      const token = setToken(existingAppleUser);
+      return res.status(200).json({
+        message: "Logged in successfully",
+        admin: existingAppleUser.admin,
+        owner: existingAppleUser.owner,
+        token: token,
+      });
+    }
+    // check database for same email for other social platforms
+    const existingUser = await User.findOne({
+      $or: [{ "google.email": email }, { "facebook.email": email }],
+    });
+    if (existingUser) {
+      existingUser.methods.push("apple");
+      existingUser.apple = {
+        email: email,
+      };
+      await existingUser.save();
+      const token = setToken(existingUser);
+      return res.status(200).json({
+        message: "Logged in successfully",
+        admin: existingUser.admin,
+        owner: existingUser.owner,
+        token: token,
+      });
+    }
+    // // // check database for the same device used
+    // // if (fcmToken) {
+    // //   let existingDeviceUser = await User.findOne({
+    // //     fcmToken: fcmToken,
+    // //   });
+    // //   if (existingDeviceUser) {
+    // //     existingDeviceUser.methods.push("apple");
+    // //     existingDeviceUser.apple = {
+    // //       email: email,
+    // //     };
+    // //     await existingDeviceUser.save();
+    // //     const token = setToken(existingDeviceUser);
+    // //     return res.status(200).json({
+    // //       message: "Logged in successfully",
+    // //       admin: existingDeviceUser.admin,
+    // //       owner: existingDeviceUser.owner,
+    // //       token: token,
+    // //     });
+    // //   }
+    // // }
+    const newUser = new User({
+      name: name,
+      methods: ["apple"],
+      apple: {
+        email: email,
+      },
+      fcmToken: fcmToken,
+    });
+
+    newUser.otpVerified = false;
+
+    await newUser.save();
+    const token = setToken(newUser);
+    return res.status(200).json({
+      message: "Logged in successfully",
+      admin: newUser.admin,
+      owner: newUser.owner,
       token: token,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+exports.syncApple = async (req, res, next) => {
+  // const email = req.body.email;
+  const email = req.body.email;
+  const name = req.body.name;
+  try {
+    const loggedInUser = req.user;
+
+    loggedInUser.methods.push("apple");
+    loggedInUser.apple = {
+      email: email,
+    };
+    await loggedInUser.save();
+
+    let user = await User.findById(loggedInUser._id)
+      .populate({
+        path: "ownerId",
+        model: "Owner",
+        populate: {
+          path: "store",
+          model: "Store",
+        },
+      })
+      .populate({
+        path: "shipperId",
+        model: "Shipper",
+      })
+      .populate({
+        path: "leaderId",
+        model: "Leader",
+        populate: {
+          path: "group",
+          model: "Group",
+        },
+      })
+      .populate({
+        path: "products",
+        model: "Product",
+      })
+      .populate({
+        path: "orders",
+        model: "Order",
+      })
+      .populate({
+        path: "soldOrders",
+        model: "Order",
+      });
+
+    return res.status(200).json({
+      message: "Logged in successfully",
+      data: user,
     });
   } catch (err) {
     if (!err.statusCode) {
@@ -243,6 +460,7 @@ exports.google = async (req, res, next) => {
   const id = req.body.id;
   const email = req.body.email;
   const name = req.body.name;
+  const fcmToken = req.body.fcmToken;
   try {
     let existingGoogleUser = await User.findOne({
       "google.id": id,
@@ -256,12 +474,11 @@ exports.google = async (req, res, next) => {
         token: token,
       });
     }
-    const existingUser = await User.findOne({ "facebook.email": email });
-    // const existingUser = await User.findOne({
-    //   $or: [{ "local.email": email }, { "facebook.email": email }],
-    // });
+    // const existingUser = await User.findOne({ "facebook.email": email });
+    const existingUser = await User.findOne({
+      $or: [{ "apple.email": email }, { "facebook.email": email }],
+    });
     if (existingUser) {
-      // We want to merge google's data with local auth
       existingUser.methods.push("google");
       existingUser.google = {
         id: id,
@@ -277,6 +494,28 @@ exports.google = async (req, res, next) => {
       });
     }
 
+    // // if (fcmToken) {
+    // //   // check database for the same device used
+    // //   let existingDeviceUser = await User.findOne({
+    // //     fcmToken: fcmToken,
+    // //   });
+    // //   if (existingDeviceUser) {
+    // //     existingDeviceUser.methods.push("google");
+    // //     existingDeviceUser.google = {
+    // //       id: id,
+    // //       email: email,
+    // //     };
+    // //     await existingDeviceUser.save();
+    // //     const token = setToken(existingDeviceUser);
+    // //     return res.status(200).json({
+    // //       message: "Logged in successfully",
+    // //       admin: existingDeviceUser.admin,
+    // //       owner: existingDeviceUser.owner,
+    // //       token: token,
+    // //     });
+    // //   }
+    // // }
+
     const newUser = new User({
       name: name,
       methods: ["google"],
@@ -284,9 +523,9 @@ exports.google = async (req, res, next) => {
         id: id,
         email: email,
       },
+      fcmToken: fcmToken,
     });
 
-    newUser.otp = 1;
     newUser.otpVerified = false;
 
     await newUser.save();
@@ -296,6 +535,224 @@ exports.google = async (req, res, next) => {
       admin: newUser.admin,
       owner: newUser.owner,
       token: token,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+exports.syncGoogle = async (req, res, next) => {
+  // const email = req.body.email;
+  const id = req.body.id;
+  const email = req.body.email;
+  const name = req.body.name;
+  try {
+    const loggedInUser = req.user;
+
+    loggedInUser.methods.push("google");
+    loggedInUser.google = {
+      id: id,
+      email: email,
+    };
+    await loggedInUser.save();
+
+    let user = await User.findById(loggedInUser._id)
+      .populate({
+        path: "ownerId",
+        model: "Owner",
+        populate: {
+          path: "store",
+          model: "Store",
+        },
+      })
+      .populate({
+        path: "shipperId",
+        model: "Shipper",
+      })
+      .populate({
+        path: "leaderId",
+        model: "Leader",
+        populate: {
+          path: "group",
+          model: "Group",
+        },
+      })
+      .populate({
+        path: "products",
+        model: "Product",
+      })
+      .populate({
+        path: "orders",
+        model: "Order",
+      })
+      .populate({
+        path: "soldOrders",
+        model: "Order",
+      });
+
+    return res.status(200).json({
+      message: "Logged in successfully",
+      data: user,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.facebook = async (req, res, next) => {
+  // const email = req.body.email;
+  const id = req.body.id;
+  const email = req.body.email;
+  const name = req.body.name;
+  const image = req.body.image;
+  const fcmToken = req.body.fcmToken;
+  try {
+    let existingFacebookUser = await User.findOne({
+      "facebook.id": id,
+    });
+    if (existingFacebookUser) {
+      existingFacebookUser.image = image;
+      await existingFacebookUser.save();
+      const token = setToken(existingFacebookUser);
+
+      return res.status(200).json({
+        message: "Logged in successfully",
+        admin: existingFacebookUser.admin,
+        owner: existingFacebookUser.owner,
+        token: token,
+      });
+    }
+    // const existingUser = await User.findOne({ "facebook.email": email });
+    const existingUser = await User.findOne({
+      $or: [{ "apple.email": email }, { "google.email": email }],
+    });
+    if (existingUser) {
+      // We want to merge google's data with local auth
+      existingUser.methods.push("facebook");
+      existingUser.facebook = {
+        id: id,
+        email: email,
+      };
+      existingUser.image = image;
+      await existingUser.save();
+      const token = setToken(existingUser);
+      return res.status(200).json({
+        message: "Logged in successfully",
+        admin: existingUser.admin,
+        owner: existingUser.owner,
+        token: token,
+      });
+    }
+
+    // // if (fcmToken) {
+    // //   // check database for the same device used
+    // //   let existingDeviceUser = await User.findOne({
+    // //     fcmToken: fcmToken,
+    // //   });
+    // //   if (existingDeviceUser) {
+    // //     existingDeviceUser.methods.push("facebook");
+    // //     existingDeviceUser.facebook = {
+    // //       id: id,
+    // //       email: email,
+    // //     };
+    // //     await existingDeviceUser.save();
+    // //     const token = setToken(existingDeviceUser);
+    // //     return res.status(200).json({
+    // //       message: "Logged in successfully",
+    // //       admin: existingDeviceUser.admin,
+    // //       owner: existingDeviceUser.owner,
+    // //       token: token,
+    // //     });
+    // //   }
+    // // }
+
+    const newUser = new User({
+      name: name,
+      image: image,
+      methods: ["facebook"],
+      facebook: {
+        id: id,
+        email: email,
+      },
+      fcmToken: fcmToken,
+    });
+
+    newUser.otpVerified = false;
+
+    await newUser.save();
+    const token = setToken(newUser);
+    return res.status(200).json({
+      message: "Logged in successfully",
+      admin: newUser.admin,
+      owner: newUser.owner,
+      token: token,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+exports.syncFacebook = async (req, res, next) => {
+  // const email = req.body.email;
+  const id = req.body.id;
+  const email = req.body.email;
+  const name = req.body.name;
+  const image = req.body.image;
+  try {
+    const loggedInUser = req.user;
+
+    loggedInUser.methods.push("facebook");
+    loggedInUser.facebook = {
+      id: id,
+      email: email,
+    };
+    loggedInUser.image = image;
+    await loggedInUser.save();
+
+    let user = await User.findById(loggedInUser._id)
+      .populate({
+        path: "ownerId",
+        model: "Owner",
+        populate: {
+          path: "store",
+          model: "Store",
+        },
+      })
+      .populate({
+        path: "shipperId",
+        model: "Shipper",
+      })
+      .populate({
+        path: "leaderId",
+        model: "Leader",
+        populate: {
+          path: "group",
+          model: "Group",
+        },
+      })
+      .populate({
+        path: "products",
+        model: "Product",
+      })
+      .populate({
+        path: "orders",
+        model: "Order",
+      })
+      .populate({
+        path: "soldOrders",
+        model: "Order",
+      });
+
+    return res.status(200).json({
+      message: "Logged in successfully",
+      data: user,
     });
   } catch (err) {
     if (!err.statusCode) {
@@ -377,7 +834,7 @@ exports.getProfile = async (req, res, next) => {
 exports.facebookOAuth = async (req, res, next) => {
   try {
     const token = setToken(req.user);
-    res.status(201).json({
+    return res.status(201).json({
       message: "Success",
       user: req.user,
       token: token,

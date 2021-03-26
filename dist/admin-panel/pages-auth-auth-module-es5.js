@@ -285,9 +285,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.authService = authService;
         this.router = router;
         this.form = this.fb.group({
-          phone: ['1', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+          phone: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
           // email: ['test@test.com', [Validators.required, Validators.email]],
-          password: ['test', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+          password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
       }
 
@@ -296,8 +296,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           var _this = this;
 
+          this.authService.user.subscribe(function (user) {
+            if (user) {
+              console.log('route');
+
+              _this.router.navigate(['/']);
+            }
+          });
           this.errorSub = this.authService.error.subscribe(function (err) {
-            console.log('errorsub in ngoninit');
             console.log(err);
 
             _this.toastr.error(err, 'Error');
@@ -322,8 +328,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _this2.toastr.error('Not authorized', 'Error');
               }
 
-              console.log(res['message']);
-
               _this2.router.navigate(['/']);
             }
           }, function (errorRes) {
@@ -345,8 +349,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       type: LoginComponent,
       selectors: [["app-login"]],
       decls: 15,
-      vars: 12,
-      consts: [[1, "grid-center-noGutter", "page_container"], [1, "col-8_xlg-12_md-16_sm-22_xs-24"], [1, "grid-center-noGutter", "form-container"], [1, "col-24", "grid-center-noGutter"], [1, "grid-center-noGutter"], ["type", "number", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], ["type", "text", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], [1, "grid"], [1, "col-24", "btn", "color1", 3, "click"]],
+      vars: 13,
+      consts: [[1, "grid-center-noGutter", "page_container"], [1, "col-8_xlg-12_md-16_sm-22_xs-24"], [1, "grid-center-noGutter", "form-container"], [1, "col-24", "grid-center-noGutter"], [1, "grid-center-noGutter"], ["type", "number", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], ["type", "text", 1, "col-24", 3, "label", "fieldId", "required", "placeholder", "control", "fieldClass"], [1, "grid"], [1, "col-24", "btn", "color1", 3, "disabled", "click"]],
       template: function LoginComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "ngx-spinner");
@@ -412,6 +416,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Password")("fieldId", "password")("required", true)("placeholder", "Enter your Password")("control", ctx.form.get("password"))("fieldClass", "col-16_xlg-24");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid);
         }
       },
       directives: [ngx_spinner__WEBPACK_IMPORTED_MODULE_3__["NgxSpinnerComponent"], _reusable_components_form_fields_input_text_input_text_component__WEBPACK_IMPORTED_MODULE_6__["InputTextComponent"], _reusable_components_form_fields_password_text_password_text_component__WEBPACK_IMPORTED_MODULE_7__["PasswordTextComponent"]],

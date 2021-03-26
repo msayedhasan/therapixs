@@ -145,6 +145,9 @@ exports.addOne = async (req, res, next) => {
       throw error;
     }
   } catch (err) {
+    if (req.file) {
+      awsDelete.delete(req.file.location);
+    }
     if (!err.statusCode) {
       err.statusCode = 500;
     }
@@ -251,6 +254,9 @@ exports.updateOne = async (req, res, next) => {
       throw error;
     }
   } catch (err) {
+    if (req.file) {
+      awsDelete.delete(req.file.location);
+    }
     if (!err.statusCode) {
       err.statusCode = 500;
     }

@@ -19,6 +19,7 @@ router.get("/deliverOne/:orderId", passportJWT, orderController.deliverOne);
 router.get("/getStore/:storeId", passportJWT, orderController.getStore);
 
 router.post("/cancel/:orderId", passportJWT, orderController.cancelOne);
+router.get("/cancelCompleteOrder/:orderId", passportJWT, orderController.cancelCompleteOrder);
 
 router.get("/:orderId", passportJWT, orderController.getOne);
 
