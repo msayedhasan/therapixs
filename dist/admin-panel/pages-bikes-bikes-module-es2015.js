@@ -221,6 +221,30 @@ class AddBikeComponent {
             this.spinner.hide();
             return this.toastr.error('Enter valid year', 'Error');
         }
+        if (!this.selectedCondition['_id']) {
+            this.spinner.hide();
+            return this.toastr.error('Enter Condition', 'Error');
+        }
+        if (!this.selectedMake['_id']) {
+            this.spinner.hide();
+            return this.toastr.error('Enter Make', 'Error');
+        }
+        if (!this.selectedTransmissionType['_id']) {
+            this.spinner.hide();
+            return this.toastr.error('Enter Transmission type', 'Error');
+        }
+        if (!this.selectedDistance['_id']) {
+            this.spinner.hide();
+            return this.toastr.error('Enter Distance', 'Error');
+        }
+        if (!this.selectedPaymentOption['_id']) {
+            this.spinner.hide();
+            return this.toastr.error('Enter Payment option', 'Error');
+        }
+        if (!this.selectedCapacity['_id']) {
+            this.spinner.hide();
+            return this.toastr.error('Enter Capacity', 'Error');
+        }
         this.form
             .get('condition')
             .get('_id')
@@ -396,27 +420,27 @@ AddBikeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("photos", ctx.photos)("control", ctx.form.get("photos"));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name")("labelAr", "\u0627\u0644\u0627\u0633\u0645")("fieldId", "name")("required", true)("placeholder", "Bike Name")("placeholderAr", "\u0627\u0633\u0645 \u0627\u0644\u0645\u0646\u062A\u062C")("tooltipMsg", "Name")("control", ctx.form.get("name"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Name")("labelAr", "\u0627\u0644\u0627\u0633\u0645")("fieldId", "name")("required", true)("placeholder", "Bike Name")("placeholderAr", "\u0627\u0633\u0645 \u0627\u0644\u0645\u0646\u062A\u062C")("tooltipMsg", "Name")("control", ctx.form.get("name"))("fieldClass", "col-17_md-24");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Description")("labelAr", "\u0627\u0644\u0648\u0635\u0641")("fieldId", "description")("placeholder", "Bike description")("placeholderAr", "\u0648\u0635\u0641 \u0627\u0644\u0645\u0646\u062A\u062C")("tooltipMsg", "Bike description")("control", ctx.form.get("description"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Description")("labelAr", "\u0627\u0644\u0648\u0635\u0641")("fieldId", "description")("placeholder", "Bike description")("placeholderAr", "\u0648\u0635\u0641 \u0627\u0644\u0645\u0646\u062A\u062C")("tooltipMsg", "Bike description")("control", ctx.form.get("description"))("fieldClass", "col-17_md-24");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Price")("labelAr", "\u0627\u0644\u0633\u0639\u0631")("fieldId", "price")("required", true)("placeholder", "Bike Cost")("placeholderAr", "\u0633\u0639\u0631 \u0627\u0644\u062F\u0631\u0627\u062C\u0629")("control", ctx.form.get("price"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Price")("labelAr", "\u0627\u0644\u0633\u0639\u0631")("fieldId", "price")("required", true)("placeholder", "Bike Cost")("placeholderAr", "\u0633\u0639\u0631 \u0627\u0644\u062F\u0631\u0627\u062C\u0629")("control", ctx.form.get("price"))("fieldClass", "col-17_md-24");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("labelAr", "\u0627\u0644\u0635\u0646\u0639")("fieldId", "make")("ItemsList", ctx.makes)("placeholder", "Choose bike make")("placeholderAr", "\u0635\u0646\u0639 \u0627\u0644\u062F\u0631\u0627\u062C\u0629")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Make")("labelAr", "\u0627\u0644\u0635\u0646\u0639")("fieldId", "make")("ItemsList", ctx.makes)("placeholder", "Choose bike make")("placeholderAr", "\u0635\u0646\u0639 \u0627\u0644\u062F\u0631\u0627\u062C\u0629")("fieldClass", "col-17_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Condition")("labelAr", "\u0627\u0644\u062D\u0627\u0644\u0629")("fieldId", "condition")("ItemsList", ctx.conditions)("placeholder", "Choose condition")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u062D\u0627\u0644\u0629")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Condition")("labelAr", "\u0627\u0644\u062D\u0627\u0644\u0629")("fieldId", "condition")("ItemsList", ctx.conditions)("placeholder", "Choose condition")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u062D\u0627\u0644\u0629")("fieldClass", "col-17_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Transmission Type")("labelAr", "\u0646\u0648\u0639 \u0627\u0644\u062A\u062D\u0648\u064A\u0644")("fieldId", "transmissionType")("ItemsList", ctx.transmissionTypes)("placeholder", "Choose transmission type")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0646\u0648\u0639 \u0627\u0644\u062A\u062D\u0648\u064A\u0644")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Transmission Type")("labelAr", "\u0646\u0648\u0639 \u0627\u0644\u062A\u062D\u0648\u064A\u0644")("fieldId", "transmissionType")("ItemsList", ctx.transmissionTypes)("placeholder", "Choose transmission type")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0646\u0648\u0639 \u0627\u0644\u062A\u062D\u0648\u064A\u0644")("fieldClass", "col-17_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Kilometers")("labelAr", "\u0627\u0644\u0645\u0633\u0627\u0641\u0629")("fieldId", "distance")("ItemsList", ctx.distances)("placeholder", "Choose distance")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0633\u0627\u0641\u0629")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Kilometers")("labelAr", "\u0627\u0644\u0645\u0633\u0627\u0641\u0629")("fieldId", "distance")("ItemsList", ctx.distances)("placeholder", "Choose distance")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0633\u0627\u0641\u0629")("fieldClass", "col-17_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Payment Option")("labelAr", "\u0637\u0631\u064A\u0642\u0629 \u0627\u0644\u062F\u0641\u0639")("fieldId", "paymentOption")("ItemsList", ctx.paymentOptions)("placeholder", "Choose payment option")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0637\u0631\u064A\u0641\u0629 \u0627\u0644\u062F\u0641\u0639")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Payment Option")("labelAr", "\u0637\u0631\u064A\u0642\u0629 \u0627\u0644\u062F\u0641\u0639")("fieldId", "paymentOption")("ItemsList", ctx.paymentOptions)("placeholder", "Choose payment option")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0637\u0631\u064A\u0641\u0629 \u0627\u0644\u062F\u0641\u0639")("fieldClass", "col-17_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Capacity")("labelAr", "\u0627\u0644\u0633\u0639\u0629")("fieldId", "capacity")("ItemsList", ctx.capacities)("placeholder", "Choose capacity")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0633\u0639\u0629")("fieldClass", "col-18_md-24")("required", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Capacity")("labelAr", "\u0627\u0644\u0633\u0639\u0629")("fieldId", "capacity")("ItemsList", ctx.capacities)("placeholder", "Choose capacity")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0633\u0639\u0629")("fieldClass", "col-17_md-24")("required", true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Color")("labelAr", "\u0627\u0644\u0644\u0648\u0646")("fieldId", "color")("required", true)("placeholder", "Bike Color")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0644\u0648\u0646")("tooltipMsg", "Color")("control", ctx.form.get("color"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Color")("labelAr", "\u0627\u0644\u0644\u0648\u0646")("fieldId", "color")("required", true)("placeholder", "Bike Color")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0627\u0644\u0644\u0648\u0646")("tooltipMsg", "Color")("control", ctx.form.get("color"))("fieldClass", "col-17_md-24");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Year")("labelAr", "\u0633\u0646\u0629 \u0627\u0644\u0635\u0646\u0639")("fieldId", "year")("required", true)("placeholder", "Bike year")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0633\u0646\u0629 \u0627\u0644\u0635\u0646\u0639")("control", ctx.form.get("year"))("fieldClass", "col-19_xlg-18_lg-17_md-24");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("label", "Year")("labelAr", "\u0633\u0646\u0629 \u0627\u0644\u0635\u0646\u0639")("fieldId", "year")("required", true)("placeholder", "Bike year")("placeholderAr", "\u0627\u062E\u062A\u0631 \u0633\u0646\u0629 \u0627\u0644\u0635\u0646\u0639")("control", ctx.form.get("year"))("fieldClass", "col-17_md-24");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.form.valid);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
@@ -1981,13 +2005,12 @@ class EditBikeComponent {
         this.spinner.show();
         this.bikesService.getOne(id).subscribe((res) => {
             this.toastr.info(res['message'], 'Info');
-            for (let index = 0; index < res['data']['photos'].length; index++) {
-                if (!this.originalPhotos[index]) {
-                    this.originalPhotos[index] = res['data']['photos'][index];
-                }
-                this.form
-                    .get('originalPhotos')['controls'].push(res['data']['photos'][index]);
+            this.originalPhotos = res['data']['photos'];
+            let photosControl = this.form.get('photos');
+            for (let index = 0; index < this.originalPhotos.length; index++) {
+                photosControl.push(this.fb.control(''));
             }
+            this.form.get('photos').patchValue(res['data']['photos']);
             this.form.get('name').patchValue(res['data']['name']);
             this.form.get('description').patchValue(res['data']['description']);
             this.form.get('price').patchValue(res['data']['price']);

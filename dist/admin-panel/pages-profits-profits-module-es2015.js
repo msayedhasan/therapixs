@@ -640,6 +640,7 @@ class ProfitsComponent {
         this.profitService.profits.subscribe((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             if (data) {
                 this.items = data;
+                console.log(data);
                 this.itemResource = new angular7_data_table__WEBPACK_IMPORTED_MODULE_2__["DataTableResource"](data);
                 this.itemCount = yield this.itemResource.count();
                 this.reloadItems({

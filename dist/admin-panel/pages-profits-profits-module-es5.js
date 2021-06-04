@@ -1288,23 +1288,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   switch (_context3.prev = _context3.next) {
                     case 0:
                       if (!data) {
-                        _context3.next = 7;
+                        _context3.next = 8;
                         break;
                       }
 
                       this.items = data;
+                      console.log(data);
                       this.itemResource = new angular7_data_table__WEBPACK_IMPORTED_MODULE_2__["DataTableResource"](data);
-                      _context3.next = 5;
+                      _context3.next = 6;
                       return this.itemResource.count();
 
-                    case 5:
+                    case 6:
                       this.itemCount = _context3.sent;
                       this.reloadItems({
                         offset: 0,
                         limit: this.limit
                       });
 
-                    case 7:
+                    case 8:
                     case "end":
                       return _context3.stop();
                   }

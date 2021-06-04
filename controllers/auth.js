@@ -239,6 +239,9 @@ exports.verifyOtp = async (req, res, next) => {
       error.statusCode = 400;
       throw error;
     }
+    console.log(user);
+    console.log(user.otp);
+    console.log(otp);
     if (user.otp !== otp) {
       const error = new Error("Invalid OTP");
       error.statusCode = 400;

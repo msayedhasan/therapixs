@@ -1478,7 +1478,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.router = router;
         this.originalPhotos = [];
         this.form = this.fb.group({
-          originalPhotos: this.fb.array([]),
+          // originalPhotos: this.fb.array([]),
           photos: this.fb.array([]),
           name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
           description: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
@@ -1528,7 +1528,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.spinner.show();
           this.productsService.getOne(id).subscribe(function (res) {
-            console.log(res);
+            // this.form.get('name').patchValue(res['data']['name']);
+            // this.form.get('description').patchValue(res['data']['description']);
+            console.log(res['data']);
+
+            _this7.form.patchValue(res['data']);
 
             _this7.getCategory(res['data']['category']._id); //** set initial selected category */
 
@@ -1545,19 +1549,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               nameAr: res['data']['category']['ar']
             }; //** finish setting initial selected category */
 
+            _this7.originalPhotos = res['data']['photos'];
+
+            var photosControl = _this7.form.get('photos');
+
+            for (var index = 0; index < _this7.originalPhotos.length; index++) {
+              photosControl.push(_this7.fb.control(''));
+            }
+
+            _this7.form.get('photos').patchValue(res['data']['photos']);
+
             _this7.toastr.info(res['message'], 'Info');
-
-            for (var index = 0; index < res['data']['photos'].length; index++) {
-              if (!_this7.originalPhotos[index]) {
-                _this7.originalPhotos[index] = res['data']['photos'][index];
-              }
-
-              _this7.form.get('originalPhotos')['controls'].push(res['data']['photos'][index]);
-            } // this.form.get('name').patchValue(res['data']['name']);
-            // this.form.get('description').patchValue(res['data']['description']);
-
-
-            _this7.form.patchValue(res['data']);
 
             for (var propIndex = 0; propIndex < res['data']['properties'].length; propIndex++) {
               var propertyControl = _this7.form.get('properties');
@@ -1913,7 +1915,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           } //** adding values to product attributes form array controls
           //** End product attributes
           /////////////////////////
-          // Start category
+          //** Start category
 
 
           if (Object.keys(this.selectedCategory).length === 0) {
@@ -1930,7 +1932,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               this.form.get('category').get('name').get('en').patchValue(this.selectedCategory[count - 1].nameEn);
               this.form.get('category').get('name').get('ar').patchValue(this.selectedCategory[count - 1].nameAr);
             }
-          } // End category
+          } //** End category
           /////////////////////////
 
 
@@ -4149,7 +4151,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       clicks = this.newPagination.offset / 20;
 
                       for (index = 0; index < clicks; index++) {
-                        console.log(index);
                         nextBtn.click();
                       }
 

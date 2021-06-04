@@ -2,6 +2,8 @@ const authRoutes = require("../routes/auth");
 
 const userRoutes = require("../routes/stackholders/user");
 
+const cartRoutes = require("../routes/cart");
+
 const categoryRoutes = require("../routes/category");
 const productAttributeRoutes = require("../routes/product-attribute");
 
@@ -30,6 +32,8 @@ const notificationsRoutes = require("../routes/notification");
 module.exports = function (app) {
   app.use("/auth", authRoutes);
   app.use("/user", userRoutes);
+
+  app.use("/cart", cartRoutes);
 
   app.use("/category", categoryRoutes);
   app.use("/product-attribute", productAttributeRoutes);

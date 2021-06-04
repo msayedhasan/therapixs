@@ -10058,11 +10058,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function ngOnChanges() {
           if (this.initialPhotos) {
             this.images = this.initialPhotos;
-            this.addPhoto();
-
-            for (var index = 0; index < this.images.length; index++) {
-              this.addPhoto();
-            }
           } else {
             this.addPhoto();
           }

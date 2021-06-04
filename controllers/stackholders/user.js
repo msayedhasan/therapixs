@@ -3,7 +3,7 @@ const Product = require("../../models/product");
 const Store = require("../../models/store");
 const bcrypt = require("bcryptjs");
 
-// const SMS = require("../../startup/sms_send");
+const SMS = require("../../startup/sms_send");
 
 generateOTP = () => {
   // Declare a digits variable
@@ -108,10 +108,31 @@ exports.updateOne = async (req, res, next) => {
     }
     if (!phone && !user.phone) {
       user.phone = undefined;
-    } else if (phone && user.phone != phone) {
-      // user.phone = parseInt(phone);
-      // user.otp = generateOTP();
-      // SMS.send(user.phone, `Your MotoBar verification code is ${user.otp}`);
+    } else if (phone && user.phone != phone && `${phone}` != `0${user.phone}`) {
+      let generatedOTP = generateOTP();
+
+      user.phone = parseInt(phone);
+      user.otp = generateOTP();
+
+      let smsRes = await SMS.send(
+        user.phone,
+        `Your MotoBar OTP is ${generatedOTP}`
+      );
+
+      if (smsRes) {
+        if (smsRes[0] && smsRes[0].type === "success") {
+          user.otp = generatedOTP;
+          user.otpVerified = false;
+        } else {
+          const error = new Error(smsRes.error.msg);
+          error.statusCode = 400;
+          throw error;
+        }
+      } else {
+        const error = new Error("Failed to send OTP");
+        error.statusCode = 400;
+        throw error;
+      }
     }
     if (!bikeModel && !user.bikeModel) {
       user.bikeModel = undefined;

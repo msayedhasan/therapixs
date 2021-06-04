@@ -795,7 +795,7 @@ class EditProductComponent {
         this.router = router;
         this.originalPhotos = [];
         this.form = this.fb.group({
-            originalPhotos: this.fb.array([]),
+            // originalPhotos: this.fb.array([]),
             photos: this.fb.array([]),
             name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             description: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
@@ -834,7 +834,10 @@ class EditProductComponent {
     getOne(id) {
         this.spinner.show();
         this.productsService.getOne(id).subscribe((res) => {
-            console.log(res);
+            // this.form.get('name').patchValue(res['data']['name']);
+            // this.form.get('description').patchValue(res['data']['description']);
+            console.log(res['data']);
+            this.form.patchValue(res['data']);
             this.getCategory(res['data']['category']._id);
             //** set initial selected category */
             this.initialSelectedCategory = {
@@ -849,17 +852,13 @@ class EditProductComponent {
                 nameAr: res['data']['category']['ar'],
             };
             //** finish setting initial selected category */
-            this.toastr.info(res['message'], 'Info');
-            for (let index = 0; index < res['data']['photos'].length; index++) {
-                if (!this.originalPhotos[index]) {
-                    this.originalPhotos[index] = res['data']['photos'][index];
-                }
-                this.form
-                    .get('originalPhotos')['controls'].push(res['data']['photos'][index]);
+            this.originalPhotos = res['data']['photos'];
+            let photosControl = this.form.get('photos');
+            for (let index = 0; index < this.originalPhotos.length; index++) {
+                photosControl.push(this.fb.control(''));
             }
-            // this.form.get('name').patchValue(res['data']['name']);
-            // this.form.get('description').patchValue(res['data']['description']);
-            this.form.patchValue(res['data']);
+            this.form.get('photos').patchValue(res['data']['photos']);
+            this.toastr.info(res['message'], 'Info');
             for (let propIndex = 0; propIndex < res['data']['properties'].length; propIndex++) {
                 let propertyControl = this.form.get('properties');
                 propertyControl.push(this.fb.group({
@@ -1163,7 +1162,7 @@ class EditProductComponent {
         //** adding values to product attributes form array controls
         //** End product attributes
         /////////////////////////
-        // Start category
+        //** Start category
         if (Object.keys(this.selectedCategory).length === 0) {
             this.form.get('category').reset();
         }
@@ -1190,7 +1189,7 @@ class EditProductComponent {
                     .patchValue(this.selectedCategory[count - 1].nameAr);
             }
         }
-        // End category
+        //** End category
         /////////////////////////
         const formData = new FormData();
         for (const key in this.form.value) {
@@ -2149,7 +2148,6 @@ class ProductsComponent {
                     let previousBtn = this.elRef.nativeElement.querySelector('button.btn.btn-default.pagination-prevpage');
                     let clicks = this.newPagination.offset / 20;
                     for (let index = 0; index < clicks; index++) {
-                        console.log(index);
                         nextBtn.click();
                     }
                     return previousBtn.click();

@@ -434,8 +434,6 @@ class ProductsService {
         this.lastParsedPage = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
     }
     pagination(event) {
-        console.log('event from products service');
-        console.log(event);
         this.lastParsedPage.next(event);
     }
     getAll() {

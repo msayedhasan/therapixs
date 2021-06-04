@@ -836,8 +836,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProductsService, [{
         key: "pagination",
         value: function pagination(event) {
-          console.log('event from products service');
-          console.log(event);
           this.lastParsedPage.next(event);
         }
       }, {

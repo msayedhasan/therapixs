@@ -107,6 +107,11 @@ const userSchema = new Schema({
     ],
     default: undefined,
   },
+  cart: {
+    type: Schema.Types.ObjectId,
+    ref: "Cart",
+    default: undefined,
+  },
   gainToApp: { type: Number, default: 0 },
   totalGainCollected: { type: Number, default: 0 },
   ///////// not for all users /////////

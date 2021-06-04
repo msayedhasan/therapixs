@@ -6032,10 +6032,6 @@ class UploadMultiPhotosComponent extends _abstract_component__WEBPACK_IMPORTED_M
     ngOnChanges() {
         if (this.initialPhotos) {
             this.images = this.initialPhotos;
-            this.addPhoto();
-            for (let index = 0; index < this.images.length; index++) {
-                this.addPhoto();
-            }
         }
         else {
             this.addPhoto();

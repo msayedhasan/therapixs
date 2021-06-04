@@ -21,7 +21,7 @@ const schema = {
     phone: joi.number().required(),
     fcmToken: joi.string().optional().allow(""),
     password: joi.string().required(),
-    address: joi.string().required(),
+    // address: joi.string().required(),
   }),
 };
 

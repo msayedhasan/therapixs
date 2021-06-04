@@ -685,11 +685,11 @@ exports.updateOne = async (req, res, next) => {
 //       if (product.photos) {
 //         for (let index = 0; index < product.photos.length; index++) {
 //           const x = product.photos[index];
-//           if (x && x.includes("motobar-images.s3.amazonaws.com")) {
+//           if (x && x.includes("d1qpbviydkq0wh.cloudfront.net")) {
 //             console.log(x);
 //             y = x.replace(
-//               "motobar-images.s3.amazonaws.com",
-//               "d1qpbviydkq0wh.cloudfront.net"
+//               "d1qpbviydkq0wh.cloudfront.net",
+//               "motobar-images.s3.amazonaws.com"
 //             );
 //             if (productPhotos) {
 //               productPhotos[index] = y;
@@ -713,6 +713,32 @@ exports.updateOne = async (req, res, next) => {
 //     next(err);
 //   }
 // };
+
+exports.deleteBadImages = async (req, res, next) => {
+  // try {
+  //   const products = await Product.find();
+  //   for (let index = 0; index < products.length; index++) {
+  //     const element = products[index];
+  //     const product = await Product.findById(element._id);
+  //     if (product.photos) {
+  //       for (let index = 0; index < 3; index++) {
+  //         const x = product.photos[index];
+  //         if (typeof x != "String") {
+  //           console.log(x);
+  //         }
+  //       }
+  //     }
+  //     await product.save();
+  //   }
+  //   return res.json({ message: "changed successfully" });
+  // } catch (err) {
+  //   if (!err.statusCode) {
+  //     err.statusCode = 500;
+  //   }
+  //   next(err);
+  // }
+};
+
 exports.activateOne = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
@@ -807,6 +833,45 @@ exports.soldOne = async (req, res, next) => {
       await product.save();
 
       return res.status(200).json({ message: "Product sold!" });
+    } else if (loggedInUser.owner) {
+      const product = await Product.findById(productId);
+      if (!product) {
+        const error = new Error("Could not find product.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (product.sold) {
+        const error = new Error("product is already sold.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      const owner = await Owner.findById(loggedInUser.ownerId);
+      if (!owner) {
+        const error = new Error("Could not find your ownership.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      const store = await Store.findById(owner.store);
+      if (!store) {
+        const error = new Error("You're not an owner of a store.");
+        error.statusCode = 404;
+        throw error;
+      }
+      if (!store.equals(product.store)) {
+        const error = new Error(
+          "You're not an owner of store of this product."
+        );
+        error.statusCode = 404;
+        throw error;
+      }
+
+      product.sold = true;
+      await product.save();
+
+      return res.status(200).json({ message: "Product sold!" });
     } else {
       const error = new Error("Not authorized as you're not an admin!");
       error.statusCode = 403;
@@ -834,12 +899,50 @@ exports.availableOne = async (req, res, next) => {
 
       if (!product.sold) {
         const error = new Error("product is already available.");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      product.sold = false;
+      await product.save();
+
+      return res.status(200).json({ message: "Product available!" });
+    } else if (loggedInUser.owner) {
+      const product = await Product.findById(productId);
+      if (!product) {
+        const error = new Error("Could not find product.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      if (!product.sold) {
+        const error = new Error("product is already available.");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      const owner = await Owner.findById(loggedInUser.ownerId);
+      if (!owner) {
+        const error = new Error("Could not find your ownership.");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      const store = await Store.findById(owner.store);
+      if (!store) {
+        const error = new Error("You're not an owner of a store.");
+        error.statusCode = 404;
+        throw error;
+      }
+      if (!store.equals(product.store)) {
+        const error = new Error(
+          "You're not an owner of store of this product."
+        );
         error.statusCode = 404;
         throw error;
       }
 
       product.sold = false;
-      product.deactivatedBy = loggedInUser._id;
       await product.save();
 
       return res.status(200).json({ message: "Product available!" });
@@ -1575,7 +1678,7 @@ exports.searchProducts = async (req, res, next) => {
   try {
     const query = req.body.query;
 
-    let products = await Product.find()
+    let products = await Product.find({ active: true })
       .populate({
         path: "properties",
         model: "productProperty",
@@ -1613,11 +1716,8 @@ exports.searchProducts = async (req, res, next) => {
         //   });
         // })
       );
-
-      console.log(e);
     });
 
-    console.log(filteredProducts.length);
     return res.status(200).json({
       message: "Fetched successfully",
       data: filteredProducts,
@@ -1633,7 +1733,10 @@ exports.searchProducts = async (req, res, next) => {
 
 exports.getActivatedProducts = async (req, res, next) => {
   try {
-    let products = await Product.find({ active: true })
+    let products = await Product.find({
+      // active: true
+      $and: [{ active: true }, { sold: false }],
+    })
       .populate({
         path: "properties",
         model: "productProperty",

@@ -109,6 +109,7 @@ exports.addOne = async (req, res, next) => {
       throw error;
     }
 
+    console.log(req.body);
     const name = JSON.parse(req.body.name);
     const description = JSON.parse(req.body.description);
     const price = JSON.parse(req.body.price);
@@ -117,9 +118,20 @@ exports.addOne = async (req, res, next) => {
     const conditionId = JSON.parse(req.body.condition)._id;
     const conditionEn = JSON.parse(req.body.condition).name.en;
     const conditionAr = JSON.parse(req.body.condition).name.ar;
-    const modelId = JSON.parse(req.body.model)._id;
-    const modelEn = JSON.parse(req.body.model).name.en;
-    const modelAr = JSON.parse(req.body.model).name.ar;
+    const modelId = req.body.model ? JSON.parse(req.body.model)._id : undefined;
+    const modelEn = req.body.model
+      ? JSON.parse(req.body.model).name.en
+      : undefined;
+    const modelAr = req.body.model
+      ? JSON.parse(req.body.model).name.ar
+      : undefined;
+    const makeId = req.body.make ? JSON.parse(req.body.make)._id : undefined;
+    const makeEn = req.body.make
+      ? JSON.parse(req.body.make).name.en
+      : undefined;
+    const makeAr = req.body.make
+      ? JSON.parse(req.body.make).name.ar
+      : undefined;
     const transmissionTypeId = JSON.parse(req.body.transmissionType)._id;
     const transmissionTypeEn = JSON.parse(req.body.transmissionType).name.en;
     const transmissionTypeAr = JSON.parse(req.body.transmissionType).name.ar;
@@ -319,9 +331,21 @@ exports.updateOne = async (req, res, next) => {
     const conditionId = JSON.parse(req.body.condition)._id;
     const conditionEn = JSON.parse(req.body.condition).name.en;
     const conditionAr = JSON.parse(req.body.condition).name.ar;
-    const modelId = JSON.parse(req.body.model)._id;
-    const modelEn = JSON.parse(req.body.model).name.en;
-    const modelAr = JSON.parse(req.body.model).name.ar;
+    const modelId = req.body.model ? JSON.parse(req.body.model)._id : undefined;
+    const modelEn = req.body.model
+      ? JSON.parse(req.body.model).name.en
+      : undefined;
+    const modelAr = req.body.model
+      ? JSON.parse(req.body.model).name.ar
+      : undefined;
+    const makeId = req.body.make ? JSON.parse(req.body.make)._id : undefined;
+    const makeEn = req.body.make
+      ? JSON.parse(req.body.make).name.en
+      : undefined;
+    const makeAr = req.body.make
+      ? JSON.parse(req.body.make).name.ar
+      : undefined;
+
     const transmissionTypeId = JSON.parse(req.body.transmissionType)._id;
     const transmissionTypeEn = JSON.parse(req.body.transmissionType).name.en;
     const transmissionTypeAr = JSON.parse(req.body.transmissionType).name.ar;
@@ -349,6 +373,9 @@ exports.updateOne = async (req, res, next) => {
     bike.modelId = modelId;
     bike.model.en = modelEn;
     bike.model.ar = modelAr;
+    bike.makeId = makeId;
+    bike.make.en = makeEn;
+    bike.make.ar = makeAr;
     bike.transmissionTypeId = transmissionTypeId;
     bike.transmissionType.en = transmissionTypeEn;
     bike.transmissionType.ar = transmissionTypeAr;
@@ -408,6 +435,19 @@ exports.updateOne = async (req, res, next) => {
           error.statusCode = 404;
           throw error;
         }
+      } else if (
+        !bike.creator.equals(loggedInUser._id) &&
+        !loggedInUser.admin
+      ) {
+        // delete photos from aws
+        for (let index = 0; index < req.files.length; index++) {
+          await awsDelete.delete(req.files[index].location);
+        }
+
+        const error = new Error("you're not the creator of this bike.");
+        error.statusCode = 404;
+        throw error;
+      } else if (loggedInUser.admin) {
       } else {
         const error = new Error("you're not an owner.");
         error.statusCode = 404;
@@ -415,7 +455,7 @@ exports.updateOne = async (req, res, next) => {
       }
     }
 
-    if (!bike.creator.equals(loggedInUser._id)) {
+    if (!bike.creator.equals(loggedInUser._id) && !loggedInUser.admin) {
       // delete photos from aws
       for (let index = 0; index < req.files.length; index++) {
         await awsDelete.delete(req.files[index].location);
@@ -1428,12 +1468,12 @@ exports.appAddOne = async (req, res, next) => {
     const conditionId = req.body.condition?._id;
     const conditionEn = req.body.condition?.name.en;
     const conditionAr = req.body.condition?.name.ar;
-    const modelId = req.body.model?._id;
-    const modelEn = req.body.model?.name.en;
-    const modelAr = req.body.model?.name.ar;
-    const makeId = req.body.make?._id;
-    const makeEn = req.body.make?.name.en;
-    const makeAr = req.body.make?.name.ar;
+    const modelId = req.body.model ? req.body.model?._id : undefined;
+    const modelEn = req.body.model ? req.body.model?.name.en : undefined;
+    const modelAr = req.body.model ? req.body.model?.name.ar : undefined;
+    const makeId = req.body.make ? req.body.make?._id : undefined;
+    const makeEn = req.body.make ? req.body.make?.name.en : undefined;
+    const makeAr = req.body.make ? req.body.make?.name.ar : undefined;
     const transmissionTypeId = req.body.transmissionType?._id;
     const transmissionTypeEn = req.body.transmissionType?.name.en;
     const transmissionTypeAr = req.body.transmissionType?.name.ar;
