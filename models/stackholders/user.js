@@ -20,10 +20,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    default: "",
-  },
+  image: String,
   dob: String,
   phone: Number,
   methods: {

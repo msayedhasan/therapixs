@@ -11,5 +11,6 @@ const router = express.Router();
 // router.post("/single", passportJWT, notificationController.sendToDevice);
 router.post("/single", passportJWT, notificationController.send);
 router.post("/multiple", passportJWT, notificationController.sendMultiCast);
+router.post("/all", passportJWT, notificationController.sendAll);
 
 module.exports = router;

@@ -199,8 +199,8 @@ class AddProductComponent {
             }),
             properties: this.fb.array([
                 this.fb.group({
-                    price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-                    qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                    price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                    qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                     productAttributes: this.fb.array([]),
                 }),
             ]),
@@ -345,8 +345,8 @@ class AddProductComponent {
         if (properties['controls'][properties.length - 1].valid &&
             this.selectedCategoryAttributes.length > 0) {
             properties.push(this.fb.group({
-                price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-                qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                 productAttributes: this.fb.array([]),
             }));
             this.setArrayInGroup(properties['controls'][properties.length - 1], this.selectedCategoryAttributes);
@@ -863,8 +863,8 @@ class EditProductComponent {
                 let propertyControl = this.form.get('properties');
                 propertyControl.push(this.fb.group({
                     _id: [''],
-                    price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-                    qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                    price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                    qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                     productAttributes: this.fb.array([]),
                 }));
                 if (!this.properties[propIndex]) {
@@ -886,6 +886,16 @@ class EditProductComponent {
                     //   ];
                 }
             }
+            if (res['data']['properties'] &&
+                res['data']['properties'].length === 0) {
+                let propertyControl = this.form.get('properties');
+                propertyControl.push(this.fb.group({
+                    _id: [''],
+                    price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                    qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                    productAttributes: this.fb.array([]),
+                }));
+            }
             this.form.get('properties').patchValue(res['data']['properties']);
         }, (error) => {
             console.log(error);
@@ -900,8 +910,8 @@ class EditProductComponent {
         if (properties['controls'][properties.length - 1].valid) {
             properties.push(this.fb.group({
                 _id: [''],
-                price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-                qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                 productAttributes: this.fb.array([]),
             }));
             this.setArrayInGroup(properties['controls'][properties.length - 1], this.selectedCategoryAttributes);
@@ -2172,10 +2182,8 @@ class ProductsComponent {
             this.tableElements = this.items;
             if (FilterRecord !== '') {
                 this.tableElements = this.items.filter((item) => {
-                    var _a;
-                    return item.name.toLowerCase().includes(FilterRecord) ||
-                        item.category.en.toLowerCase().includes(FilterRecord) ||
-                        item.creator.name.toLowerCase().includes(FilterRecord) || ((_a = item.store) === null || _a === void 0 ? void 0 : _a.name.toLowerCase().includes(FilterRecord));
+                    var _a, _b, _c;
+                    return item.name.toLowerCase().includes(FilterRecord) || ((_a = item.category) === null || _a === void 0 ? void 0 : _a.en.toLowerCase().includes(FilterRecord)) || ((_b = item.creator) === null || _b === void 0 ? void 0 : _b.name.toLowerCase().includes(FilterRecord)) || ((_c = item.store) === null || _c === void 0 ? void 0 : _c.name.toLowerCase().includes(FilterRecord));
                 });
             }
             this.itemResource = new angular7_data_table__WEBPACK_IMPORTED_MODULE_2__["DataTableResource"](this.tableElements);

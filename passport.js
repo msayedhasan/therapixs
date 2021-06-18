@@ -5,6 +5,7 @@ const { ExtractJwt } = require("passport-jwt");
 const FacebookTokenStrategy = require("passport-facebook-token");
 const GooglePlusTokenStrategy = require("passport-google-plus-token");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
+require("dotenv/config");
 
 const User = require("./models/stackholders/user");
 
@@ -12,7 +13,8 @@ passport.use(
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: config.JWT_SECRET,
+      secretOrKey: process.env.JWT_SECRET,
+      // secretOrKey: config.JWT_SECRET,
     },
     async (payload, done) => {
       try {

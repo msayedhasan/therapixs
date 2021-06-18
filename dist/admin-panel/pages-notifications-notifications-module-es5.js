@@ -188,7 +188,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function NotificationsComponent_ng_template_59_ng_template_5_Template(rf, ctx) {
+    function NotificationsComponent_ng_template_59_ng_template_4_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](0);
       }
@@ -200,7 +200,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function NotificationsComponent_ng_template_59_ng_template_8_ng_container_1_Template(rf, ctx) {
+    function NotificationsComponent_ng_template_59_ng_template_7_ng_container_1_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
@@ -214,7 +214,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function NotificationsComponent_ng_template_59_ng_template_8_ng_container_2_Template(rf, ctx) {
+    function NotificationsComponent_ng_template_59_ng_template_7_ng_container_2_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
@@ -228,7 +228,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function NotificationsComponent_ng_template_59_ng_template_8_ng_container_3_Template(rf, ctx) {
+    function NotificationsComponent_ng_template_59_ng_template_7_ng_container_3_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
@@ -242,7 +242,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function NotificationsComponent_ng_template_59_ng_template_8_ng_container_4_Template(rf, ctx) {
+    function NotificationsComponent_ng_template_59_ng_template_7_ng_container_4_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
@@ -256,17 +256,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function NotificationsComponent_ng_template_59_ng_template_8_Template(rf, ctx) {
+    function NotificationsComponent_ng_template_59_ng_template_7_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, NotificationsComponent_ng_template_59_ng_template_8_ng_container_1_Template, 3, 0, "ng-container", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, NotificationsComponent_ng_template_59_ng_template_7_ng_container_1_Template, 3, 0, "ng-container", 36);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, NotificationsComponent_ng_template_59_ng_template_8_ng_container_2_Template, 3, 0, "ng-container", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, NotificationsComponent_ng_template_59_ng_template_7_ng_container_2_Template, 3, 0, "ng-container", 36);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](3, NotificationsComponent_ng_template_59_ng_template_8_ng_container_3_Template, 3, 0, "ng-container", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](3, NotificationsComponent_ng_template_59_ng_template_7_ng_container_3_Template, 3, 0, "ng-container", 36);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, NotificationsComponent_ng_template_59_ng_template_8_ng_container_4_Template, 3, 0, "ng-container", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, NotificationsComponent_ng_template_59_ng_template_7_ng_container_4_Template, 3, 0, "ng-container", 36);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
       }
@@ -316,25 +316,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "data-table-column", 32);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](3, "data-table-column", 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "data-table-column", 33);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "data-table-column", 33);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, NotificationsComponent_ng_template_59_ng_template_5_Template, 1, 1, "ng-template", null, 34, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, NotificationsComponent_ng_template_59_ng_template_4_Template, 1, 1, "ng-template", null, 34, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "data-table-column", 35);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "data-table-column", 35);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](8, NotificationsComponent_ng_template_59_ng_template_8_Template, 5, 4, "ng-template", null, 34, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](7, NotificationsComponent_ng_template_59_ng_template_7_Template, 5, 4, "ng-template", null, 34, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](10, "data-table-column", 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](9, "data-table-column", 32);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](11, "data-table-column", 32);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](12, "data-table-column", 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](10, "data-table-column", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -354,10 +350,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "phone")("header", ctx_r3.arabic ? "\u0627\u0644\u0647\u0627\u062A\u0641" : "Phone")("sortable", true);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "fcmToken")("header", ctx_r3.arabic ? "\u0627\u0644\u0627\u0634\u0639\u0627\u0631\u0627\u062A" : "Notifications");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
@@ -366,15 +358,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "address")("header", ctx_r3.arabic ? "\u0627\u0644\u0639\u0646\u0648\u0627\u0646" : "Address")("sortable", true);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "bikeMake")("header", ctx_r3.arabic ? "\u0635\u0646\u0639 \u0627\u0644\u062F\u0631\u0627\u062C\u0629" : "Bike Make")("sortable", true);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "bikeYear" || false)("header", ctx_r3.arabic ? "\u0633\u0646\u0629 \u0627\u0644\u062F\u0631\u0627\u062C\u0629" : "Bike Year")("sortable", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("property", "bikeYear" || false)("header", ctx_r3.arabic ? "\u0633\u0646\u0629 \u0627\u0644\u062F\u0631\u0627\u062C\u0629" : "Bike Year");
       }
     }
 
@@ -487,11 +475,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }
 
     var NotificationsComponent = /*#__PURE__*/function () {
-      function NotificationsComponent(fb, notificationService, usersService, modalService, languageService, toastr, spinner) {
+      function NotificationsComponent(elementRef, fb, notificationService, usersService, modalService, languageService, toastr, spinner) {
         var _this = this;
 
         _classCallCheck(this, NotificationsComponent);
 
+        this.elementRef = elementRef;
         this.fb = fb;
         this.notificationService = notificationService;
         this.usersService = usersService;
@@ -531,6 +520,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           this.getData();
+        }
+      }, {
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          if (this.elementRef.nativeElement.querySelector("input[type='checkbox'][title='select all rows']")) {
+            this.elementRef.nativeElement.querySelector("input[type='checkbox'][title='select all rows']").addEventListener('click', this.selectAllClick.bind(this));
+          }
+        }
+      }, {
+        key: "selectAllClick",
+        value: function selectAllClick(event) {
+          if (event.path[0].checked) {
+            this.selectedRows = this.items;
+          } else {
+            this.selectedRows = [];
+          }
         }
       }, {
         key: "getData",
@@ -700,6 +705,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this3.toastr.error(error.error.message, 'Error'); // this.error.next(error.error.message);
 
             });
+          } else if (this.selectedRows === this.items) {
+            this.notificationService.sendAll(this.form.value).subscribe(function (res) {
+              console.log(res);
+
+              _this3.toastr.info(res['message'], 'Info');
+            }, function (error) {
+              console.log(error);
+
+              _this3.toastr.error(error.error.message, 'Error'); // this.error.next(error.error.message);
+
+            });
           } else {
             this.notificationService.sendMultiCast(newForm).subscribe(function (res) {
               console.log(res);
@@ -726,7 +742,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     NotificationsComponent.ɵfac = function NotificationsComponent_Factory(t) {
-      return new (t || NotificationsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_notifications_service__WEBPACK_IMPORTED_MODULE_4__["NotificationsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_users_users_service__WEBPACK_IMPORTED_MODULE_5__["UsersService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_6__["BsModalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_language_service__WEBPACK_IMPORTED_MODULE_7__["LanguageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_toastr__WEBPACK_IMPORTED_MODULE_8__["ToastrService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_9__["NgxSpinnerService"]));
+      return new (t || NotificationsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_notifications_service__WEBPACK_IMPORTED_MODULE_4__["NotificationsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_users_users_service__WEBPACK_IMPORTED_MODULE_5__["UsersService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_6__["BsModalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_language_service__WEBPACK_IMPORTED_MODULE_7__["LanguageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_toastr__WEBPACK_IMPORTED_MODULE_8__["ToastrService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_9__["NgxSpinnerService"]));
     };
 
     NotificationsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
@@ -944,7 +960,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](59, NotificationsComponent_ng_template_59_Template, 13, 27, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](59, NotificationsComponent_ng_template_59_Template, 11, 20, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](61, NotificationsComponent_ng_template_61_Template, 19, 20, "ng-template", 29, 30, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
         }
@@ -1001,6 +1017,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }]
       }], function () {
         return [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]
+        }, {
           type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
         }, {
           type: _notifications_service__WEBPACK_IMPORTED_MODULE_4__["NotificationsService"]
@@ -1131,7 +1149,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         args: [{
           declarations: [_notifications_component__WEBPACK_IMPORTED_MODULE_3__["NotificationsComponent"]],
           imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _notifications_routing_module__WEBPACK_IMPORTED_MODULE_2__["NotificationsRoutingModule"], src_app_reusable_components_form_fields_form_fields_module__WEBPACK_IMPORTED_MODULE_4__["FormFieldsModule"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_5__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_6__["ModalModule"].forRoot(), angular7_data_table__WEBPACK_IMPORTED_MODULE_7__["DataTableModule"].forRoot(), ngx_export_as__WEBPACK_IMPORTED_MODULE_8__["ExportAsModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_9__["SharedModule"]],
-          providers: []
+          providers: [],
+          schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["CUSTOM_ELEMENTS_SCHEMA"]]
         }]
       }], null, null);
     })();
@@ -1193,6 +1212,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "sendMultiCast",
         value: function sendMultiCast(form) {
           return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification/multiple', form);
+        }
+      }, {
+        key: "sendAll",
+        value: function sendAll(form) {
+          return this.http.post(_config_variables__WEBPACK_IMPORTED_MODULE_1__["baseUrl"] + '/notification/all', form);
         }
       }]);
 

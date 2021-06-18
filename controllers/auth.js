@@ -1,4 +1,5 @@
 const SMS = require("../startup/sms_send");
+require("dotenv/config");
 
 const { JWT_SECRET } = require("../config/index");
 const bcrypt = require("bcryptjs");
@@ -14,7 +15,8 @@ setToken = (user) => {
       iat: new Date().getTime(),
       userId: user._id.toString(),
     },
-    JWT_SECRET
+    process.env.JWT_SECRET
+    // JWT_SECRET
     // { expiresIn: "1h" }
   );
 };
@@ -66,44 +68,45 @@ exports.signup = async (req, res, next) => {
       fcmToken: fcmToken,
     });
 
-    let generatedOTP = generateOTP();
-    console.log("generateOTP");
-    let smsRes = await SMS.send(
-      newUser.phone,
-      `Your MotoBar OTP is ${generatedOTP}`
-    );
-    if (smsRes) {
-      if (smsRes[0] && smsRes[0].type === "success") {
-        newUser.otp = generatedOTP;
-        newUser.otpVerified = false;
+    // let generatedOTP = generateOTP();
+    // console.log("generateOTP");
+    // let smsRes = await SMS.send(
+    //   newUser.phone,
+    //   `Your MotoBar OTP is ${generatedOTP}`
+    // );
+    // if (smsRes) {
+    //   if (smsRes[0] && smsRes[0].type === "success") {
+    //     newUser.otp = generatedOTP;
+    //     newUser.otpVerified = false;
+    //     await newUser.save();
+    //     const token = setToken(newUser);
+    //     return res.status(201).json({
+    //       message: "Success",
+    //       token: token,
+    //     });
+    //   } else {
+    //     console.log("smsRes error");
+    //     console.log(smsRes);
+
+    //     const error = new Error(smsRes.error.msg);
+    //     error.statusCode = 400;
+    //     throw error;
+
+    //     newUser.otp = 2222;
+    //     newUser.otpVerified = false;
+        newUser.otpVerified = true;
         await newUser.save();
         const token = setToken(newUser);
         return res.status(201).json({
           message: "Success",
           token: token,
         });
-      } else {
-        console.log("smsRes error");
-        console.log(smsRes);
-
-        const error = new Error(smsRes.error.msg);
-        error.statusCode = 400;
-        throw error;
-
-        newUser.otp = 2222;
-        newUser.otpVerified = false;
-        await newUser.save();
-        const token = setToken(newUser);
-        return res.status(201).json({
-          message: "Success",
-          token: token,
-        });
-      }
-    } else {
-      const error = new Error("Failed to send OTP");
-      error.statusCode = 400;
-      throw error;
-    }
+    //   }
+    // } else {
+    //   const error = new Error("Failed to send OTP");
+    //   error.statusCode = 400;
+    //   throw error;
+    // }
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -340,7 +343,9 @@ exports.apple = async (req, res, next) => {
       $or: [{ "google.email": email }, { "facebook.email": email }],
     });
     if (existingUser) {
-      existingUser.methods.push("apple");
+      if(!existingUser.methods.includes("apple")) {
+        existingUser.methods.push("apple");
+      }
       existingUser.apple = {
         email: email,
       };
@@ -388,8 +393,6 @@ exports.apple = async (req, res, next) => {
     const token = setToken(newUser);
     return res.status(200).json({
       message: "Logged in successfully",
-      admin: newUser.admin,
-      owner: newUser.owner,
       token: token,
     });
   } catch (err) {
@@ -406,11 +409,6 @@ exports.syncApple = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
 
-    loggedInUser.methods.push("apple");
-    loggedInUser.apple = {
-      email: email,
-    };
-    await loggedInUser.save();
 
     let user = await User.findById(loggedInUser._id)
       .populate({
@@ -445,6 +443,15 @@ exports.syncApple = async (req, res, next) => {
         path: "soldOrders",
         model: "Order",
       });
+
+
+      if(!user.methods.includes("apple")) {
+        user.methods.push("apple");
+      }
+    user.apple = {
+      email: email,
+    };
+    await user.save();
 
     return res.status(200).json({
       message: "Logged in successfully",
@@ -482,7 +489,9 @@ exports.google = async (req, res, next) => {
       $or: [{ "apple.email": email }, { "facebook.email": email }],
     });
     if (existingUser) {
-      existingUser.methods.push("google");
+      if(!existingUser.methods.includes("google")) {
+        existingUser.methods.push("google");
+      }
       existingUser.google = {
         id: id,
         email: email,
@@ -535,8 +544,6 @@ exports.google = async (req, res, next) => {
     const token = setToken(newUser);
     return res.status(200).json({
       message: "Logged in successfully",
-      admin: newUser.admin,
-      owner: newUser.owner,
       token: token,
     });
   } catch (err) {
@@ -554,12 +561,7 @@ exports.syncGoogle = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
 
-    loggedInUser.methods.push("google");
-    loggedInUser.google = {
-      id: id,
-      email: email,
-    };
-    await loggedInUser.save();
+
 
     let user = await User.findById(loggedInUser._id)
       .populate({
@@ -595,6 +597,17 @@ exports.syncGoogle = async (req, res, next) => {
         model: "Order",
       });
 
+ 
+      if(!user.methods.includes("google")) {
+        user.methods.push("google");
+   }
+    user.google = {
+      id: id,
+      email: email,
+    };
+    await user.save();
+    
+    
     return res.status(200).json({
       message: "Logged in successfully",
       data: user,
@@ -636,7 +649,10 @@ exports.facebook = async (req, res, next) => {
     });
     if (existingUser) {
       // We want to merge google's data with local auth
-      existingUser.methods.push("facebook");
+      if(!existingUser.methods.includes("facebook")) {
+
+        existingUser.methods.push("facebook");
+      }
       existingUser.facebook = {
         id: id,
         email: email,
@@ -691,8 +707,6 @@ exports.facebook = async (req, res, next) => {
     const token = setToken(newUser);
     return res.status(200).json({
       message: "Logged in successfully",
-      admin: newUser.admin,
-      owner: newUser.owner,
       token: token,
     });
   } catch (err) {
@@ -711,13 +725,8 @@ exports.syncFacebook = async (req, res, next) => {
   try {
     const loggedInUser = req.user;
 
-    loggedInUser.methods.push("facebook");
-    loggedInUser.facebook = {
-      id: id,
-      email: email,
-    };
-    loggedInUser.image = image;
-    await loggedInUser.save();
+
+
 
     let user = await User.findById(loggedInUser._id)
       .populate({
@@ -753,6 +762,17 @@ exports.syncFacebook = async (req, res, next) => {
         model: "Order",
       });
 
+      if(!user.methods.includes("facebook")) {
+        user.methods.push("facebook");
+      }
+    user.facebook = {
+      id: id,
+      email: email,
+    };
+    user.image = image;
+    await user.save();
+
+
     return res.status(200).json({
       message: "Logged in successfully",
       data: user,
@@ -775,7 +795,10 @@ exports.getProfile = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token, JWT_SECRET);
+    decodedToken = jwt.verify(token, 
+    process.env.JWT_SECRET
+    // JWT_SECRET,
+    );
   } catch (err) {
     err.statusCode = 500;
     throw err;

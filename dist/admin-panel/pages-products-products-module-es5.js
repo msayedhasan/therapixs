@@ -457,8 +457,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             })
           }),
           properties: this.fb.array([this.fb.group({
-            price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             productAttributes: this.fb.array([])
           })])
         });
@@ -639,8 +639,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (properties['controls'][properties.length - 1].valid && this.selectedCategoryAttributes.length > 0) {
             properties.push(this.fb.group({
-              price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-              qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+              price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+              qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
               productAttributes: this.fb.array([])
             }));
             this.setArrayInGroup(properties['controls'][properties.length - 1], this.selectedCategoryAttributes);
@@ -1566,8 +1566,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
               propertyControl.push(_this7.fb.group({
                 _id: [''],
-                price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-                qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                 productAttributes: _this7.fb.array([])
               }));
 
@@ -1591,6 +1591,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               }
             }
 
+            if (res['data']['properties'] && res['data']['properties'].length === 0) {
+              var _propertyControl = _this7.form.get('properties');
+
+              _propertyControl.push(_this7.fb.group({
+                _id: [''],
+                price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                productAttributes: _this7.fb.array([])
+              }));
+            }
+
             _this7.form.get('properties').patchValue(res['data']['properties']);
           }, function (error) {
             console.log(error);
@@ -1609,8 +1620,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           if (properties['controls'][properties.length - 1].valid) {
             properties.push(this.fb.group({
               _id: [''],
-              price: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-              qty: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+              price: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+              qty: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
               productAttributes: this.fb.array([])
             }));
             this.setArrayInGroup(properties['controls'][properties.length - 1], this.selectedCategoryAttributes);
@@ -4212,9 +4223,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
                     if (FilterRecord !== '') {
                       this.tableElements = this.items.filter(function (item) {
-                        var _a;
+                        var _a, _b, _c;
 
-                        return item.name.toLowerCase().includes(FilterRecord) || item.category.en.toLowerCase().includes(FilterRecord) || item.creator.name.toLowerCase().includes(FilterRecord) || ((_a = item.store) === null || _a === void 0 ? void 0 : _a.name.toLowerCase().includes(FilterRecord));
+                        return item.name.toLowerCase().includes(FilterRecord) || ((_a = item.category) === null || _a === void 0 ? void 0 : _a.en.toLowerCase().includes(FilterRecord)) || ((_b = item.creator) === null || _b === void 0 ? void 0 : _b.name.toLowerCase().includes(FilterRecord)) || ((_c = item.store) === null || _c === void 0 ? void 0 : _c.name.toLowerCase().includes(FilterRecord));
                       });
                     }
 
