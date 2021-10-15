@@ -24,8 +24,8 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 // Error handling function
 app.use(errors);
 
-// const port = process.env.PORT || 3000;
-const port = 3000;
+const port = process.env.PORT || 3000;
+// const port = 3000;
 // const port = 443;
 
 // const sslServer = https.createServer(
