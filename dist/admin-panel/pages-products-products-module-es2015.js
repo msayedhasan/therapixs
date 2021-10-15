@@ -836,7 +836,6 @@ class EditProductComponent {
         this.productsService.getOne(id).subscribe((res) => {
             // this.form.get('name').patchValue(res['data']['name']);
             // this.form.get('description').patchValue(res['data']['description']);
-            console.log(res['data']);
             this.form.patchValue(res['data']);
             this.getCategory(res['data']['category']._id);
             //** set initial selected category */
@@ -2252,7 +2251,6 @@ class ProductsComponent {
         this.spinner.show();
         this.modalRef.hide();
         this.productsService.copyOne(this.itemId).subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.items = [];
             this.productsService.getAll();
@@ -2274,7 +2272,6 @@ class ProductsComponent {
         this.productsService
             .addDiscount(this.discountForm.value, this.itemId)
             .subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.items = [];
             this.discountForm.reset();
@@ -2290,7 +2287,6 @@ class ProductsComponent {
         this.spinner.show();
         this.modalRef.hide();
         this.productsService.deleteDiscount(this.itemId).subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.items = [];
             this.productsService.getAll();
@@ -2305,7 +2301,6 @@ class ProductsComponent {
         this.spinner.show();
         this.modalRef.hide();
         this.productsService.deleteOne(this.itemId).subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.productsService.getAll();
         }, (error) => {
@@ -2319,7 +2314,6 @@ class ProductsComponent {
         this.spinner.show();
         this.modalRef.hide();
         this.productsService.activateOne(this.itemId).subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.items = [];
             this.productsService.getAll();
@@ -2334,7 +2328,6 @@ class ProductsComponent {
         this.spinner.show();
         this.modalRef.hide();
         this.productsService.deactivateOne(this.itemId).subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.items = [];
             this.productsService.getAll();
@@ -2349,7 +2342,6 @@ class ProductsComponent {
         this.spinner.show();
         this.modalRef.hide();
         this.productsService.soldOne(this.itemId).subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.items = [];
             this.productsService.getAll();
@@ -2364,7 +2356,6 @@ class ProductsComponent {
         this.spinner.show();
         this.modalRef.hide();
         this.productsService.availableOne(this.itemId).subscribe((res) => {
-            console.log(res);
             this.toastr.info(res['message'], 'Info');
             this.items = [];
             this.productsService.getAll();
@@ -2384,7 +2375,6 @@ class ProductsComponent {
             // save started
         });
         this.exportAsService.get(this.exportAsConfig).subscribe((content) => {
-            console.log(content);
         });
     }
 }

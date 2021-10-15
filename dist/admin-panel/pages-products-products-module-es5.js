@@ -1530,8 +1530,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.productsService.getOne(id).subscribe(function (res) {
             // this.form.get('name').patchValue(res['data']['name']);
             // this.form.get('description').patchValue(res['data']['description']);
-            console.log(res['data']);
-
             _this7.form.patchValue(res['data']);
 
             _this7.getCategory(res['data']['category']._id); //** set initial selected category */
@@ -4327,8 +4325,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.show();
           this.modalRef.hide();
           this.productsService.copyOne(this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this17.toastr.info(res['message'], 'Info');
 
             _this17.items = [];
@@ -4358,8 +4354,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
 
           this.productsService.addDiscount(this.discountForm.value, this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this18.toastr.info(res['message'], 'Info');
 
             _this18.items = [];
@@ -4383,8 +4377,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.show();
           this.modalRef.hide();
           this.productsService.deleteDiscount(this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this19.toastr.info(res['message'], 'Info');
 
             _this19.items = [];
@@ -4406,8 +4398,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.show();
           this.modalRef.hide();
           this.productsService.deleteOne(this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this20.toastr.info(res['message'], 'Info');
 
             _this20.productsService.getAll();
@@ -4427,8 +4417,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.show();
           this.modalRef.hide();
           this.productsService.activateOne(this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this21.toastr.info(res['message'], 'Info');
 
             _this21.items = [];
@@ -4450,8 +4438,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.show();
           this.modalRef.hide();
           this.productsService.deactivateOne(this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this22.toastr.info(res['message'], 'Info');
 
             _this22.items = [];
@@ -4473,8 +4459,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.show();
           this.modalRef.hide();
           this.productsService.soldOne(this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this23.toastr.info(res['message'], 'Info');
 
             _this23.items = [];
@@ -4496,8 +4480,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner.show();
           this.modalRef.hide();
           this.productsService.availableOne(this.itemId).subscribe(function (res) {
-            console.log(res);
-
             _this24.toastr.info(res['message'], 'Info');
 
             _this24.items = [];
@@ -4522,9 +4504,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.exportAsService.save(this.exportAsConfig, 'Products').subscribe(function () {// save started
           });
-          this.exportAsService.get(this.exportAsConfig).subscribe(function (content) {
-            console.log(content);
-          });
+          this.exportAsService.get(this.exportAsConfig).subscribe(function (content) {});
         }
       }]);
 
