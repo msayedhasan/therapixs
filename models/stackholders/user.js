@@ -3,182 +3,104 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  otpVerified: {
-    type: Boolean,
-    default: false,
-  },
-  otp: { type: Number, default: undefined },
-  resetPassword: {
-    type: Boolean,
-    default: undefined,
-  },
-  allowNotification: {
-    type: Boolean,
-    default: true,
-  },
   name: {
     type: String,
     required: true,
   },
-  image: String,
-  dob: String,
+
   phone: Number,
-  methods: {
-    type: [String],
-    required: true,
-  },
-  local: {
-    email: { type: String, lowercase: true },
-    password: String,
-  },
-  facebook: {
-    id: {
-      type: String,
-    },
-    email: {
-      type: String,
-      lowercase: true,
-    },
-  },
-  google: {
-    id: {
-      type: String,
-    },
-    email: {
-      type: String,
-      lowercase: true,
-    },
-  },
-  apple: {
-    email: {
-      type: String,
-      lowercase: true,
-    },
-  },
+  password: String,
+  otpVerified :  { type: Boolean, default: false },
+
   locked: {
     type: Boolean,
     default: undefined,
   },
   fcmToken: String,
-  address: String,
-  detailedAddress: String,
 
-  location: {
-    long: Number,
-    lat: Number,
-  },
-  loyalityPoints: { type: Array, default: undefined },
-  products: {
+  pocket: [
+    {
+      name: String,
+      qty: Number,
+      qtyAssigned: Number,
+      qtyUsed: Number,
+      child: {
+        type:
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+          },
+
+        },
+
+        default: undefined
+      },
+      parent: {
+        type:
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+          },
+
+        },
+
+        default: undefined
+      },
+    },
+  ],
+
+  // old tests 
+  tests: {
     type: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Product",
+        ref: "Test",
       },
     ],
     default: undefined,
   },
-  bikes: {
+
+
+  // cart: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Cart",
+  //   default: undefined,
+  // },
+
+  parents: {
     type: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Bike",
-      },
-    ],
-    default: undefined,
-  },
-  orders: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Order",
-      },
-    ],
-    default: undefined,
-  },
-  soldOrders: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Order",
-      },
-    ],
-    default: undefined,
-  },
-  cart: {
-    type: Schema.Types.ObjectId,
-    ref: "Cart",
-    default: undefined,
-  },
-  gainToApp: { type: Number, default: 0 },
-  totalGainCollected: { type: Number, default: 0 },
-  ///////// not for all users /////////
-  admin: Boolean,
-
-  owner: Boolean,
-  ownerId: {
-    type: Schema.Types.ObjectId,
-    ref: "Owner",
-  },
-  store: {
-    type: Schema.Types.ObjectId,
-    ref: "Store",
-    default: undefined,
-  },
-
-  leader: Boolean,
-  leaderId: {
-    type: Schema.Types.ObjectId,
-    ref: "Leader",
-  },
-
-  shipper: Boolean,
-  shipperId: {
-    type: Schema.Types.ObjectId,
-    ref: "Shipper",
-  },
-
-  manager: Boolean,
-  managerId: {
-    type: Schema.Types.ObjectId,
-    ref: "Manager",
-  },
-
-  sales: Boolean,
-  salesId: {
-    type: Schema.Types.ObjectId,
-    ref: "Sales",
-  },
-  groupRequest: {
-    type: Schema.Types.ObjectId,
-    ref: "Group",
-    default: undefined,
-  },
-  group: {
-    type: Schema.Types.ObjectId,
-    ref: "Group",
-    default: undefined,
-  },
-  bikeBrand: { type: String, default: undefined },
-  bikeModel: { type: Number, default: undefined },
-  bikeYear: { type: Number, default: undefined },
-  bikeMake: { type: String, default: undefined },
-  reviews: {
-    default: undefined,
-    type: [
-      {
-        content: { type: String, default: "" },
-        rate: { type: Number, default: 0 },
         user: {
           type: Schema.Types.ObjectId,
           ref: "User",
         },
-        order: {
+        tests: [{
           type: Schema.Types.ObjectId,
-          ref: "Order",
-        },
+          ref: "Test",
+        }],
       },
     ],
+    default: undefined
   },
+  children: {
+    type: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        tests: [{
+          type: Schema.Types.ObjectId,
+          ref: "Test",
+        }],
+      },
+    ],
+    default: undefined
+  },
+  ///////// not for all users /////////
+  admin: Boolean,
 });
 
 module.exports = mongoose.model("User", userSchema);

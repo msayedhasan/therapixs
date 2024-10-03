@@ -7,16 +7,18 @@ const userController = require("../../controllers/stackholders/user");
 
 const router = express.Router();
 
-router.get("/", passportJWT, userController.getAll);
+// router.get("/", passportJWT, userController.getAll);
 
-router.get("/:userId", passportJWT, userController.getOne);
+// router.get("/:userId", passportJWT, userController.getOne);
 
 router.post("/getOneByPhone", passportJWT, userController.getOneByPhone);
 
-router.put("/", passportJWT, userController.updateOne);
+router.post("/addChild", passportJWT, userController.addChild);
 
-router.get("/lock/:userId", passportJWT, userController.lockOne);
+// router.put("/", passportJWT, userController.updateOne);
 
-router.get("/unlock/:userId", passportJWT, userController.unlockOne);
+// router.get("/lock/:userId", passportJWT, userController.lockOne);
+
+// router.get("/unlock/:userId", passportJWT, userController.unlockOne);
 
 module.exports = router;

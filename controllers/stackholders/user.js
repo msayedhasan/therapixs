@@ -1,13 +1,82 @@
 const User = require("../../models/stackholders/user");
-const Product = require("../../models/product");
-const Store = require("../../models/store");
 const bcrypt = require("bcryptjs");
 
 const SMS = require("../../startup/sms_send");
 
+
+exports.getOneByPhone = async (req, res, next) => {
+  const reqPhone = req.body.phone;
+  try {
+    const users = await User.find();
+
+    const user = await User.findOne({ phone: reqPhone });
+
+    if (!user) {
+      const error = new Error("Could not find user.");
+      error.statusCode = 404;
+      throw error;
+    }
+    return res.status(200).json({ message: "Success", data: user });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+exports.addChild = async (req, res, next) => {
+  const loggedInUser = req.user;
+  const phone = req.body.phone;
+  try {
+
+    const user = await User.findOne({ phone: phone });
+    if (!user) {
+      const error = new Error("Could not find user.");
+      error.statusCode = 404;
+      throw error;
+    }
+    if (loggedInUser._id.equals(user._id)) {
+      return res.status(200).json({ message: "You're adding yourself", });
+    }
+    if (loggedInUser.children) {
+
+      const childExist = loggedInUser.children.find(e => e.user.equals(user._id));
+      if (childExist) {
+        return res.json({ message: "Already exist" });
+      }
+      loggedInUser.children.push({ user: user._id });
+    } else {
+      loggedInUser.children = [{ user: user._id }];
+    }
+
+    if (user.parents) {
+      const parentExist = user.parent.find(e => e.user.equals(loggedInUser._id));
+      if (parentExist) {
+        return res.json({ message: "Parent Already exist" });
+      }
+      user.parents.push({ user: loggedInUser._id });
+    } else {
+      user.parents = [{ user: loggedInUser._id }];
+    }
+
+    await loggedInUser.save()
+    await user.save()
+    return res.status(200).json({ message: "Success", data: user });
+  } catch (err) {
+    console.log(err);
+
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+
 generateOTP = () => {
   // Declare a digits variable
-  // which stores all digits
+  // which clinics all digits
   var digits = "0123456789";
   let OTP = "";
   for (let i = 0; i < 4; i++) {
@@ -59,23 +128,9 @@ exports.getOne = async (req, res, next) => {
   }
 };
 
-exports.getOneByPhone = async (req, res, next) => {
-  const phone = req.body.phone;
-  try {
-    const user = await User.findOne({ phone: phone });
-    if (!user) {
-      const error = new Error("Could not find user.");
-      error.statusCode = 404;
-      throw error;
-    }
-    return res.status(200).json({ message: "Success", data: user });
-  } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500;
-    }
-    next(err);
-  }
-};
+
+
+
 
 exports.updateOne = async (req, res, next) => {
   try {

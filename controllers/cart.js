@@ -1,4 +1,4 @@
-const Product = require("../models/product");
+const Product = require("../models/test");
 const ProductProperty = require("../models/productProperty");
 const Cart = require("../models/cart");
 const User = require("../models/stackholders/user");
@@ -13,8 +13,8 @@ calculateShipping = async(cart, shippingAddress) => {
                 const item = cart.items[index];
                 const parsedItem = await Product.findById(item.product)
                     .populate({
-                        path: "store",
-                        model: "Store",
+                        path: "clinic",
+                        model: "Clinic",
                         populate: {
                             path: "address",
                             model: "Place",
@@ -29,9 +29,9 @@ calculateShipping = async(cart, shippingAddress) => {
                     cart.items.splice(index, 1);
                 }
                 //** Calculate shipping cost */
-                if (parsedItem.store) {
+                if (parsedItem.clinic) {
                     let shippingCost = await shippingController.getShippingCost(
-                        parsedItem.store.address.name,
+                        parsedItem.clinic.address.name,
                         shippingAddress
                     );
                     if (shippingCost) {
@@ -191,7 +191,7 @@ exports.addItem = async(req, res, next) => {
             if (productProperty.qty > itemExist[0].qty) {
                 itemExist[0].qty = itemExist[0].qty + 1;
             } else {
-                const error = new Error("No more of this item in store!");
+                const error = new Error("No more of this item in clinic!");
                 error.statusCode = 400;
                 throw error;
             }

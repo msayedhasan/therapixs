@@ -6,9 +6,10 @@ var mongoose = require("mongoose");
 
 var winston = require("winston");
 
-var config = require("../config/index");
+var config = require("../config/index"); // const MONGODB_URI = 'mongodb+srv://msayed:msayed@motobar.i0mk5.mongodb.net/test';
 
-var MONGODB_URI = 'mongodb+srv://msayed:msayed@motobar.i0mk5.mongodb.net/test'; // const MONGODB_URI = 'mongodb://localhost:27017/MotoBar';
+
+var MONGODB_URI = 'mongodb://localhost:27017/MotoBar';
 
 module.exports = function () {
   mongoose.connect(MONGODB_URI, {

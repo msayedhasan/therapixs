@@ -26,7 +26,7 @@ setToken = function setToken(user) {
 
 generateOTP = function generateOTP() {
   // Declare a digits variable
-  // which stores all digits
+  // which clinics all digits
   var digits = "0123456789";
   var OTP = "";
 
@@ -216,7 +216,7 @@ exports.login = function _callee2(req, res, next) {
             admin: user.admin,
             owner: user.owner,
             shipper: user.shipper,
-            store: user.store,
+            clinic: user.clinic,
             token: token
           }));
 
@@ -641,8 +641,8 @@ exports.syncApple = function _callee7(req, res, next) {
             path: "ownerId",
             model: "Owner",
             populate: {
-              path: "store",
-              model: "Store"
+              path: "clinic",
+              model: "Clinic"
             }
           }).populate({
             path: "shipperId",
@@ -851,8 +851,8 @@ exports.syncGoogle = function _callee9(req, res, next) {
             path: "ownerId",
             model: "Owner",
             populate: {
-              path: "store",
-              model: "Store"
+              path: "clinic",
+              model: "Clinic"
             }
           }).populate({
             path: "shipperId",
@@ -1072,8 +1072,8 @@ exports.syncFacebook = function _callee11(req, res, next) {
             path: "ownerId",
             model: "Owner",
             populate: {
-              path: "store",
-              model: "Store"
+              path: "clinic",
+              model: "Clinic"
             }
           }).populate({
             path: "shipperId",
@@ -1184,8 +1184,8 @@ exports.getProfile = function _callee12(req, res, next) {
             path: "ownerId",
             model: "Owner",
             populate: {
-              path: "store",
-              model: "Store"
+              path: "clinic",
+              model: "Clinic"
             }
           }).populate({
             path: "shipperId",

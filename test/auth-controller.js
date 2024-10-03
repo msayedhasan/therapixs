@@ -23,7 +23,7 @@ describe("Auth Controller - Login", function() {
       expect(result).to.have.property("statusCode", 500);
       done();
     });
-    User.findOne.restore();
+    User.findOne.reclinic();
   });
 
 //   it("should send response with user", function(done) {
