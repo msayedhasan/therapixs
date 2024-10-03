@@ -12,6 +12,7 @@ require("./startup/routes")(app);
 require("./startup/db")();
 
 // app.use(express.static(__dirname + "/dist/admin-panel"));
+app.use(express.static(__dirname + "/dist"));
 // //if (process.env.NODE_ENV === "production") {
 // //set static folder
 // //  app.use(express.static("dist/admin-panel"));
