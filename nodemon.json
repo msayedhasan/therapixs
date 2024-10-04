@@ -1,7 +1,7 @@
 {
     "env": {
-        "MONGO_USER": "mohamedsayed",
-        "MONGO_PASSWORD": "mohamedsayed",
+        "MONGO_USER": "therapixs",
+        "MONGO_PASS": "therapixs",
         "MONGO_DEFAULT_DATABASE": "project"
     }
 }
