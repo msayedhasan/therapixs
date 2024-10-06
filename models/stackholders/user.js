@@ -11,6 +11,7 @@ const userSchema = new Schema({
   phone: Number,
   password: String,
   otpVerified :  { type: Boolean, default: false },
+  otp: {type: Number},
 
   locked: {
     type: Boolean,

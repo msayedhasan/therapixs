@@ -1,3 +1,4 @@
+const twilio = require("twilio");
 const SMS = require("../startup/sms_send");
 require("dotenv/config");
 
@@ -94,15 +95,24 @@ exports.signup = async (req, res, next) => {
 
     hashedPassword = await bcrypt.hash(password, 12);
 
+    let generatedOTP = generateOTP();
+
     const newUser = new User({
       name: name,
       phone: phone,
       password: hashedPassword,
+      otpVerified: false,
+      otp: generatedOTP,
     });
 
+    let twilioRes = await twilioAPI(
+      phone,
+      `Your verification code is ${generatedOTP}`
+    );
     if (fcmToken) {
       newUser.fcmToken = fcmToken;
     }
+
 
     await newUser.save();
     const token = setToken(newUser);
@@ -110,6 +120,7 @@ exports.signup = async (req, res, next) => {
     return res.status(200).json({
       message: "User created",
       token: token,
+      otp: newUser.otp
     });
   } catch (err) {
     console.log(err);
@@ -120,6 +131,8 @@ exports.signup = async (req, res, next) => {
     next(err);
   }
 };
+
+
 
 // exports.resetPassword = async (req, res, next) => {
 //   console.log("reset password");
@@ -744,6 +757,153 @@ exports.getProfile = async (req, res, next) => {
 
     return res.status(200).json({ message: "Profile fetched.", data: user });
   } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+generateOTP = () => {
+  // Declare a digits variable
+  // which stores all digits
+  var digits = "0123456789";
+  let OTP = "";
+  for (let i = 0; i < 4; i++) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+};
+exports.verifyOtp = async (req, res, next) => {
+  const phone = parseInt(req.body.phone);
+  const otp = parseInt(req.body.otp);
+  try {
+
+    
+    let user = await User.findOne({
+      phone: phone,
+    });
+    if (!user) {
+      const error = new Error("user not found");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    if (user.otp !== otp) {
+      const error = new Error("Invalid OTP");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    user.otp = undefined;
+    user.otpVerified = true;
+
+    await user.save();
+
+    const token = setToken(user);
+    return res.status(201).json({
+      message: "Success",
+      token: token,
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+twilioAPI = async (phone, msg) => {
+  // Download the helper library from https://www.twilio.com/docs/node/install
+
+  // Find your Account SID and Auth Token at twilio.com/console
+  // and set the environment variables. See http://twil.io/secure
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const client = twilio(accountSid, authToken);
+
+  async function createMessage() {
+    try {
+      await client.messages.create({
+        body: msg,
+        to: `+${phone}`,
+        from: '+15202177179'
+      })
+        .then(response => {
+          console.log('response')
+          return response.body;
+        }) // Log the entire response
+        .catch(error => {
+          console.error(error)
+          const err = new Error(error.message);
+          err.statusCode = 400;
+          throw err;
+        });
+
+      // const message = await client.messages.create({
+      //   body: msg,
+      //   from: "whatsapp:+15202177179",
+      //   to: `whatsapp:+${phone}`,
+      // });
+
+      // // const message = await client.messages.create({
+      // //   body: msg,
+      // //   from: "+15202177179",
+      // //   to: `+${phone}`,
+      // // });
+
+      // console.log(message.body);
+    } catch (error) {
+      const err = new Error(error.message);
+      err.statusCode = 400;
+      throw err;
+    }
+  }
+
+  await createMessage();
+}
+
+
+exports.sendOtp = async (req, res, next) => {
+  console.log("send otp");
+  const phone = parseInt(req.body.phone);
+  try {
+    // check if user logged in with phone or local email
+    let user = await User.findOne({
+      phone: phone,
+    });
+    if (!user) {
+      const error = new Error("user not found");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    let generatedOTP = generateOTP();
+
+    let twilioRes = await twilioAPI(
+      phone,
+      `Your verification code is ${generatedOTP}`
+    );
+
+    if (twilioRes) {
+      console.log('twilioRes');
+      console.log(twilioRes);
+      user.otp = generatedOTP;
+      user.otpVerified = false;
+      await user.save();
+      const token = setToken(user);
+      return res.status(201).json({
+        message: "Success",
+        token: token,
+      });
+    } else {
+      const error = new Error("Failed to send OTP");
+      error.statusCode = 400;
+      throw error;
+    }
+  } catch (err) {
+    console.log(err);
+
     if (!err.statusCode) {
       err.statusCode = 500;
     }

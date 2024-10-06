@@ -21,8 +21,8 @@ router.post("/login", authController.login);
 
 // router.post("/resetPassword", authController.resetPassword);
 
-// router.post("/verifyOtp", authController.verifyOtp);
-// router.post("/resendOtp", authController.resendOtp);
+router.post("/verifyOtp", authController.verifyOtp);
+router.post("/sendOtp", authController.sendOtp);
 
 // router.post("/google", googleValidation, authController.google);
 // router.post(
