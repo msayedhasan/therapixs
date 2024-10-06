@@ -27655,7 +27655,7 @@ r=B.c.jB(a,b,r+1)}return null},
 a3f(a){var s=0,r=A.L(t.z),q,p
 var $async$a3f=A.M(function(b,c){if(b===1)return A.I(c,r)
 while(true)switch(s){case 0:s=3
-return A.H($.ks().o8(a,"http://192.168.1.18:3000/auth/login"),$async$a3f)
+return A.H($.ks().o8(a,"https://www.therapixs.com/auth/login"),$async$a3f)
 case 3:p=c
 A.c6("res")
 A.c6(p)
@@ -27667,7 +27667,7 @@ return A.K($async$a3f,r)},
 a3g(a){var s=0,r=A.L(t.z),q
 var $async$a3g=A.M(function(b,c){if(b===1)return A.I(c,r)
 while(true)switch(s){case 0:s=3
-return A.H($.ks().o8(a,"http://192.168.1.18:3000/auth/signup"),$async$a3g)
+return A.H($.ks().o8(a,"https://www.therapixs.com/auth/signup"),$async$a3g)
 case 3:q=c
 s=1
 break
@@ -27676,7 +27676,7 @@ return A.K($async$a3g,r)},
 a3h(a){var s=0,r=A.L(t.z),q
 var $async$a3h=A.M(function(b,c){if(b===1)return A.I(c,r)
 while(true)switch(s){case 0:s=3
-return A.H($.ks().o8(a,"http://192.168.1.18:3000/auth/verifyOtp"),$async$a3h)
+return A.H($.ks().o8(a,"https://www.therapixs.com/auth/verifyOtp"),$async$a3h)
 case 3:q=c
 s=1
 break
@@ -27686,7 +27686,7 @@ nz(){var s=0,r=A.L(t.z),q,p=2,o,n,m,l,k
 var $async$nz=A.M(function(a,b){if(a===1){o=b
 s=p}while(true)switch(s){case 0:p=4
 s=7
-return A.H($.ks().vz(0,"http://192.168.1.18:3000/auth/me"),$async$nz)
+return A.H($.ks().vz(0,"https://www.therapixs.com/auth/me"),$async$nz)
 case 7:n=b
 q=n
 s=1
@@ -27711,7 +27711,7 @@ return A.K($async$nz,r)},
 amv(a){var s=0,r=A.L(t.z),q
 var $async$amv=A.M(function(b,c){if(b===1)return A.I(c,r)
 while(true)switch(s){case 0:s=3
-return A.H($.ks().ve(0,a,"http://192.168.1.18:3000/test"),$async$amv)
+return A.H($.ks().ve(0,a,"https://www.therapixs.com/test"),$async$amv)
 case 3:q=c
 s=1
 break
@@ -27720,7 +27720,7 @@ return A.K($async$amv,r)},
 amu(a){var s=0,r=A.L(t.z),q
 var $async$amu=A.M(function(b,c){if(b===1)return A.I(c,r)
 while(true)switch(s){case 0:s=3
-return A.H($.ks().o8(a,"http://192.168.1.18:3000/test/buyTests"),$async$amu)
+return A.H($.ks().o8(a,"https://www.therapixs.com/test/buyTests"),$async$amu)
 case 3:q=c
 s=1
 break
@@ -27729,7 +27729,7 @@ return A.K($async$amu,r)},
 anW(a){var s=0,r=A.L(t.z),q
 var $async$anW=A.M(function(b,c){if(b===1)return A.I(c,r)
 while(true)switch(s){case 0:s=3
-return A.H($.ks().ve(0,a,"http://192.168.1.18:3000/user"),$async$anW)
+return A.H($.ks().ve(0,a,"https://www.therapixs.com/user"),$async$anW)
 case 3:q=c
 s=1
 break
