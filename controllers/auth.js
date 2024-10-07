@@ -821,8 +821,7 @@ twilioAPI = async (phone, msg) => {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = twilio(accountSid, authToken);
-
-  async function createMessage() {
+  // async function createMessage() {
     try {
       await client.messages.create({
         body: msg,
@@ -858,9 +857,9 @@ twilioAPI = async (phone, msg) => {
       err.statusCode = 400;
       throw err;
     }
-  }
+  // }
 
-  await createMessage();
+  // await createMessage();
 }
 
 
