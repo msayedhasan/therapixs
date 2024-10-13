@@ -29187,7 +29187,7 @@ r=B.c.jF(a,b,r+1)}return null},
 a3J(a){var s=0,r=A.K(t.z),q,p
 var $async$a3J=A.L(function(b,c){if(b===1)return A.H(c,r)
 while(true)switch(s){case 0:s=3
-return A.N($.jn().oz(a,"http://172.20.10.4:3000/auth/login"),$async$a3J)
+return A.N($.jn().oz(a,"https://www.therapixs.com/auth/login"),$async$a3J)
 case 3:p=c
 A.c0("res")
 A.c0(p)
@@ -29199,7 +29199,7 @@ return A.J($async$a3J,r)},
 a3K(a){var s=0,r=A.K(t.z),q
 var $async$a3K=A.L(function(b,c){if(b===1)return A.H(c,r)
 while(true)switch(s){case 0:s=3
-return A.N($.jn().oz(a,"http://172.20.10.4:3000/auth/signup"),$async$a3K)
+return A.N($.jn().oz(a,"https://www.therapixs.com/auth/signup"),$async$a3K)
 case 3:q=c
 s=1
 break
@@ -29208,7 +29208,7 @@ return A.J($async$a3K,r)},
 a3L(a){var s=0,r=A.K(t.z),q
 var $async$a3L=A.L(function(b,c){if(b===1)return A.H(c,r)
 while(true)switch(s){case 0:s=3
-return A.N($.jn().oz(a,"http://172.20.10.4:3000/auth/verifyOtp"),$async$a3L)
+return A.N($.jn().oz(a,"https://www.therapixs.com/auth/verifyOtp"),$async$a3L)
 case 3:q=c
 s=1
 break
@@ -29218,7 +29218,7 @@ nN(){var s=0,r=A.K(t.z),q,p=2,o,n,m,l,k
 var $async$nN=A.L(function(a,b){if(a===1){o=b
 s=p}while(true)switch(s){case 0:p=4
 s=7
-return A.N($.jn().rs(0,"http://172.20.10.4:3000/auth/me"),$async$nN)
+return A.N($.jn().rs(0,"https://www.therapixs.com/auth/me"),$async$nN)
 case 7:n=b
 q=n
 s=1
@@ -29243,7 +29243,7 @@ return A.J($async$nN,r)},
 agp(a){var s=0,r=A.K(t.z),q
 var $async$agp=A.L(function(b,c){if(b===1)return A.H(c,r)
 while(true)switch(s){case 0:s=3
-return A.N($.jn().rs(0,"http://172.20.10.4:3000/controller/documentX.pdf"),$async$agp)
+return A.N($.jn().rs(0,"https://www.therapixs.com/controller/documentX.pdf"),$async$agp)
 case 3:q=c
 s=1
 break
@@ -29252,7 +29252,7 @@ return A.J($async$agp,r)},
 alm(a){var s=0,r=A.K(t.z),q
 var $async$alm=A.L(function(b,c){if(b===1)return A.H(c,r)
 while(true)switch(s){case 0:s=3
-return A.N($.jn().w4(0,a,"http://172.20.10.4:3000/test"),$async$alm)
+return A.N($.jn().w4(0,a,"https://www.therapixs.com/test"),$async$alm)
 case 3:q=c
 s=1
 break
@@ -29261,7 +29261,7 @@ return A.J($async$alm,r)},
 all(a){var s=0,r=A.K(t.z),q
 var $async$all=A.L(function(b,c){if(b===1)return A.H(c,r)
 while(true)switch(s){case 0:s=3
-return A.N($.jn().oz(a,"http://172.20.10.4:3000/test/buyTests"),$async$all)
+return A.N($.jn().oz(a,"https://www.therapixs.com/test/buyTests"),$async$all)
 case 3:q=c
 s=1
 break
@@ -29270,7 +29270,7 @@ return A.J($async$all,r)},
 amQ(a){var s=0,r=A.K(t.z),q
 var $async$amQ=A.L(function(b,c){if(b===1)return A.H(c,r)
 while(true)switch(s){case 0:s=3
-return A.N($.jn().w4(0,a,"http://172.20.10.4:3000/user"),$async$amQ)
+return A.N($.jn().w4(0,a,"https://www.therapixs.com/user"),$async$amQ)
 case 3:q=c
 s=1
 break

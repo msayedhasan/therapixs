@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const winston = require("winston");
 const config = require("../config/index");
 
-const MONGODB_URI = 'mongodb://localhost:27017/Therapy';
-// const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DB}.i0mk5.mongodb.net/`;
+// const MONGODB_URI = 'mongodb://localhost:27017/Therapy';
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DB}.i0mk5.mongodb.net/`;
 
 module.exports = () => {
     mongoose
