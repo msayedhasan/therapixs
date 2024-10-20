@@ -46,7 +46,6 @@
         "passport-google-plus-token": "^2.1.0",
         "passport-jwt": "^4.0.0",
         "pdfmake": "^0.2.14",
-        "puppeteer": "^23.5.2",
         "sharp": "^0.27.2",
         "sinon": "^9.0.1",
         "twilio": "^5.3.3",
