@@ -38,7 +38,7 @@ router.post("/sendOtp", authController.sendOtp);
 // router.post("/facebook", authController.facebook);
 // router.post("/syncFacebook", passportJWT, authController.syncFacebook);
 
-router.get("/me", passportJWT, authController.getProfile);
+router.get("/me", authController.getProfile);
 
 // router.post(
 //   "/oauth/facebook",

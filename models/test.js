@@ -36,6 +36,8 @@ const testSchema = new Schema({
   patient :{
     name: String,
     phone: Number,
+    age: String,
+    gender: String,
   },
 
   // description: String,
