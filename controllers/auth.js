@@ -34,7 +34,7 @@ generateOTP = () => {
 };
 
 exports.login = async (req, res, next) => {
-  const phone = parseInt('2'+req.body.phone);
+  const phone = parseInt('20'+req.body.phone);
   // const phone = parseInt(req.body.phone); // flutter
   const password = req.body.password;
   const fcmToken = req.body.fcmToken;
@@ -83,7 +83,7 @@ exports.login = async (req, res, next) => {
 
 exports.signup = async (req, res, next) => {
   const name = req.body.name;
-  const phone = parseInt('2'+req.body.phone);
+  const phone = parseInt('20'+req.body.phone);
   const password = req.body.password;
   const fcmToken = req.body.fcmToken;
 
@@ -135,8 +135,6 @@ exports.signup = async (req, res, next) => {
     next(err);
   }
 };
-
-
 
 // exports.resetPassword = async (req, res, next) => {
 //   console.log("reset password");
@@ -779,7 +777,7 @@ generateOTP = () => {
   return OTP;
 };
 exports.verifyOtp = async (req, res, next) => {
-  const phone = parseInt('2'+req.body.phone);
+  const phone = parseInt('20'+req.body.phone);
   const otp = parseInt(req.body.otp);
   try {
 
