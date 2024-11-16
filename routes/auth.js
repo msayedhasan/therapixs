@@ -20,6 +20,8 @@ router.post("/login", authController.login);
 
 router.post("/verifyOtp", authController.verifyOtp);
 router.post("/sendOtp", authController.sendOtp);
+router.post("/forget-password", authController.forgetPassword);
+router.post("/new-password", authController.newPassword);
 
 router.get("/me", authController.getProfile);
 
