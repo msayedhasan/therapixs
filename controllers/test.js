@@ -129,6 +129,7 @@ exports.updateTest = async (req, res, next) => {
         if (testId) {
             const test = await Test.findById(testId);
             if (test) {
+                test.patient = patient
                 test.values = values
                 await test.save();
                 return res.status(201).json({
