@@ -1,9 +1,6 @@
 const path = require("path");
-const https = require("https");
 const express = require("express");
-const multer = require("multer");
 const app = express();
-const fs = require("fs");
 
 const errors = require("./middleware/error");
 require("./startup/logging")();
